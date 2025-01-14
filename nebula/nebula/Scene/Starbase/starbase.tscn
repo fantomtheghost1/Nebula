@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://qq57h1fytp4h"]
+
+[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://Scene/Components/shield_generator.tscn" id="1_04dm6"]
+[ext_resource type="Script" path="res://Scene/Starbase/starbase.gd" id="1_331v7"]
+[ext_resource type="PackedScene" uid="uid://ddrbo20m5eybs" path="res://Scene/Components/turret.tscn" id="3_3o0sj"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_bpcqa"]
+inner_radius = 0.001
+
+[node name="Starbase" type="Node3D"]
+script = ExtResource("1_331v7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("TorusMesh_bpcqa")
+
+[node name="ShieldGenerator" parent="." instance=ExtResource("1_04dm6")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+max_shield = 10000
+recharge_delay = 3.0
+recharge_tick = 1.0
+
+[node name="Turret" parent="." instance=ExtResource("3_3o0sj")]
+
+[connection signal="BeamFired" from="Turret" to="ShieldGenerator" method="_on_turret_beam_fired"]
