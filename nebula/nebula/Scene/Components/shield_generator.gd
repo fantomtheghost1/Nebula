@@ -5,17 +5,23 @@ extends Node3D
 @export var recharge_delay : float = 0.0
 @export var recharge_tick : float = 0.0
 
-var current_shield = 0
+@export var current_shield = 0
+
+var recharging = false
 
 func _ready():
-	current_shield = max_shield
+	#current_shield = max_shield
 	print("Shield: " + str(current_shield))
+
+func _process(_delta):
+	if current_shield < max_shield and !recharging:
+		recharging = true
+		%RechargeDelay.wait_time = recharge_delay
+		%RechargeDelay.start()
 
 func TakeDamage(damage):
 	current_shield -= damage
 	print("shield: " + str(current_shield))
-	%RechargeDelay.wait_time = recharge_delay
-	%RechargeDelay.start()
 	if current_shield <= 0:
 		print("Shield down!")
 		return current_shield
@@ -37,6 +43,7 @@ func _on_recharge_tick_timeout():
 			%RechargeTick.wait_time -= 0.05
 	else:
 		%RechargeTick.stop()
+		recharging = false
 
 func _on_turret_beam_fired(turret_owner, target, damage):
 	if target == "test":

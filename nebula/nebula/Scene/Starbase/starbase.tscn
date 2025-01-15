@@ -1,25 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://qq57h1fytp4h"]
+[gd_scene load_steps=3 format=3 uid="uid://b0gdkau3q2yq"]
 
-[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://Scene/Components/shield_generator.tscn" id="1_04dm6"]
-[ext_resource type="Script" path="res://Scene/Starbase/starbase.gd" id="1_331v7"]
-[ext_resource type="PackedScene" uid="uid://ddrbo20m5eybs" path="res://Scene/Components/turret.tscn" id="3_3o0sj"]
+[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://Scene/Components/shield_generator.tscn" id="1_72w16"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_bpcqa"]
-inner_radius = 0.001
+[sub_resource type="BoxShape3D" id="BoxShape3D_333yw"]
 
 [node name="Starbase" type="Node3D"]
-script = ExtResource("1_331v7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-mesh = SubResource("TorusMesh_bpcqa")
+[node name="StarbaseModel" type="CharacterBody3D" parent="."]
 
-[node name="ShieldGenerator" parent="." instance=ExtResource("1_04dm6")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-max_shield = 10000
-recharge_delay = 3.0
-recharge_tick = 1.0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StarbaseModel"]
+shape = SubResource("BoxShape3D_333yw")
 
-[node name="Turret" parent="." instance=ExtResource("3_3o0sj")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StarbaseModel"]
 
-[connection signal="BeamFired" from="Turret" to="ShieldGenerator" method="_on_turret_beam_fired"]
+[node name="ScannerComponent" type="Node3D" parent="."]
+
+[node name="CargoComponent" type="Node3D" parent="."]
+
+[node name="Auxiliaries" type="Node3D" parent="."]
+
+[node name="SpecialComponent" type="Node3D" parent="Auxiliaries"]
+
+[node name="TurretContainer" type="Node3D" parent="."]
+
+[node name="DummyTurret" type="Node3D" parent="TurretContainer"]
+
+[node name="ShieldGenerator" parent="." instance=ExtResource("1_72w16")]
+
+[node name="ArmorComponent" type="Node3D" parent="."]
+
+[node name="GeneratorComponent" type="Node3D" parent="."]
+
+[node name="IdentityComponent" type="Node3D" parent="."]
+
+[node name="ServiceContainer" type="Node3D" parent="."]
+
+[node name="RepairComponent" type="Node3D" parent="ServiceContainer"]
+
+[node name="TradeComponent" type="Node3D" parent="ServiceContainer"]
+
+[node name="CraftingComponent" type="Node3D" parent="ServiceContainer"]
+
+[node name="DiplomacyComponent" type="Node3D" parent="ServiceContainer"]
+
+[node name="DockComponent" type="Node3D" parent="ServiceContainer"]

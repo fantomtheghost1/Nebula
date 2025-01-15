@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdr2qovl2f2i6"]
+
+[ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://Scene/Camera/camera.tscn" id="1_abhsk"]
+[ext_resource type="PackedScene" uid="uid://cjb05x1lpdjf0" path="res://Scene/Ship/ship.tscn" id="2_x5vb6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c7ptp"]
+
+[node name="DevRoom" type="Node2D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00403169, 0.999992, 0, -0.999992, -0.00403169, 0, 10, 0)
+
+[node name="CameraGimbal" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("1_abhsk")]
+subject = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_c7ptp")
+
+[node name="Ship" parent="." instance=ExtResource("2_x5vb6")]
+generator_type = "DUMMY_ZERO"
+id = 1
+
+[node name="Ship2" parent="." instance=ExtResource("2_x5vb6")]
+generator_type = "DUMMY_MAX_GENERATOR"
+id = 2

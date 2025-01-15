@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjb05x1lpdjf0"]
+
+[ext_resource type="Script" path="res://Scene/Ship/ship.gd" id="1_cr1ik"]
+[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://Scene/Components/shield_generator.tscn" id="1_h5wr8"]
+[ext_resource type="Script" path="res://Scene/Ship/generator_component.gd" id="3_tbq4l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evbkf"]
+
+[node name="Ship" type="Node3D"]
+script = ExtResource("1_cr1ik")
+
+[node name="ShipModel" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipModel"]
+shape = SubResource("BoxShape3D_evbkf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShipModel"]
+
+[node name="ShipAIComponent" type="Node3D" parent="."]
+
+[node name="EngineComponent" type="Node3D" parent="."]
+
+[node name="ScannerComponent" type="Node3D" parent="."]
+
+[node name="CargoComponent" type="Node3D" parent="."]
+
+[node name="Auxiliaries" type="Node3D" parent="."]
+
+[node name="SpecialComponent" type="Node3D" parent="Auxiliaries"]
+
+[node name="TurretContainer" type="Node3D" parent="."]
+
+[node name="MiningContainer" type="Node3D" parent="TurretContainer"]
+
+[node name="DummyTurret" type="Node3D" parent="TurretContainer/MiningContainer"]
+
+[node name="CombatContainer" type="Node3D" parent="TurretContainer"]
+
+[node name="DummyTurret" type="Node3D" parent="TurretContainer/CombatContainer"]
+
+[node name="ShieldGenerator" parent="." instance=ExtResource("1_h5wr8")]
+
+[node name="ArmorComponent" type="Node3D" parent="."]
+
+[node name="WarpComponent" type="Node3D" parent="."]
+
+[node name="IdentityComponent" type="Node3D" parent="."]
+
+[node name="GeneratorComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_tbq4l")
+
+[connection signal="GeneratorDestroyed" from="GeneratorComponent" to="." method="_on_generator_component_generator_destroyed"]
