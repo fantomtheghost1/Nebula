@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dt5cp4qnw4eqb"]
+
+[node name="System" type="Node3D"]
+
+[node name="ShipContainer" type="Node3D" parent="."]
+
+[node name="StarbaseContainer" type="Node3D" parent="."]
+
+[node name="AsteroidContainer" type="Node3D" parent="."]
+
+[node name="PlanetContainer" type="Node3D" parent="."]
+
+[node name="StarContainer" type="Node3D" parent="."]
+
+[node name="HyperlaneComponent" type="Node3D" parent="."]
+
+[node name="WreckContainer" type="Node3D" parent="."]

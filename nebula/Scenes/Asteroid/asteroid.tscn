@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://pg7qu448k1mp"]
+
+[ext_resource type="Script" path="res://Scenes/Asteroid/asteroid.gd" id="1_mf8e3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_arieo"]
+
+[node name="Asteroid" type="Node3D"]
+script = ExtResource("1_mf8e3")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_arieo")
