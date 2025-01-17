@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bujjc8sy450fd"]
+
+[ext_resource type="Script" path="res://Scenes/Components/engine_component.gd" id="1_hryws"]
+[ext_resource type="Script" path="res://Scenes/Components/ship_movement.gd" id="2_xcqrq"]
+
+[node name="EngineComponent" type="Node3D"]
+script = ExtResource("1_hryws")
+
+[node name="ShipMovement" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_xcqrq")
+
+[node name="Timer" type="Timer" parent="ShipMovement"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true

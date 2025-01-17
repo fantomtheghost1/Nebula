@@ -5,6 +5,9 @@
 
 extends Node3D
 
+signal Tweening
+signal TweeningFinished
+
 # this is the node that the camera focuses on
 @export var subject : Node3D = null
 
@@ -15,19 +18,25 @@ var tweening = false
 
 # starts the tween function and sets the camera subject
 func SetTarget(new_subject) -> void:
-	TweenCamera(new_subject.position)
 	subject = new_subject
+	TweenCamera(subject.position)
 	
 # tweens the camera between the current position and the new, provided position
 func TweenCamera(new_pos) -> void:
 	tweening = true
+	Tweening.emit()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", new_pos, new_subject_ease_duration) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
+	tween.connect("finished", on_tween_finished)
+	
+func on_tween_finished():
+	TweeningFinished.emit()
 	tweening = false
 	
 # sets the position of the camera to the subject if the subject is moving
 func _process(_delta) -> void:
 	if subject != null and !tweening:
 		position = subject.position
+		

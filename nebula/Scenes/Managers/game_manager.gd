@@ -2,15 +2,15 @@ extends Node
 
 var ship = preload("res://Scenes/Ship/ship.tscn")
 
-func CreateShip(instance_id : int, instance_generator_type : String, instance_cargo_bay_type : String, instance_shield_generator_type : String, instance_location : Node):
+# creates a ship with the provided component types at the provided node location
+func CreateShip(instance_id : int, instance_chassis_type : String, instance_generator_type : String, instance_cargo_bay_type : String, instance_shield_generator_type : String, instance_location : Node):
 	var new_ship = ship.instantiate()
-	print(get_tree())
 	instance_location.add_child(new_ship)
-	new_ship.generator_type = instance_generator_type
-	new_ship.cargo_bay_type = instance_cargo_bay_type
-	new_ship.shield_generator_type = instance_shield_generator_type
-	new_ship.id = instance_id
-	print("test")
+	new_ship.Initialize(instance_chassis_type, instance_generator_type, instance_cargo_bay_type, instance_shield_generator_type, instance_id)
+	return new_ship
+
+func DoesShipExist(id):
+	return get_parent().get_node("DevRoom/SHIPS").has_node(str(id))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

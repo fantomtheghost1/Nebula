@@ -1,10 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdr2qovl2f2i6"]
+[gd_scene load_steps=7 format=3 uid="uid://cdr2qovl2f2i6"]
 
 [ext_resource type="Script" path="res://Scenes/dev_room.gd" id="1_3o0u1"]
 [ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://Scenes/Camera/camera.tscn" id="1_abhsk"]
-[ext_resource type="PackedScene" uid="uid://cjb05x1lpdjf0" path="res://Scenes/Ship/ship.tscn" id="2_x5vb6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_c7ptp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ew0iq"]
+size = Vector3(10000, 0.3, 10000)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ctolk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mhpok"]
 
 [node name="DevRoom" type="Node2D"]
 script = ExtResource("1_3o0u1")
@@ -13,13 +19,37 @@ script = ExtResource("1_3o0u1")
 transform = Transform3D(1, 0, 0, 0, -0.00403169, 0.999992, 0, -0.999992, -0.00403169, 0, 10, 0)
 
 [node name="CameraGimbal" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("1_abhsk")]
-subject = NodePath("../MeshInstance3D")
+unique_name_in_owner = true
+subject = NodePath("../aouj")
+new_subject_ease_duration = 4.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="aouj" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 mesh = SubResource("BoxMesh_c7ptp")
 
-[node name="Ship" parent="." instance=ExtResource("2_x5vb6")]
-generator_type = "DUMMY_ZERO"
-cargo_bay_type = "DUMMY_MIN_CARGO_BAY"
-shield_generator_type = "DUMMY_MIN_SHIELD_GENERATOR"
-id = 1
+[node name="SHIPS" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="STARBASES" type="Node3D" parent="."]
+
+[node name="FACTIONS" type="Node3D" parent="."]
+
+[node name="UI" type="Node3D" parent="."]
+
+[node name="ClickFloor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ClickFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -166.901, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickFloor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.0568, 0)
+shape = SubResource("BoxShape3D_ew0iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9341)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_ctolk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CapsuleMesh_mhpok")

@@ -1,13 +1,6 @@
 extends Node2D
 
-var GameManager = preload("res://Scenes/Managers/game_manager.gd")
-
-# Called when the node enters the scene tree for the first time.
+# initializes the game manager and creates a new ship
 func _ready():
-	GameManager = GameManager.new()
 	print("initializing game manager")
-	GameManager.CreateShip(1, "DUMMY_ZERO", "DUMMY_ZERO", "DUMMY_ZERO", self)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	var ship = GameManager.CreateShip(1, "RUNABOUT_CHASSIS", "DUMMY_ZERO_GENERATOR", "DUMMY_MIN_CARGO_BAY", "DUMMY_ZERO_SHIELD_GENERATOR", %SHIPS)
