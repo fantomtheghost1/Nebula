@@ -1,4 +1,4 @@
-#                          ITEM CLASS
+#                              ITEM CLASS
 ###########################################################################
 # This class represents resources and items stored in starbases and ships # 
 ###########################################################################
@@ -24,8 +24,5 @@ const ITEM_DESCRIPTIONS = {
 # reversed = {0 : "WATER"}
 # allows us to say that:
 # reversed[0] = "WATER"
-static func GetItemFromIndex(index) -> String:
-	var reversed = {}
-	for key in ITEMS:
-		reversed[ITEMS[key]] = key
-	return reversed[index]
+static func GetItemFromIndex(index) -> String: # maybe write a helper function that will get any enum string from a given enum and index
+	return HelperFunctions.GetEnumStringFromIndex(ITEMS, index)

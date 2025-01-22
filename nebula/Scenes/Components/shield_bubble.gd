@@ -1,5 +1,7 @@
 extends Node3D
 
+var ship_node = null
+
 # this enumerator holds all the possible statuses that the shield bubble can be in
 enum STATUS {ACTIVE, INACTIVE}
 
@@ -26,9 +28,9 @@ var recharging = false
 
 func AbsorbDamage(damage):
 	sp -= damage
-	print(get_parent().get_parent().name + "shield: " + str(sp))
+	print(ship_node.name + "shield: " + str(sp))
 	if sp <= 0:
-		print(get_parent().get_parent().name + " shield down!")
+		print(ship_node.name + " shield down!")
 		return sp
 	else:
 		return 0
@@ -50,13 +52,13 @@ func _on_recharge_tick_timeout():
 		
 	if sp != max_sp:
 		sp += recharge_amount
-		print(get_parent().get_parent().name + " shield: " + str(sp))
+		print(ship_node.name + " shield: " + str(sp))
 	else:
 		%RechargeTick.stop()
 		recharging = false
 
-func _on_shield_generator_shield_generator_disabled(ship_node):
-	if ship_node == get_parent().get_parent():
+func _on_shield_generator_shield_generator_disabled(param_ship_node):
+	if param_ship_node == ship_node:
 		print(sp)
 		current_status = STATUS.INACTIVE
 		%RechargeDelay.stop()
@@ -64,8 +66,8 @@ func _on_shield_generator_shield_generator_disabled(ship_node):
 		sp = 0
 		recharging = false
 
-func _on_shield_generator_shield_generator_enabled(ship_node):
-	if ship_node == get_parent().get_parent():
+func _on_shield_generator_shield_generator_enabled(param_ship_node):
+	if param_ship_node == ship_node:
 		current_status = STATUS.ACTIVE
 		sp = 0
 		recharging = false

@@ -20,6 +20,9 @@ const CHASSIS_TYPES : Dictionary = {
 func SetChassisType(chassis : String):
 	hp = CHASSIS_TYPES[chassis]["HP"]
 	chassis_type = chassis
+	
+	if hp <= 0:
+		DestroyComponent()
 
 func DamageComponent(damage) -> void:
 	hp -= damage

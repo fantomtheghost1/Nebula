@@ -32,6 +32,12 @@ const GENERATOR_TYPES : Dictionary = {"DUMMY_MAX_GENERATOR":{"MAX_POWER":1000, "
 func SetGenerator(new_generator_type : String) -> void:
 	max_power = GENERATOR_TYPES[new_generator_type]["MAX_POWER"]
 	hp = GENERATOR_TYPES[new_generator_type]["HP"]
+	
+	if hp > 0:
+		component_status = STATUS.ENABLED 
+	else:
+		DestroyComponent()
+		
 	print("generator set!")
 	
 func DamageComponent(damage) -> void:

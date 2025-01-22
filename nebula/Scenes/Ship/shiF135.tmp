@@ -12,7 +12,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evbkf"]
 
-[node name="Ship" type="Node3D" groups=["ships"]]
+[node name="Ship" type="Node3D"]
 script = ExtResource("1_cr1ik")
 
 [node name="ShipModel" type="CharacterBody3D" parent="."]
@@ -24,10 +24,7 @@ shape = SubResource("BoxShape3D_evbkf")
 
 [node name="ShipAIComponent" type="Node3D" parent="."]
 
-[node name="EngineComponent" parent="." node_paths=PackedStringArray("identity_component", "ship_model") instance=ExtResource("2_kdr6u")]
-unique_name_in_owner = true
-identity_component = NodePath("../IdentityComponent")
-ship_model = NodePath("../ShipModel")
+[node name="EngineComponent" parent="." instance=ExtResource("2_kdr6u")]
 
 [node name="ScannerComponent" type="Node3D" parent="."]
 

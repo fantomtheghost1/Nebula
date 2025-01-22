@@ -15,8 +15,9 @@ script = ExtResource("2_jueco")
 [node name="OrbitComponent" type="Node3D" parent="Camera3D"]
 script = ExtResource("2_cx58o")
 
-[node name="ZoomComponent" type="Node3D" parent="Camera3D"]
+[node name="ZoomComponent" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("3_h66q3")
+camera = NodePath("..")
 
 [connection signal="Tweening" from="." to="Camera3D" method="_on_camera_gimbal_tweening"]
 [connection signal="Tweening" from="." to="Camera3D/ZoomComponent" method="_on_camera_gimbal_tweening"]

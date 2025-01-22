@@ -6,6 +6,10 @@ signal EngineDestroyed(ship_node)
 
 enum STATUS {ENABLED, DISABLED, DESTROYED}
 
+@export var identity_component : Node3D = null
+@export var ship_movement : Node3D = null
+@export var ship_model : Node3D = null
+
 var component_status = STATUS.ENABLED
 var hp = 0
 var ship_engine_type = ""
@@ -16,13 +20,22 @@ const ENGINE_TYPES : Dictionary = {
 	"DUMMY_ZERO_ENGINE":{"ACCELERATION":0, "HP":0, "MAX_SPEED":0}
 }
 
+func _ready():
+	ship_movement.identity_component = identity_component
+	ship_movement.ship_model = ship_model
+
 # sets the current shield generator that the instance is using
 func SetEngine(engine_type : String) -> void:
 	hp = ENGINE_TYPES[engine_type]["HP"]
 	%ShipMovement.acceleration = ENGINE_TYPES[engine_type]["ACCELERATION"]
 	%ShipMovement.max_speed = ENGINE_TYPES[engine_type]["MAX_SPEED"]
 	ship_engine_type = engine_type
-	EngineEnabled.emit(get_parent())
+	
+	if hp > 0:
+		EnableComponent()
+	else:
+		DestroyComponent()
+		
 	print("engine set!")
 		
 func DamageComponent(damage) -> void:

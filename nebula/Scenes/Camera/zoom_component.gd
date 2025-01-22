@@ -6,7 +6,7 @@
 extends Node3D
 
 # for readability
-@onready var camera : Node3D = get_parent()
+@export var camera : Node3D = null
 
 # sets the speed at which the camera zooms
 const ZOOM_SENSITIVITY : float = 73

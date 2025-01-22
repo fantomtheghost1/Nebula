@@ -7,6 +7,8 @@ signal ShieldGeneratorDestroyed(ship_node)
 # this enumerator holds all the possible statuses that the shield can be in
 enum STATUS {ENABLED, DISABLED, DESTROYED}
 
+@export var ship_node : Node3D = null
+
 # literally just health
 var hp : int = 0
 
@@ -24,6 +26,9 @@ const SHIELD_GENERATOR_TYPES : Dictionary = {
 	"DUMMY_ZERO_SHIELD_GENERATOR":{"MAX_SP":0, "HP":0, "RECHARGE_TICK":0, "RECHARGE_DELAY":0, "RECHARGE_AMOUNT":0}
 }
 
+func _ready():
+	%ShieldBubble.ship_node = ship_node
+
 # sets the current shield generator that the instance is using
 func SetShieldGenerator(shield_generator_type : String) -> void:
 	hp = SHIELD_GENERATOR_TYPES[shield_generator_type]["HP"]
@@ -32,7 +37,11 @@ func SetShieldGenerator(shield_generator_type : String) -> void:
 	%ShieldBubble.recharge_tick = SHIELD_GENERATOR_TYPES[shield_generator_type]["RECHARGE_TICK"]
 	%ShieldBubble.recharge_amount = SHIELD_GENERATOR_TYPES[shield_generator_type]["RECHARGE_AMOUNT"]
 	shield_type = shield_generator_type
-	ShieldGeneratorEnabled.emit(get_parent())
+	
+	if hp > 0:
+		EnableComponent()
+	else:
+		DestroyComponent()
 	print("shield generator set!")
 		
 func DamageComponent(damage) -> void:

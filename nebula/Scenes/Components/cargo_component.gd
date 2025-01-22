@@ -1,4 +1,4 @@
-#                          CARGO COMPONENT
+#                           CARGO COMPONENT
 ############################################################################
 # This component replicates the behavior of a cargo hold in a ship or base # 
 ############################################################################
@@ -84,6 +84,12 @@ func SetCargoBay(cargo_bay : String) -> void:
 	cargo_bay_type = cargo_bay
 	cargo_limit = CARGO_BAY_TYPES[cargo_bay]["CARGO_LIMIT"]
 	hp = CARGO_BAY_TYPES[cargo_bay]["HP"]
+	
+	if hp > 0:
+		component_status = STATUS.ENABLED
+	else:
+		DestroyComponent()
+		
 	print("cargo bay set!")
 	
 func DamageComponent(damage) -> void:
