@@ -1,57 +1,42 @@
 extends Node3D
 
-var Waypoint = preload("res://Classes/Waypoint.gd")
-var WaypointQueue = preload("res://Classes/WaypointQueue.gd")
+var waypoint_queue = preload("res://Classes/WaypointQueue.gd")
 
-var acceleration = 0
+# determines the max speed of the ship
 var max_speed = 0
-const RAY_LENGTH = 10000000000
 
-var identity_component : Node3D = null
-var ship_model : Node3D = null
+# the current ship waypoint queue
+var current_queue = waypoint_queue.new()
 
-func _ready():
-	WaypointQueue = WaypointQueue.new()
+# holds the tween utilized by MoveShip()
+var tween = null
 
-func _input(event):
+# holds important node references
+var ship_node : Node3D = null
 
-	# if the ship is owned by the client
-	if identity_component.object_owner == "DEV":
-		if event.is_action_pressed("Interact") and !Input.is_physical_key_pressed(KEY_ALT) and !Input.is_physical_key_pressed(KEY_SHIFT):
-			
-			# determines what the mouse clicked on
-			var result = DetermineClickSubject()
-			
-			# if the mouse clicked on something, check if its another ship or just the invisible floor
-			if result != null:
-				
-				# if the mouse clicked the invisible floor, then create a waypoint
-				if result["collider"].get_parent() == GlobalVariables.click_floor:
-					var waypoint = Waypoint.new(result["position"], true, self)
-					WaypointQueue.ClearWaypoints()
-					WaypointQueue.Enqueue(waypoint)
-					print("you clicked the floor at " + str(result["position"]))
-				#elif GameManager.DoesShipExist(result["collider"].get_parent().id):
-				#	print("clicked ship")
-			
-		if event.is_action_pressed("QueueInteract"):
-			# determines what the mouse clicked on
-			var result = DetermineClickSubject()
-			
-			print(result)
+# this function will override the current tween playing and change the current queue to the one provided
+func SetCurrentQueue(new_queue):
+	current_queue = new_queue
+	MoveShip()
 
-func DetermineClickSubject():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var cam = GlobalVariables.camera
-	var space = get_world_3d().direct_space_state
-	var ray_query = PhysicsRayQueryParameters3D.new()
-
-	ray_query.from = cam.project_ray_origin(mouse_pos)
-	ray_query.to = ray_query.from + cam.project_ray_normal(mouse_pos) * RAY_LENGTH
+func MoveShip():
 	
-	var result = space.intersect_ray(ray_query)
+	# if you are currently tweening, end it
+	if tween:
+		tween.stop()
+		
+	# holds the next waypoint in the queue
+	var current_waypoint = current_queue.Peek()
 	
-	if result["collider"] != ship_model:
-		return result
-	
-	return 
+	# if the waypoint exists, create the tween 
+	if current_waypoint:
+		tween = get_tree().create_tween()
+		tween.tween_property(ship_node, "position", current_waypoint.position, 2) \
+			.set_trans(Tween.TRANS_SINE)
+			#.set_ease(Tween.EASE_IN)
+		tween.connect("finished", on_tween_finished)
+
+# when the tween finishes, dequeue a waypoint and move to the next queued waypoint
+func on_tween_finished():
+	current_queue.Dequeue()
+	MoveShip()

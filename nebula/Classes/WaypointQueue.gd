@@ -2,23 +2,22 @@ class_name Queue
 
 var Waypoint = preload("res://Classes/Waypoint.gd")
 
-var first = 0
-var last = -1
-var queue = {}
+var queue = []
 
 func IsEmpty():
-	return first > last
+	if len(queue) > 0:
+		return false
+	return true
 
 func Enqueue(waypoint : Waypoint):
-	last = last + 1
-	queue[last] = waypoint
+	queue.push_back(waypoint)
 	print("waypoint queued!")
 	print(str(queue))
 
 func Peek():
 	if IsEmpty():
 		return null
-	return queue[first]
+	return queue[0]
 
 func Debug():
 	return queue
@@ -26,18 +25,14 @@ func Debug():
 func Dequeue():
 	if IsEmpty():
 		return null
-	var value = queue[first]
-	queue[first] = null
-	first = first + 1
-	return queue[first]
+	queue[0].Destroy()
+	queue.pop_front()
 
 func ClearWaypoints():
 	for wp in queue:
-		if queue[wp] != null:
-			queue[wp].Destroy()
+		if wp != null:
+			wp.Destroy()
 		else:
 			break
-	queue = {}
-	first = 0
-	last = -1
+	queue = []
 	print("waypoint queue cleared!")

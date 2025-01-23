@@ -1,6 +1,6 @@
 class_name Waypoint
 
-var position = Vector3.ZERO
+var position : Vector3 = Vector3.ZERO
 var object = null
 var visible = false
 

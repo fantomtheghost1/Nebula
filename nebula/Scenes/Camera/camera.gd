@@ -12,14 +12,16 @@ signal TweeningFinished
 @export var subject : Node3D = null
 
 # this sets the amount of time in seconds that the tween lasts
-@export var new_subject_ease_duration = 0.0
+@export var new_subject_ease_duration : float = 0.0
 
-var tweening = false
+var tweening : bool = false
 
 # starts the tween function and sets the camera subject
-func SetTarget(new_subject) -> void:
+func SetTarget(new_subject : Node3D, tween : bool = true) -> void:
 	subject = new_subject
-	TweenCamera(subject.position)
+	reparent(new_subject)
+	if tween == true:
+		TweenCamera(subject.position)
 	
 # tweens the camera between the current position and the new, provided position
 func TweenCamera(new_pos) -> void:
@@ -36,7 +38,7 @@ func on_tween_finished():
 	tweening = false
 	
 # sets the position of the camera to the subject if the subject is moving
-func _process(_delta) -> void:
-	if subject != null and !tweening:
-		position = subject.position
+#func _physics_process(delta) -> void:
+#	if subject != null and !tweening:
+#		position = subject.position
 		

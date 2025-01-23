@@ -9,5 +9,7 @@ func _ready():
 	GlobalVariables.main_scene = self
 	
 	print("initializing game manager")
-	var ship = GameManager.CreateShip(1, "DEV", "RUNABOUT_CHASSIS", "DUMMY_ZERO_GENERATOR", "DUMMY_MIN_CARGO_BAY", "DUMMY_ZERO_SHIELD_GENERATOR", "DUMMY_ZERO_ENGINE", self)
+	var ship = GameManager.CreateShip(1, "DEV", "RUNABOUT_CHASSIS", "DUMMY_ZERO_GENERATOR", "DUMMY_MIN_CARGO_BAY", "DUMMY_ZERO_SHIELD_GENERATOR", "DUMMY_ZERO_ENGINE")
 	print(GameManager.DoesShipExist(1))
+	
+	GlobalVariables.camera_gimbal.SetTarget(ship, false)

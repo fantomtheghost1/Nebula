@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjb05x1lpdjf0"]
+[gd_scene load_steps=12 format=3 uid="uid://cjb05x1lpdjf0"]
 
 [ext_resource type="Script" path="res://Scenes/Ship/ship.gd" id="1_cr1ik"]
 [ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://Scenes/Components/shield_generator.tscn" id="1_h5wr8"]
@@ -12,6 +12,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evbkf"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_jbrvq"]
+
 [node name="Ship" type="Node3D" groups=["ships"]]
 script = ExtResource("1_cr1ik")
 
@@ -21,13 +23,15 @@ script = ExtResource("1_cr1ik")
 shape = SubResource("BoxShape3D_evbkf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShipModel"]
+mesh = SubResource("BoxMesh_jbrvq")
 
 [node name="ShipAIComponent" type="Node3D" parent="."]
 
-[node name="EngineComponent" parent="." node_paths=PackedStringArray("identity_component", "ship_model") instance=ExtResource("2_kdr6u")]
+[node name="EngineComponent" parent="." node_paths=PackedStringArray("identity_component", "ship_model", "ship_node") instance=ExtResource("2_kdr6u")]
 unique_name_in_owner = true
 identity_component = NodePath("../IdentityComponent")
 ship_model = NodePath("../ShipModel")
+ship_node = NodePath("..")
 
 [node name="ScannerComponent" type="Node3D" parent="."]
 

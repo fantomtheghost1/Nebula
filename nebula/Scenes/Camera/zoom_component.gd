@@ -15,7 +15,7 @@ const ZOOM_SENSITIVITY : float = 73
 const ZOOM_MAX : float = 20.0
 
 # sets the minimum that the camera can zoom
-const ZOOM_MIN : float = 5.0
+const ZOOM_MIN : float = 2.0
 
 var tweening : bool = false
 
