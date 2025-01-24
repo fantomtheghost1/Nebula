@@ -4,15 +4,14 @@
 [ext_resource type="Script" path="res://Scenes/Components/click_handler.gd" id="2_dus2m"]
 [ext_resource type="Script" path="res://Scenes/Components/ship_movement.gd" id="2_xcqrq"]
 
-[node name="EngineComponent" type="Node3D" node_paths=PackedStringArray("ship_movement", "click_handler")]
+[node name="EngineComponent" type="Node3D"]
 script = ExtResource("1_hryws")
-ship_movement = NodePath("ShipMovement")
-click_handler = NodePath("ClickHandler")
 
 [node name="ClickHandler" type="Node3D" parent="." node_paths=PackedStringArray("ship_movement")]
 unique_name_in_owner = true
 script = ExtResource("2_dus2m")
 ship_movement = NodePath("../ShipMovement")
+visible_waypoints = true
 
 [node name="ShipMovement" type="Node3D" parent="."]
 unique_name_in_owner = true

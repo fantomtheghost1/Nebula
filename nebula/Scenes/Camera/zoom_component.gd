@@ -12,12 +12,15 @@ extends Node3D
 const ZOOM_SENSITIVITY : float = 73
 
 # sets the maximum that the camera can zoom
-const ZOOM_MAX : float = 20.0
+var zoom_max : float = 20.0
 
 # sets the minimum that the camera can zoom
 const ZOOM_MIN : float = 2.0
 
 var tweening : bool = false
+
+func SetMaxZoom(max_zoom):
+	zoom_max = max_zoom
 
 func _input(event) -> void:
 	
@@ -26,11 +29,11 @@ func _input(event) -> void:
 		if event.is_action_pressed("CameraZoomIn"):
 			if camera.position.x > ZOOM_MIN:
 				camera.position = camera.position - Vector3(1, 1, 0) * ZOOM_SENSITIVITY * get_physics_process_delta_time()
-				print(str(camera.position.x) + " < " + str(ZOOM_MIN))
+				print_debug(str(camera.position.x) + " < " + str(ZOOM_MIN))
 		if event.is_action_pressed("CameraZoomOut"):
-			if camera.position.x < ZOOM_MAX:
+			if camera.position.x < zoom_max:
 				camera.position = camera.position + Vector3(1, 1, 0) * ZOOM_SENSITIVITY * get_physics_process_delta_time()
-				print(str(camera.position.x) + " > " + str(ZOOM_MAX))
+				print_debug(str(camera.position.x) + " > " + str(zoom_max))
 
 func _on_camera_gimbal_tweening():
 	tweening = true

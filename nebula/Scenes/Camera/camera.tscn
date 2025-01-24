@@ -16,6 +16,7 @@ script = ExtResource("2_jueco")
 script = ExtResource("2_cx58o")
 
 [node name="ZoomComponent" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("camera")]
+unique_name_in_owner = true
 script = ExtResource("3_h66q3")
 camera = NodePath("..")
 

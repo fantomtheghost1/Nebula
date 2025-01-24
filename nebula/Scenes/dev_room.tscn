@@ -1,17 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdr2qovl2f2i6"]
+[gd_scene load_steps=5 format=3 uid="uid://cdr2qovl2f2i6"]
 
 [ext_resource type="Script" path="res://Scenes/dev_room.gd" id="1_3o0u1"]
 [ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://Scenes/Camera/camera.tscn" id="1_abhsk"]
+[ext_resource type="PackedScene" uid="uid://djhm2ft3tqkqd" path="res://test_body.tscn" id="3_nqdwf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ew0iq"]
 size = Vector3(10000, 0.3, 10000)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ctolk"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mhpok"]
-
 [node name="DevRoom" type="Node2D"]
 script = ExtResource("1_3o0u1")
+build_version = "v0.1"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.00403169, 0.999992, 0, -0.999992, -0.00403169, 0, 10, 0)
@@ -28,11 +26,8 @@ unique_name_in_owner = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClickFloor/StaticBody3D"]
 shape = SubResource("BoxShape3D_ew0iq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9341)
+[node name="StaticBody3D" parent="." instance=ExtResource("3_nqdwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6965, -101.041, -56.7471)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("CapsuleShape3D_ctolk")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("CapsuleMesh_mhpok")
+[node name="StaticBody3D2" parent="." instance=ExtResource("3_nqdwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.325653, -1.30261, -55.2566)

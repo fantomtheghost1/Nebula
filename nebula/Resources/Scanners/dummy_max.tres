@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ScannerType" load_steps=2 format=3 uid="uid://cjcet3tl4ytfp"]
+
+[ext_resource type="Script" path="res://Resources/Scanners/ScannerType.gd" id="1_ll5nr"]
+
+[resource]
+script = ExtResource("1_ll5nr")
+name = "Dummy Max"
+scanner_range = 15
+zoom_max = 45

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Chassis" load_steps=2 format=3 uid="uid://c8rmlrghu5eis"]
+
+[ext_resource type="Script" path="res://Resources/Chassis/ChassisType.gd" id="1_q8c4p"]
+
+[resource]
+script = ExtResource("1_q8c4p")
+hp = 200

@@ -9,10 +9,10 @@ extends Node3D
 var faction : String = ""
 
 # the name of the object owner
-var object_owner : String = ""
+var object_owner : String = "AI"
 
 # determines whether the object is controlled by an npc
-var is_npc : bool = false
+var is_npc : bool = true
 
 # sets the object owner
 func SetOwner(new_owner) -> void:

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EngineType" load_steps=2 format=3 uid="uid://c1l57eyuboq6t"]
+
+[ext_resource type="Script" path="res://Resources/Engines/EngineType.gd" id="1_4hkgn"]
+
+[resource]
+script = ExtResource("1_4hkgn")
+name = "Dummy Max"
+hp = 1000
+max_speed = 10.0

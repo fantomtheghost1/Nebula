@@ -15,7 +15,7 @@ func _input(event) -> void:
 	# if the player is holding the right mouse button and dragging the mouse, then apply the orbit movement
 	if button_is_held and event is InputEventMouseMotion:
 		GlobalVariables.camera_gimbal.rotation.y -= event.relative.x * mouse_sens
-		print(position)
+		print_debug(str(position))
 	
 	if event.is_action_released("CameraOrbitMode"):
 		button_is_held = false

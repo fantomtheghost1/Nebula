@@ -1,8 +1,7 @@
 extends Node3D
 
-# holds references to the relavant waypoint classes
-var Waypoint = preload("res://Classes/Waypoint.gd")
-var WaypointQueue = preload("res://Classes/WaypointQueue.gd")
+# holds the waypoint queue instance
+var queue_instance = null
 
 # set to a very high arbitrary number
 const RAY_LENGTH = 10000000000
@@ -10,11 +9,13 @@ const RAY_LENGTH = 10000000000
 # holds important node references
 var identity_component : Node3D = null
 var ship_model : Node3D = null
+var ship_node : Node3D = null
 @export var ship_movement : Node3D = null
+@export var visible_waypoints : bool = false
 
 func _ready():
 	# initialize a new waypoint queue
-	WaypointQueue = WaypointQueue.new()
+	queue_instance = WaypointQueue.new()
 
 func _input(event):
 
@@ -34,15 +35,15 @@ func _input(event):
 				# and reset the current queue in ship movement so that the waypoint 
 				# the ship is moving to is changed
 				if result["collider"].get_parent() == GlobalVariables.click_floor:
-					var waypoint = Waypoint.new(result["position"], true, GlobalVariables.main_scene)
-					WaypointQueue.ClearWaypoints()
-					WaypointQueue.Enqueue(waypoint)
-					ship_movement.SetCurrentQueue(WaypointQueue)
+					var waypoint = Waypoint.new(result["position"], visible_waypoints, GlobalVariables.main_scene)
+					queue_instance.ClearWaypoints()
+					queue_instance.Enqueue(waypoint)
+					ship_movement.SetCurrentQueue(queue_instance)
 					
-					print("you clicked the floor at " + str(result["position"]))
+					print_debug("you clicked the floor at " + str(result["position"]))
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
-				# elif GameManager.DoesShipExist(result["collider"].get_parent().id):
-				#	print("clicked ship")
+				else:
+					ship_node.SetTarget(result["collider"].get_parent())
 			
 		if event.is_action_pressed("QueueInteract"):
 			# determines what the mouse clicked on
@@ -53,13 +54,20 @@ func _input(event):
 				
 				# if the mouse clicked the invisible floor, then create a waypoint
 				if result["collider"].get_parent() == GlobalVariables.click_floor:
-					var waypoint = Waypoint.new(result["position"], true, GlobalVariables.main_scene)
-					ship_movement.current_queue.Enqueue(waypoint)
+					var waypoint = Waypoint.new(result["position"], visible_waypoints, GlobalVariables.main_scene)
 					
-					print("you clicked the floor at " + str(result["position"]))
+					# if the queue is empty, start the MoveShip() recursive loop
+					if ship_movement.current_queue.IsEmpty():
+						queue_instance.Enqueue(waypoint)
+						ship_movement.SetCurrentQueue(queue_instance)
+					else:
+						ship_movement.current_queue.Enqueue(waypoint)
+					
+					
+					print_debug("you clicked the floor at " + str(result["position"]))
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
-				#elif GameManager.DoesShipExist(result["collider"].get_parent().id):
-				#	print("clicked ship")
+				else:
+					ship_node.SetFocus(result["collider"].get_parent())
 			
 
 func DetermineClickSubject():

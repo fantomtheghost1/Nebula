@@ -28,9 +28,9 @@ var recharging = false
 
 func AbsorbDamage(damage):
 	sp -= damage
-	print(ship_node.name + "shield: " + str(sp))
+	print_debug(ship_node.name + "shield: " + str(sp))
 	if sp <= 0:
-		print(ship_node.name + " shield down!")
+		print_debug(ship_node.name + " shield down!")
 		return sp
 	else:
 		return 0
@@ -40,7 +40,7 @@ func _process(_delta):
 		recharging = true
 		%RechargeDelay.wait_time = recharge_delay
 		%RechargeDelay.start()
-		#print(shield_amount)
+		#print_debug(shield_amount)
 
 func _on_recharge_delay_timeout():
 	%RechargeTick.wait_time = recharge_tick
@@ -52,14 +52,14 @@ func _on_recharge_tick_timeout():
 		
 	if sp != max_sp:
 		sp += recharge_amount
-		print(ship_node.name + " shield: " + str(sp))
+		print_debug(ship_node.name + " shield: " + str(sp))
 	else:
 		%RechargeTick.stop()
 		recharging = false
 
 func _on_shield_generator_shield_generator_disabled(param_ship_node):
 	if param_ship_node == ship_node:
-		print(sp)
+		print_debug(sp)
 		current_status = STATUS.INACTIVE
 		%RechargeDelay.stop()
 		%RechargeTick.stop()

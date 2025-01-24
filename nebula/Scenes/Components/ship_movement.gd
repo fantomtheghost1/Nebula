@@ -31,7 +31,8 @@ func MoveShip():
 	# if the waypoint exists, create the tween 
 	if current_waypoint:
 		tween = get_tree().create_tween()
-		tween.tween_property(ship_node, "position", current_waypoint.position, 2) \
+		var tween_duration = HelperFunctions.GetDistanceBetweenTwoPoints(ship_node.position, current_waypoint.position) / max_speed
+		tween.tween_property(ship_node, "position", current_waypoint.position, tween_duration) \
 			.set_trans(Tween.TRANS_SINE)
 			#.set_ease(Tween.EASE_IN)
 		tween.connect("finished", on_tween_finished)

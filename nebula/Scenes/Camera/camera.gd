@@ -14,6 +14,8 @@ signal TweeningFinished
 # this sets the amount of time in seconds that the tween lasts
 @export var new_subject_ease_duration : float = 0.0
 
+var scanner_range : float
+
 var tweening : bool = false
 
 # starts the tween function and sets the camera subject
@@ -22,6 +24,8 @@ func SetTarget(new_subject : Node3D, tween : bool = true) -> void:
 	reparent(new_subject)
 	if tween == true:
 		TweenCamera(subject.position)
+	scanner_range = GlobalVariables.ship_resource.scanner.scanner_range
+	%ZoomComponent.SetMaxZoom(GlobalVariables.ship_resource.scanner.zoom_max)
 	
 # tweens the camera between the current position and the new, provided position
 func TweenCamera(new_pos) -> void:
