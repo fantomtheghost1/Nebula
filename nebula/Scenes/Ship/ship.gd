@@ -1,18 +1,21 @@
 extends Node3D
 
-var ItemScript : Script = preload("res://Classes/Item.gd")
+var ItemScript : Script = preload("res://classes/Item.gd")
 
 @export var ship_model : CharacterBody3D
 
 var ship_name : String
 var id : int = 0
 var target : Node = null
+var previous_target : Node = null
 
 func Initialize(username, ship_type, ship_id) -> void:
 	id = ship_id
 	ship_name = ship_type.name
 	ship_model.set_collision_layer_value(1, true)
 	ship_model.set_collision_layer_value(2, false)
+	
+	#add_to_group("untargetables")
 	
 	%ShieldGenerator.SetShieldGenerator(ship_type.shield_generator)
 	%CargoComponent.SetCargoBay(ship_type.cargo_bay)
@@ -27,13 +30,20 @@ func Initialize(username, ship_type, ship_id) -> void:
 	else: 
 		%IdentityComponent.SetOwner(username)
 		%IdentityComponent.is_npc = true
+		
+	%ShipAIComponent.CheckIsAI(%IdentityComponent.is_npc)
 	
 func SetTarget(new_target : Node):
-	print_debug("new target set: " + str(new_target))
+	print_debug("new target set: " + new_target.name)
 	target = new_target
+	previous_target = null
+	%ScannerComponent.target = target
 	
 func RemoveTarget():
+	previous_target = target
 	target = null
+	%ScannerComponent.previous_target = previous_target
+	print("target removed: " + previous_target.name)
 	
 func DestroyShip():
 	print_debug("ship destroyed")
@@ -69,3 +79,9 @@ func _on_chassis_component_chassis_destroyed(_ship_node):
 
 func _on_scanner_component_target_lost():
 	RemoveTarget()
+
+func _on_scanner_component_target_found():
+	if !target:
+		target = previous_target
+		previous_target = null
+		print("previous target found: " + target.name)

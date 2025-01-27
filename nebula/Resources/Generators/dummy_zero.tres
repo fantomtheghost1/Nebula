@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GeneratorType" load_steps=2 format=3 uid="uid://bse3wk4wbn0rq"]
 
-[ext_resource type="Script" path="res://Resources/Generators/GeneratorType.gd" id="1_d0npj"]
+[ext_resource type="Script" path="res://resources/generators/generator_type.gd" id="1_d0npj"]
 
 [resource]
 script = ExtResource("1_d0npj")

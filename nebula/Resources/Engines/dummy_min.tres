@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EngineType" load_steps=2 format=3 uid="uid://bjrloefyi1aot"]
 
-[ext_resource type="Script" path="res://Resources/Engines/EngineType.gd" id="1_2eebn"]
+[ext_resource type="Script" path="res://resources/engines/engine_type.gd" id="1_2eebn"]
 
 [resource]
 script = ExtResource("1_2eebn")

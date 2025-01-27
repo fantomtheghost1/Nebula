@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bcnhe0pqjp7bx"]
 
-[ext_resource type="Script" path="res://Scenes/Components/identity_component.gd" id="1_412yd"]
+[ext_resource type="Script" path="res://scenes/components/identity_component.gd" id="1_412yd"]
 
 [node name="IdentityComponent" type="Node3D"]
 script = ExtResource("1_412yd")

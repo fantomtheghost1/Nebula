@@ -9,8 +9,6 @@ func IsEmpty():
 
 func Enqueue(waypoint : Waypoint):
 	queue.push_back(waypoint)
-	print_debug("waypoint queued!")
-	print_debug(str(queue))
 
 func Peek():
 	if IsEmpty():
@@ -33,4 +31,3 @@ func ClearWaypoints():
 		else:
 			break
 	queue = []
-	print_debug("waypoint queue cleared!")

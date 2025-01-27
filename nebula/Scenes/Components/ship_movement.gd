@@ -1,24 +1,27 @@
 extends Node3D
 
-var waypoint_queue = preload("res://Classes/WaypointQueue.gd")
+signal ShipStartedMoving(ship_node)
+signal ShipStoppedMoving(ship_node)
 
 # determines the max speed of the ship
 var max_speed = 0
 
-# the current ship waypoint queue
-var current_queue = waypoint_queue.new()
-
 # holds the tween utilized by MoveShip()
 var tween = null
+
+var is_moving : bool = false
 
 # holds important node references
 var ship_node : Node3D = null
 
-# this function will override the current tween playing and change the current queue to the one provided
-func SetCurrentQueue(new_queue):
-	current_queue = new_queue
-	MoveShip()
-
+func IsMoving():
+	return is_moving
+	
+#func PathTo(target_pos : Vector3, number_of_waypoints : int, minimum_waypoint_distance : float, maximum_waypoint_distance : float, maximum_angle_error: float):
+#	var distance_between_ship_and_target : float = HelperFunctions.GetDistanceBetweenTwoPoints(ship_node.position, target_pos)
+#	for i in range(number_of_waypoints):
+#		var waypoint = Waypoint.new()
+	
 func MoveShip():
 	
 	# if you are currently tweening, end it
@@ -26,7 +29,7 @@ func MoveShip():
 		tween.stop()
 		
 	# holds the next waypoint in the queue
-	var current_waypoint = current_queue.Peek()
+	var current_waypoint = %WaypointQueueHandler.queue_instance.Peek()
 	
 	# if the waypoint exists, create the tween 
 	if current_waypoint:
@@ -39,5 +42,5 @@ func MoveShip():
 
 # when the tween finishes, dequeue a waypoint and move to the next queued waypoint
 func on_tween_finished():
-	current_queue.Dequeue()
+	%WaypointQueueHandler.queue_instance.Dequeue()
 	MoveShip()

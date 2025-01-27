@@ -1,8 +1,5 @@
 extends Node3D
 
-# holds the waypoint queue instance
-var queue_instance = null
-
 # set to a very high arbitrary number
 const RAY_LENGTH = 10000000000
 
@@ -12,10 +9,6 @@ var ship_model : Node3D = null
 var ship_node : Node3D = null
 @export var ship_movement : Node3D = null
 @export var visible_waypoints : bool = false
-
-func _ready():
-	# initialize a new waypoint queue
-	queue_instance = WaypointQueue.new()
 
 func _input(event):
 
@@ -27,20 +20,17 @@ func _input(event):
 			
 			# determines what the mouse clicked on
 			var result = DetermineClickSubject()
-			
 			# if the mouse clicked on something, check if its another ship or just the invisible floor
 			if result != null:
 				
 				# if the mouse clicked the invisible floor, then create a waypoint 
 				# and reset the current queue in ship movement so that the waypoint 
 				# the ship is moving to is changed
-				if result["collider"].get_parent() == GlobalVariables.click_floor:
-					var waypoint = Waypoint.new(result["position"], visible_waypoints, GlobalVariables.main_scene)
-					queue_instance.ClearWaypoints()
-					queue_instance.Enqueue(waypoint)
-					ship_movement.SetCurrentQueue(queue_instance)
+				if result["collider"].get_parent() == GlobalVariables.floor:
+					%WaypointQueueHandler.queue_instance.ClearWaypoints()
+					%WaypointQueueHandler.QueueNewWaypoint(result["position"])
+					ship_movement.MoveShip()
 					
-					print_debug("you clicked the floor at " + str(result["position"]))
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
 				else:
 					ship_node.SetTarget(result["collider"].get_parent())
@@ -53,21 +43,19 @@ func _input(event):
 			if result != null:
 				
 				# if the mouse clicked the invisible floor, then create a waypoint
-				if result["collider"].get_parent() == GlobalVariables.click_floor:
-					var waypoint = Waypoint.new(result["position"], visible_waypoints, GlobalVariables.main_scene)
+				if result["collider"].get_parent() == GlobalVariables.floor:
 					
 					# if the queue is empty, start the MoveShip() recursive loop
-					if ship_movement.current_queue.IsEmpty():
-						queue_instance.Enqueue(waypoint)
-						ship_movement.SetCurrentQueue(queue_instance)
+					if %WaypointQueueHandler.queue_instance.IsEmpty():
+						%WaypointQueueHandler.QueueNewWaypoint(result["position"])
+						ship_movement.MoveShip()
 					else:
-						ship_movement.current_queue.Enqueue(waypoint)
+						%WaypointQueueHandler.QueueNewWaypoint(result["position"])
 					
 					
-					print_debug("you clicked the floor at " + str(result["position"]))
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
 				else:
-					ship_node.SetFocus(result["collider"].get_parent())
+					ship_node.SetTarget(result["collider"].get_parent())
 			
 
 func DetermineClickSubject():
@@ -76,6 +64,7 @@ func DetermineClickSubject():
 	var cam = GlobalVariables.camera
 	var space = get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.new()
+	var targetable = false
 
 	# starts the ray at the 3D world space position where a ray cast from the camera would originate
 	ray_query.from = cam.project_ray_origin(mouse_pos)
@@ -85,9 +74,13 @@ func DetermineClickSubject():
 	
 	# detects if anything intersects with the ray based on the ray query
 	var result = space.intersect_ray(ray_query)
+	#var targetables = get_nodes_in_group("targetables")
+	for group in result["collider"].get_parent().get_groups():
+		if group != "untargetables":
+			targetable = true
 	
 	# if the result isn't the player ship and the result exists
-	if result["collider"] != ship_model and result != null:
+	if result["collider"] != ship_model and result != null and targetable or result["collider"].get_parent() == GlobalVariables.floor:
 		return result
 	
 	return 

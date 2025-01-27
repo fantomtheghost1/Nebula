@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxv63i2x5vbll"]
 
-[ext_resource type="Script" path="res://Scenes/Camera/camera.gd" id="1_tce71"]
-[ext_resource type="Script" path="res://Scenes/Camera/orbit_component.gd" id="2_cx58o"]
-[ext_resource type="Script" path="res://Scenes/Camera/camera_3d.gd" id="2_jueco"]
-[ext_resource type="Script" path="res://Scenes/Camera/zoom_component.gd" id="3_h66q3"]
+[ext_resource type="Script" path="res://scenes/camera/camera.gd" id="1_tce71"]
+[ext_resource type="Script" path="res://scenes/camera/orbit_component.gd" id="2_cx58o"]
+[ext_resource type="Script" path="res://scenes/camera/camera_3d.gd" id="2_jueco"]
+[ext_resource type="Script" path="res://scenes/camera/zoom_component.gd" id="3_h66q3"]
 
 [node name="CameraGimbal" type="Node3D"]
 script = ExtResource("1_tce71")

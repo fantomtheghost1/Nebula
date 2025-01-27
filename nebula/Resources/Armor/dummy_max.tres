@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ArmorType" load_steps=2 format=3 uid="uid://s1crplqekxhn"]
 
-[ext_resource type="Script" path="res://Resources/Armor/ArmorType.gd" id="1_ohiww"]
+[ext_resource type="Script" path="res://resources/armor/armor_type.gd" id="1_ohiww"]
 
 [resource]
 script = ExtResource("1_ohiww")

@@ -13,7 +13,6 @@ func _init(instance_position, instance_visible, instance_location):
 	object.mesh = SphereMesh.new()
 	object.visible = visible
 	instance_location.add_child(object)
-	print_debug("waypoint created!")
 
 func Destroy():
 	object.queue_free()

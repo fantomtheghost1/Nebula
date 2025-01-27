@@ -15,7 +15,7 @@ const ZOOM_SENSITIVITY : float = 73
 var zoom_max : float = 20.0
 
 # sets the minimum that the camera can zoom
-const ZOOM_MIN : float = 2.0
+const ZOOM_MIN : float = 2
 
 var tweening : bool = false
 
@@ -29,11 +29,9 @@ func _input(event) -> void:
 		if event.is_action_pressed("CameraZoomIn"):
 			if camera.position.x > ZOOM_MIN:
 				camera.position = camera.position - Vector3(1, 1, 0) * ZOOM_SENSITIVITY * get_physics_process_delta_time()
-				print_debug(str(camera.position.x) + " < " + str(ZOOM_MIN))
 		if event.is_action_pressed("CameraZoomOut"):
 			if camera.position.x < zoom_max:
 				camera.position = camera.position + Vector3(1, 1, 0) * ZOOM_SENSITIVITY * get_physics_process_delta_time()
-				print_debug(str(camera.position.x) + " > " + str(zoom_max))
 
 func _on_camera_gimbal_tweening():
 	tweening = true

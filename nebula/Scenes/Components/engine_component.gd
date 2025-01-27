@@ -19,6 +19,7 @@ func _ready():
 	%ClickHandler.ship_model = ship_model
 	%ClickHandler.ship_node = ship_node
 	%ShipMovement.ship_node = ship_node
+	#%WaypointQueueHandler.bt_player = bt_player 
 	
 # sets the current shield generator that the instance is using
 func SetEngine(engine_type : EngineType) -> void:

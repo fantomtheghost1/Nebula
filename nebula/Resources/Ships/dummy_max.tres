@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ShipType" load_steps=9 format=3 uid="uid://cld1423og8f51"]
 
-[ext_resource type="Resource" uid="uid://s1crplqekxhn" path="res://Resources/Armor/dummy_max.tres" id="1_k1v2j"]
-[ext_resource type="Resource" uid="uid://doddgbbtg8slb" path="res://Resources/Cargo/dummy_max.tres" id="2_phm3a"]
-[ext_resource type="Resource" uid="uid://ex1v2a7s60lj" path="res://Resources/Chassis/dreadnought.tres" id="3_41npd"]
-[ext_resource type="Resource" uid="uid://c1l57eyuboq6t" path="res://Resources/Engines/dummy_max.tres" id="4_fvvk1"]
-[ext_resource type="Resource" uid="uid://bse3wk4wbn0rq" path="res://Resources/Generators/dummy_zero.tres" id="5_3k8ws"]
-[ext_resource type="Script" path="res://Resources/Ships/ShipType.gd" id="6_7bqsx"]
-[ext_resource type="Resource" uid="uid://cjcet3tl4ytfp" path="res://Resources/Scanners/dummy_max.tres" id="6_mq0wg"]
-[ext_resource type="Resource" uid="uid://xuemgb4cgsrn" path="res://Resources/ShieldGenerators/dummy_zero.tres" id="7_qcwsj"]
+[ext_resource type="Resource" uid="uid://s1crplqekxhn" path="res://resources/armor/dummy_max.tres" id="1_k1v2j"]
+[ext_resource type="Resource" uid="uid://doddgbbtg8slb" path="res://resources/cargo/dummy_max.tres" id="2_phm3a"]
+[ext_resource type="Resource" uid="uid://ex1v2a7s60lj" path="res://resources/chassis/dreadnought.tres" id="3_41npd"]
+[ext_resource type="Resource" uid="uid://c1l57eyuboq6t" path="res://resources/engines/dummy_max.tres" id="4_fvvk1"]
+[ext_resource type="Resource" uid="uid://bse3wk4wbn0rq" path="res://resources/generators/dummy_zero.tres" id="5_3k8ws"]
+[ext_resource type="Script" path="res://resources/ships/ship_type.gd" id="6_7bqsx"]
+[ext_resource type="Resource" uid="uid://cjcet3tl4ytfp" path="res://resources/scanners/dummy_max.tres" id="6_mq0wg"]
+[ext_resource type="Resource" uid="uid://xuemgb4cgsrn" path="res://resources/shield_generators/dummy_zero.tres" id="7_qcwsj"]
 
 [resource]
 script = ExtResource("6_7bqsx")
