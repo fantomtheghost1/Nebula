@@ -4,11 +4,11 @@ extends Node3D
 const RAY_LENGTH = 10000000000
 
 # holds important node references
-var identity_component : Node3D = null
-var ship_model : Node3D = null
-var ship_node : Node3D = null
-@export var ship_movement : Node3D = null
-@export var visible_waypoints : bool = false
+var identity_component : Node3D
+var ship_model : Node3D
+@export var targeting_component : Node3D
+@export var ship_movement : Node3D
+@export var visible_waypoints : bool
 
 func _input(event):
 
@@ -26,14 +26,14 @@ func _input(event):
 				# if the mouse clicked the invisible floor, then create a waypoint 
 				# and reset the current queue in ship movement so that the waypoint 
 				# the ship is moving to is changed
-				if result["collider"].get_parent() == GlobalVariables.floor:
+				if result["collider"].get_parent() == GlobalVariables.click_floor:
 					%WaypointQueueHandler.queue_instance.ClearWaypoints()
 					%WaypointQueueHandler.QueueNewWaypoint(result["position"])
 					ship_movement.MoveShip()
 					
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
 				else:
-					ship_node.SetTarget(result["collider"].get_parent())
+					SetShipTarget(result["collider"])
 			
 		if event.is_action_pressed("QueueInteract"):
 			# determines what the mouse clicked on
@@ -43,7 +43,7 @@ func _input(event):
 			if result != null:
 				
 				# if the mouse clicked the invisible floor, then create a waypoint
-				if result["collider"].get_parent() == GlobalVariables.floor:
+				if result["collider"].get_parent() == GlobalVariables.click_floor:
 					
 					# if the queue is empty, start the MoveShip() recursive loop
 					if %WaypointQueueHandler.queue_instance.IsEmpty():
@@ -55,8 +55,14 @@ func _input(event):
 					
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
 				else:
-					ship_node.SetTarget(result["collider"].get_parent())
+					SetShipTarget(result["collider"])
 			
+			
+func SetShipTarget(clicked_object) -> void:
+	if HelperFunctions.CheckForObjectInGroup(clicked_object.get_parent(), "asteroids"):
+		targeting_component.SetTarget(clicked_object.get_parent(), "asteroid")
+	else:
+		targeting_component.SetTarget(clicked_object.get_parent(), "other")
 
 func DetermineClickSubject():
 	
@@ -80,7 +86,7 @@ func DetermineClickSubject():
 			targetable = true
 	
 	# if the result isn't the player ship and the result exists
-	if result["collider"] != ship_model and result != null and targetable or result["collider"].get_parent() == GlobalVariables.floor:
+	if result["collider"] != ship_model and result != null and targetable or result["collider"].get_parent() == GlobalVariables.click_floor:
 		return result
 	
 	return 

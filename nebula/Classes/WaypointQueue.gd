@@ -14,6 +14,11 @@ func Peek():
 	if IsEmpty():
 		return null
 	return queue[0]
+	
+func PeekLast():
+	if IsEmpty():
+		return null
+	return queue[-1]
 
 func Debug():
 	return queue
@@ -23,6 +28,9 @@ func Dequeue():
 		return null
 	queue[0].Destroy()
 	queue.pop_front()
+	
+func GetQueueSize():
+	return queue.size()
 
 func ClearWaypoints():
 	for wp in queue:

@@ -9,3 +9,5 @@ class_name ShipType
 @export var cargo_bay : CargoType
 @export var scanner : ScannerType
 @export var chassis : ChassisType
+@export var mining_turret : MiningTurretType
+@export var mining_turret_count : int

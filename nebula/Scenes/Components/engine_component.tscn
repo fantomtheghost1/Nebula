@@ -22,3 +22,6 @@ script = ExtResource("2_xcqrq")
 unique_name_in_owner = true
 script = ExtResource("4_us1ag")
 waypoints_visible = true
+
+[connection signal="ShipStartedMoving" from="ShipMovement" to="." method="_on_ship_movement_ship_started_moving"]
+[connection signal="ShipStoppedMoving" from="ShipMovement" to="." method="_on_ship_movement_ship_stopped_moving"]

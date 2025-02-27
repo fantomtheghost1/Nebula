@@ -7,3 +7,5 @@ script = ExtResource("1_4hkgn")
 name = "Dummy Max"
 hp = 1000
 max_speed = 10.0
+min_speed = 5.0
+acceleration = 0.5

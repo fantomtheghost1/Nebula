@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://tihhw8v7k2g5"]
+
+[node name="DevConsole" type="LineEdit"]
+offset_top = 617.0
+offset_right = 1152.0
+offset_bottom = 648.0

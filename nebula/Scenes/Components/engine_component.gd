@@ -1,23 +1,24 @@
 extends Node3D
 
-signal EngineEnabled(ship_node)
-signal EngineDisabled(ship_node)
-signal EngineDestroyed(ship_node)
+signal EngineEnabled
+signal EngineDisabled
+signal EngineDestroyed
 
 enum STATUS {ENABLED, DISABLED, DESTROYED}
 
-@export var identity_component : Node3D = null
-@export var ship_model : Node3D = null
-@export var ship_node : Node3D = null
+@export var targeting_component : Node3D
+@export var identity_component : Node3D
+@export var ship_model : Node3D
+@export var ship_node : Node3D
 
 var component_status = STATUS.ENABLED
 var hp = 0
 var engine_name = ""
 
 func _ready():
+	%ClickHandler.targeting_component = targeting_component
 	%ClickHandler.identity_component = identity_component
 	%ClickHandler.ship_model = ship_model
-	%ClickHandler.ship_node = ship_node
 	%ShipMovement.ship_node = ship_node
 	#%WaypointQueueHandler.bt_player = bt_player 
 	
@@ -26,6 +27,9 @@ func SetEngine(engine_type : EngineType) -> void:
 	engine_name = engine_type.name
 	hp = engine_type.hp
 	%ShipMovement.max_speed = engine_type.max_speed
+	%ShipMovement.min_speed = engine_type.min_speed
+	%ShipMovement.current_speed = engine_type.min_speed
+	%ShipMovement.acceleration = engine_type.acceleration
 	
 	if hp > 0:
 		EnableComponent()
@@ -33,6 +37,9 @@ func SetEngine(engine_type : EngineType) -> void:
 		DestroyComponent()
 		
 	print_debug("engine set!")
+	
+	#%ShipMovement.PathTo(Vector3(-100, 0, 100), 100, 5.0, 2)
+	#%ShipMovement.MoveShip()
 		
 func DamageComponent(damage) -> void:
 	hp -= damage
@@ -44,17 +51,23 @@ func EnableComponent() -> void:
 	if component_status == STATUS.DISABLED:
 		component_status = STATUS.ENABLED
 		# generates a signal that passes the parent ship node as a parameter
-		EngineEnabled.emit(get_parent())
+		EngineEnabled.emit()
 	
 func DisableComponent() -> void:
 	if component_status == STATUS.ENABLED:
 		component_status = STATUS.DISABLED
 		# generates a signal that passes the parent ship node as a parameter
-		EngineDisabled.emit(get_parent())
+		EngineDisabled.emit()
 
 func DestroyComponent() -> void:
 	component_status = STATUS.DESTROYED
 	
 	# generates a signal that passes the parent ship node as a parameter
-	EngineDisabled.emit(get_parent())
-	EngineDestroyed.emit(get_parent())
+	EngineDisabled.emit()
+	EngineDestroyed.emit()
+
+func _on_ship_movement_ship_started_moving() -> void:
+	print("ship " + %IdentityComponent.object_owner + " is moving!")
+
+func _on_ship_movement_ship_stopped_moving() -> void:
+	print("ship " + %IdentityComponent.object_owner + " stopped moving!")

@@ -4,7 +4,9 @@ extends Node2D
 
 var paused = false
 
-var ship_max = preload("res://resources/ships/dummy_max.tres")
+var asteroid_gen = preload("res://generators/asteroid_generator.gd").new()
+var ship_max = preload("res://resources/ships/dummy_min.tres")
+var large_gold = preload("res://resources/asteroid/large/large_ice.tres")
 
 # initializes the game manager and creates a new ship
 func _ready():
@@ -13,13 +15,16 @@ func _ready():
 	
 	print_debug("initializing globals")
 	GlobalVariables.camera_gimbal = %CameraGimbal
-	GlobalVariables.floor = %Floor
+	GlobalVariables.click_floor = %Floor
 	GlobalVariables.camera = get_node("CameraGimbal/Camera3D")
 	GlobalVariables.main_scene = self
 	GlobalVariables.ship_resource = ship_max
 		
 	print_debug("initializing game manager")
 	var ship = GameManager.CreateShip(1, ship_max, "DEV")
+	
+	var asteroid = asteroid_gen.CreateAsteroid(1, large_gold)
+	GameManager.CreateShip(2, ship_max)
 	#for i in range(160):
 	#	GameManager.CreateShip(i, ship_max)
 	#var _ship2 = GameManager.CreateShip(1, ship_max)

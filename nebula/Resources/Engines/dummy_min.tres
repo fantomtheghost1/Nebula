@@ -5,5 +5,7 @@
 [resource]
 script = ExtResource("1_2eebn")
 name = "Dummy Min"
-hp = 0
-max_speed = 0.0
+hp = 10
+max_speed = 5.0
+min_speed = 1.0
+acceleration = 0.3

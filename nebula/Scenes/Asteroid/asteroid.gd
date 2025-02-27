@@ -1,13 +1,22 @@
 extends Node3D
 
-@export var composition : String = ""
-@export var hp : int = 0
+var id : int
+var composition : int
+var ore : int
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func Initialize(param_id, asteroid_type) -> void:
+	id = param_id
+	composition = asteroid_type.composition
+	ore = asteroid_type.ore
+	scale = scale * Vector3(asteroid_type.scale, asteroid_type.scale, asteroid_type.scale)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func TakeDamage(damage : int):
+	var ore_yield = 0
+	ore -= damage
+	if ore <= 0:
+		ore_yield = ore + damage
+		queue_free()
+	return {
+		"ore_yield": damage,
+		"composition": composition
+	}

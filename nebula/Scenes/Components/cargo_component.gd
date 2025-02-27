@@ -24,11 +24,11 @@ var component_status = STATUS.ENABLED
 
 # this represents the cargo bay and what it currently stores
 var cargo_items = {
-	Item.ITEMS.IRON_ORE : 0, 
-	Item.ITEMS.SILICATE_ORE : 0,
+	Item.ITEMS.METAL : 0, 
+	Item.ITEMS.SILICON : 0,
 	Item.ITEMS.ISOTOPES : 0,
 	Item.ITEMS.ICE : 0,
-	Item.ITEMS.TUNGSTEN_ORE : 0
+	Item.ITEMS.GOLD : 0
 }
 	
 # adds a given quantity of item to the current cargo hold
@@ -61,8 +61,6 @@ func AssertCargo() -> void:
 		push_error("Cargo is below zero. Current cargo sum: " + str(cargo_sum))
 	elif cargo_sum > cargo_limit:
 		push_error("Cargo is above the cargo limit. Current cargo sum: " + str(cargo_sum) + ". Max cargo: " + str(cargo_limit))
-	else:
-		print_debug("epic")
 	
 # dudfshg
 func GetCargo() -> Dictionary:

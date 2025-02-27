@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_y7t37")
 name = "Dummy Min"
-scanner_range = 1
-zoom_max = 0
+scanner_range = 50
+zoom_max = 33

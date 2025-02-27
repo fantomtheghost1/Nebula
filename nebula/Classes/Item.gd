@@ -6,15 +6,15 @@
 class_name Item
 
 # represents the different items that exist in the game
-enum ITEMS {IRON_ORE, SILICATE_ORE, ISOTOPES, ICE, TUNGSTEN_ORE}
+enum ITEMS {METAL, SILICON, ISOTOPES, ICE, GOLD}
 
 # maps the items to their descriptions
 const ITEM_DESCRIPTIONS = {
-	ITEMS.IRON_ORE : "is iron",
-	ITEMS.SILICATE_ORE : "is sisicatr3",
+	ITEMS.METAL : "is iron",
+	ITEMS.SILICON : "is sisicatr3",
 	ITEMS.ISOTOPES : "is topes",
 	ITEMS.ICE : "i",
-	ITEMS.TUNGSTEN_ORE : "strog"
+	ITEMS.GOLD : "strog"
 }
 
 # reverses the ITEMS enum and returns the enum string at the given index
