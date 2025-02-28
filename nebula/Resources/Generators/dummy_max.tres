@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="GeneratorType" load_steps=2 format=3 uid="uid://sp32i2vqvpy6"]
-
-[ext_resource type="Script" path="res://resources/generators/generator_type.gd" id="1_pmr72"]
-
-[resource]
-script = ExtResource("1_pmr72")
-name = "Dummy Max"
-hp = 1000
-max_power = 100

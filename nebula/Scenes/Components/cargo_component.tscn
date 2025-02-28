@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg14jodmtvk0x"]
-
-[ext_resource type="Script" path="res://scenes/components/cargo_component.gd" id="1_3uk3e"]
-
-[node name="CargoComponent" type="Node3D"]
-script = ExtResource("1_3uk3e")

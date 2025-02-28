@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="ChassisType" load_steps=2 format=3 uid="uid://ex1v2a7s60lj"]
-
-[ext_resource type="Script" path="res://resources/chassis/chassis_type.gd" id="1_ryxdv"]
-
-[resource]
-script = ExtResource("1_ryxdv")
-hp = 10000

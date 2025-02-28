@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="MiningTurretType" load_steps=2 format=3 uid="uid://c4c8rowy07x7c"]
-
-[ext_resource type="Script" path="res://resources/turrets/mining/mining_turret_type.gd" id="1_4kwpa"]
-
-[resource]
-script = ExtResource("1_4kwpa")
-hp = 100
-mining_laser_rate = 1.0
-mining_speed = 2

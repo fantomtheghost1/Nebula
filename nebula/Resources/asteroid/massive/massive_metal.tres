@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://bl2perxbgbkvl"]
-
-[ext_resource type="Script" path="res://resources/asteroid/asteroid_type.gd" id="1_33llb"]
-
-[resource]
-script = ExtResource("1_33llb")
-composition = "Metal"
-ore = 500
-scale = 2.0
