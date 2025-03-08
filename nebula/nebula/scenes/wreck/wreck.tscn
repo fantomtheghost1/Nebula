@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://xj3xulagoow1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qce1e"]
+
+[node name="Wreck" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_qce1e")
+
+[node name="SalvageComponent" type="Node3D" parent="."]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://pg7qu448k1mp"]
+
+[ext_resource type="Script" path="res://scenes/asteroid/asteroid.gd" id="1_mf8e3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6j1j"]
+albedo_color = Color(0.338496, 0.765543, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dfn8u"]
+material = SubResource("StandardMaterial3D_y6j1j")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_arieo"]
+
+[node name="Asteroid" type="Node3D" groups=["asteroids"]]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+script = ExtResource("1_mf8e3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("SphereMesh_dfn8u")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_arieo")

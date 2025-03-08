@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ShipType" load_steps=10 format=3 uid="uid://b1edivd4jm2s7"]
+
+[ext_resource type="Resource" uid="uid://p2ywm4428e6k" path="res://resources/armor/dummy_min.tres" id="1_21ofb"]
+[ext_resource type="Script" path="res://resources/ships/ship_type.gd" id="1_cpt05"]
+[ext_resource type="Resource" uid="uid://blnvyld73e4q2" path="res://resources/cargo/dummy_min.tres" id="2_7avm8"]
+[ext_resource type="Resource" uid="uid://bs1arhhy2648k" path="res://resources/chassis/runabout.tres" id="3_7gm3c"]
+[ext_resource type="Resource" uid="uid://bjrloefyi1aot" path="res://resources/engines/dummy_min.tres" id="4_al686"]
+[ext_resource type="Resource" uid="uid://bopyitmxxvdh7" path="res://resources/generators/dummy_min.tres" id="5_0mhha"]
+[ext_resource type="Resource" uid="uid://c4c8rowy07x7c" path="res://resources/turrets/mining/dummy_min.tres" id="6_f7iq3"]
+[ext_resource type="Resource" uid="uid://b7jma3v8q8km7" path="res://resources/scanners/dummy_min.tres" id="7_m7oka"]
+[ext_resource type="Resource" uid="uid://b8e75n6ew25uk" path="res://resources/shield_generators/dummy_min.tres" id="9_1yc68"]
+
+[resource]
+script = ExtResource("1_cpt05")
+name = "Dummy Min"
+engine = ExtResource("4_al686")
+shield_generator = ExtResource("9_1yc68")
+armor = ExtResource("1_21ofb")
+generator = ExtResource("5_0mhha")
+cargo_bay = ExtResource("2_7avm8")
+scanner = ExtResource("7_m7oka")
+chassis = ExtResource("3_7gm3c")
+mining_turret = ExtResource("6_f7iq3")
+mining_turret_count = 2

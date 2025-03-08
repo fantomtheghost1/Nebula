@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxv63i2x5vbll"]
+
+[ext_resource type="Script" path="res://Scripts/CameraScripts/pan_component.gd" id="1_c5lmn"]
+[ext_resource type="Script" path="res://Scripts/CameraScripts/camera.gd" id="1_hxjym"]
+[ext_resource type="Script" path="res://Scripts/CameraScripts/orbit_component.gd" id="3_hmeht"]
+
+[node name="CameraGimbal" type="Node3D"]
+script = ExtResource("1_hxjym")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="PanComponent" type="Node3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.999992, -0.00403165, 0, 0.00403165, 0.999992, 0, 0.0201585, -4.99996)
+script = ExtResource("1_c5lmn")
+
+[node name="OrbitComponent" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999992, -0.00403165, 0, 0.00403165, 0.999992, 0, 0.0201585, -4.99996)
+script = ExtResource("3_hmeht")

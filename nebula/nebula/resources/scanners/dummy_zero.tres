@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScannerSize" load_steps=2 format=3 uid="uid://x3be7ec5ydl8"]
+
+[ext_resource type="Script" path="res://resources/scanners/scanner_type.gd" id="1_pe4jg"]
+
+[resource]
+script = ExtResource("1_pe4jg")
+name = "Dummy Zero"
+scanner_size = 0

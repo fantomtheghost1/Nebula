@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://dlipmap6msk65"]
+
+[ext_resource type="Script" path="res://resources/asteroid/asteroid_type.gd" id="1_750ty"]
+
+[resource]
+script = ExtResource("1_750ty")
+composition = 2
+ore = 500
+scale = 2.0

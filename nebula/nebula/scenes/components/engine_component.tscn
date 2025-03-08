@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bujjc8sy450fd"]
+
+[ext_resource type="Script" path="res://scenes/components/engine_component.gd" id="1_hryws"]
+[ext_resource type="Script" path="res://scenes/components/click_handler.gd" id="2_dus2m"]
+[ext_resource type="Script" path="res://scenes/components/ship_movement.gd" id="2_xcqrq"]
+[ext_resource type="Script" path="res://scenes/components/waypoint_queue_handler.gd" id="4_us1ag"]
+
+[node name="EngineComponent" type="Node3D"]
+script = ExtResource("1_hryws")
+
+[node name="ClickHandler" type="Node3D" parent="." node_paths=PackedStringArray("ship_movement")]
+unique_name_in_owner = true
+script = ExtResource("2_dus2m")
+ship_movement = NodePath("../ShipMovement")
+visible_waypoints = true
+
+[node name="ShipMovement" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_xcqrq")
+
+[node name="WaypointQueueHandler" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_us1ag")
+waypoints_visible = true
+
+[connection signal="ShipStartedMoving" from="ShipMovement" to="." method="_on_ship_movement_ship_started_moving"]
+[connection signal="ShipStoppedMoving" from="ShipMovement" to="." method="_on_ship_movement_ship_stopped_moving"]

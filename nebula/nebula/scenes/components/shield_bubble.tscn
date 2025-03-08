@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy3lpn4w6872q"]
+
+[ext_resource type="Script" path="res://scenes/components/shield_bubble.gd" id="1_q14e7"]
+
+[node name="ShieldBubble" type="Node3D"]
+script = ExtResource("1_q14e7")
