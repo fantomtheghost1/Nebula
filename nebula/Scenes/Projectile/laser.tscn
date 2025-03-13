@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://baeiarsod06rt"]
+
+[ext_resource type="Script" uid="uid://c54tr55tl75ux" path="res://scenes/projectile/laser.gd" id="1_bfw0s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_487j8"]
+transparency = 1
+albedo_color = Color(0, 0.66084, 0.820664, 0.8)
+emission_enabled = true
+emission = Color(0, 0.662745, 0.819608, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1p3jh"]
+material = SubResource("StandardMaterial3D_487j8")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.02
+
+[node name="BeamMesh" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_1p3jh")
+script = ExtResource("1_bfw0s")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

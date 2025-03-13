@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://yovwpwclx6oy"]
+
+[ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_0vcr6"]
+
+[resource]
+script = ExtResource("1_0vcr6")
+composition = 1
+ore = 50
+scale = 2.0

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CargoType" load_steps=2 format=3 uid="uid://4c5swq4qyy5h"]
+
+[ext_resource type="Script" uid="uid://c2yxr8m6xsv0p" path="res://resources/cargo/cargo_type.gd" id="1_ngiuy"]
+
+[resource]
+script = ExtResource("1_ngiuy")
+name = "Dummy Zero"
+hp = 0
+cargo_limit = 0

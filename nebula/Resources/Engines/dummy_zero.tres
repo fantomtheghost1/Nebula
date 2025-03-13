@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EngineType" load_steps=2 format=3 uid="uid://pnegafqwlh7k"]
+
+[ext_resource type="Script" uid="uid://cf7deouyemiks" path="res://resources/engines/engine_type.gd" id="1_p4gtt"]
+
+[resource]
+script = ExtResource("1_p4gtt")
+name = "Dummy Zero"
+hp = 0
+max_speed = 0.0
+min_speed = 0.0
+acceleration = 0.0

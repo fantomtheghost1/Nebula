@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdr2qovl2f2i6"]
+
+[ext_resource type="Script" uid="uid://dcpd7qty2hu2h" path="res://scenes/dev_room.gd" id="1_3o0u1"]
+[ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://scenes/camera/camera.tscn" id="1_abhsk"]
+[ext_resource type="PackedScene" uid="uid://l3avlx2olpit" path="res://floor.tscn" id="3_3o2o3"]
+[ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="4_f7i2v"]
+
+[node name="DevRoom" type="Node2D"]
+script = ExtResource("1_3o0u1")
+build_version = "Nebula v0.2.1"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00403169, 0.999992, 0, -0.999992, -0.00403169, 0, 10, 0)
+
+[node name="CameraGimbal" parent="." instance=ExtResource("1_abhsk")]
+unique_name_in_owner = true
+top_level = true
+new_subject_ease_duration = 4.0
+
+[node name="Floor" parent="." groups=["untargetables"] instance=ExtResource("3_3o2o3")]
+unique_name_in_owner = true
+
+[node name="ConsoleContainer" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1162.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_f7i2v")

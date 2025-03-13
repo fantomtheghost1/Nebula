@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MiningTurretType" load_steps=2 format=3 uid="uid://lnv78somr7ux"]
+
+[ext_resource type="Script" uid="uid://dykc2xmkg3ogq" path="res://resources/turrets/mining/mining_turret_type.gd" id="1_idyek"]
+
+[resource]
+script = ExtResource("1_idyek")
+hp = 0
+mining_laser_rate = 0.0
+mining_speed = 0
