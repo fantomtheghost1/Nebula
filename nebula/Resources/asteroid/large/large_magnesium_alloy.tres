@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://jj6suebrhr4k"]
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_00r85"]
-[ext_resource type="ArrayMesh" uid="uid://glyxfiupw2mk" path="res://models/asteroids/metal/AsteroidMetal.obj" id="1_fmk7x"]
+[ext_resource type="ArrayMesh" uid="uid://glyxfiupw2mk" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.obj" id="1_fmk7x"]
 
 [resource]
 script = ExtResource("1_00r85")

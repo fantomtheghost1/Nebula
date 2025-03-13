@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://dql80tl0ry4un"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://dql80tl0ry4un"]
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_p702n"]
+[ext_resource type="ArrayMesh" uid="uid://c2af0413rxqng" path="res://models/asteroids/carbon_fiber/AsteroidCarbonFiber.obj" id="1_po11l"]
 
 [resource]
 script = ExtResource("1_p702n")
 composition = 1
 ore = 10
 scale = 1.0
+asteroid_mesh = ExtResource("1_po11l")

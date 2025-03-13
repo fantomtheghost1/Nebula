@@ -1,7 +1,6 @@
 extends Node
 
 var factions = []
-var next_asteroid_id = 0
 
 func AddNewFaction(faction_name, faction_leader):
 	factions.append(Faction.new(faction_name, faction_leader))

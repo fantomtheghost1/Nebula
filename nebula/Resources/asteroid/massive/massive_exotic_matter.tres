@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://dk0e8cwnd70yp"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://dk0e8cwnd70yp"]
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_5en2e"]
+[ext_resource type="ArrayMesh" uid="uid://cx2rygfgenuoa" path="res://models/asteroids/exotic_matter/AsteroidExoticMatter.obj" id="1_s0ckf"]
 
 [resource]
 script = ExtResource("1_5en2e")
 composition = 3
 ore = 500
 scale = 5.0
+asteroid_mesh = ExtResource("1_s0ckf")

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://bup3rydu2xymp"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://bup3rydu2xymp"]
 
+[ext_resource type="ArrayMesh" uid="uid://byqs6mgjvt52h" path="res://models/asteroids/graphene/AsteroidGraphene.obj" id="1_f6m7a"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_xsl1g"]
 
 [resource]
@@ -7,3 +8,4 @@ script = ExtResource("1_xsl1g")
 composition = 2
 ore = 100
 scale = 3.0
+asteroid_mesh = ExtResource("1_f6m7a")

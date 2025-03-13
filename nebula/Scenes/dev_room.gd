@@ -19,17 +19,8 @@ func _ready():
 	GlobalVariables.click_floor = %Floor
 	GlobalVariables.camera = get_node("CameraGimbal/Camera3D")
 	GlobalVariables.main_scene = self
-		
-	print_debug("initializing game manager")
-	var ship = ship_gen.CreateShip(0, 0, "dummy_min", "DEV")
 	
-	#var asteroid = asteroid_gen.CreateAsteroid(1, Vector3(10, 0, 10), large_gold)
-	ship_gen.CreateShip(0, 0, "dummy_max")
-	#for i in range(160):
-	#	GameManager.CreateShip(i, ship_max)
-	#var _ship2 = GameManager.CreateShip(1, ship_max)
-#	print_debug(GameManager.DoesShipExist(1))
-	
+	print_debug("initializing commands")
 	Console.create_command("version", self.NebulaBuildVersionCommand, "Returns the current Nebula build version.")
 	Console.create_command("create_asteroid", asteroid_gen.CreateAsteroid, "Creates an asteroid at the given position with the given attributes. \nE.X: create_asteroid [x : float] [z : float] [size : String] [composition : String] \nSizes: small, medium, large, massive\nCompositions: magnesium_alloy, carbon_fiber, graphene, exotic_matter, titanium_alloy")
 	Console.create_command("get_asteroids", GameManager.GetAsteroidsCommand, "Gets all the asteroids in the scene.")
