@@ -23,6 +23,8 @@ var enemies = []
 func _init(faction_name, faction_owner) -> void:
 	name = faction_name
 	faction_leader = faction_owner
+	members.append(faction_leader)
+	print("New faction created! " + faction_name + " is owned by the player " + faction_leader + "!")
 	
 func AssignNewLeader(new_leader):
 	faction_leader = new_leader

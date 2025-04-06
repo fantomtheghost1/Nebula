@@ -6,7 +6,7 @@
 extends Node3D
 
 # the faction the object belongs to
-var faction : String = ""
+var faction : Faction
 
 # the name of the object owner
 var object_owner : String = "AI"
@@ -19,8 +19,7 @@ func SetOwner(new_owner) -> void:
 	object_owner = new_owner
 	print("ship " + str(get_parent().id) + "'s owner changed: " + new_owner)
 	
-# sets the object faction
-func SetFaction(new_faction) -> void:
+func SetFaction(new_faction : Faction) -> void:
 	faction = new_faction
 	
 # determines whether the object belongs to the given faction

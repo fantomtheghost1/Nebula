@@ -6,16 +6,15 @@ var mining_turret_scene = preload("res://scenes/components/mining_turret.tscn")
 
 @export var ship_model : CharacterBody3D
 
+var object_type = "ship"
 var ship_type : Resource
-var ship_name : String
+var dock_in_radius : Node3D
+var can_dock : bool = false
 var id : int = 0
 
-func Initialize(username, ship_type_param, ship_id) -> void:
+func Initialize(is_ai, ship_type_param, ship_id) -> void:
 	id = ship_id
 	ship_type = ship_type_param
-	ship_name = ship_type.name
-	ship_model.set_collision_layer_value(1, true)
-	ship_model.set_collision_layer_value(2, false)
 	
 	#add_to_group("untargetables")
 	
@@ -26,15 +25,18 @@ func Initialize(username, ship_type_param, ship_id) -> void:
 	%EngineComponent.SetEngine(ship_type.engine)
 	%ScannerComponent.SetScanner(ship_type.scanner)
 	
-	if username != "AI":
-		%IdentityComponent.SetOwner(username)
+	if is_ai:
+		%IdentityComponent.SetOwner("AI")
+		%IdentityComponent.is_npc = true
+	else:
+		%IdentityComponent.SetOwner(SteamManager.GetSteamUsername())
 		%IdentityComponent.is_npc = false
+		ship_model.set_collision_layer_value(1, true)
+		ship_model.set_collision_layer_value(2, false)
 		#add_child(GlobalVariables.camera_gimbal)
 		GlobalVariables.camera_gimbal.SetTarget(self, false)
 		GlobalVariables.camera_gimbal.InitScanner(ship_type.scanner.scanner_range, ship_type.scanner.zoom_max)
-	else: 
-		%IdentityComponent.SetOwner(username)
-		%IdentityComponent.is_npc = true
+
 		
 	%ShipAIComponent.CheckIsAI(%IdentityComponent.is_npc)
 	
@@ -57,28 +59,6 @@ func SetOwner(new_owner : String):
 func DestroyShip():
 	print_debug("ship destroyed")
 	queue_free()
-	
-func _input(event):
-	
-	if event.is_action_pressed("DebugShipComponentStatus") and OS.is_debug_build():
-		print_debug("\nShip " + str(id) + " Components Status")
-		print_debug("----------------------")
-
-		print_debug("Engine hp: " + str(%EngineComponent.hp))
-		print_debug("Engine status: " + HelperFunctions.GetEnumStringFromIndex(%EngineComponent.STATUS, %EngineComponent.component_status))
-			
-		print_debug("\nShieldGenerator hp: " + str(%ShieldGenerator.hp))
-		print_debug("ShieldGenerator status: " + HelperFunctions.GetEnumStringFromIndex(%ShieldGenerator.STATUS, %ShieldGenerator.component_status))
-			
-		print_debug("\nArmorComponent ap: " + str(%ArmorComponent.ap))
-			
-		print_debug("\nGeneratorComponent hp: " + str(%GeneratorComponent.hp))
-		print_debug("GeneratorComponent status: " + HelperFunctions.GetEnumStringFromIndex(%GeneratorComponent.STATUS, %GeneratorComponent.component_status))
-
-		print_debug("\nCargoComponent hp: " + str(%CargoComponent.hp))
-		print_debug("CargoComponent status: " + HelperFunctions.GetEnumStringFromIndex(%CargoComponent.STATUS, %CargoComponent.component_status))
-			
-		print_debug("----------------------")
 
 func _on_chassis_component_chassis_destroyed(_ship_node):
 	DestroyShip()

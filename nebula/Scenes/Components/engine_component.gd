@@ -19,6 +19,7 @@ func _ready():
 	%ClickHandler.targeting_component = targeting_component
 	%ClickHandler.identity_component = identity_component
 	%ClickHandler.ship_model = ship_model
+	%ClickHandler.ship_node = ship_node
 	%ShipMovement.ship_node = ship_node
 	
 # sets the current shield generator that the instance is using

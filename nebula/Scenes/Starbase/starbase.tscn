@@ -1,14 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0gdkau3q2yq"]
+[gd_scene load_steps=11 format=3 uid="uid://b0gdkau3q2yq"]
 
 [ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://scenes/components/shield_generator.tscn" id="1_72w16"]
+[ext_resource type="Script" uid="uid://bhl6rjoeok0g6" path="res://scenes/starbase/starbase.gd" id="1_mccl1"]
 [ext_resource type="PackedScene" uid="uid://bg14jodmtvk0x" path="res://scenes/components/cargo_component.tscn" id="2_wfwro"]
 [ext_resource type="PackedScene" uid="uid://bv8xfh8lgm5hi" path="res://scenes/components/generator_component.tscn" id="3_b71cb"]
+[ext_resource type="PackedScene" uid="uid://dg1g1r8q6bdte" path="res://crafting_component.tscn" id="3_mccl1"]
+[ext_resource type="PackedScene" uid="uid://brotmcpkdktvh" path="res://dock_component.tscn" id="4_mccl1"]
 [ext_resource type="PackedScene" uid="uid://bcnhe0pqjp7bx" path="res://scenes/components/identity_component.tscn" id="4_mkt2a"]
 [ext_resource type="PackedScene" uid="uid://nm768wtj15ct" path="res://scenes/components/armor_component.tscn" id="5_ul0ok"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_333yw"]
 
-[node name="Starbase" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_ksjf8"]
+
+[node name="Starbase" type="Node3D" groups=["starbases"]]
+script = ExtResource("1_mccl1")
 
 [node name="StarbaseModel" type="CharacterBody3D" parent="."]
 
@@ -16,6 +22,7 @@
 shape = SubResource("BoxShape3D_333yw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StarbaseModel"]
+mesh = SubResource("BoxMesh_ksjf8")
 
 [node name="ScannerComponent" type="Node3D" parent="."]
 
@@ -36,11 +43,11 @@ unique_name_in_owner = true
 
 [node name="TradeComponent" type="Node3D" parent="ServiceContainer"]
 
-[node name="CraftingComponent" type="Node3D" parent="ServiceContainer"]
+[node name="CraftingComponent" parent="ServiceContainer" instance=ExtResource("3_mccl1")]
 
 [node name="DiplomacyComponent" type="Node3D" parent="ServiceContainer"]
 
-[node name="DockComponent" type="Node3D" parent="ServiceContainer"]
+[node name="DockComponent" parent="ServiceContainer" instance=ExtResource("4_mccl1")]
 
 [node name="CargoComponent" parent="." instance=ExtResource("2_wfwro")]
 unique_name_in_owner = true

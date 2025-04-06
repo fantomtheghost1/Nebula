@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=2 format=3 uid="uid://ylip8k6ymgdn"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://ylip8k6ymgdn"]
 
+[ext_resource type="ArrayMesh" uid="uid://dtn64a0kd4mn3" path="res://models/asteroids/titanium_alloy/AsteroidTitaniumAlloy.obj" id="1_bleg5"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_mltia"]
 
 [resource]
@@ -7,3 +8,4 @@ script = ExtResource("1_mltia")
 composition = 4
 ore = 10
 scale = 1.0
+asteroid_mesh = ExtResource("1_bleg5")

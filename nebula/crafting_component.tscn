@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg1g1r8q6bdte"]
+
+[ext_resource type="Script" uid="uid://ylrwkoqm4w6d" path="res://scenes/components/crafting_component.gd" id="1_ds3cr"]
+
+[node name="CraftingComponent" type="Node3D"]
+script = ExtResource("1_ds3cr")
+
+[node name="TempStorageComponent" type="Node3D" parent="."]

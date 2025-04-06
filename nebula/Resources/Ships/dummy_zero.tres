@@ -21,4 +21,4 @@ cargo_bay = ExtResource("2_8gk0o")
 scanner = ExtResource("6_op8ng")
 chassis = ExtResource("3_y2vf2")
 mining_turret = ExtResource("6_wd555")
-mining_turret_count = 0
+turret_slots = 0

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="StarbaseType" load_steps=7 format=3 uid="uid://dln53rk6vif0k"]
+
+[ext_resource type="Resource" uid="uid://dkw6cbldqvmmb" path="res://resources/armor/dummy_zero.tres" id="1_7dqwy"]
+[ext_resource type="Resource" uid="uid://4c5swq4qyy5h" path="res://resources/cargo/dummy_zero.tres" id="2_h251f"]
+[ext_resource type="Resource" uid="uid://bse3wk4wbn0rq" path="res://resources/generators/dummy_zero.tres" id="3_op4ro"]
+[ext_resource type="Resource" uid="uid://x3be7ec5ydl8" path="res://resources/scanners/dummy_zero.tres" id="4_aexts"]
+[ext_resource type="Script" uid="uid://d2nnwml0ppfcq" path="res://resources/starbases/starbase_type.gd" id="5_1hlmr"]
+[ext_resource type="Resource" uid="uid://xuemgb4cgsrn" path="res://resources/shield_generators/dummy_zero.tres" id="6_rcafj"]
+
+[resource]
+script = ExtResource("5_1hlmr")
+starbase_type = "hq"
+level = 0
+hp = 0
+shield_generator = ExtResource("6_rcafj")
+armor = ExtResource("1_7dqwy")
+generator = ExtResource("3_op4ro")
+cargo_bay = ExtResource("2_h251f")
+scanner = ExtResource("4_aexts")
+services = {
+"CRAFTING": true,
+"DIPLOMACY": true,
+"DOCKING": true,
+"REPAIR": true,
+"TRADE": true
+}
+turret_slots = 0
+metadata/_custom_type_script = "uid://d2nnwml0ppfcq"

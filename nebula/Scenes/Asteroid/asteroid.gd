@@ -1,5 +1,6 @@
 extends Node3D
 
+var object_type : String = "asteroid"
 var id : int
 var composition : int
 var ore : int

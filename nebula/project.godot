@@ -23,6 +23,7 @@ HelperFunctions="*res://HelperFunctions.gd"
 GlobalVariables="*res://global_variables.gd"
 Console="*res://addons/godot-console/scripts/console.gd"
 FactionManager="*res://managers/faction_manager.gd"
+SteamManager="*res://managers/steam_manager.gd"
 
 [editor_plugins]
 

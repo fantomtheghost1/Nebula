@@ -1,9 +1,9 @@
 extends Node
 
-var factions = []
+var client : Captain
 
-func AddNewFaction(faction_name, faction_leader):
-	factions.append(Faction.new(faction_name, faction_leader))
+#func _ready():
+#	client = Captain(SteamManager.GetSteamUsername())
 
 func GetShipFromID(id):
 	var ships = get_tree().get_nodes_in_group("ships")
@@ -14,7 +14,7 @@ func GetShipFromID(id):
 
 func ChangePlayerShip(new_ship_id):
 	var ship_with_id = GetShipFromID(new_ship_id)	
-	ship_with_id.SetOwner("DEV")
+	ship_with_id.SetOwner(SteamManager.GetSteamUsername())
 	GlobalVariables.camera_gimbal.SetTarget(ship_with_id, false)
 	GlobalVariables.camera_gimbal.InitScanner(ship_with_id.ship_type.scanner.scanner_range, ship_with_id.ship_type.scanner.zoom_max)
 	ClearOtherDevShips(ship_with_id)
@@ -28,6 +28,14 @@ func ClearOtherDevShips(ship_instance):
 			print(ship_instance)
 			if ship != ship_instance:
 				ship.SetOwner("AI")
+				
+func IsObjectShip(object):
+	var group_ships = get_tree().get_nodes_in_group("ships")
+	var ships = []
+	for ship in group_ships:
+		if ship == object:
+			return true
+	return false
 	
 func GetPlayerShips():
 	var group_ships = get_tree().get_nodes_in_group("ships")

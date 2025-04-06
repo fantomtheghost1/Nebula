@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjb05x1lpdjf0"]
+[gd_scene load_steps=19 format=3 uid="uid://cjb05x1lpdjf0"]
 
 [ext_resource type="Script" uid="uid://dgvh08tkapfk8" path="res://scenes/ship/ship.gd" id="1_cr1ik"]
 [ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://scenes/components/shield_generator.tscn" id="1_h5wr8"]
@@ -12,12 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://bcnhe0pqjp7bx" path="res://scenes/components/identity_component.tscn" id="5_45nfj"]
 [ext_resource type="Script" uid="uid://wsqs6ycxflaq" path="res://scenes/components/mining_container.gd" id="5_tbpag"]
 [ext_resource type="PackedScene" uid="uid://bvxdxpa6o0x3n" path="res://scenes/components/chassis_component.tscn" id="7_wffsi"]
-[ext_resource type="PackedScene" uid="uid://cs785yxiq8ssq" path="res://targeting_component.tscn" id="13_ijdfy"]
-[ext_resource type="Script" uid="uid://bo2qlyjvuj0lb" path="res://targeting_component.gd" id="14_bfumf"]
+[ext_resource type="PackedScene" uid="uid://cs785yxiq8ssq" path="res://scenes/components/targeting_component.tscn" id="13_ijdfy"]
+[ext_resource type="Script" uid="uid://bo2qlyjvuj0lb" path="res://scenes/components/targeting_component.gd" id="14_bfumf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evbkf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itjdq"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_jbrvq"]
+material = SubResource("StandardMaterial3D_itjdq")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tc3ci"]
 
