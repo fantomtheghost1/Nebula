@@ -1,10 +1,5 @@
 extends Node
 
-var client : Captain
-
-#func _ready():
-#	client = Captain(SteamManager.GetSteamUsername())
-
 func GetShipFromID(id):
 	var ships = get_tree().get_nodes_in_group("ships")
 	for ship in ships:
@@ -14,7 +9,8 @@ func GetShipFromID(id):
 
 func ChangePlayerShip(new_ship_id):
 	var ship_with_id = GetShipFromID(new_ship_id)	
-	ship_with_id.SetOwner(SteamManager.GetSteamUsername())
+	ship_with_id.SetOwner(SteamManager.client.name)
+	ship_with_id.add_to_group("untargetables")
 	GlobalVariables.camera_gimbal.SetTarget(ship_with_id, false)
 	GlobalVariables.camera_gimbal.InitScanner(ship_with_id.ship_type.scanner.scanner_range, ship_with_id.ship_type.scanner.zoom_max)
 	ClearOtherDevShips(ship_with_id)
@@ -28,6 +24,7 @@ func ClearOtherDevShips(ship_instance):
 			print(ship_instance)
 			if ship != ship_instance:
 				ship.SetOwner("AI")
+				ship.remove_from_group("untargetables")
 				
 func IsObjectShip(object):
 	var group_ships = get_tree().get_nodes_in_group("ships")

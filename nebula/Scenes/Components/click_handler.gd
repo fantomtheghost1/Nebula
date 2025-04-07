@@ -14,7 +14,7 @@ var ship_model : Node3D
 func _input(event):
 
 	# if the ship is owned by the client
-	if identity_component.object_owner == SteamManager.GetSteamUsername():
+	if identity_component.object_owner == SteamManager.client.name:
 		
 		# this will fire when the client presses the interact action without holding alt or shift
 		if event.is_action_pressed("Interact") and !Input.is_physical_key_pressed(KEY_ALT) and !Input.is_physical_key_pressed(KEY_SHIFT):
@@ -25,6 +25,7 @@ func _input(event):
 			if result != null:
 				
 				var object = result["collider"].get_parent()
+				print(object)
 				
 				# if the mouse clicked the invisible floor, then create a waypoint 
 				# and reset the current queue in ship movement so that the waypoint 
@@ -52,9 +53,10 @@ func _input(event):
 			
 			# if the mouse clicked on something, check if its another ship or just the invisible floor
 			if result != null:
+				var object = result["collider"].get_parent()
 				
 				# if the mouse clicked the invisible floor, then create a waypoint
-				if result["collider"].get_parent() == GlobalVariables.click_floor:
+				if object == GlobalVariables.click_floor:
 					
 					# if the queue is empty, start the MoveShip() recursive loop
 					if %WaypointQueueHandler.queue_instance.IsEmpty():
@@ -66,8 +68,14 @@ func _input(event):
 					
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
 				else:
-					SetShipTarget(result["collider"])
-					print("target set")
+					if object.object_type == "starbase":
+						object.get_node("ServiceContainer/DockComponent").AddQueuedDockingShip(ship_node)
+						%WaypointQueueHandler.QueueNewWaypoint(object.position)
+						ship_movement.MoveShip()
+						print("starbase found")
+					else:
+						SetShipTarget(result["collider"])
+						print("target set")
 			
 func SetShipTarget(clicked_object) -> void:
 	if HelperFunctions.CheckForObjectInGroup(clicked_object.get_parent(), "asteroids"):
@@ -81,7 +89,7 @@ func DetermineClickSubject():
 	var cam = GlobalVariables.camera
 	var space = get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.new()
-	var targetable = false
+	var targetable = true
 
 	# starts the ray at the 3D world space position where a ray cast from the camera would originate
 	ray_query.from = cam.project_ray_origin(mouse_pos)
@@ -93,11 +101,14 @@ func DetermineClickSubject():
 	var result = space.intersect_ray(ray_query)
 	#var targetables = get_nodes_in_group("targetables")
 	for group in result["collider"].get_parent().get_groups():
-		if group != "untargetables":
-			targetable = true
+		print(group)
+		if group == "untargetables":
+			targetable = false
 	
 	# if the result isn't the player ship and the result exists
-	if result["collider"] != ship_model and result != null and targetable or result["collider"].get_parent() == GlobalVariables.click_floor:
+	# result["collider"].get_parent().id != ship_node.id and result != null and 
+	if targetable or result["collider"].get_parent() == GlobalVariables.click_floor:
+		print(result["collider"].get_parent())
 		return result
 	
 	return 

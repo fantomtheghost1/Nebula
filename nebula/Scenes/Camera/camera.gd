@@ -11,9 +11,6 @@ signal TweeningFinished
 # this is the node that the camera focuses on
 @export var subject : Node3D = null
 
-# this sets the amount of time in seconds that the tween lasts
-@export var new_subject_ease_duration : float = 0.0
-
 var scanner_range : float
 
 var tweening : bool = false
@@ -21,7 +18,7 @@ var tweening : bool = false
 # starts the tween function and sets the camera subject
 func SetTarget(new_subject : Node3D, tween : bool = true) -> void:
 	subject = new_subject
-	reparent(new_subject)
+	call_deferred("reparent", new_subject)
 	if tween == true:
 		TweenCamera(subject.position)
 	
@@ -34,7 +31,7 @@ func TweenCamera(new_pos) -> void:
 	tweening = true
 	Tweening.emit()
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", new_pos, new_subject_ease_duration) \
+	tween.tween_property(self, "position", new_pos, GlobalVariables.generic_tween_time) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
 	tween.connect("finished", on_tween_finished)

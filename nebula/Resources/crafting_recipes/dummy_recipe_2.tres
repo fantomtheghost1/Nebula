@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CraftingRecipeType" load_steps=2 format=3 uid="uid://5jl4gf2i2un2"]
+
+[ext_resource type="Script" uid="uid://sth61ag8hraq" path="res://resources/crafting_recipes/crafting_recipe_type.gd" id="1_adybn"]
+
+[resource]
+script = ExtResource("1_adybn")
+magnesium_alloy_required = 2
+carbon_fiber_required = 2
+graphene_required = 2
+exotic_matter_required = 2
+titanium_alloy_required = 2
+crafting_time = 4.0
+result = "Test Result 2"
+metadata/_custom_type_script = "uid://sth61ag8hraq"

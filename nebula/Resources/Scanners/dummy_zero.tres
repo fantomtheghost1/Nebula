@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_pe4jg")
 name = "Dummy Zero"
-scanner_range = 0
+scanner_range = 1
 zoom_max = 0

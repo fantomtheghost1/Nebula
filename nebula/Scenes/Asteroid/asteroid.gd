@@ -1,9 +1,15 @@
 extends Node3D
 
 var object_type : String = "asteroid"
-var id : int
 var composition : int
 var ore : int
+
+@export var id : int = 0
+@export var resource : Resource
+
+func _ready():
+	if id != 0 and resource != null:
+		Initialize(id, resource)
 
 func Initialize(param_id, asteroid_type) -> void: 
 	id = param_id

@@ -7,12 +7,20 @@ var mining_turret_scene = preload("res://scenes/components/mining_turret.tscn")
 @export var ship_model : CharacterBody3D
 
 var object_type = "ship"
-var ship_type : Resource
 var dock_in_radius : Node3D
 var can_dock : bool = false
-var id : int = 0
 
-func Initialize(is_ai, ship_type_param, ship_id) -> void:
+@export var ship_type : Resource
+@export var id : int = 0
+@export var ship_owner : String
+
+func _ready():
+	if ship_owner != "" and id != 0 and ship_type != null:
+		Initialize(false, ship_type, id, ship_owner)
+		%CameraGimbal.SetTarget(self, false)
+		%CameraGimbal.InitScanner(ship_type.scanner.scanner_range, ship_type.scanner.zoom_max)	
+
+func Initialize(is_ai : bool, ship_type_param, ship_id, captain_name : String = "AI") -> void:
 	id = ship_id
 	ship_type = ship_type_param
 	
@@ -29,15 +37,14 @@ func Initialize(is_ai, ship_type_param, ship_id) -> void:
 		%IdentityComponent.SetOwner("AI")
 		%IdentityComponent.is_npc = true
 	else:
-		%IdentityComponent.SetOwner(SteamManager.GetSteamUsername())
+		%IdentityComponent.SetOwner(captain_name)
 		%IdentityComponent.is_npc = false
 		ship_model.set_collision_layer_value(1, true)
 		ship_model.set_collision_layer_value(2, false)
-		#add_child(GlobalVariables.camera_gimbal)
-		GlobalVariables.camera_gimbal.SetTarget(self, false)
-		GlobalVariables.camera_gimbal.InitScanner(ship_type.scanner.scanner_range, ship_type.scanner.zoom_max)
-
 		
+		if GlobalVariables.camera_gimbal != null:
+			GlobalVariables.camera_gimbal.SetTarget(self, false)
+			GlobalVariables.camera_gimbal.InitScanner(ship_type.scanner.scanner_range, ship_type.scanner.zoom_max)		
 	%ShipAIComponent.CheckIsAI(%IdentityComponent.is_npc)
 	
 	for i in ship_type.turret_slots:
@@ -50,6 +57,15 @@ func Initialize(is_ai, ship_type_param, ship_id) -> void:
 	
 func GetOwner():
 	return %IdentityComponent.object_owner
+		
+func GetCargo():
+	return %CargoComponent.GetCargo()
+	
+func IsCargoHoldEmpty():
+	return %CargoComponent.IsCargoHoldEmpty()
+	
+func ClearCargo():
+	%CargoComponent.ClearCargo()
 	
 func SetOwner(new_owner : String):
 	%IdentityComponent.SetOwner(new_owner)

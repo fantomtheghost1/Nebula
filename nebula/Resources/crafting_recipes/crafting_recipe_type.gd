@@ -6,4 +6,5 @@ class_name CraftingRecipeType
 @export var graphene_required : int
 @export var exotic_matter_required : int
 @export var titanium_alloy_required : int
+@export var crafting_time : float
 @export var result : String

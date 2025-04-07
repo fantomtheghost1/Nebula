@@ -2,11 +2,8 @@ extends Node3D
 
 signal TargetFound
 signal TargetLost
-#signal TargetDestroyed(ship_node)
 
 @export var scanner_range : float
-@export var ship_node : Node3D
-@export var ship_model : Node3D
 @export var object_fade_in : float
 
 var target : Node

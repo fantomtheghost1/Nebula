@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct2ape7kh6clk"]
+
+[ext_resource type="Script" uid="uid://cd0ggorh5t7gd" path="res://scenes/components/scanner_component.gd" id="1_yut07"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tc3ci"]
+
+[node name="ScannerComponent" type="Node3D"]
+script = ExtResource("1_yut07")
+scanner_range = 1000.0
+object_fade_in = 0.3
+
+[node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_tc3ci")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://brotmcpkdktvh"]
+
+[ext_resource type="Script" uid="uid://bo8c3u8cvsha4" path="res://scenes/components/dock_component.gd" id="1_hj74r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rt4bq"]
+radius = 3.38431
+
+[node name="DockComponent" type="Area3D"]
+script = ExtResource("1_hj74r")
+
+[node name="DockingRadius" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_rt4bq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

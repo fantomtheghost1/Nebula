@@ -50,6 +50,31 @@ func SubtractCargo(item, quantity) -> void:
 func SetCargo(cargo_bay_dict : Dictionary) -> void:
 	if !IsCargoHoldFull():
 		cargo_items = cargo_bay_dict
+		
+func ClearCargo():
+	cargo_items = {
+		Item.ITEMS.MAGNESIUM_ALLOY : 0, 
+		Item.ITEMS.CARBON_FIBER : 0,
+		Item.ITEMS.GRAPHENE : 0,
+		Item.ITEMS.EXOTIC_MATTER : 0,
+		Item.ITEMS.TITANIUM_ALLOY : 0
+	}
+	
+func IsCargoHoldEmpty() -> bool:
+	var cargo_sum = 0
+	
+	# adds all the items in the cargo hold and ensures that none of the items are set to a negative number
+	for item in cargo_items:
+		if cargo_items[item] < 0:
+			push_error("Cargo item is below zero. " + Item.GetItemFromIndex(item))
+		else:
+			cargo_sum += cargo_items[item]
+			
+	# ensures that the sum of all the items in the cargo hold do not exceed the cargo limit or has items less than zero
+	if cargo_sum == 0:
+		return true
+	
+	return false
 	
 # ensures that the cargo hold does not exceed the cargo limit or has items less than zero
 func IsCargoHoldFull() -> bool:
@@ -67,17 +92,16 @@ func IsCargoHoldFull() -> bool:
 		push_error("Cargo is below zero. Current cargo sum: " + str(cargo_sum))
 	elif cargo_sum > cargo_limit:
 		push_error("Cargo is above the cargo limit. Current cargo sum: " + str(cargo_sum) + ". Max cargo: " + str(cargo_limit))
+		return true
 	elif cargo_sum == cargo_limit:
+		print(str(cargo_sum) + " == " + str(cargo_limit))
 		return true
 		
 	return false
 	
 # dudfshg
 func GetCargo() -> Dictionary:
-	if !identity_component.is_npc:
-		return cargo_items
-	else:
-		return {}
+	return cargo_items
 	
 # sets the current cargo bay that the instance is using
 func SetCargoBay(cargo_type : CargoType) -> void:

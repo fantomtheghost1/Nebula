@@ -29,7 +29,7 @@ func _ready():
 	Console.create_command("create_ship", ship_gen.CreateShip, "Creates a ship in the current scene at the given location, owned by the given player, and with the given attributes based on the ship_type id. \nE.X: create_ship [x : float] [z : float] [ship_type : String] [is_ai : bool = false] \nShip Types: dummy_zero, dummy_min, dummy_max")
 	Console.create_command("change_player_ship", GameManager.ChangePlayerShip, "Changes the player ship to the ship with the given id. \nE.X: change_player_ship [id : int]")
 	Console.create_command("create_faction", FactionManager.CreateFaction, "Create a faction with a given name. \nE.X: create_faction [faction_name : String]")
-	Console.create_command("create_starbase", starbase_gen.CreateStarbase, "Creates a starbase in the current scene at the given location, owned by the given player, and with the given attributes based on the starbase_type id. \nE.X: create_starbase [x : float] [z : float] [starbase_type : String] [is_ai : bool = false] \nShip Types: dummy_zero, dummy_min, dummy_max")
+	Console.create_command("create_starbase", starbase_gen.CreateStarbase, "Creates a starbase in the current scene at the given location, owned by the given player, and with the given attributes based on the starbase_type id. \nE.X: create_starbase [x : float] [z : float] [starbase_type : String] [starbase_id : String] \nStarbase Types: hq \nStarbase IDs: dummy_zero")
 	Console.create_command("get_faction_members", FactionManager.GetFactionMembersCommand, "Gets all the faction members within a faction. \nE.X: get_faction_members [faction_name : String]")
 	Console.create_command("reload", self.Reload, "Reloads the current scene.")
 	
