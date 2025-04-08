@@ -60,14 +60,13 @@ label_settings = SubResource("LabelSettings_d27c4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82608, 0, 0)
 ship_type = ExtResource("6_xmhf2")
 id = 1
-ship_owner = "fantomtheghost"
+ship_owner = "CaptainDev"
 
 [node name="AIShip" parent="." instance=ExtResource("5_7lvt2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31149, 0, 0)
 is_ai = true
 ship_type = ExtResource("7_hjmas")
 id = 2
-ship_owner = "fantomtheghost"
 
 [node name="Asteroid" parent="." instance=ExtResource("7_d7gx0")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -6.05999, 0, 9.62836)
