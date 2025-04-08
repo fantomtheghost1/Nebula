@@ -28,5 +28,8 @@ class_name ShipType
 ## Holds the resource for this ship's mining turrets.
 @export var mining_turret : MiningTurretType
 
+## Holds the resource for this ship's mining turrets.
+@export var combat_turret : CombatTurretType
+
 ## Holds the amount of turret slots that are available on this ship.
 @export var turret_slots : int

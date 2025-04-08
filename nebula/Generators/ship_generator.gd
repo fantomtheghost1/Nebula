@@ -8,7 +8,6 @@ func CreateShip(x : float, z : float, ship_type : String, is_ai : bool = false, 
 	var ship_resource = load("res://resources/ships/" + ship_type + ".tres")
 	var new_ship = ship_scene.instantiate()
 	GlobalVariables.main_scene.add_child(new_ship)
-	new_ship.add_to_group("untargetables")
 	new_ship.position = Vector3(x, 0, z)
 	
 	if id != -1:
@@ -24,7 +23,6 @@ func CreateShip(x : float, z : float, ship_type : String, is_ai : bool = false, 
 func CreateShipWithResource(x : float, z : float, resource : Resource, is_ai : bool = false, id : int = -1):
 	var new_ship = ship_scene.instantiate()
 	GlobalVariables.main_scene.add_child(new_ship)
-	new_ship.add_to_group("untargetables")
 	new_ship.position = Vector3(x, 0, z)
 	
 	if id != -1:

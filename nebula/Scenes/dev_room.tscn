@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdr2qovl2f2i6"]
+[gd_scene load_steps=17 format=3 uid="uid://cdr2qovl2f2i6"]
 
 [ext_resource type="Script" uid="uid://dcpd7qty2hu2h" path="res://scenes/dev_room.gd" id="1_3o0u1"]
 [ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://scenes/camera/camera.tscn" id="1_abhsk"]
@@ -6,10 +6,15 @@
 [ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="4_f7i2v"]
 [ext_resource type="PackedScene" uid="uid://cjb05x1lpdjf0" path="res://scenes/ship/ship.tscn" id="5_7lvt2"]
 [ext_resource type="PackedScene" uid="uid://b0gdkau3q2yq" path="res://scenes/starbase/starbase.tscn" id="5_ynnkj"]
-[ext_resource type="Resource" uid="uid://cld1423og8f51" path="res://resources/ships/dummy_max.tres" id="6_xmhf2"]
+[ext_resource type="Resource" uid="uid://cld1423og8f51" path="res://resources/ships/dummy_max_combat.tres" id="6_xmhf2"]
 [ext_resource type="PackedScene" uid="uid://pg7qu448k1mp" path="res://scenes/asteroid/asteroid.tscn" id="7_d7gx0"]
-[ext_resource type="Resource" uid="uid://ccj46x748rvxo" path="res://resources/asteroid/massive/massive_carbon_fiber.tres" id="8_8g8eh"]
+[ext_resource type="Resource" uid="uid://b1edivd4jm2s7" path="res://resources/ships/dummy_min_mining.tres" id="7_hjmas"]
+[ext_resource type="Resource" uid="uid://dql80tl0ry4un" path="res://resources/asteroid/small/small_carbon_fiber.tres" id="8_q5stw"]
+[ext_resource type="Resource" uid="uid://chydoamjildqr" path="res://resources/asteroid/small/small_exotic_matter.tres" id="9_hjmas"]
+[ext_resource type="Resource" uid="uid://dw30moxudj4yv" path="res://resources/asteroid/small/small_graphene.tres" id="10_4nbje"]
 [ext_resource type="Resource" uid="uid://dln53rk6vif0k" path="res://resources/starbases/hq/dummy_zero_hq.tres" id="10_rve4q"]
+[ext_resource type="Resource" uid="uid://bidfe3fifetb5" path="res://resources/asteroid/small/small_magnesium_alloy.tres" id="11_brmex"]
+[ext_resource type="Resource" uid="uid://ylip8k6ymgdn" path="res://resources/asteroid/small/small_titanium_alloy.tres" id="12_gsx4s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d27c4"]
 font_size = 24
@@ -18,7 +23,7 @@ shadow_color = Color(0, 0, 0, 0.694118)
 
 [node name="DevRoom" type="Node2D"]
 script = ExtResource("1_3o0u1")
-build_version = "Nebula v0.3.1"
+build_version = "Nebula v0.4.1"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.00403169, 0.999992, 0, -0.999992, -0.00403169, 0, 10, 0)
@@ -57,10 +62,37 @@ ship_type = ExtResource("6_xmhf2")
 id = 1
 ship_owner = "fantomtheghost"
 
+[node name="AIShip" parent="." instance=ExtResource("5_7lvt2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31149, 0, 0)
+is_ai = true
+ship_type = ExtResource("7_hjmas")
+id = 2
+ship_owner = "fantomtheghost"
+
 [node name="Asteroid" parent="." instance=ExtResource("7_d7gx0")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 11.6104)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -6.05999, 0, 9.62836)
 id = 1
-resource = ExtResource("8_8g8eh")
+resource = ExtResource("8_q5stw")
+
+[node name="Asteroid2" parent="." instance=ExtResource("7_d7gx0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4.25615, 0, 9.18892)
+id = 2
+resource = ExtResource("9_hjmas")
+
+[node name="Asteroid3" parent="." instance=ExtResource("7_d7gx0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 11.6104)
+id = 3
+resource = ExtResource("10_4nbje")
+
+[node name="Asteroid4" parent="." instance=ExtResource("7_d7gx0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -18.4785, 0, 3.17389)
+id = 4
+resource = ExtResource("11_brmex")
+
+[node name="Asteroid5" parent="." instance=ExtResource("7_d7gx0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 9.99942, 0, 1.7908)
+id = 5
+resource = ExtResource("12_gsx4s")
 
 [node name="Starbase" parent="." instance=ExtResource("5_ynnkj")]
 starbase_id = 1

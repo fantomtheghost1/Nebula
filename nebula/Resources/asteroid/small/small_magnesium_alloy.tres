@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://bidfe3fifetb5"]
 
-[ext_resource type="ArrayMesh" uid="uid://glyxfiupw2mk" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.obj" id="1_10dp5"]
+[ext_resource type="ArrayMesh" uid="uid://cidfj430wlauq" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.obj" id="1_10dp5"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_j7rhb"]
 
 [resource]

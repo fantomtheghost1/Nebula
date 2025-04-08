@@ -10,6 +10,9 @@ signal CargoBayDestroyed(ship_node)
 
 @export var identity_component : Node3D
 
+# represented by a percentage, it signifies what percentage of cargo in the cargo hold will be present in ship salvage
+@export var salvage_degradation_rate : float
+
 # stores the cargo bay name the instance is currently using
 var cargo_bay_name : String
 
@@ -115,6 +118,20 @@ func SetCargoBay(cargo_type : CargoType) -> void:
 		DestroyComponent()
 		
 	print_debug("cargo bay set!")
+	
+func PrepSalvageCargo():
+	var salvage_cargo = {
+		Item.ITEMS.MAGNESIUM_ALLOY : 0, 
+		Item.ITEMS.CARBON_FIBER : 0,
+		Item.ITEMS.GRAPHENE : 0,
+		Item.ITEMS.EXOTIC_MATTER : 0,
+		Item.ITEMS.TITANIUM_ALLOY : 0
+	}
+	
+	for item in cargo_items:
+		salvage_cargo[item] += (cargo_items[item] * salvage_degradation_rate)
+	
+	return salvage_cargo
 	
 func DamageComponent(damage) -> void:
 	hp -= damage

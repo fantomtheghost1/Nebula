@@ -80,6 +80,10 @@ func _input(event):
 func SetShipTarget(clicked_object) -> void:
 	if HelperFunctions.CheckForObjectInGroup(clicked_object.get_parent(), "asteroids"):
 		targeting_component.SetTarget(clicked_object.get_parent(), "asteroid")
+	elif HelperFunctions.CheckForObjectInGroup(clicked_object.get_parent(), "ships"):
+		targeting_component.SetTarget(clicked_object.get_parent(), "ship")
+	elif HelperFunctions.CheckForObjectInGroup(clicked_object.get_parent(), "starbases"):
+		targeting_component.SetTarget(clicked_object.get_parent(), "starbase")
 	else:
 		targeting_component.SetTarget(clicked_object.get_parent(), "other")
 
@@ -104,6 +108,12 @@ func DetermineClickSubject():
 		print(group)
 		if group == "untargetables":
 			targetable = false
+			
+	for group in result["collider"].get_parent().get_groups():
+		print(group)
+		if group == "ships":
+			if result["collider"].get_parent().id == ship_node.id:
+				targetable = false
 	
 	# if the result isn't the player ship and the result exists
 	# result["collider"].get_parent().id != ship_node.id and result != null and 

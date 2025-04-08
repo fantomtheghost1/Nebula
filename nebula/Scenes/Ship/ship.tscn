@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjb05x1lpdjf0"]
+[gd_scene load_steps=19 format=3 uid="uid://cjb05x1lpdjf0"]
 
 [ext_resource type="Script" uid="uid://dgvh08tkapfk8" path="res://scenes/ship/ship.gd" id="1_cr1ik"]
 [ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://scenes/components/shield_generator.tscn" id="1_h5wr8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bj6kxacbxk0ap" path="res://scenes/components/armor_component.gd" id="4_rg7a8"]
 [ext_resource type="PackedScene" uid="uid://bv8xfh8lgm5hi" path="res://scenes/components/generator_component.tscn" id="4_v0p7y"]
 [ext_resource type="PackedScene" uid="uid://bcnhe0pqjp7bx" path="res://scenes/components/identity_component.tscn" id="5_45nfj"]
+[ext_resource type="Script" uid="uid://bfxj4vlgpul3w" path="res://scenes/ship/combat_container.gd" id="5_roibb"]
 [ext_resource type="Script" uid="uid://wsqs6ycxflaq" path="res://scenes/components/mining_container.gd" id="5_tbpag"]
 [ext_resource type="PackedScene" uid="uid://bvxdxpa6o0x3n" path="res://scenes/components/chassis_component.tscn" id="7_wffsi"]
 [ext_resource type="PackedScene" uid="uid://cs785yxiq8ssq" path="res://scenes/components/targeting_component.tscn" id="13_ijdfy"]
@@ -60,8 +61,8 @@ unique_name_in_owner = true
 script = ExtResource("5_tbpag")
 
 [node name="CombatContainer" type="Node3D" parent="TurretContainer"]
-
-[node name="DummyTurret" type="Node3D" parent="TurretContainer/CombatContainer"]
+unique_name_in_owner = true
+script = ExtResource("5_roibb")
 
 [node name="ShieldGenerator" parent="." instance=ExtResource("1_h5wr8")]
 unique_name_in_owner = true
@@ -78,6 +79,7 @@ unique_name_in_owner = true
 [node name="CargoComponent" parent="." node_paths=PackedStringArray("identity_component") instance=ExtResource("2_5i5ly")]
 unique_name_in_owner = true
 identity_component = NodePath("../IdentityComponent")
+salvage_degradation_rate = 0.6
 
 [node name="IdentityComponent" parent="." instance=ExtResource("5_45nfj")]
 unique_name_in_owner = true
@@ -95,5 +97,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.53477)
 
 [node name="ScannerComponent" parent="." instance=ExtResource("14_itjdq")]
 unique_name_in_owner = true
+
+[node name="ShotHit" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="ChassisDestroyed" from="ChassisComponent" to="." method="_on_chassis_component_chassis_destroyed"]

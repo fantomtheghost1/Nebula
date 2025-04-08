@@ -76,6 +76,13 @@ func _on_back_pressed() -> void:
 func _on_craft_pressed() -> void:
 	if CanCraftRecipe(selected_recipe):
 		recipe_being_crafted = selected_recipe
+		
+		%CargoComponent.SubtractCargo(0, selected_recipe.magnesium_alloy_required)
+		%CargoComponent.SubtractCargo(1, selected_recipe.carbon_fiber_required)
+		%CargoComponent.SubtractCargo(2, selected_recipe.graphene_required)
+		%CargoComponent.SubtractCargo(3, selected_recipe.exotic_matter_required)
+		%CargoComponent.SubtractCargo(4, selected_recipe.titanium_alloy_required)
+		
 		%Craft.disabled = true
 		%CraftingTime.wait_time = recipe_being_crafted.crafting_time
 		%CraftingTime.start()
