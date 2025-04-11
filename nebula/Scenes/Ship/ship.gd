@@ -1,12 +1,9 @@
 extends Node3D
 
-var ItemScript : Script = preload("res://classes/Item.gd")
-
+var wreck = preload("res://scenes/wreck/wreck.tscn")
 var combat_turret_scene = preload("res://scenes/components/combat_turret.tscn")
 var mining_turret_scene = preload("res://scenes/components/mining_turret.tscn")
-var shot_hit_text = preload("res://shot_hit_text.tscn")
-
-@export var ship_model : CharacterBody3D
+var shot_hit_text = preload("res://scenes/UI/shot_hit_text.tscn")
 
 var object_type = "ship"
 var dock_in_radius : Node3D
@@ -14,14 +11,14 @@ var can_dock : bool = false
 var damagable_components = 8
 var rng = RandomNumberGenerator.new()
 
+@export var ship_model : CharacterBody3D
 @export var is_ai : bool = false
 @export var ship_type : Resource
 @export var id : int = 0
-@export var ship_owner : String
 
 func _ready():
-	if ship_owner != "" and id != 0 and ship_type != null:
-		Initialize(is_ai, ship_type, id, ship_owner)
+	if SteamManager.client.name != "" and id != 0 and ship_type != null:
+		Initialize(is_ai, ship_type, id, SteamManager.client.name)
 		if !is_ai:
 			%CameraGimbal.SetTarget(self, false)
 			%CameraGimbal.InitScanner(ship_type.scanner.scanner_range, ship_type.scanner.zoom_max)	
@@ -31,9 +28,14 @@ func Initialize(is_ai : bool, ship_type_param, ship_id, captain_name : String = 
 	ship_type = ship_type_param
 	
 	#add_to_group("untargetables")
-	
+	if ship_type.model != null:
+		var model = ship_type.model.instantiate()
+		model.scale = Vector3(30, 30, 30)
+		get_node("ShipModel").add_child(model)
+		%MeshInstance3D.visible = false
+		
 	%ShieldGenerator.SetShieldGenerator(ship_type.shield_generator)
-	%CargoComponent.SetCargoBay(ship_type.cargo_bay)
+	%CargoComponent.Initialize(ship_type.cargo_bay)
 	%GeneratorComponent.SetGenerator(ship_type.generator)
 	%ChassisComponent.SetChassisType(ship_type.chassis)
 	%EngineComponent.SetEngine(ship_type.engine)
@@ -63,7 +65,7 @@ func Initialize(is_ai : bool, ship_type_param, ship_id, captain_name : String = 
 			
 		if ship_type.combat_turret != null:
 			var new_turret = combat_turret_scene.instantiate()
-			new_turret.SetTurret(ship_type.combat_turret, i + 1, self, %TargetingComponent, %LaserSpawn)
+			new_turret.SetTurret(ship_type.combat_turret, i + 1, self, %TargetingComponent, %LaserSpawn, %SalvagerComponent)
 			new_turret.name = "CombatTurret" + str(i + 1)
 			%CombatContainer.add_child(new_turret)
 			%CombatContainer.number_of_turrets = ship_type.turret_slots
@@ -109,7 +111,12 @@ func TakeDamage(damage : int, is_command : bool = false):
 	
 func DestroyShip():
 	print_debug("ship destroyed")
-	
+	var wreck_instance = wreck.instantiate()
+	GlobalVariables.main_scene.add_child(wreck_instance)
+	print(wreck_instance)
+	wreck_instance.position = self.position
+	wreck_instance.rotation = self.rotation
+	wreck_instance.Initialize(%CargoComponent.PrepSalvageCargo())
 	queue_free()
 
 func _on_chassis_component_chassis_destroyed(_ship_node):

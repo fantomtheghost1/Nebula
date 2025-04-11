@@ -22,8 +22,8 @@ func DockShip(ship_instance):
 		.set_ease(Tween.EASE_IN_OUT)
 	
 # for the T1
-func FindDockedShipWithID(id : int):
-	pass
+#func FindDockedShipWithID(id : int):
+#	pass
 
 func _on_body_entered(body: Node3D) -> void:
 	var object = body.get_parent()
@@ -39,7 +39,7 @@ func _on_body_exited(body: Node3D) -> void:
 		object.can_dock = false
 		object.dock_in_radius = null
 
-func _on_starbase_click_area_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_starbase_click_area_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event.is_action_pressed("Interact"):
 		print("test")
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmlic0vsn6hps"
 path.s3tc="res://.godot/imported/MagnesiumAlloy.png-a4de2c4baa44f33ad838bbc9072ee0a4.s3tc.ctex"
+path.etc2="res://.godot/imported/MagnesiumAlloy.png-a4de2c4baa44f33ad838bbc9072ee0a4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/asteroids/magnesium_alloy/MagnesiumAlloy.png"
-dest_files=["res://.godot/imported/MagnesiumAlloy.png-a4de2c4baa44f33ad838bbc9072ee0a4.s3tc.ctex"]
+dest_files=["res://.godot/imported/MagnesiumAlloy.png-a4de2c4baa44f33ad838bbc9072ee0a4.s3tc.ctex", "res://.godot/imported/MagnesiumAlloy.png-a4de2c4baa44f33ad838bbc9072ee0a4.etc2.ctex"]
 
 [params]
 

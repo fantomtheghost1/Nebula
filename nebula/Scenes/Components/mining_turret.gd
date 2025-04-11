@@ -54,7 +54,7 @@ func FireLaser():
 	# deal damage to the asteroid and add the ore to the cargo hold
 	var results = targeting_component.target.TakeDamage(damage)
 	cargo_component.AddCargo(results["composition"], results["ore_yield"])
-	print_debug(HelperFunctions.GetEnumStringFromIndex(Item.ITEMS, results["composition"]) + " += " + str(results["ore_yield"]))
+	print_debug(results["composition"].name + " += " + str(results["ore_yield"]))
 	print_debug(cargo_component.GetCargo())
 	
 # when the mining laser delay ends, fire a laser, otherwise, if the target is destroyed, deactivate the turret

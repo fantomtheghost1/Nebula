@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://p2ywm4428e6k" path="res://resources/armor/dummy_min.tres" id="1_orgiy"]
 [ext_resource type="Resource" uid="uid://blnvyld73e4q2" path="res://resources/cargo/dummy_min.tres" id="2_jl4ns"]
-[ext_resource type="Resource" uid="uid://bs1arhhy2648k" path="res://resources/chassis/runabout.tres" id="3_apgh5"]
+[ext_resource type="Resource" uid="uid://bs1arhhy2648k" path="res://resources/chassis/shuttle.tres" id="3_apgh5"]
 [ext_resource type="Resource" uid="uid://bjrloefyi1aot" path="res://resources/engines/dummy_min.tres" id="4_h7xe8"]
 [ext_resource type="Resource" uid="uid://qyi4jesxtcx6" path="res://resources/turrets/combat/dummy_min.tres" id="4_orgiy"]
 [ext_resource type="Resource" uid="uid://bopyitmxxvdh7" path="res://resources/generators/dummy_min.tres" id="5_x5lww"]

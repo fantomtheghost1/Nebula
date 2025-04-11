@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShieldGeneratorType" load_steps=2 format=3 uid="uid://d4avbkcliy2j1"]
+
+[ext_resource type="Script" uid="uid://d0wf7jym0vn80" path="res://resources/shield_generators/shield_generator_type.gd" id="1_kctva"]
+
+[resource]
+script = ExtResource("1_kctva")
+name = "Praetego"
+max_hp = 100
+max_sp = 100
+recharge_tick = 1.0
+recharge_delay = 1.0
+recharge_amount = 1
+metadata/_custom_type_script = "uid://d0wf7jym0vn80"

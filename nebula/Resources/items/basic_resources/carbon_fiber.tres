@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=2 format=3 uid="uid://ddcnfurkdycmc"]
+
+[ext_resource type="Script" uid="uid://c3kebrj0y5h4q" path="res://resources/items/item_type.gd" id="1_mrfmd"]
+
+[resource]
+script = ExtResource("1_mrfmd")
+name = "Carbon Fiber"
+id = 1
+stack_limit = 64
+metadata/_custom_type_script = "uid://c3kebrj0y5h4q"

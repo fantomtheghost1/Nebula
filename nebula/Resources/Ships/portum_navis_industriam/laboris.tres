@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ShipType" load_steps=12 format=3 uid="uid://nvvavgfvw623"]
+
+[ext_resource type="Script" uid="uid://1jjgbv63flmu" path="res://resources/ships/ship_type.gd" id="1_j5ox8"]
+[ext_resource type="Resource" uid="uid://b0s1jkwlbbcuw" path="res://resources/armor/portum_navis_industriam/obducta.tres" id="1_oqivt"]
+[ext_resource type="Resource" uid="uid://ctw4pgcc0sjsr" path="res://resources/cargo/portum_navis_industriam/tenere.tres" id="2_peweq"]
+[ext_resource type="Resource" uid="uid://m12ryvojlhh" path="res://resources/engines/portum_navis_industriam/magnificus.tres" id="2_rhf2g"]
+[ext_resource type="Resource" uid="uid://bgsmvh0cp2efe" path="res://resources/chassis/portum_navis_industriam/laboris.tres" id="3_6ql7o"]
+[ext_resource type="Resource" uid="uid://d4avbkcliy2j1" path="res://resources/shield_generators/portum_navis_industriam/praetego.tres" id="4_mafto"]
+[ext_resource type="Resource" uid="uid://d3jyurkc5io2b" path="res://resources/generators/portum_navis_industriam/fulmen.tres" id="4_pucmc"]
+[ext_resource type="Resource" uid="uid://dndtlwh3xbass" path="res://resources/turrets/combat/portum_navis_industriam/cremare.tres" id="4_q3ls2"]
+[ext_resource type="Resource" uid="uid://5cqnb4e1j44d" path="res://resources/scanners/portum_navis_industriam/cognitor.tres" id="5_snqyd"]
+[ext_resource type="Resource" uid="uid://dx3ofcsvgjmfh" path="res://resources/turrets/mining/portum_navis_industriam/subducere.tres" id="7_2grdl"]
+[ext_resource type="PackedScene" uid="uid://cm7b2jvwu26t4" path="res://models/ships/laboris/laboris.gltf" id="8_q3ls2"]
+
+[resource]
+script = ExtResource("1_j5ox8")
+name = "Laboris"
+model = ExtResource("8_q3ls2")
+engine = ExtResource("2_rhf2g")
+shield_generator = ExtResource("4_mafto")
+armor = ExtResource("1_oqivt")
+generator = ExtResource("4_pucmc")
+cargo_bay = ExtResource("2_peweq")
+scanner = ExtResource("5_snqyd")
+chassis = ExtResource("3_6ql7o")
+mining_turret = ExtResource("7_2grdl")
+combat_turret = ExtResource("4_q3ls2")
+turret_slots = 1
+metadata/_custom_type_script = "uid://1jjgbv63flmu"

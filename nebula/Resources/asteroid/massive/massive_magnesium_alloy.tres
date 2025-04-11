@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://bl2perxbgbkvl"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=4 format=3 uid="uid://bl2perxbgbkvl"]
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_33llb"]
-[ext_resource type="ArrayMesh" uid="uid://glyxfiupw2mk" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.obj" id="1_enuhg"]
+[ext_resource type="ArrayMesh" uid="uid://cidfj430wlauq" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.obj" id="1_enuhg"]
+[ext_resource type="Resource" uid="uid://d1yl0ivimffnn" path="res://resources/items/basic_resources/magnesium_alloy.tres" id="2_od8a0"]
 
 [resource]
 script = ExtResource("1_33llb")
-composition = 0
+composition = ExtResource("2_od8a0")
 ore = 500
 scale = 5.0
 asteroid_mesh = ExtResource("1_enuhg")

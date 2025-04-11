@@ -4,6 +4,9 @@ class_name ShipType
 ## Holds the name of the ship type.
 @export var name : String
 
+## Holds the ship mesh
+@export var model : PackedScene
+
 ## Holds the resource for this ship's engine.
 @export var engine : EngineType
 

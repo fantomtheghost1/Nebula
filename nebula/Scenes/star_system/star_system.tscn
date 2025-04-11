@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckxcwr0xg1oc6"]
+
+[ext_resource type="Script" uid="uid://dc2heb18j6hod" path="res://scenes/star_system/star_system.gd" id="1_y2a8t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cx0a"]
+albedo_color = Color(1, 0.690196, 0.352941, 1)
+emission_enabled = true
+emission = Color(0.886275, 0.886275, 0.643137, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8cx0a"]
+material = SubResource("StandardMaterial3D_8cx0a")
+
+[node name="StarSystem" type="Node3D"]
+script = ExtResource("1_y2a8t")
+
+[node name="Sun" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("SphereMesh_8cx0a")

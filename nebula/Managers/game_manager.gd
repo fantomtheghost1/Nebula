@@ -29,7 +29,6 @@ func ClearOtherDevShips(ship_instance):
 				
 func IsObjectShip(object):
 	var group_ships = get_tree().get_nodes_in_group("ships")
-	var ships = []
 	for ship in group_ships:
 		if ship == object:
 			return true
@@ -48,7 +47,7 @@ func GetAsteroidsCommand():
 	var group_asteroids = get_tree().get_nodes_in_group("asteroids")
 	var asteroids = ""
 	for asteroid in group_asteroids:
-		asteroids += str("id: ", asteroid.id, " ore_yield: ", asteroid.ore, " composition: ", HelperFunctions.GetEnumStringFromIndex(Item.ITEMS, asteroid.composition), "\n")
+		asteroids += str("id: ", asteroid.id, " ore_yield: ", asteroid.ore, " composition: ", asteroid.composition.name, "\n")
 	return str(asteroids)
 	
 func GetShipsCommand():

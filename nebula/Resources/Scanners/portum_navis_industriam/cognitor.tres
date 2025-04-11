@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScannerType" load_steps=2 format=3 uid="uid://5cqnb4e1j44d"]
+
+[ext_resource type="Script" uid="uid://sjybvdq54nf0" path="res://resources/scanners/scanner_type.gd" id="1_7xir4"]
+
+[resource]
+script = ExtResource("1_7xir4")
+name = "Cognitor"
+scanner_range = 50
+zoom_max = 33
+metadata/_custom_type_script = "uid://sjybvdq54nf0"

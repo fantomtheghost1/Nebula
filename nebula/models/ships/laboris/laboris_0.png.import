@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dr12s8nvp5hia"
+path.s3tc="res://.godot/imported/laboris_0.png-437d46e81c7db4f96ab1ea5850bd3d15.s3tc.ctex"
+path.etc2="res://.godot/imported/laboris_0.png-437d46e81c7db4f96ab1ea5850bd3d15.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "94a60d9549026ce217547cfaeb7de400"
+}
+
+[deps]
+
+source_file="res://models/ships/laboris/laboris_0.png"
+dest_files=["res://.godot/imported/laboris_0.png-437d46e81c7db4f96ab1ea5850bd3d15.s3tc.ctex", "res://.godot/imported/laboris_0.png-437d46e81c7db4f96ab1ea5850bd3d15.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

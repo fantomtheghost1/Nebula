@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CargoType" load_steps=2 format=3 uid="uid://ctw4pgcc0sjsr"]
+
+[ext_resource type="Script" uid="uid://c2yxr8m6xsv0p" path="res://resources/cargo/cargo_type.gd" id="1_2wc04"]
+
+[resource]
+script = ExtResource("1_2wc04")
+name = "Tenere"
+max_hp = 100
+max_cargo_slots = 20
+metadata/_custom_type_script = "uid://c2yxr8m6xsv0p"

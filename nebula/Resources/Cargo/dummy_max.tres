@@ -6,4 +6,4 @@
 script = ExtResource("1_fs474")
 name = "Dummy Max"
 max_hp = 1000
-cargo_limit = 1000
+max_cargo_slots = 64

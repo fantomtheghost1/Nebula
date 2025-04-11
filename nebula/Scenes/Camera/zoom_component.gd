@@ -32,6 +32,8 @@ func _input(event) -> void:
 		if event.is_action_pressed("CameraZoomOut"):
 			if camera.position.x < zoom_max:
 				camera.position = camera.position + Vector3(1, 1, 0) * ZOOM_SENSITIVITY * get_physics_process_delta_time()
+			else:
+				print("at max")
 
 func _on_camera_gimbal_tweening():
 	tweening = true

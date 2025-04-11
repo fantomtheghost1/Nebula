@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SystemType" load_steps=2 format=3 uid="uid://dq01q24c2dcal"]
+
+[ext_resource type="Script" uid="uid://n2mpiduivbmy" path="res://resources/systems/system_type.gd" id="1_8cc7p"]
+
+[resource]
+script = ExtResource("1_8cc7p")
+sun_color = Color(0.999999, 0.999537, 0.444742, 1)
+sun_size = Vector3(100, 100, 100)
+metadata/_custom_type_script = "uid://n2mpiduivbmy"

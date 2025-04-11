@@ -4,31 +4,26 @@ var recipe_button = preload("res://scenes/UI/recipe_button.tscn")
 var selected_recipe = null
 var recipe_being_crafted = null
 
-var unloaded_recipes = [
-	"res://resources/crafting_recipes/dummy_recipe_1.tres",
-	"res://resources/crafting_recipes/dummy_recipe_2.tres"
-]
-
 var loaded_recipes = []
+var loaded_items = []
 
 func _ready() -> void:
-	for recipe in unloaded_recipes:
-		var loaded_recipe = load(recipe)
-		loaded_recipes.append(loaded_recipe)
+	loaded_recipes = HelperFunctions.LoadResourcesInFolder("res://resources/crafting_recipes")
+	loaded_items = HelperFunctions.LoadResourcesInFolder("res://resources/items/basic_resources")
+	print(loaded_recipes)
+	
+	for recipe in loaded_recipes:
 		var new_button = recipe_button.instantiate()
 		%RecipeButtonContainer.add_child(new_button)
-		new_button.text = loaded_recipe.result
+		new_button.text = recipe.result
 		new_button.pressed.connect(ShowRecipe.bind(new_button.text))
 		
 	print("recipes initialized")
-	
-func _process(delta: float) -> void:
-	var cargo_hold = %CargoComponent.GetCargo()
-	%MagnesiumAlloy.text = "Magnesium Alloy: \n" + str(cargo_hold[0])
-	%CarbonFiber.text = "Carbon Fiber: \n" + str(cargo_hold[1])
-	%TitaniumAlloy.text = "Titanium Alloy: \n" + str(cargo_hold[2])
-	%ExoticMatter.text = "Exotic Matter: \n" + str(cargo_hold[3])
-	%Graphene.text = "Graphene: \n" + str(cargo_hold[4])
+
+func FindItemWithID(id : int):
+	for item in loaded_items:
+		if item.id == id:
+			return item
 	
 func FindIndexByResult(result : String):
 	for i in loaded_recipes.size():
@@ -62,11 +57,12 @@ func CanCraftRecipe(recipe):
 func _on_craft_item_pressed() -> void:
 	%StarbaseMainMenu.visible = false
 	%StarbaseCraftingMenu.visible = true
-#		print(recipe.magnesium_alloy_required)
-#		print(recipe.carbon_fiber_required)
-#		print(recipe.graphene_required)
-#		print(recipe.exotic_matter_required)
-#		print(recipe.titanium_alloy_required)
+	
+	%MagnesiumAlloy.text = "Magnesium Alloy: \n" + str(%CargoComponent.GetQuantityFromID(0))
+	%CarbonFiber.text = "Carbon Fiber: \n" + str(%CargoComponent.GetQuantityFromID(1))
+	%TitaniumAlloy.text = "Titanium Alloy: \n" + str(%CargoComponent.GetQuantityFromID(2))
+	%ExoticMatter.text = "Exotic Matter: \n" + str(%CargoComponent.GetQuantityFromID(3))
+	%Graphene.text = "Graphene: \n" + str(%CargoComponent.GetQuantityFromID(4))
 
 func _on_back_pressed() -> void:
 	%StarbaseMainMenu.visible = true
@@ -77,11 +73,11 @@ func _on_craft_pressed() -> void:
 	if CanCraftRecipe(selected_recipe):
 		recipe_being_crafted = selected_recipe
 		
-		%CargoComponent.SubtractCargo(0, selected_recipe.magnesium_alloy_required)
-		%CargoComponent.SubtractCargo(1, selected_recipe.carbon_fiber_required)
-		%CargoComponent.SubtractCargo(2, selected_recipe.graphene_required)
-		%CargoComponent.SubtractCargo(3, selected_recipe.exotic_matter_required)
-		%CargoComponent.SubtractCargo(4, selected_recipe.titanium_alloy_required)
+		%CargoComponent.SubtractCargo(FindItemWithID(0), selected_recipe.magnesium_alloy_required)
+		%CargoComponent.SubtractCargo(FindItemWithID(1), selected_recipe.carbon_fiber_required)
+		%CargoComponent.SubtractCargo(FindItemWithID(2), selected_recipe.graphene_required)
+		%CargoComponent.SubtractCargo(FindItemWithID(3), selected_recipe.exotic_matter_required)
+		%CargoComponent.SubtractCargo(FindItemWithID(4), selected_recipe.titanium_alloy_required)
 		
 		%Craft.disabled = true
 		%CraftingTime.wait_time = recipe_being_crafted.crafting_time

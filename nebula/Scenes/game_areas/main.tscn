@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://rgi6rixs3y25"]
+
+[ext_resource type="Script" uid="uid://cfwfvrm1kvpw7" path="res://scenes/game_areas/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://scenes/camera/camera.tscn" id="2_ifxk0"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_o5qli")
+build_version = "v0.4.5 Pre-Alpha"
+
+[node name="CameraGimbal" parent="." instance=ExtResource("2_ifxk0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 150, 150)

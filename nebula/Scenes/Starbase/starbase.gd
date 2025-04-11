@@ -16,7 +16,7 @@ func Initialize(resource : Resource, id : int) -> void:
 	starbase_type = resource.starbase_type
 	
 	%ShieldGenerator.SetShieldGenerator(resource.shield_generator)
-	%CargoComponent.SetCargoBay(resource.cargo_bay)
+	%CargoComponent.Initialize(resource.cargo_bay)
 	%GeneratorComponent.SetGenerator(resource.generator)
 	%ScannerComponent.SetScanner(resource.scanner)
 	
@@ -36,6 +36,6 @@ func _on_deposit_materials_pressed() -> void:
 		var new_cargo = %DockComponent.docked_ships[0].GetCargo()
 		%DockComponent.docked_ships[0].ClearCargo()
 		for item in new_cargo:
-			%CargoComponent.AddCargo(item, new_cargo[item])
+			%CargoComponent.AddCargo(new_cargo[item].item, new_cargo[item].quantity)
 	else:
 		print("Cargo Hold is empty!")

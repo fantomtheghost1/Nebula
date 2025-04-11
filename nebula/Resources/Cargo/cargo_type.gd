@@ -8,4 +8,4 @@ class_name CargoType
 @export var max_hp : int
 
 ## Holds the amount of items the cargo bay is able to hold.
-@export var cargo_limit : int
+@export var max_cargo_slots : int

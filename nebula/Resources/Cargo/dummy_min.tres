@@ -6,4 +6,4 @@
 script = ExtResource("1_ba2s3")
 name = "Dummy Min"
 max_hp = 100
-cargo_limit = 100
+max_cargo_slots = 20

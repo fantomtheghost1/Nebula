@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc1u2ds80h3ue"
 path.s3tc="res://.godot/imported/AsteroidBody.png-55cbf2ec6ab1744b02cb80fe55e14037.s3tc.ctex"
+path.etc2="res://.godot/imported/AsteroidBody.png-55cbf2ec6ab1744b02cb80fe55e14037.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/asteroids/magnesium_alloy/AsteroidBody.png"
-dest_files=["res://.godot/imported/AsteroidBody.png-55cbf2ec6ab1744b02cb80fe55e14037.s3tc.ctex"]
+dest_files=["res://.godot/imported/AsteroidBody.png-55cbf2ec6ab1744b02cb80fe55e14037.s3tc.ctex", "res://.godot/imported/AsteroidBody.png-55cbf2ec6ab1744b02cb80fe55e14037.etc2.ctex"]
 
 [params]
 

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChassisType" load_steps=2 format=3 uid="uid://bs1arhhy2648k"]
+
+[ext_resource type="Script" uid="uid://penh3vhjeeo5" path="res://resources/chassis/chassis_type.gd" id="1_instq"]
+
+[resource]
+script = ExtResource("1_instq")
+name = "Shuttle"
+max_hp = 100

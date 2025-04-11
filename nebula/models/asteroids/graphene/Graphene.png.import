@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci8rl4hxsxbf7"
 path.s3tc="res://.godot/imported/Graphene.png-4a10769760a59a92e174ec8edde68d40.s3tc.ctex"
+path.etc2="res://.godot/imported/Graphene.png-4a10769760a59a92e174ec8edde68d40.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/asteroids/graphene/Graphene.png"
-dest_files=["res://.godot/imported/Graphene.png-4a10769760a59a92e174ec8edde68d40.s3tc.ctex"]
+dest_files=["res://.godot/imported/Graphene.png-4a10769760a59a92e174ec8edde68d40.s3tc.ctex", "res://.godot/imported/Graphene.png-4a10769760a59a92e174ec8edde68d40.etc2.ctex"]
 
 [params]
 

@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=3 format=3 uid="uid://dw30moxudj4yv"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=4 format=3 uid="uid://dw30moxudj4yv"]
 
 [ext_resource type="ArrayMesh" uid="uid://byqs6mgjvt52h" path="res://models/asteroids/graphene/AsteroidGraphene.obj" id="1_ejelp"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_wrugv"]
+[ext_resource type="Resource" uid="uid://chnvlfq1hpv18" path="res://resources/items/basic_resources/graphene.tres" id="2_lccyc"]
 
 [resource]
 script = ExtResource("1_wrugv")
-composition = 2
+composition = ExtResource("2_lccyc")
 ore = 10
 scale = 1.0
 asteroid_mesh = ExtResource("1_ejelp")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GeneratorType" load_steps=2 format=3 uid="uid://d3jyurkc5io2b"]
+
+[ext_resource type="Script" uid="uid://dypy4qje3y5xi" path="res://resources/generators/generator_type.gd" id="1_7x18i"]
+
+[resource]
+script = ExtResource("1_7x18i")
+name = "Fulmen"
+max_hp = 100
+max_power = 10
+metadata/_custom_type_script = "uid://dypy4qje3y5xi"

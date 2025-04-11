@@ -1,8 +1,8 @@
 extends Resource
 class_name AsteroidType
 
-## Holds the asteroid's composition. 0 = METAL, 1 = SILICON, 2 = ISOTOPES, 3 = ICE, 4 = GOLD.
-@export var composition : int
+## Holds the asteroid's item composition resource.
+@export var composition : Resource
 
 ## Holds the amount of ore present in the asteroid until it is destroyed.
 @export var ore : int

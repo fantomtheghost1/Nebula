@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=2 format=3 uid="uid://dxap2g6nhmsco"]
+
+[ext_resource type="Script" uid="uid://c3kebrj0y5h4q" path="res://resources/items/item_type.gd" id="1_pex1a"]
+
+[resource]
+script = ExtResource("1_pex1a")
+name = "Exotic Matter"
+id = 3
+stack_limit = 64
+metadata/_custom_type_script = "uid://c3kebrj0y5h4q"

@@ -1,7 +1,7 @@
 extends Node3D
 
 var object_type : String = "asteroid"
-var composition : int
+var composition : Resource
 var ore : int
 
 @export var id : int = 0

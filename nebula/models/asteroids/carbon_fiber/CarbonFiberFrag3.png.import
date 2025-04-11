@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://8gde5u6mrq5o"
 path.s3tc="res://.godot/imported/CarbonFiberFrag3.png-96a7d0a2d5bdea1d4b08b94d83dcfdf2.s3tc.ctex"
+path.etc2="res://.godot/imported/CarbonFiberFrag3.png-96a7d0a2d5bdea1d4b08b94d83dcfdf2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/asteroids/carbon_fiber/CarbonFiberFrag3.png"
-dest_files=["res://.godot/imported/CarbonFiberFrag3.png-96a7d0a2d5bdea1d4b08b94d83dcfdf2.s3tc.ctex"]
+dest_files=["res://.godot/imported/CarbonFiberFrag3.png-96a7d0a2d5bdea1d4b08b94d83dcfdf2.s3tc.ctex", "res://.godot/imported/CarbonFiberFrag3.png-96a7d0a2d5bdea1d4b08b94d83dcfdf2.etc2.ctex"]
 
 [params]
 

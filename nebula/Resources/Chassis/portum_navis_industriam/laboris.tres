@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ChassisType" load_steps=2 format=3 uid="uid://bgsmvh0cp2efe"]
+
+[ext_resource type="Script" uid="uid://penh3vhjeeo5" path="res://resources/chassis/chassis_type.gd" id="1_acsvq"]
+
+[resource]
+script = ExtResource("1_acsvq")
+name = "Laboris Chassis"
+max_hp = 100
+metadata/_custom_type_script = "uid://penh3vhjeeo5"
