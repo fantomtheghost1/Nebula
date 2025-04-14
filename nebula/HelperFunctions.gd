@@ -1,15 +1,5 @@
 extends Node
 
-func LoadResourcesInFolder(folder_path : String):
-	var resources = []
-	for file_name in DirAccess.get_files_at(folder_path):
-		if (file_name.get_extension() == "import"):
-			file_name = file_name.replace('.import', '')
-		if (file_name.get_extension() == "tres"):
-			resources.append(ResourceLoader.load(folder_path + "/" + file_name))
-			
-	return resources
-
 func GetDistanceBetweenTwoPoints(point1, point2) -> float:
 	var distance = sqrt(pow((point1.x - point2.x), 2) + pow((point1.z - point2.z), 2))
 	return distance

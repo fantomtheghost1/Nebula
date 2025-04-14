@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_0vcr6"]
 [ext_resource type="ArrayMesh" uid="uid://c2af0413rxqng" path="res://models/asteroids/carbon_fiber/AsteroidCarbonFiber.obj" id="1_bp4r4"]
-[ext_resource type="Resource" uid="uid://ddcnfurkdycmc" path="res://resources/items/basic_resources/carbon_fiber.tres" id="2_e03lh"]
+[ext_resource type="Resource" uid="uid://ddcnfurkdycmc" path="res://resources/items/carbon_fiber.tres" id="2_e03lh"]
 
 [resource]
 script = ExtResource("1_0vcr6")

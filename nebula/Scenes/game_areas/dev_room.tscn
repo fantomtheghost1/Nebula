@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="4_f7i2v"]
 [ext_resource type="PackedScene" uid="uid://cjb05x1lpdjf0" path="res://scenes/ship/ship.tscn" id="5_7lvt2"]
 [ext_resource type="PackedScene" uid="uid://b0gdkau3q2yq" path="res://scenes/starbase/starbase.tscn" id="5_ynnkj"]
-[ext_resource type="Resource" uid="uid://nvvavgfvw623" path="res://resources/ships/portum_navis_industriam/laboris.tres" id="6_hjmas"]
+[ext_resource type="Resource" uid="uid://cld1423og8f51" path="res://resources/ships/dummy_max_combat.tres" id="6_3tpio"]
 [ext_resource type="PackedScene" uid="uid://pg7qu448k1mp" path="res://scenes/asteroid/asteroid.tscn" id="7_d7gx0"]
 [ext_resource type="Resource" uid="uid://b1edivd4jm2s7" path="res://resources/ships/dummy_min_mining.tres" id="7_hjmas"]
 [ext_resource type="Resource" uid="uid://dql80tl0ry4un" path="res://resources/asteroid/small/small_carbon_fiber.tres" id="8_q5stw"]
@@ -34,7 +34,7 @@ top_level = true
 
 [node name="Floor" parent="." groups=["untargetables"] instance=ExtResource("3_3o2o3")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(0.640102, 0, 0, 0, 0.640102, 0, 0, 0, 0.640102, 0, -1, 0)
 
 [node name="ConsoleContainer" type="VBoxContainer" parent="."]
 visible = false
@@ -58,7 +58,7 @@ label_settings = SubResource("LabelSettings_d27c4")
 
 [node name="Ship" parent="." instance=ExtResource("5_7lvt2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82608, 0, 0)
-ship_type = ExtResource("6_hjmas")
+ship_type = ExtResource("6_3tpio")
 id = 1
 
 [node name="AIShip" parent="." instance=ExtResource("5_7lvt2")]

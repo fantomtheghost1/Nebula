@@ -25,6 +25,7 @@
 material = SubResource("StandardMaterial3D_wkb1m")
 
 [node name="Ship" type="Node3D" node_paths=PackedStringArray("ship_model") groups=["ships"]]
+top_level = true
 script = ExtResource("1_cr1ik")
 ship_model = NodePath("ShipModel")
 

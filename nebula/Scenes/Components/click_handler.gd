@@ -30,22 +30,23 @@ func _input(event):
 				# if the mouse clicked the invisible floor, then create a waypoint 
 				# and reset the current queue in ship movement so that the waypoint 
 				# the ship is moving to is changed
-				if object == GlobalVariables.click_floor:
+				if HelperFunctions.CheckForObjectInGroup(object, "hyperlane_relays"):
+					print("you have clicked a relay!")
+					object.Warp(ship_node)
+				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
+				elif HelperFunctions.CheckForObjectInGroup(object, "starbases"):
+					object.get_node("ServiceContainer/DockComponent").AddQueuedDockingShip(ship_node)
+					%WaypointQueueHandler.queue_instance.ClearWaypoints()
+					%WaypointQueueHandler.QueueNewWaypoint(object.position)
+					ship_movement.MoveShip()
+					print("starbase found")
+				elif HelperFunctions.CheckForObjectInGroup(object, "click_floors"):
 					%WaypointQueueHandler.queue_instance.ClearWaypoints()
 					%WaypointQueueHandler.QueueNewWaypoint(result["position"])
 					ship_movement.MoveShip()
-					
-				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
 				else:
-					if object.object_type == "starbase":
-						object.get_node("ServiceContainer/DockComponent").AddQueuedDockingShip(ship_node)
-						%WaypointQueueHandler.queue_instance.ClearWaypoints()
-						%WaypointQueueHandler.QueueNewWaypoint(object.position)
-						ship_movement.MoveShip()
-						print("starbase found")
-					else:
-						SetShipTarget(result["collider"])
-						print("target set")
+					SetShipTarget(result["collider"])
+					print("target set")
 				
 		if event.is_action_pressed("QueueInteract"):
 			# determines what the mouse clicked on
@@ -56,26 +57,24 @@ func _input(event):
 				var object = result["collider"].get_parent()
 				
 				# if the mouse clicked the invisible floor, then create a waypoint
-				if object == GlobalVariables.click_floor:
-					
-					# if the queue is empty, start the MoveShip() recursive loop
-					if %WaypointQueueHandler.queue_instance.IsEmpty():
-						%WaypointQueueHandler.QueueNewWaypoint(result["position"])
-						ship_movement.MoveShip()
-					else:
-						%WaypointQueueHandler.QueueNewWaypoint(result["position"])
-					
-					
+				if HelperFunctions.CheckForObjectInGroup(object, "hyperlane_relays"):
+					print("you have clicked a relay!")
+					object.get_parent().Warp(ship_node)
 				# this conditional will fire if the object clicked is a ship. will be implemented later when the multiplayer is started
+				elif HelperFunctions.CheckForObjectInGroup(object, "starbases"):
+					object.get_node("ServiceContainer/DockComponent").AddQueuedDockingShip(ship_node)
+					%WaypointQueueHandler.queue_instance.ClearWaypoints()
+					%WaypointQueueHandler.QueueNewWaypoint(object.position)
+					ship_movement.MoveShip()
+					print("starbase found")
+				elif HelperFunctions.CheckForObjectInGroup(object, "click_floors"):
+					print(result)
+					%WaypointQueueHandler.queue_instance.ClearWaypoints()
+					%WaypointQueueHandler.QueueNewWaypoint(result["position"])
+					ship_movement.MoveShip()
 				else:
-					if object.object_type == "starbase":
-						object.get_node("ServiceContainer/DockComponent").AddQueuedDockingShip(ship_node)
-						%WaypointQueueHandler.QueueNewWaypoint(object.position)
-						ship_movement.MoveShip()
-						print("starbase found")
-					else:
-						SetShipTarget(result["collider"])
-						print("target set")
+					SetShipTarget(result["collider"])
+					print("target set")
 			
 func SetShipTarget(clicked_object) -> void:
 	if HelperFunctions.CheckForObjectInGroup(clicked_object.get_parent(), "asteroids"):
@@ -104,6 +103,10 @@ func DetermineClickSubject():
 	# detects if anything intersects with the ray based on the ray query
 	var result = space.intersect_ray(ray_query)
 	#var targetables = get_nodes_in_group("targetables")
+	print(result)
+	if result == { }:
+		return
+		
 	for group in result["collider"].get_parent().get_groups():
 		print(group)
 		if group == "untargetables":
@@ -117,7 +120,7 @@ func DetermineClickSubject():
 	
 	# if the result isn't the player ship and the result exists
 	# result["collider"].get_parent().id != ship_node.id and result != null and 
-	if targetable or result["collider"].get_parent() == GlobalVariables.click_floor:
+	if targetable or HelperFunctions.CheckForObjectInGroup(result["collider"].get_parent(), "click_floors"):
 		print(result["collider"].get_parent())
 		return result
 	

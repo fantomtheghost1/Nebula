@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=2 format=3 uid="uid://d1yl0ivimffnn"]
+
+[ext_resource type="Script" uid="uid://c3kebrj0y5h4q" path="res://resources/items/item_type.gd" id="1_huaeu"]
+
+[resource]
+script = ExtResource("1_huaeu")
+name = "Magnesium Alloy"
+id = 0
+stack_limit = 64
+item_category = "industrial"
+metadata/_custom_type_script = "uid://c3kebrj0y5h4q"

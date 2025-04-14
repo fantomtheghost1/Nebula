@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_rhymf"]
 [ext_resource type="ArrayMesh" uid="uid://dtn64a0kd4mn3" path="res://models/asteroids/titanium_alloy/AsteroidTitaniumAlloy.obj" id="1_skeyv"]
-[ext_resource type="Resource" uid="uid://djwkcdilkjldo" path="res://resources/items/basic_resources/titanium_alloy.tres" id="2_y1vnk"]
+[ext_resource type="Resource" uid="uid://djwkcdilkjldo" path="res://resources/items/titanium_alloy.tres" id="2_y1vnk"]
 
 [resource]
 script = ExtResource("1_rhymf")

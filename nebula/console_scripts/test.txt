@@ -1,0 +1,6 @@
+create_ship 0 0 dummy_max_mining true
+create_ship 0 0 dummy_max_mining true
+create_ship 0 0 dummy_max_mining true
+ships
+damage_ship 2 10000000
+ships

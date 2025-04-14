@@ -53,6 +53,51 @@ func GetAsteroidsCommand():
 func GetShipsCommand():
 	var group_ships = get_tree().get_nodes_in_group("ships")
 	var ships = ""
+	var index = 0
 	for ship in group_ships:
-		ships += str("id: ", ship.id, " owner: ", ship.GetOwner(), "\n")
+		if index == group_ships.size() - 1:
+			ships += str("id: ", ship.id, " owner: ", ship.GetOwner())
+		else:
+			ships += str("id: ", ship.id, " owner: ", ship.GetOwner(), "\n")
 	return str(ships)
+	
+func GetSystemsCommand():
+	var group_systems = get_tree().get_nodes_in_group("star_systems")
+	var systems = ""
+	var index = 0
+	for system in group_systems:
+		if index == group_systems.size() - 1:
+			systems += str("id: ", system.id, " name: ", system.name)
+		else:
+			systems += str("id: ", system.id, " name: ", system.name, "\n")
+		index += 1
+	return str(systems)
+	
+func WarpCommand(ship_id : int, system_id : int = -1, system_name : String = ""):
+	var systems = get_tree().get_nodes_in_group("star_systems")
+	var ships = get_tree().get_nodes_in_group("ships")
+	
+	var target_system = null
+	var target_ship = null
+	
+	for system in systems:
+		if system_id != -1:
+			if system.id == system_id:
+				target_system = system
+		elif system_name != "":
+			if system.system_name == system_name:
+				target_system = system
+		else:
+			print("please enter a valid parameter")
+			return
+			
+	for ship in ships:
+		if ship.id == ship_id:
+			target_ship = ship
+			
+	target_ship.position = Vector3(target_system.position.x - 150, 0 , target_system.position.z - 150)
+	target_ship.call_deferred("reparent", target_system.ship_container)
+
+func Teleport(id : int, x : int, z : int) -> void:
+	var ship = GetShipFromID(id)
+	ship.position = Vector3(x, 0, z)

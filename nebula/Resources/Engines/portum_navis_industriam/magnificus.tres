@@ -6,7 +6,7 @@
 script = ExtResource("1_hn23k")
 name = "Magnificus"
 max_hp = 25
-max_speed = 5.0
+max_speed = 10.0
 initial_speed = 1.0
 acceleration = 0.3
 metadata/_custom_type_script = "uid://cf7deouyemiks"

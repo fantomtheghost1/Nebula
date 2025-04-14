@@ -4,6 +4,13 @@
 
 [resource]
 script = ExtResource("1_8cc7p")
+system_name = "Dummy Yellow"
 sun_color = Color(0.999999, 0.999537, 0.444742, 1)
 sun_size = Vector3(100, 100, 100)
+planets = {
+0: {
+"color": Color(0.717479, 0.492701, 0.496694, 1),
+"size": 50
+}
+}
 metadata/_custom_type_script = "uid://n2mpiduivbmy"

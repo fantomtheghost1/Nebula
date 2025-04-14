@@ -5,11 +5,12 @@ var combat_turret_scene = preload("res://scenes/components/combat_turret.tscn")
 var mining_turret_scene = preload("res://scenes/components/mining_turret.tscn")
 var shot_hit_text = preload("res://scenes/UI/shot_hit_text.tscn")
 
-var object_type = "ship"
-var dock_in_radius : Node3D
+var object_type : String = "ship"
+var damagable_components : int = 8
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
+var docked : bool = false
 var can_dock : bool = false
-var damagable_components = 8
-var rng = RandomNumberGenerator.new()
+var dock_in_radius : Node3D
 
 @export var ship_model : CharacterBody3D
 @export var is_ai : bool = false

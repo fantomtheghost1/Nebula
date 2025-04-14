@@ -8,9 +8,11 @@ var loaded_recipes = []
 var loaded_items = []
 
 func _ready() -> void:
-	loaded_recipes = HelperFunctions.LoadResourcesInFolder("res://resources/crafting_recipes")
-	loaded_items = HelperFunctions.LoadResourcesInFolder("res://resources/items/basic_resources")
-	print(loaded_recipes)
+	
+	for recipe in ResourceDb.GetRecipes():
+		loaded_recipes.append(recipe)
+	for item in ResourceDb.GetItems():
+		loaded_items.append(item)
 	
 	for recipe in loaded_recipes:
 		var new_button = recipe_button.instantiate()

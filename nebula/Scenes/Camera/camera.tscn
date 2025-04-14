@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dakjo08ymqe6j" path="res://scenes/camera/zoom_component.gd" id="3_h66q3"]
 
 [node name="CameraGimbal" type="Node3D"]
+top_level = true
 script = ExtResource("1_tce71")
 
 [node name="Camera3D" type="Camera3D" parent="."]

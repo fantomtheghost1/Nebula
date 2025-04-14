@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://cx2rygfgenuoa" path="res://models/asteroids/exotic_matter/AsteroidExoticMatter.obj" id="1_3jt1r"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_videg"]
-[ext_resource type="Resource" uid="uid://dxap2g6nhmsco" path="res://resources/items/basic_resources/exotic_matter.tres" id="2_ef62f"]
+[ext_resource type="Resource" uid="uid://dxap2g6nhmsco" path="res://resources/items/exotic_matter.tres" id="2_ef62f"]
 
 [resource]
 script = ExtResource("1_videg")

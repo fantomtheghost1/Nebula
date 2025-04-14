@@ -18,7 +18,6 @@ func _ready():
 	
 	print_debug("initializing globals")
 	GlobalVariables.camera_gimbal = %CameraGimbal
-	GlobalVariables.click_floor = %Floor
 	GlobalVariables.camera = get_node("CameraGimbal/Camera3D")
 	GlobalVariables.main_scene = self
 	

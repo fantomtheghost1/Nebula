@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://byqs6mgjvt52h" path="res://models/asteroids/graphene/AsteroidGraphene.obj" id="1_f6m7a"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_xsl1g"]
-[ext_resource type="Resource" uid="uid://chnvlfq1hpv18" path="res://resources/items/basic_resources/graphene.tres" id="2_ffm03"]
+[ext_resource type="Resource" uid="uid://chnvlfq1hpv18" path="res://resources/items/graphene.tres" id="2_ffm03"]
 
 [resource]
 script = ExtResource("1_xsl1g")

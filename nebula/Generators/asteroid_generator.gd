@@ -4,7 +4,7 @@ var asteroid_scene = preload("res://scenes/asteroid/asteroid.tscn")
 var asteroid_id = 0
 
 func CreateAsteroid(x: float, z: float, size : String, composition : String):
-	var asteroid_resource = load("res://resources/asteroid/" + size + "/" + size + "_" + composition + ".tres")
+	var asteroid_resource = ResourceDb.GetAsteroidByProperties(size, composition)
 	var new_asteroid = asteroid_scene.instantiate()
 	GlobalVariables.main_scene.add_child(new_asteroid)
 	new_asteroid.position = Vector3(x, 0, z)

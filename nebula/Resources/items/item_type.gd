@@ -9,3 +9,6 @@ class_name ItemType
 
 ## Holds the max amount of items are in a stack
 @export var stack_limit : int
+
+## Holds the item's category
+@export var item_category : String
