@@ -12,8 +12,10 @@ ship_container = NodePath("ShipContainer")
 [node name="ShipContainer" type="Node3D" parent="."]
 
 [node name="StarbaseContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="AsteroidContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="PlanetContainer" type="Node3D" parent="."]
 
@@ -27,7 +29,7 @@ ship_container = NodePath("../ShipContainer")
 
 [node name="StarContainer" type="Node3D" parent="."]
 
-[node name="Sun" parent="StarContainer" instance=ExtResource("3_jisub")]
+[node name="Sun" parent="StarContainer" groups=["always_visible"] instance=ExtResource("3_jisub")]
 unique_name_in_owner = true
 
 [node name="Floor" parent="." instance=ExtResource("3_hl2vc")]

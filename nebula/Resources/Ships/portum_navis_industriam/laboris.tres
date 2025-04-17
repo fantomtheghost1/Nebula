@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ShipType" load_steps=12 format=3 uid="uid://nvvavgfvw623"]
+[gd_resource type="Resource" script_class="ShipType" load_steps=19 format=3 uid="uid://nvvavgfvw623"]
 
 [ext_resource type="Script" uid="uid://1jjgbv63flmu" path="res://resources/ships/ship_type.gd" id="1_j5ox8"]
 [ext_resource type="Resource" uid="uid://b0s1jkwlbbcuw" path="res://resources/armor/portum_navis_industriam/obducta.tres" id="1_oqivt"]
@@ -10,12 +10,20 @@
 [ext_resource type="Resource" uid="uid://dndtlwh3xbass" path="res://resources/turrets/combat/portum_navis_industriam/cremare.tres" id="4_q3ls2"]
 [ext_resource type="Resource" uid="uid://5cqnb4e1j44d" path="res://resources/scanners/portum_navis_industriam/cognitor.tres" id="5_snqyd"]
 [ext_resource type="Resource" uid="uid://dx3ofcsvgjmfh" path="res://resources/turrets/mining/portum_navis_industriam/subducere.tres" id="7_2grdl"]
+[ext_resource type="Material" uid="uid://cjalslmb1d5f3" path="res://models/ships/laboris/material_0.tres" id="7_h5dvt"]
 [ext_resource type="PackedScene" uid="uid://cm7b2jvwu26t4" path="res://models/ships/laboris/laboris.gltf" id="8_q3ls2"]
+[ext_resource type="Material" uid="uid://boqm8ars08nxa" path="res://models/ships/laboris/material_1.tres" id="8_wss2t"]
+[ext_resource type="Material" uid="uid://cm13mfxsbthl" path="res://models/ships/laboris/material_2.tres" id="9_p0t3r"]
+[ext_resource type="Material" uid="uid://bjxewi3ii37oa" path="res://models/ships/laboris/material_3.tres" id="10_50k2i"]
+[ext_resource type="Material" uid="uid://q5uvgi1jjw8" path="res://models/ships/laboris/material_4.tres" id="11_7ctjk"]
+[ext_resource type="Material" uid="uid://dxfhov20tssac" path="res://models/ships/laboris/material_5.tres" id="12_7hivv"]
+[ext_resource type="Material" uid="uid://ek3q3jxeu1g0" path="res://models/ships/laboris/material_6.tres" id="13_f68xm"]
 
 [resource]
 script = ExtResource("1_j5ox8")
 name = "Laboris"
 model = ExtResource("8_q3ls2")
+materials = Array[StandardMaterial3D]([ExtResource("7_h5dvt"), ExtResource("8_wss2t"), ExtResource("9_p0t3r"), ExtResource("10_50k2i"), ExtResource("11_7ctjk"), ExtResource("12_7hivv"), ExtResource("13_f68xm")])
 engine = ExtResource("2_rhf2g")
 shield_generator = ExtResource("4_mafto")
 armor = ExtResource("1_oqivt")

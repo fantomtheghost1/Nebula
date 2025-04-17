@@ -9,6 +9,7 @@ size = Vector3(500, 1, 500)
 script = ExtResource("1_ukw5w")
 
 [node name="ClickBody" type="StaticBody3D" parent="."]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClickBody"]
 unique_name_in_owner = true

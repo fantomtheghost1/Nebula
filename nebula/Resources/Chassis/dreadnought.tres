@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_ryxdv")
-name = "Dreadnought"
+ship_class = "Dreadnought"
 max_hp = 10000

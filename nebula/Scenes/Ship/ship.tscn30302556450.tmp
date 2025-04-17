@@ -1,0 +1,126 @@
+[gd_scene load_steps=20 format=3 uid="uid://cjb05x1lpdjf0"]
+
+[ext_resource type="Script" uid="uid://dgvh08tkapfk8" path="res://scenes/ship/ship.gd" id="1_cr1ik"]
+[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://scenes/components/shield_generator.tscn" id="1_h5wr8"]
+[ext_resource type="PackedScene" uid="uid://bg14jodmtvk0x" path="res://scenes/components/cargo_component.tscn" id="2_5i5ly"]
+[ext_resource type="Script" uid="uid://byx4cn12e0pig" path="res://scenes/components/ship_ai_component.gd" id="2_8n4sb"]
+[ext_resource type="PackedScene" uid="uid://bujjc8sy450fd" path="res://scenes/components/engine_component.tscn" id="2_kdr6u"]
+[ext_resource type="PackedScene" uid="uid://nm768wtj15ct" path="res://scenes/components/armor_component.tscn" id="3_g8txf"]
+[ext_resource type="Script" uid="uid://bj6kxacbxk0ap" path="res://scenes/components/armor_component.gd" id="4_rg7a8"]
+[ext_resource type="PackedScene" uid="uid://bv8xfh8lgm5hi" path="res://scenes/components/generator_component.tscn" id="4_v0p7y"]
+[ext_resource type="PackedScene" uid="uid://bcnhe0pqjp7bx" path="res://scenes/components/identity_component.tscn" id="5_45nfj"]
+[ext_resource type="Script" uid="uid://bfxj4vlgpul3w" path="res://scenes/components/combat_container.gd" id="5_roibb"]
+[ext_resource type="Script" uid="uid://wsqs6ycxflaq" path="res://scenes/components/mining_container.gd" id="5_tbpag"]
+[ext_resource type="PackedScene" uid="uid://bvxdxpa6o0x3n" path="res://scenes/components/chassis_component.tscn" id="7_wffsi"]
+[ext_resource type="PackedScene" uid="uid://cs785yxiq8ssq" path="res://scenes/components/targeting_component.tscn" id="13_ijdfy"]
+[ext_resource type="Script" uid="uid://bo2qlyjvuj0lb" path="res://scenes/components/targeting_component.gd" id="14_bfumf"]
+[ext_resource type="PackedScene" uid="uid://ct2ape7kh6clk" path="res://scenes/components/scanner_component.tscn" id="14_itjdq"]
+[ext_resource type="PackedScene" uid="uid://lkyq1e6ofkew" path="res://scenes/components/salvager_component.tscn" id="15_wkb1m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evbkf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkb1m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_roibb"]
+material = SubResource("StandardMaterial3D_wkb1m")
+
+[node name="Ship" type="Node3D" node_paths=PackedStringArray("ship_model") groups=["ships"]]
+top_level = true
+script = ExtResource("1_cr1ik")
+ship_model = NodePath("ShipModel")
+
+[node name="ShipModel" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipModel"]
+shape = SubResource("BoxShape3D_evbkf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShipModel"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
+visibility_range_fade_mode = 1
+mesh = SubResource("BoxMesh_roibb")
+
+[node name="ShipAIComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+process_mode = 1
+script = ExtResource("2_8n4sb")
+
+[node name="EngineComponent" parent="." node_paths=PackedStringArray("targeting_component", "identity_component", "ship_model", "ship_node") instance=ExtResource("2_kdr6u")]
+unique_name_in_owner = true
+targeting_component = NodePath("../TargetingComponent")
+identity_component = NodePath("../IdentityComponent")
+ship_model = NodePath("../ShipModel")
+ship_node = NodePath("..")
+
+[node name="Auxiliaries" type="Node3D" parent="."]
+
+[node name="SpecialComponent" type="Node3D" parent="Auxiliaries"]
+
+[node name="TurretContainer" type="Node3D" parent="."]
+transform = Transform3D(0.999952, 0, 0.00975624, 0, 1, 0, -0.00975624, 0, 0.999952, 0, 0, 0.00858188)
+
+[node name="MiningContainer" type="Node3D" parent="TurretContainer"]
+unique_name_in_owner = true
+script = ExtResource("5_tbpag")
+
+[node name="CombatContainer" type="Node3D" parent="TurretContainer" node_paths=PackedStringArray("ship_node")]
+unique_name_in_owner = true
+script = ExtResource("5_roibb")
+ship_node = NodePath("../..")
+
+[node name="ShieldGenerator" parent="." instance=ExtResource("1_h5wr8")]
+unique_name_in_owner = true
+
+[node name="ArmorComponent" parent="." instance=ExtResource("3_g8txf")]
+unique_name_in_owner = true
+script = ExtResource("4_rg7a8")
+
+[node name="WarpComponent" type="Node3D" parent="."]
+
+[node name="GeneratorComponent" parent="." instance=ExtResource("4_v0p7y")]
+unique_name_in_owner = true
+
+[node name="ShotHit" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -76.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CargoComponent" parent="." node_paths=PackedStringArray("identity_component") instance=ExtResource("2_5i5ly")]
+unique_name_in_owner = true
+identity_component = NodePath("../IdentityComponent")
+salvage_degradation_rate = 0.3
+
+[node name="IdentityComponent" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("5_45nfj")]
+unique_name_in_owner = true
+parent_node = NodePath("..")
+
+[node name="ChassisComponent" parent="." instance=ExtResource("7_wffsi")]
+unique_name_in_owner = true
+
+[node name="TargetingComponent" parent="." instance=ExtResource("13_ijdfy")]
+unique_name_in_owner = true
+script = ExtResource("14_bfumf")
+
+[node name="LaserSpawn" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="SalvagerComponent" parent="." node_paths=PackedStringArray("cargo_component") instance=ExtResource("15_wkb1m")]
+unique_name_in_owner = true
+cargo_component = NodePath("../CargoComponent")
+
+[node name="ScannerComponent" parent="." node_paths=PackedStringArray("IdentityComponent") instance=ExtResource("14_itjdq")]
+unique_name_in_owner = true
+IdentityComponent = NodePath("../IdentityComponent")
+
+[connection signal="ChassisDestroyed" from="ChassisComponent" to="." method="_on_chassis_component_chassis_destroyed"]

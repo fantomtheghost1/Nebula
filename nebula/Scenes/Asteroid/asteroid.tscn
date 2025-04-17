@@ -1,21 +1,30 @@
 [gd_scene load_steps=4 format=3 uid="uid://pg7qu448k1mp"]
 
 [ext_resource type="Script" uid="uid://bxway71nr8gc4" path="res://scenes/asteroid/asteroid.gd" id="1_mf8e3"]
-[ext_resource type="ArrayMesh" uid="uid://cidfj430wlauq" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.obj" id="2_j1t37"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j1t37"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_arieo"]
-radius = 0.172803
+radius = 0.141442
 
 [node name="Asteroid" type="Node3D" groups=["asteroids"]]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
 script = ExtResource("1_mf8e3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="AsteroidMesh" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="TooltipLabel" type="Label" parent="."]
 unique_name_in_owner = true
-mesh = ExtResource("2_j1t37")
-skeleton = NodePath("")
+visible = false
+offset_right = 282.0
+offset_bottom = 34.0
+text = "Small graphene asteroid"
+label_settings = SubResource("LabelSettings_j1t37")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="ModelContainer" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ModelContainer"]
 shape = SubResource("SphereShape3D_arieo")
+
+[connection signal="mouse_entered" from="ModelContainer" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="ModelContainer" to="." method="_on_static_body_3d_mouse_exited"]

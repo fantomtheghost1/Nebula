@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://s1crplqekxhn" path="res://resources/armor/dummy_max.tres" id="1_kn588"]
 [ext_resource type="Resource" uid="uid://doddgbbtg8slb" path="res://resources/cargo/dummy_max.tres" id="2_utppp"]
 [ext_resource type="Resource" uid="uid://ex1v2a7s60lj" path="res://resources/chassis/dreadnought.tres" id="3_h5e4l"]
-[ext_resource type="Resource" uid="uid://qyi4jesxtcx6" path="res://resources/turrets/combat/dummy_min.tres" id="4_614bo"]
+[ext_resource type="Resource" uid="uid://cumv3rgout7kv" path="res://resources/turrets/combat/dummy_max.tres" id="4_kn588"]
 [ext_resource type="Resource" uid="uid://c1l57eyuboq6t" path="res://resources/engines/dummy_max.tres" id="5_kliwl"]
 [ext_resource type="Resource" uid="uid://bse3wk4wbn0rq" path="res://resources/generators/dummy_zero.tres" id="6_id51d"]
 [ext_resource type="Resource" uid="uid://cjcet3tl4ytfp" path="res://resources/scanners/dummy_max.tres" id="7_mjyhf"]
@@ -20,5 +20,5 @@ generator = ExtResource("6_id51d")
 cargo_bay = ExtResource("2_utppp")
 scanner = ExtResource("7_mjyhf")
 chassis = ExtResource("3_h5e4l")
-combat_turret = ExtResource("4_614bo")
+combat_turret = ExtResource("4_kn588")
 turret_slots = 10

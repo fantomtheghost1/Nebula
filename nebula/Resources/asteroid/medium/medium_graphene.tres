@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=4 format=3 uid="uid://do4ia87qh55u3"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=6 format=3 uid="uid://do4ia87qh55u3"]
 
-[ext_resource type="ArrayMesh" uid="uid://byqs6mgjvt52h" path="res://models/asteroids/graphene/AsteroidGraphene.obj" id="1_djuse"]
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_h1jml"]
 [ext_resource type="Resource" uid="uid://chnvlfq1hpv18" path="res://resources/items/graphene.tres" id="2_t65o3"]
+[ext_resource type="Material" uid="uid://bf0enibioduig" path="res://models/asteroids/graphene/material_0.tres" id="2_xxamd"]
+[ext_resource type="Material" uid="uid://u3dh0ivdd32n" path="res://models/asteroids/graphene/material_1.tres" id="3_5clva"]
+[ext_resource type="PackedScene" uid="uid://bgdexkvhp3xfb" path="res://models/asteroids/graphene/AsteroidGraphene.gltf" id="4_660qs"]
 
 [resource]
 script = ExtResource("1_h1jml")
+model = ExtResource("4_660qs")
+materials = Array[StandardMaterial3D]([ExtResource("2_xxamd"), ExtResource("3_5clva")])
 composition = ExtResource("2_t65o3")
 ore = 50
 scale = 2.0
-asteroid_mesh = ExtResource("1_djuse")

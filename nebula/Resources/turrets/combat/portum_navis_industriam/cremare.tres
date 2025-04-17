@@ -7,4 +7,5 @@ script = ExtResource("1_3ehej")
 max_hp = 10
 fire_rate = 4.0
 damage = 15
+accuracy = 0.8
 metadata/_custom_type_script = "uid://uhbi0jgpm8tb"

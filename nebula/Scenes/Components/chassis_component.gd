@@ -2,13 +2,15 @@ extends Node3D
 
 signal ChassisDestroyed(ship_node)
 
+var max_hp : int = 0
 var hp : int = 0
 var chassis_name = ""
 var destroyed : bool = false
 
 func SetChassisType(chassis_type : ChassisType):
-	chassis_name = chassis_type.name
+	chassis_name = chassis_type.ship_class
 	hp = chassis_type.max_hp
+	max_hp = chassis_type.max_hp
 	if hp <= 0:
 		DestroyComponent()
 

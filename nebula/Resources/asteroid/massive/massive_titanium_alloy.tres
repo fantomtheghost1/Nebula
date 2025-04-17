@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=4 format=3 uid="uid://ddnx2xbqopufs"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=6 format=3 uid="uid://ddnx2xbqopufs"]
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_rhymf"]
-[ext_resource type="ArrayMesh" uid="uid://dtn64a0kd4mn3" path="res://models/asteroids/titanium_alloy/AsteroidTitaniumAlloy.obj" id="1_skeyv"]
+[ext_resource type="Material" uid="uid://s0fxosfctcjj" path="res://models/asteroids/titanium_alloy/material_0.tres" id="2_iik47"]
 [ext_resource type="Resource" uid="uid://djwkcdilkjldo" path="res://resources/items/titanium_alloy.tres" id="2_y1vnk"]
+[ext_resource type="Material" uid="uid://6kk462g3hg44" path="res://models/asteroids/titanium_alloy/material_1.tres" id="3_1seon"]
+[ext_resource type="PackedScene" uid="uid://d2rnpqt4mspp3" path="res://models/asteroids/titanium_alloy/AsteroidTitaniumAlloy.gltf" id="4_2yya7"]
 
 [resource]
 script = ExtResource("1_rhymf")
+model = ExtResource("4_2yya7")
+materials = Array[StandardMaterial3D]([ExtResource("2_iik47"), ExtResource("3_1seon")])
 composition = ExtResource("2_y1vnk")
 ore = 500
-scale = 5.0
-asteroid_mesh = ExtResource("1_skeyv")
+scale = 4.0

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bqk5e0545j3f2"]
+
+[ext_resource type="Texture2D" uid="uid://cp7me6287v1jk" path="res://models/asteroids/carbon_fiber/AsteroidCarbonFiber_2.png" id="1_ua2vt"]
+
+[resource]
+resource_name = "material_2"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_ua2vt")
+texture_filter = 0
+texture_repeat = false

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_acsvq")
-name = "Laboris Chassis"
+ship_class = "Shuttle"
 max_hp = 100
 metadata/_custom_type_script = "uid://penh3vhjeeo5"

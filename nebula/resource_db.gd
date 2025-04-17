@@ -6,16 +6,19 @@ var unloaded_asteroids = [
 	"res://resources/asteroid/small/small_graphene.tres",
 	"res://resources/asteroid/small/small_exotic_matter.tres",
 	"res://resources/asteroid/small/small_carbon_fiber.tres",
+	
 	"res://resources/asteroid/medium/medium_carbon_fiber.tres",
 	"res://resources/asteroid/medium/medium_exotic_matter.tres",
 	"res://resources/asteroid/medium/medium_graphene.tres",
 	"res://resources/asteroid/medium/medium_magnesium_alloy.tres",
 	"res://resources/asteroid/medium/medium_titanium_alloy.tres",
+	
 	"res://resources/asteroid/large/large_carbon_fiber.tres",
 	"res://resources/asteroid/large/large_exotic_matter.tres",
 	"res://resources/asteroid/large/large_graphene.tres",
 	"res://resources/asteroid/large/large_magnesium_alloy.tres",
 	"res://resources/asteroid/large/large_titanium_alloy.tres",
+	
 	"res://resources/asteroid/massive/massive_carbon_fiber.tres",
 	"res://resources/asteroid/massive/massive_exotic_matter.tres",
 	"res://resources/asteroid/massive/massive_graphene.tres",
@@ -45,15 +48,38 @@ var unloaded_items = [
 	"res://resources/items/titanium_alloy.tres"
 ]
 
-var unloaded_systems = [
-	"res://resources/systems/dummy_yellow.tres"
+var unloaded_starbases = [
+	"res://resources/starbases/hq/dummy_0.tres",
+	"res://resources/starbases/hq/dummy_1.tres",
+	"res://resources/starbases/hq/dummy_2.tres",
+	"res://resources/starbases/hq/dummy_3.tres",
+	"res://resources/starbases/hq/dummy_4.tres",
+
+	"res://resources/starbases/mining_base/dummy_0.tres",
+	"res://resources/starbases/mining_base/dummy_1.tres",
+	"res://resources/starbases/mining_base/dummy_2.tres",
+	"res://resources/starbases/mining_base/dummy_3.tres",
+	"res://resources/starbases/mining_base/dummy_4.tres",
+	
+	"res://resources/starbases/trade_hub/dummy_0.tres",
+	"res://resources/starbases/trade_hub/dummy_1.tres",
+	"res://resources/starbases/trade_hub/dummy_2.tres",
+	"res://resources/starbases/trade_hub/dummy_3.tres",
+	"res://resources/starbases/trade_hub/dummy_4.tres",
+	
+	"res://resources/starbases/war_base/dummy_0.tres",
+	"res://resources/starbases/war_base/dummy_1.tres",
+	"res://resources/starbases/war_base/dummy_3.tres",
+	"res://resources/starbases/war_base/dummy_2.tres",
+	"res://resources/starbases/war_base/dummy_4.tres"
+	
 ]
 
 var loaded_asteroids = []
 var loaded_ships = []
 var loaded_recipes = []
 var loaded_items = []
-var loaded_systems = []
+var loaded_starbases = []
 
 func _ready() -> void:
 	for asteroid in unloaded_asteroids:
@@ -68,8 +94,8 @@ func _ready() -> void:
 	for recipe in unloaded_recipes:
 		loaded_recipes.append(load(recipe))
 		
-	for system in unloaded_systems:
-		loaded_systems.append(load(system))
+	for starbase in unloaded_starbases:
+		loaded_starbases.append(load(starbase))
 
 func GetAsteroidByProperties(size : String, composition: String):
 	var index = 0
@@ -85,12 +111,17 @@ func GetShipByName(ship_name : String):
 			return loaded_ships[index]
 		index += 1
 		
-func GetSystemByName(system_name : String):
+func GetStarbaseByProperty(starbase_type : String, starbase_level : int):
 	var index = 0
-	for system in unloaded_systems:
-		if system.find(system_name) != -1:
-			return loaded_systems[index]
+	print("res://resources/starbases/" + starbase_type + "/dummy_" + str(starbase_level) + ".tres")
+	for starbase in unloaded_starbases:
+		if starbase == "res://resources/starbases/" + starbase_type + "/dummy_" + str(starbase_level) + ".tres":
+			print("found!")
+			return loaded_starbases[index]
 		index += 1
+		
+func GetAsteroids():
+	return loaded_asteroids
 			
 func GetItems():
 	return loaded_items

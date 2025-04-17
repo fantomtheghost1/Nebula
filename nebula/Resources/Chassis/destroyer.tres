@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_meipf")
-name = "Destroyer"
+ship_class = "Destroyer"
 max_hp = 3000

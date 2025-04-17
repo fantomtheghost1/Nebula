@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckxcwr0xg1oc6"]
+
+[ext_resource type="Script" uid="uid://dc2heb18j6hod" path="res://scenes/star_system/star_system.gd" id="1_y2a8t"]
+[ext_resource type="Script" uid="uid://dgrmpbg0drblj" path="res://scenes/star_system/hyperlane_component.gd" id="2_l8s3j"]
+[ext_resource type="PackedScene" uid="uid://l3avlx2olpit" path="res://scenes/floor.tscn" id="3_hl2vc"]
+[ext_resource type="PackedScene" uid="uid://dwxidl6kvm7b8" path="res://sun.tscn" id="3_jisub"]
+
+[node name="StarSystem" type="Node3D" node_paths=PackedStringArray("ship_container") groups=["star_systems"]]
+script = ExtResource("1_y2a8t")
+ship_container = NodePath("ShipContainer")
+
+[node name="ShipContainer" type="Node3D" parent="."]
+
+[node name="StarbaseContainer" type="Node3D" parent="."]
+
+[node name="AsteroidContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="PlanetContainer" type="Node3D" parent="."]
+
+[node name="HyperlaneComponent" type="Node3D" parent="." node_paths=PackedStringArray("connections", "ship_container")]
+unique_name_in_owner = true
+script = ExtResource("2_l8s3j")
+connections = [null]
+ship_container = NodePath("../ShipContainer")
+
+[node name="WreckContainer" type="Node3D" parent="."]
+
+[node name="StarContainer" type="Node3D" parent="."]
+
+[node name="Sun" parent="StarContainer" instance=ExtResource("3_jisub")]
+unique_name_in_owner = true
+
+[node name="Floor" parent="." instance=ExtResource("3_hl2vc")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

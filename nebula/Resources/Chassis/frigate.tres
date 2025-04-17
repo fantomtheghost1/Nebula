@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_q8c4p")
-name = "Frigate"
+ship_class = "Frigate"
 max_hp = 1000

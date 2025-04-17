@@ -1,6 +1,11 @@
 extends Resource
 class_name AsteroidType
 
+## Holds the asteroid mesh instance
+@export var model : PackedScene
+
+@export var materials : Array[StandardMaterial3D]
+
 ## Holds the asteroid's item composition resource.
 @export var composition : Resource
 
@@ -9,6 +14,3 @@ class_name AsteroidType
 
 ## Holds the physical scale of the asteroid so that different sized asteroids can be represented appropriately in-game.
 @export var scale : float
-
-## Holds the asteroid mesh instance
-@export var asteroid_mesh : Mesh

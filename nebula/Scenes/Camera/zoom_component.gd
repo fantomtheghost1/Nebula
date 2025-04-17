@@ -24,7 +24,7 @@ func SetMaxZoom(max_zoom):
 
 func _input(event) -> void:
 	
-	if !tweening:
+	if !tweening and !GlobalVariables.input_disabled:
 		# if the player scrolls the mouse wheel, change the current zoom
 		if event.is_action_pressed("CameraZoomIn"):
 			if camera.position.x > ZOOM_MIN:

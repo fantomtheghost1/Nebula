@@ -1,7 +1,9 @@
 extends Node3D
 
 # preload the turret laser projectile
-var laser = preload("res://scenes/projectile/laser.tscn")
+var laser = preload("res://scenes/projectile/laser_beam.tscn")
+
+signal LaserFired(ship, asteroid)
 
 # represents the id of the mining turret
 @export var id : int
@@ -22,6 +24,7 @@ var laser = preload("res://scenes/projectile/laser.tscn")
 
 # determines whether the turret is activated and ready to fire at a target
 var activated = false
+var firing_laser = false
 
 func ToggleActivated():
 	activated = !activated
@@ -49,18 +52,21 @@ func FireLaser():
 	# create a laser mesh and position it accordingly
 	var laser_instance = laser.instantiate()
 	laser_spawn.add_child(laser_instance)
-	laser_instance.mesh.height = HelperFunctions.GetDistanceBetweenTwoPoints(ship_node.position, targeting_component.target.position)
+	laser_instance.SetHeight(HelperFunctions.GetDistanceBetweenTwoPoints(ship_node.position, targeting_component.target.position))
+	laser_instance.look_at(targeting_component.target.position, Vector3.UP)
 	
 	# deal damage to the asteroid and add the ore to the cargo hold
 	var results = targeting_component.target.TakeDamage(damage)
 	cargo_component.AddCargo(results["composition"], results["ore_yield"])
 	print_debug(results["composition"].name + " += " + str(results["ore_yield"]))
 	print_debug(cargo_component.GetCargo())
+	firing_laser = false
 	
 # when the mining laser delay ends, fire a laser, otherwise, if the target is destroyed, deactivate the turret
 func _on_mining_laser_rate_timeout() -> void:
 	if targeting_component.target != null and targeting_component.target_type == "asteroid":
-		if !cargo_component.IsCargoHoldFull():
+		if !cargo_component.IsCargoHoldFull() and !firing_laser:
+			firing_laser = true
 			FireLaser()
 			%MiningLaserRate.start()
 		else: 

@@ -14,10 +14,10 @@ var ship_model : Node3D
 func _input(event):
 
 	# if the ship is owned by the client
-	if identity_component.object_owner == SteamManager.client.name:
+	if identity_component.object_owner == SteamManager.client:
 		
 		# this will fire when the client presses the interact action without holding alt or shift
-		if event.is_action_pressed("Interact") and !Input.is_physical_key_pressed(KEY_ALT) and !Input.is_physical_key_pressed(KEY_SHIFT):
+		if event.is_action_pressed("Interact") and !Input.is_physical_key_pressed(KEY_ALT) and !Input.is_physical_key_pressed(KEY_SHIFT) and !GlobalVariables.input_disabled:
 			
 			# determines what the mouse clicked on
 			var result = DetermineClickSubject()
@@ -48,7 +48,7 @@ func _input(event):
 					SetShipTarget(result["collider"])
 					print("target set")
 				
-		if event.is_action_pressed("QueueInteract"):
+		if event.is_action_pressed("QueueInteract") and !GlobalVariables.input_disabled:
 			# determines what the mouse clicked on
 			var result = DetermineClickSubject()
 			

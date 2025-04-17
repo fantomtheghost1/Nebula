@@ -1,0 +1,157 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg1g1r8q6bdte"]
+
+[ext_resource type="Script" uid="uid://ylrwkoqm4w6d" path="res://scenes/starbase/crafting_component.gd" id="1_ds3cr"]
+
+[node name="CraftingComponent" type="Node3D"]
+script = ExtResource("1_ds3cr")
+
+[node name="TempStorageComponent" type="Node3D" parent="."]
+
+[node name="CraftingTime" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="CraftingUI" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="CraftingUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -379.0
+offset_top = -252.0
+offset_bottom = 252.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.166924, 0.242511, 0.2834, 1)
+
+[node name="StarbaseCraftingMenu" type="Control" parent="CraftingUI/ColorRect"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 379.0
+offset_bottom = 504.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CraftingUI/ColorRect/StarbaseCraftingMenu"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 372.0
+offset_bottom = 440.0
+
+[node name="RecipeButtonContainer" type="VBoxContainer" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomRow" type="Control" parent="CraftingUI/ColorRect/StarbaseCraftingMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -189.5
+offset_top = -57.0
+offset_right = 188.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Back" type="Button" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/BottomRow"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -53.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"
+
+[node name="QuantitySlider" type="HSlider" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 27.0
+offset_top = 18.0
+offset_right = 272.0
+offset_bottom = 34.0
+min_value = 1.0
+max_value = 200.0
+value = 1.0
+
+[node name="QuantityManual" type="LineEdit" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 118.0
+offset_top = -16.0
+offset_right = 187.0
+offset_bottom = 15.0
+placeholder_text = "1x"
+alignment = 1
+
+[node name="RequiredMaterials" type="Control" parent="CraftingUI/ColorRect/StarbaseCraftingMenu"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_bottom = 205.0
+
+[node name="ColorRect" type="ColorRect" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/RequiredMaterials"]
+layout_mode = 0
+offset_left = -173.0
+offset_bottom = 211.0
+color = Color(0.096667, 0.149151, 0.175313, 0.882353)
+
+[node name="Label" type="Label" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/RequiredMaterials"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 1.0
+offset_right = 64.0
+offset_bottom = 24.0
+text = "Materials Needed"
+horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/RequiredMaterials"]
+layout_mode = 0
+offset_left = -169.0
+offset_top = 26.0
+offset_right = -5.0
+offset_bottom = 31.0
+
+[node name="Craft" type="Button" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/RequiredMaterials"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -167.0
+offset_top = -50.0
+offset_right = -6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Craft"
+
+[node name="MaterialsContainer" type="Control" parent="CraftingUI/ColorRect/StarbaseCraftingMenu/RequiredMaterials"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="timeout" from="CraftingTime" to="." method="_on_crafting_time_timeout"]
+[connection signal="pressed" from="CraftingUI/ColorRect/StarbaseCraftingMenu/BottomRow/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="CraftingUI/ColorRect/StarbaseCraftingMenu/BottomRow/QuantitySlider" to="." method="_on_quantity_slider_value_changed"]
+[connection signal="text_changed" from="CraftingUI/ColorRect/StarbaseCraftingMenu/BottomRow/QuantityManual" to="." method="_on_quantity_manual_text_changed"]
+[connection signal="pressed" from="CraftingUI/ColorRect/StarbaseCraftingMenu/RequiredMaterials/Craft" to="." method="_on_craft_pressed"]

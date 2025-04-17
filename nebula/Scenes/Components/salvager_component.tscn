@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://lkyq1e6ofkew"]
 
-[ext_resource type="Script" uid="uid://cs0tadigxsewi" path="res://scenes/ship/salvager_component.gd" id="1_v1g02"]
+[ext_resource type="Script" uid="uid://cs0tadigxsewi" path="res://scenes/components/salvager_component.gd" id="1_v1g02"]
 
 [node name="SalvagerComponent" type="Node3D"]
 script = ExtResource("1_v1g02")
@@ -9,4 +9,8 @@ script = ExtResource("1_v1g02")
 unique_name_in_owner = true
 one_shot = true
 
+[node name="ShrinkTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="SalvageTimer" to="." method="_on_salvage_timer_timeout"]
+[connection signal="timeout" from="ShrinkTimer" to="." method="_on_shrink_timer_timeout"]

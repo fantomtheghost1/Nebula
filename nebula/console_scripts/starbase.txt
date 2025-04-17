@@ -1,0 +1,5 @@
+create_starbase 140 140 hq 4
+create_faction test3
+create_faction test2
+create_ship 150 150 laboris true
+create_ship 147 147 dummy_max_mining 

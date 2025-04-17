@@ -1,14 +1,20 @@
-[gd_resource type="Resource" script_class="CraftingRecipeType" load_steps=2 format=3 uid="uid://c2qcn2um0fh4f"]
+[gd_resource type="Resource" script_class="CraftingRecipeType" load_steps=5 format=3 uid="uid://c2qcn2um0fh4f"]
 
+[ext_resource type="Resource" uid="uid://ddcnfurkdycmc" path="res://resources/items/carbon_fiber.tres" id="1_0mhyp"]
 [ext_resource type="Script" uid="uid://sth61ag8hraq" path="res://resources/crafting_recipes/crafting_recipe_type.gd" id="1_45338"]
+[ext_resource type="Resource" uid="uid://chnvlfq1hpv18" path="res://resources/items/graphene.tres" id="2_0mhyp"]
+[ext_resource type="Resource" uid="uid://bge1qpcg5t8t" path="res://resources/items/test_result1.tres" id="3_rbtof"]
 
 [resource]
 script = ExtResource("1_45338")
-magnesium_alloy_required = 1
-carbon_fiber_required = 1
-graphene_required = 1
-exotic_matter_required = 1
-titanium_alloy_required = 1
+recipe = Array[Dictionary]([{
+"ITEM": ExtResource("1_0mhyp"),
+"QUANTITY": 1
+}, {
+"ITEM": ExtResource("2_0mhyp"),
+"QUANTITY": 1
+}])
+minimum_starbase_level = 0
 crafting_time = 2.0
-result = "Test Result"
+result = ExtResource("3_rbtof")
 metadata/_custom_type_script = "uid://sth61ag8hraq"

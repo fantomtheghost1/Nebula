@@ -6,6 +6,7 @@
 script = ExtResource("1_mrfmd")
 name = "Carbon Fiber"
 id = 1
-stack_limit = 64
+stack_limit = 500
 item_category = "industrial"
+value = 5
 metadata/_custom_type_script = "uid://c3kebrj0y5h4q"

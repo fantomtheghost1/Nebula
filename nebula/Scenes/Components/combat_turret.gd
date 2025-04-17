@@ -1,7 +1,7 @@
 extends Node3D
 
 # preload the turret laser projectile
-var laser = preload("res://scenes/projectile/laser.tscn")
+var laser = preload("res://scenes/projectile/laser_beam.tscn")
 
 # represents the id of the mining turret
 @export var id : int
@@ -11,6 +11,9 @@ var laser = preload("res://scenes/projectile/laser.tscn")
 
 # represents the damage the turret does to an asteroid
 @export var damage : int
+
+# represents the accuracy the turret has
+@export var accuracy : float
 
 # these variables hold references to various components within the ship
 @export var targeting_component : Node3D
@@ -37,6 +40,7 @@ func SetTurret(turret_resource : Resource, turret_id : int, parent_ship : Node3D
 	hp = turret_resource.max_hp
 	id = turret_id
 	damage = turret_resource.damage
+	accuracy = turret_resource.accuracy
 	targeting_component = targeting_component_param
 	salvager_component = salvager_component_param
 	laser_spawn = laser_spawn_param
@@ -48,13 +52,14 @@ func FireLaser():
 	# create a laser mesh and position it accordingly
 	var laser_instance = laser.instantiate()
 	laser_spawn.add_child(laser_instance)
-	laser_instance.mesh.height = HelperFunctions.GetDistanceBetweenTwoPoints(ship_node.position, targeting_component.target.position)
+	laser_instance.SetHeight(HelperFunctions.GetDistanceBetweenTwoPoints(ship_node.position, targeting_component.target.position))
+	laser_instance.look_at(targeting_component.target.position)
 	
 	# deal damage to the asteroid and add the ore to the cargo hold
-	targeting_component.target.TakeDamage(damage)
+	targeting_component.target.TakeDamage(damage, accuracy)
 	
 func _on_fire_rate_timeout() -> void:
-	if targeting_component.target != null and targeting_component.target_type == "ship" or targeting_component.target_type == "starbase":
+	if targeting_component.target != null and targeting_component.target_type == "ship" and !(targeting_component.target.GetOwner().faction in ship_node.GetOwner().faction.allies) or targeting_component.target_type == "starbase":
 		FireLaser()
 		%FireRate.start()
 	else: 

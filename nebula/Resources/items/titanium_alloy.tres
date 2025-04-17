@@ -8,4 +8,5 @@ name = "Titanium Alloy"
 id = 2
 stack_limit = 64
 item_category = "industrial"
+value = 10
 metadata/_custom_type_script = "uid://c3kebrj0y5h4q"

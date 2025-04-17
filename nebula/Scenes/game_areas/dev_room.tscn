@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://dql80tl0ry4un" path="res://resources/asteroid/small/small_carbon_fiber.tres" id="8_q5stw"]
 [ext_resource type="Resource" uid="uid://chydoamjildqr" path="res://resources/asteroid/small/small_exotic_matter.tres" id="9_hjmas"]
 [ext_resource type="Resource" uid="uid://dw30moxudj4yv" path="res://resources/asteroid/small/small_graphene.tres" id="10_4nbje"]
-[ext_resource type="Resource" uid="uid://dln53rk6vif0k" path="res://resources/starbases/hq/dummy_zero_hq.tres" id="10_rve4q"]
+[ext_resource type="Resource" uid="uid://dln53rk6vif0k" path="res://resources/starbases/hq/dummy_0.tres" id="10_rve4q"]
 [ext_resource type="Resource" uid="uid://bidfe3fifetb5" path="res://resources/asteroid/small/small_magnesium_alloy.tres" id="11_brmex"]
 [ext_resource type="Resource" uid="uid://ylip8k6ymgdn" path="res://resources/asteroid/small/small_titanium_alloy.tres" id="12_gsx4s"]
 

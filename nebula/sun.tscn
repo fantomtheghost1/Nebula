@@ -1,15 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwxidl6kvm7b8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cx0a"]
-albedo_color = Color(1, 0.690196, 0.352941, 1)
-emission_enabled = true
-emission = Color(0.886275, 0.886275, 0.643137, 1)
-emission_energy_multiplier = 16.0
+[ext_resource type="Script" uid="uid://js07gbtrs5g0" path="res://sun.gd" id="1_iveel"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_8cx0a"]
-material = SubResource("StandardMaterial3D_8cx0a")
 
 [node name="Sun" type="MeshInstance3D" groups=["untargetables"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("SphereMesh_8cx0a")
 skeleton = NodePath("../..")
+script = ExtResource("1_iveel")

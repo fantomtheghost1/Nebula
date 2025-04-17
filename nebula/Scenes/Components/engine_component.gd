@@ -67,7 +67,7 @@ func DestroyComponent() -> void:
 	EngineDestroyed.emit()
 
 func _on_ship_movement_ship_started_moving() -> void:
-	print("ship " + %IdentityComponent.object_owner + " is moving!")
+	print("ship " + %IdentityComponent.object_owner.name + " is moving!")
 
 func _on_ship_movement_ship_stopped_moving() -> void:
-	print("ship " + %IdentityComponent.object_owner + " stopped moving!")
+	print("ship " + %IdentityComponent.object_owner.name + " stopped moving!")

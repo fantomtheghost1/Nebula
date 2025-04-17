@@ -18,10 +18,12 @@ func _ready() -> void:
 	print("Your steam username is " + steam_username + "\n")
 	
 	if steam_username != "":
-		client = Captain.new(SteamManager.GetSteamUsername())
+		client = Captain.new(SteamManager.GetSteamUsername(), false)
+		CaptainManager.AddCaptain(client)
 	else:
 		steam_username = "CaptainDev"
-		client = Captain.new("CaptainDev")
+		client = Captain.new("CaptainDev", false)
+		CaptainManager.AddCaptain(client)
 		
 func GetSteamUsername():
 	return steam_username

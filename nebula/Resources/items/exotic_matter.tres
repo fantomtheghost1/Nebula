@@ -8,4 +8,5 @@ name = "Exotic Matter"
 id = 3
 stack_limit = 64
 item_category = "material"
+value = 10
 metadata/_custom_type_script = "uid://c3kebrj0y5h4q"

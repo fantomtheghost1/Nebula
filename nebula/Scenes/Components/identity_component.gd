@@ -5,25 +5,16 @@
 
 extends Node3D
 
-# the faction the object belongs to
-var faction : Faction
-
 # the name of the object owner
-var object_owner : String = "AI"
+var object_owner : Captain
 
-# determines whether the object is controlled by an npc
-var is_npc : bool = true
+@export var parent_node : Node3D
 
 # sets the object owner
-func SetOwner(new_owner) -> void:
+func SetOwner(new_owner : Captain) -> void:
 	object_owner = new_owner
-	print("ship " + str(get_parent().id) + "'s owner changed: " + new_owner)
+	new_owner.ChangeCurrentPilotedShip(parent_node.id)
+	print("ship " + str(get_parent().id) + "'s owner changed: " + new_owner.name)
 	
-func SetFaction(new_faction : Faction) -> void:
-	faction = new_faction
-	
-# determines whether the object belongs to the given faction
-func IsMemberOfFaction(test_faction) -> bool:
-	if faction == test_faction:
-		return true
-	return false
+func GetOwner() -> Captain:
+	return object_owner

@@ -12,6 +12,7 @@ object_fade_in = 0.3
 [node name="Area3D" type="Area3D" parent="."]
 unique_name_in_owner = true
 collision_layer = 128
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_tc3ci")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://baeiarsod06rt"]
+[gd_scene load_steps=4 format=3 uid="uid://buoylvyu1r06c"]
 
 [ext_resource type="Script" uid="uid://c54tr55tl75ux" path="res://scenes/projectile/laser.gd" id="1_bfw0s"]
 
@@ -16,8 +16,13 @@ bottom_radius = 0.15
 height = 0.02
 
 [node name="BeamMesh" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+top_level = true
 mesh = SubResource("CylinderMesh_1p3jh")
 script = ExtResource("1_bfw0s")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 0.5

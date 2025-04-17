@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl2qdg2xi8mel"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a03h4"]
+font_size = 10
+
+[node name="MaterialNeeded" type="Label"]
+offset_left = -168.0
+offset_top = 35.0
+offset_right = -9.0
+offset_bottom = 66.0
+text = "Magnesium Alloy:
+"
+label_settings = SubResource("LabelSettings_a03h4")

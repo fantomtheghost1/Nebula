@@ -9,3 +9,6 @@ class_name CombatTurretType
 
 ## Holds the amount of damage this turret does to ships and starbases.
 @export var damage : int
+
+## Holds the accuracy of the turret.
+@export var accuracy : float

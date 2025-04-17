@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_8lhlj")
-name = "Cruiser"
+ship_class = "Cruiser"
 max_hp = 5000

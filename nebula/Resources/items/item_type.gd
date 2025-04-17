@@ -12,3 +12,6 @@ class_name ItemType
 
 ## Holds the item's category
 @export var item_category : String
+
+## Holds the item's credit value
+@export var value : int

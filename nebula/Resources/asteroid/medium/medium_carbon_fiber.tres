@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="AsteroidType" load_steps=4 format=3 uid="uid://yovwpwclx6oy"]
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=9 format=3 uid="uid://yovwpwclx6oy"]
 
 [ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_0vcr6"]
-[ext_resource type="ArrayMesh" uid="uid://c2af0413rxqng" path="res://models/asteroids/carbon_fiber/AsteroidCarbonFiber.obj" id="1_bp4r4"]
 [ext_resource type="Resource" uid="uid://ddcnfurkdycmc" path="res://resources/items/carbon_fiber.tres" id="2_e03lh"]
+[ext_resource type="Material" uid="uid://vnjf2wn3218d" path="res://models/asteroids/carbon_fiber/material_0.tres" id="2_o8a0l"]
+[ext_resource type="Material" uid="uid://npk8xblfrdcn" path="res://models/asteroids/carbon_fiber/material_1.tres" id="3_usyvv"]
+[ext_resource type="Material" uid="uid://bqk5e0545j3f2" path="res://models/asteroids/carbon_fiber/material_2.tres" id="4_2xvts"]
+[ext_resource type="Material" uid="uid://ded6knxj7p141" path="res://models/asteroids/carbon_fiber/material_3.tres" id="5_5xe2p"]
+[ext_resource type="Material" uid="uid://2lhhnywlyfq6" path="res://models/asteroids/carbon_fiber/material_4.tres" id="6_0ky13"]
+[ext_resource type="PackedScene" uid="uid://w35nbcns4d3m" path="res://models/asteroids/carbon_fiber/AsteroidCarbonFiber.gltf" id="7_0bu86"]
 
 [resource]
 script = ExtResource("1_0vcr6")
+model = ExtResource("7_0bu86")
+materials = Array[StandardMaterial3D]([ExtResource("2_o8a0l"), ExtResource("3_usyvv"), ExtResource("4_2xvts"), ExtResource("5_5xe2p"), ExtResource("6_0ky13")])
 composition = ExtResource("2_e03lh")
 ore = 50
 scale = 2.0
-asteroid_mesh = ExtResource("1_bp4r4")

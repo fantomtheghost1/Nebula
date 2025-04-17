@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnuyba44yecdi"]
+
+[ext_resource type="Script" uid="uid://c54tr55tl75ux" path="res://scenes/projectile/laser.gd" id="1_26jbx"]
+[ext_resource type="Script" uid="uid://d38lfcv7f84m" path="res://scenes/projectile/laser_beam.gd" id="1_ur7s1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_487j8"]
+transparency = 1
+albedo_color = Color(0, 0.66084, 0.820664, 0.8)
+emission_enabled = true
+emission = Color(0, 0.662745, 0.819608, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_26jbx"]
+material = SubResource("StandardMaterial3D_487j8")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 10.0
+
+[node name="LaserBeam" type="Node3D"]
+script = ExtResource("1_ur7s1")
+
+[node name="BeamMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26jbx")
+script = ExtResource("1_26jbx")
+
+[node name="LifeTimer" type="Timer" parent="BeamMesh"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="BeamMesh/LifeTimer" to="BeamMesh" method="_on_life_timer_timeout"]

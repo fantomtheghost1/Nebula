@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://s1crplqekxhn" path="res://resources/armor/dummy_max.tres" id="1_tcou5"]
 [ext_resource type="Resource" uid="uid://doddgbbtg8slb" path="res://resources/cargo/dummy_max.tres" id="2_5kh5c"]
-[ext_resource type="Resource" uid="uid://ex1v2a7s60lj" path="res://resources/chassis/dreadnought.tres" id="3_rnfj0"]
+[ext_resource type="Resource" uid="uid://bs1arhhy2648k" path="res://resources/chassis/shuttle.tres" id="3_tcou5"]
 [ext_resource type="Resource" uid="uid://c1l57eyuboq6t" path="res://resources/engines/dummy_max.tres" id="5_w7gl0"]
 [ext_resource type="Resource" uid="uid://bm6tda2yas12q" path="res://resources/turrets/mining/dummy_max.tres" id="6_tcou5"]
 [ext_resource type="Resource" uid="uid://bse3wk4wbn0rq" path="res://resources/generators/dummy_zero.tres" id="6_y0c5y"]
@@ -19,6 +19,6 @@ armor = ExtResource("1_tcou5")
 generator = ExtResource("6_y0c5y")
 cargo_bay = ExtResource("2_5kh5c")
 scanner = ExtResource("7_wl7xo")
-chassis = ExtResource("3_rnfj0")
+chassis = ExtResource("3_tcou5")
 mining_turret = ExtResource("6_tcou5")
 turret_slots = 10

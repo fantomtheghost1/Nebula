@@ -7,6 +7,8 @@ class_name ShipType
 ## Holds the ship mesh
 @export var model : PackedScene
 
+@export var materials : Array[StandardMaterial3D]
+
 ## Holds the resource for this ship's engine.
 @export var engine : EngineType
 
