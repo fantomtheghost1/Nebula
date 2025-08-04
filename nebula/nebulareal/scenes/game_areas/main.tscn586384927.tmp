@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://rgi6rixs3y25"]
+
+[ext_resource type="Script" uid="uid://cfwfvrm1kvpw7" path="res://scenes/game_areas/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://scenes/camera/camera.tscn" id="2_ifxk0"]
+[ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="3_skvmv"]
+[ext_resource type="PackedScene" uid="uid://b5s8v2r2deoc4" path="res://scenes/UI/game_start.tscn" id="4_xeghv"]
+[ext_resource type="Script" uid="uid://c6uwngdx3t28h" path="res://scenes/game_areas/chat.gd" id="5_0ucv4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xeghv"]
+font_size = 24
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.694118)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_o5qli")
+build_version = "v0.6 Pre-Alpha"
+
+[node name="CameraGimbal" parent="." instance=ExtResource("2_ifxk0")]
+unique_name_in_owner = true
+
+[node name="ConsoleContainer" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_skvmv")
+
+[node name="DevConsoleTip" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 169.0
+offset_bottom = 51.0
+text = "Press ` for dev console"
+label_settings = SubResource("LabelSettings_xeghv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+
+[node name="GameStart" parent="." instance=ExtResource("4_xeghv")]
+
+[node name="Chat" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 682.0
+offset_top = 85.0
+offset_right = 1152.0
+offset_bottom = 544.0
+script = ExtResource("5_0ucv4")
+
+[node name="ChatLineEdit" type="LineEdit" parent="Chat"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -470.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+placeholder_text = "Enter message..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Chat"]
+layout_mode = 0
+offset_right = 470.0
+offset_bottom = 428.0
+
+[node name="ChatBox" type="VBoxContainer" parent="Chat/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+unique_name_in_owner = true
+spawn_path = NodePath("..")

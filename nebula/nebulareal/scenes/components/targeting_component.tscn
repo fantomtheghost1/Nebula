@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs785yxiq8ssq"]
+
+[ext_resource type="Texture2D" uid="uid://vvtjo7s1ykwc" path="res://UI/target_reticle.png" id="1_1lhmd"]
+[ext_resource type="Script" uid="uid://bo2qlyjvuj0lb" path="res://scenes/components/targeting_component.gd" id="1_sl6x4"]
+
+[node name="TargetingComponent" type="Node3D"]
+script = ExtResource("1_sl6x4")
+
+[node name="TargetingReticle" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="Reticle" type="TextureRect" parent="TargetingReticle"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 23.0
+offset_bottom = 23.0
+texture = ExtResource("1_1lhmd")

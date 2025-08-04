@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bjxewi3ii37oa"]
+
+[ext_resource type="Texture2D" uid="uid://doynhunjmcm3" path="res://models/ships/laboris/laboris_3.png" id="1_mojkr"]
+
+[resource]
+resource_name = "material_3"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_mojkr")
+texture_filter = 0
+texture_repeat = false

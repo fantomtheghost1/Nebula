@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxv63i2x5vbll"]
+
+[ext_resource type="Script" uid="uid://caofbpkyloi2w" path="res://scenes/camera/camera.gd" id="1_tce71"]
+[ext_resource type="Script" uid="uid://53bfw2gp0mhk" path="res://scenes/camera/orbit_component.gd" id="2_cx58o"]
+[ext_resource type="Script" uid="uid://1igsaap4ctu" path="res://scenes/camera/camera_3d.gd" id="2_jueco"]
+[ext_resource type="Script" uid="uid://dakjo08ymqe6j" path="res://scenes/camera/zoom_component.gd" id="3_h66q3"]
+
+[node name="CameraGimbal" type="Node3D"]
+top_level = true
+script = ExtResource("1_tce71")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("camera_gimbal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8, 0)
+script = ExtResource("2_jueco")
+camera_gimbal = NodePath("..")
+
+[node name="OrbitComponent" type="Node3D" parent="Camera3D"]
+script = ExtResource("2_cx58o")
+
+[node name="ZoomComponent" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("camera")]
+unique_name_in_owner = true
+script = ExtResource("3_h66q3")
+camera = NodePath("..")
+
+[connection signal="Tweening" from="." to="Camera3D" method="_on_camera_gimbal_tweening"]
+[connection signal="Tweening" from="." to="Camera3D/ZoomComponent" method="_on_camera_gimbal_tweening"]
+[connection signal="TweeningFinished" from="." to="Camera3D" method="_on_camera_gimbal_tweening_finished"]
+[connection signal="TweeningFinished" from="." to="Camera3D/ZoomComponent" method="_on_camera_gimbal_tweening_finished"]

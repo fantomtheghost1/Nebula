@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0mlwocnjxwj0"]
+
+[ext_resource type="Script" uid="uid://bs3laxr838ye1" path="res://scenes/UI/server_browser_instance.gd" id="1_vpsgj"]
+[ext_resource type="Texture2D" uid="uid://c176dje3o8lir" path="res://UI/padlock.png" id="2_lx5wo"]
+[ext_resource type="PackedScene" uid="uid://ddr4dtg2htl0l" path="res://scenes/UI/password.tscn" id="3_qnfde"]
+
+[node name="ServerBrowserInstance" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_vpsgj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 33.0
+color = Color(0.223499, 0.314503, 0.362455, 1)
+
+[node name="ServerName" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -12.5
+offset_right = 108.0
+offset_bottom = 10.5
+grow_vertical = 2
+text = "Server Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerCount" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player Count"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Join" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -16.0
+offset_right = -5.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "JOIN"
+
+[node name="PasswordProtected" type="TextureRect" parent="ColorRect"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 1017.0
+offset_right = 1050.0
+offset_bottom = 33.0
+texture = ExtResource("2_lx5wo")
+expand_mode = 1
+
+[node name="Password" parent="." node_paths=PackedStringArray("server_browser_instance") instance=ExtResource("3_qnfde")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+server_browser_instance = NodePath("..")
+
+[connection signal="pressed" from="ColorRect/Join" to="." method="_on_join_pressed"]

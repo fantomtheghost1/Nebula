@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://2vs1y2hhxnyd"]
+
+[ext_resource type="Script" uid="uid://d3xyyxlpnaryv" path="res://scenes/UI/faction_instance.gd" id="1_1uacb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_srrfs"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8wjc2"]
+font_size = 20
+font_color = Color(0.796243, 0.796243, 0.796243, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1uacb"]
+font_size = 30
+
+[node name="FactionInstance" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1uacb")
+
+[node name="FactionColor" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 610.0
+offset_bottom = 84.0
+color = Color(0.980392, 0.333333, 0, 0.337255)
+
+[node name="FactionName" type="Label" parent="FactionColor"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -7.0
+offset_right = -63.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faction Name"
+label_settings = SubResource("LabelSettings_srrfs")
+vertical_alignment = 1
+
+[node name="FactionLeader" type="Label" parent="FactionColor"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 32.0
+offset_right = 19.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lead by adfdsagf"
+label_settings = SubResource("LabelSettings_8wjc2")
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="FactionColor"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -23.0
+offset_right = -129.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Players: 1/1"
+label_settings = SubResource("LabelSettings_1uacb")
+
+[node name="Button" type="Button" parent="FactionColor"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -29.0
+offset_right = -12.0
+offset_bottom = 29.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Join"
+
+[connection signal="pressed" from="FactionColor/Button" to="." method="_on_button_pressed"]

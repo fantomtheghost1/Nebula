@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cyr8w7bxof0cp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkmgt"]
+
+[resource]
+/constants/Margin = 0
+CustomButtons/base_type = &"Button"
+CustomButtons/colors/font_outline_color = Color(0, 0, 0, 1)
+CustomButtons/font_sizes/font_size = 36
+CustomHBoxes/base_type = &"HBoxContainer"
+CustomHBoxes/constants/separation = 30
+CustomLineEdits/base_type = &"LineEdit"
+CustomLineEdits/constants/minimum_character_width = 15
+CustomLineEdits/font_sizes/font_size = 26
+CustomMarginContainers/base_type = &"MarginContainer"
+CustomMarginContainers/constants/margin_bottom = 30
+CustomMarginContainers/constants/margin_left = 30
+CustomMarginContainers/constants/margin_right = 30
+CustomMarginContainers/constants/margin_top = 30
+CustomPanelContainers/base_type = &"PanelContainer"
+CustomPanelContainers/styles/panel = SubResource("StyleBoxEmpty_kkmgt")
+CustomVBoxes/base_type = &"VBoxContainer"
+CustomVBoxes/constants/separation = 1
+HeaderLarge/base_type = &"Label"
+HeaderLarge/font_sizes/font_size = 38
+ServerBrowser/base_type = &"MarginContainer"
+ServerBrowser/constants/margin_bottom = 24
+ServerBrowser/constants/margin_left = 24
+ServerBrowser/constants/margin_right = 24
+ServerBrowser/constants/margin_top = 24
+ServerHeader/constants/margin_bottom = 10
+ServerHeader/constants/margin_left = 10
+ServerHeader/constants/margin_right = 10
+ServerHeader/constants/margin_top = 10
+ServerInstance/base_type = &"MarginContainer"
+ServerInstance/constants/margin_bottom = 5
+ServerInstance/constants/margin_left = 5
+ServerInstance/constants/margin_right = 5
+ServerInstance/constants/margin_top = 5

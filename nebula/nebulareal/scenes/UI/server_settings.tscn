@@ -1,0 +1,266 @@
+[gd_scene load_steps=6 format=3 uid="uid://br0rbxgku2jhx"]
+
+[ext_resource type="Script" uid="uid://5poafoesubtt" path="res://scenes/UI/server_settings.gd" id="1_tliye"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcvfo"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_tliye"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0bhd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_llqy5"]
+font_size = 20
+
+[node name="ServerSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tliye")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.168627, 0.243137, 0.282353, 1)
+
+[node name="Title" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 102.0
+grow_horizontal = 2
+text = "Server Settings"
+label_settings = SubResource("LabelSettings_gcvfo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/Title"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="Bots" type="Control" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ColorRect/Bots"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 27.5
+offset_right = 20.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bots:"
+
+[node name="CheckBox" type="CheckBox" parent="ColorRect/Bots"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = 51.0
+offset_right = 12.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -189.0
+offset_top = -82.0
+offset_right = -23.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Start"
+
+[node name="Back" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -82.0
+offset_right = 185.0
+offset_bottom = -19.0
+grow_vertical = 0
+text = "Back"
+
+[node name="PlayerLimit" type="Control" parent="ColorRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ColorRect/PlayerLimit"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 507.5
+offset_top = 107.0
+offset_right = 604.5
+offset_bottom = 130.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Player Limit:"
+label_settings = SubResource("LabelSettings_tliye")
+
+[node name="PlayerLimitSlider" type="HSlider" parent="ColorRect/PlayerLimit"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 442.5
+offset_top = 110.5
+offset_right = 669.5
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 1.0
+max_value = 16.0
+value = 1.0
+
+[node name="PlayerLimitCount" type="Label" parent="ColorRect/PlayerLimit"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 525.0
+offset_top = 144.0
+offset_right = 587.0
+offset_bottom = 183.0
+grow_horizontal = 2
+text = "1 Player"
+label_settings = SubResource("LabelSettings_f0bhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ServerName" type="Control" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ColorRect/ServerName"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -125.0
+offset_right = 83.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Server Name:"
+label_settings = SubResource("LabelSettings_llqy5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ServerNameLE" type="LineEdit" parent="ColorRect/ServerName"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -93.0
+offset_right = 89.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter Server Name..."
+alignment = 1
+
+[node name="ServerPassword" type="Control" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ColorRect/ServerPassword"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -45.0
+offset_right = 83.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Server Password:"
+label_settings = SubResource("LabelSettings_llqy5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ServerPasswordLE" type="LineEdit" parent="ColorRect/ServerPassword"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -14.5
+offset_right = 89.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter Password..."
+alignment = 1
+
+[connection signal="pressed" from="ColorRect/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ColorRect/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="ColorRect/PlayerLimit/PlayerLimitSlider" to="." method="_on_player_limit_slider_value_changed"]

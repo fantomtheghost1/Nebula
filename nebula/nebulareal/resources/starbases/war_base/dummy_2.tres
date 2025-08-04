@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="StarbaseType" load_steps=6 format=3 uid="uid://ctkvri5ajhrad"]
+
+[ext_resource type="Resource" uid="uid://p2ywm4428e6k" path="res://resources/armor/dummy_min.tres" id="1_khh06"]
+[ext_resource type="Resource" uid="uid://bopyitmxxvdh7" path="res://resources/generators/dummy_min.tres" id="3_qlelh"]
+[ext_resource type="Resource" uid="uid://b7jma3v8q8km7" path="res://resources/scanners/dummy_min.tres" id="4_7hpvd"]
+[ext_resource type="Script" uid="uid://d2nnwml0ppfcq" path="res://resources/starbases/starbase_type.gd" id="5_toxve"]
+[ext_resource type="Resource" uid="uid://b8e75n6ew25uk" path="res://resources/shield_generators/dummy_min.tres" id="6_4djlj"]
+
+[resource]
+script = ExtResource("5_toxve")
+starbase_type = "War Base"
+level = 2
+hp = 10000
+shield_generator = ExtResource("6_4djlj")
+armor = ExtResource("1_khh06")
+generator = ExtResource("3_qlelh")
+scanner = ExtResource("4_7hpvd")
+services = {
+"CRAFTING": false,
+"DIPLOMACY": true,
+"DOCKING": ["Shuttle", "Frigate", "Cruiser", "Destroyer", "Battleship", null],
+"REPAIR": true,
+"TRADE": false
+}
+turret_slots = 0
+metadata/_custom_type_script = "uid://d2nnwml0ppfcq"

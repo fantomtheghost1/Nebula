@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MiningTurretType" load_steps=2 format=3 uid="uid://bm6tda2yas12q"]
+
+[ext_resource type="Script" uid="uid://dykc2xmkg3ogq" path="res://resources/turrets/mining/mining_turret_type.gd" id="1_qyg1d"]
+
+[resource]
+script = ExtResource("1_qyg1d")
+max_hp = 1000
+mining_laser_rate = 0.1
+damage = 50
+turret_tier = 4
+beam_color = Color(0.6717, 0.00197683, 0.863954, 1)

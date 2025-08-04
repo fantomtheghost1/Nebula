@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://xj3xulagoow1"]
+
+[ext_resource type="Script" uid="uid://dvln32rxiksej" path="res://scenes/wreck/wreck.gd" id="1_ioff0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ioff0"]
+size = Vector3(0.0488892, 0.048233, 0.142746)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ydep"]
+albedo_color = Color(0.218549, 0.110118, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ioff0"]
+material = SubResource("StandardMaterial3D_7ydep")
+
+[node name="Wreck" type="Node3D" groups=["wrecks"]]
+script = ExtResource("1_ioff0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(20.8245, 0, 0, 0, 20.8245, 0, 0, 0, 20.8245, 0.00445206, -0.00168601, 0.0077123)
+shape = SubResource("BoxShape3D_ioff0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("BoxMesh_ioff0")
+skeleton = NodePath("")

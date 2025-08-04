@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://6kk462g3hg44"]
+
+[ext_resource type="Texture2D" uid="uid://ccupfdn2i02lp" path="res://models/asteroids/titanium_alloy/AsteroidTitaniumAlloy_1.png" id="1_22fei"]
+
+[resource]
+resource_name = "material_1"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_22fei")
+texture_filter = 0
+texture_repeat = false

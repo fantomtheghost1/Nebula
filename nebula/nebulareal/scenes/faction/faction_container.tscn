@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhb6xwc70nvee"]
+
+[ext_resource type="Script" uid="uid://cv7mfghj87t0u" path="res://scenes/faction/faction_container.gd" id="1_v1xv1"]
+
+[node name="FactionContainer" type="Node3D"]
+script = ExtResource("1_v1xv1")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("uid://d07owrxd8j1hy")
+spawn_path = NodePath("..")

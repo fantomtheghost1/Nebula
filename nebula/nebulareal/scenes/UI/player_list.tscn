@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgm6qjjmly3cf"]
+
+[ext_resource type="Script" uid="uid://vhpxwyhc12pb" path="res://scenes/UI/player_list.gd" id="1_fqj4k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8o6c"]
+font_size = 28
+
+[node name="PlayerList" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_fqj4k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -227.0
+offset_right = 199.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 62.0
+grow_horizontal = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="PlayerList" type="Label" parent="ColorRect/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -19.5
+offset_right = 70.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player List"
+label_settings = SubResource("LabelSettings_x8o6c")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerListContainer" type="VBoxContainer" parent="ColorRect/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 36

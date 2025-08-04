@@ -1,0 +1,124 @@
+[gd_scene load_steps=19 format=3 uid="uid://b1y7rr2smjpi"]
+
+[ext_resource type="Script" uid="uid://c74oe3cjrx2s2" path="res://scenes/vfx/object_explosion.gd" id="1_u01ph"]
+
+[sub_resource type="Environment" id="Environment_x8l54"]
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_lopid"]
+offsets = PackedFloat32Array(0.4, 0.654545)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x8l54"]
+gradient = SubResource("Gradient_lopid")
+
+[sub_resource type="Curve" id="Curve_i5g1e"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 14.0, 0, 0, Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lopid"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_x8l54"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 14.0, 0, 0, Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ywele"]
+curve_x = SubResource("Curve_i5g1e")
+curve_y = SubResource("Curve_lopid")
+curve_z = SubResource("Curve_x8l54")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5g1e"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_ywele")
+color_ramp = SubResource("GradientTexture1D_x8l54")
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5g1e"]
+render_priority = 1
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.54018e-05, 0.692842, 0.883379, 1)
+emission_enabled = true
+emission = Color(0.56417, 0.872043, 1, 1)
+emission_energy_multiplier = 2.07
+rim_enabled = true
+rim = 0.64
+rim_tint = 0.19
+
+[sub_resource type="TorusMesh" id="TorusMesh_lopid"]
+material = SubResource("StandardMaterial3D_i5g1e")
+outer_radius = 0.6
+
+[sub_resource type="Curve" id="Curve_ywele"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.698529, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ngin8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.698529, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ljqea"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.698529, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_gwifi"]
+curve_x = SubResource("Curve_ywele")
+curve_y = SubResource("Curve_ngin8")
+curve_z = SubResource("Curve_ljqea")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lopid"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveXYZTexture_gwifi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lopid"]
+albedo_color = Color(0.800108, 0.938869, 1, 1)
+emission_enabled = true
+emission = Color(5.19812e-06, 0.733043, 0.934444, 1)
+emission_energy_multiplier = 9.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_x8l54"]
+material = SubResource("StandardMaterial3D_lopid")
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="ObjectExplosion" type="Node3D"]
+script = ExtResource("1_u01ph")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x8l54")
+
+[node name="ExplosionShockwave" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.09069, 0, 0, 0, 1.09069, 0, 0, 0, 1.09069, 0, 0, 0)
+emitting = false
+amount = 1
+lifetime = 6.0
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_i5g1e")
+draw_pass_1 = SubResource("TorusMesh_lopid")
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.999251, 0, 0, 0, 0.999251, 0, 0, 0, 0.999251, 0, 0, 0)
+emitting = false
+amount = 500
+lifetime = 12.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_lopid")
+draw_pass_1 = SubResource("BoxMesh_x8l54")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.730925, 0.682458, 0, -0.682458, 0.730925, 0, 8, 12.583)

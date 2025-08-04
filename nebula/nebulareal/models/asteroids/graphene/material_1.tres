@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://u3dh0ivdd32n"]
+
+[ext_resource type="Texture2D" uid="uid://q0k8uwhkqi4c" path="res://models/asteroids/graphene/AsteroidGraphene_1.png" id="1_y180s"]
+
+[resource]
+resource_name = "material_1"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_y180s")
+texture_filter = 0
+texture_repeat = false

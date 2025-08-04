@@ -1,0 +1,172 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0gdkau3q2yq"]
+
+[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://scenes/components/shield_generator.tscn" id="1_72w16"]
+[ext_resource type="Script" uid="uid://bhl6rjoeok0g6" path="res://scenes/starbase/starbase.gd" id="1_mccl1"]
+[ext_resource type="PackedScene" uid="uid://cnwylmy5ikc47" path="res://scenes/starbase/repair_component.tscn" id="3_740ej"]
+[ext_resource type="PackedScene" uid="uid://bv8xfh8lgm5hi" path="res://scenes/components/generator_component.tscn" id="3_b71cb"]
+[ext_resource type="PackedScene" uid="uid://brotmcpkdktvh" path="res://scenes/starbase/dock_component.tscn" id="4_mccl1"]
+[ext_resource type="PackedScene" uid="uid://bcnhe0pqjp7bx" path="res://scenes/components/identity_component.tscn" id="4_mkt2a"]
+[ext_resource type="PackedScene" uid="uid://nm768wtj15ct" path="res://scenes/components/armor_component.tscn" id="5_ul0ok"]
+[ext_resource type="PackedScene" uid="uid://ct2ape7kh6clk" path="res://scenes/components/scanner_component.tscn" id="9_740ej"]
+[ext_resource type="Script" uid="uid://bevk0ygt4fjih" path="res://scenes/starbase/warehouse_component.gd" id="10_bgbau"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_333yw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ksjf8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_740ej"]
+font_size = 30
+
+[node name="Starbase" type="Node3D" groups=["faction_object", "starbases"]]
+script = ExtResource("1_mccl1")
+
+[node name="StarbaseModel" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StarbaseModel"]
+shape = SubResource("BoxShape3D_333yw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StarbaseModel"]
+mesh = SubResource("BoxMesh_ksjf8")
+
+[node name="Auxiliaries" type="Node3D" parent="."]
+
+[node name="SpecialComponent" type="Node3D" parent="Auxiliaries"]
+
+[node name="TurretContainer" type="Node3D" parent="."]
+
+[node name="DummyTurret" type="Node3D" parent="TurretContainer"]
+
+[node name="ShieldGenerator" parent="." instance=ExtResource("1_72w16")]
+unique_name_in_owner = true
+
+[node name="ServiceContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="RepairComponent" parent="ServiceContainer" instance=ExtResource("3_740ej")]
+
+[node name="DockComponent" parent="ServiceContainer" node_paths=PackedStringArray("starbase", "starbase_ui") instance=ExtResource("4_mccl1")]
+unique_name_in_owner = true
+starbase = NodePath("../..")
+starbase_ui = NodePath("../../CanvasLayer/StarbaseUI")
+
+[node name="WarehouseComponent" type="Node3D" parent="ServiceContainer"]
+unique_name_in_owner = true
+script = ExtResource("10_bgbau")
+max_warehouse_slots = 64
+
+[node name="GeneratorComponent" parent="." instance=ExtResource("3_b71cb")]
+unique_name_in_owner = true
+
+[node name="IdentityComponent" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("4_mkt2a")]
+unique_name_in_owner = true
+parent_node = NodePath("..")
+
+[node name="ArmorComponent" parent="." instance=ExtResource("5_ul0ok")]
+unique_name_in_owner = true
+
+[node name="ScannerComponent" parent="." node_paths=PackedStringArray("parent_node", "IdentityComponent") instance=ExtResource("9_740ej")]
+unique_name_in_owner = true
+parent_node = NodePath("..")
+IdentityComponent = NodePath("../IdentityComponent")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StarbaseUI" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StarbaseUI"]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 79.0
+offset_right = 1152.0
+offset_bottom = 583.0
+color = Color(0.166924, 0.242511, 0.2834, 1)
+
+[node name="StarbaseMainMenu" type="Control" parent="CanvasLayer/StarbaseUI/ColorRect"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WelcomeLabel" type="Label" parent="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 379.0
+offset_bottom = 112.0
+label_settings = SubResource("LabelSettings_740ej")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LeaveStarbase" type="Button" parent="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = 380.0
+offset_right = 352.0
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Leave Starbase"
+
+[node name="DepositMaterials" type="Button" parent="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = 315.0
+offset_right = 352.0
+offset_bottom = 390.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Deposit Materials"
+
+[node name="CraftItem" type="Button" parent="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = 230.0
+offset_right = 352.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Craft Item"
+
+[node name="Trade" type="Button" parent="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = 145.0
+offset_right = 352.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Trade with Starbase"
+
+[connection signal="pressed" from="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu/LeaveStarbase" to="ServiceContainer/DockComponent" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu/DepositMaterials" to="." method="_on_deposit_materials_pressed"]
+[connection signal="pressed" from="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu/CraftItem" to="." method="_on_craft_item_pressed"]
+[connection signal="pressed" from="CanvasLayer/StarbaseUI/ColorRect/StarbaseMainMenu/Trade" to="." method="_on_trade_pressed"]

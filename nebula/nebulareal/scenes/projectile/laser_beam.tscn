@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnuyba44yecdi"]
+
+[ext_resource type="Script" uid="uid://d38lfcv7f84m" path="res://scenes/projectile/laser_beam.gd" id="1_ur7s1"]
+[ext_resource type="Script" uid="uid://clksof4nqvfwi" path="res://scenes/projectile/beam_mesh.gd" id="2_ur7s1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_487j8"]
+transparency = 1
+albedo_color = Color(0.28485, 0.28485, 0.28485, 1)
+emission_enabled = true
+emission = Color(0.794413, 2.18514e-05, 0.562692, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_26jbx"]
+material = SubResource("StandardMaterial3D_487j8")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 10.0
+
+[node name="LaserBeam" type="Node3D"]
+script = ExtResource("1_ur7s1")
+
+[node name="BeamMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26jbx")
+script = ExtResource("2_ur7s1")
+
+[node name="LifeTimer" type="Timer" parent="BeamMesh"]
+wait_time = 0.5
+autostart = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://6cbivqvm3x3")
+spawn_path = NodePath("..")
+
+[connection signal="timeout" from="BeamMesh/LifeTimer" to="BeamMesh" method="_on_life_timer_timeout"]

@@ -1,0 +1,14 @@
+# Made in Blockbench 4.12.3
+newmtl m_3267ce4e-0343-5787-4844-8efba6d06080
+map_Kd AsteroidBody.png
+newmtl m_e0e9190e-a69a-5c26-bb2a-032fa6f1f526
+map_Kd MetalFrag1.png
+newmtl m_601b7042-e071-1691-b334-3d5030234310
+map_Kd MetalFrag2.png
+newmtl m_8aafa5e0-3838-84e3-fa50-53d0c68f4e4d
+map_Kd MetalFrag3.png
+newmtl m_c81f9530-3c55-5250-d6e8-f7011927cd35
+map_Kd MetalFrag5.png
+newmtl m_c3749f00-0655-2cc7-9c27-3b44487c4250
+map_Kd MetalFrag4.png
+newmtl none

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://l3avlx2olpit"]
+
+[ext_resource type="Script" uid="uid://b306lowordqdk" path="res://scenes/floor.gd" id="1_ukw5w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ew0iq"]
+size = Vector3(500, 1, 500)
+
+[node name="Floor" type="Node3D" groups=["click_floors"]]
+script = ExtResource("1_ukw5w")
+
+[node name="ClickBody" type="StaticBody3D" parent="."]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickBody"]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_ew0iq")

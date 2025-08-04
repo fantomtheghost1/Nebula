@@ -1,0 +1,10 @@
+extends Node3D
+
+@export var wreck_loot = {}
+
+var object_type : String = "wreck"
+var salvage_time : float = 4.0
+var wreck_size = ""
+
+func Initialize(loot : Dictionary):
+	wreck_loot = loot

@@ -1,0 +1,512 @@
+[gd_scene load_steps=14 format=3 uid="uid://rgi6rixs3y25"]
+
+[ext_resource type="Script" uid="uid://cfwfvrm1kvpw7" path="res://scenes/game_areas/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bxv63i2x5vbll" path="res://scenes/camera/camera.tscn" id="2_ifxk0"]
+[ext_resource type="Script" uid="uid://p4inwor7gtoo" path="res://addons/godot-console/scripts/console_container.gd" id="3_skvmv"]
+[ext_resource type="Script" uid="uid://dixj621a7u83s" path="res://scenes/game_areas/faction_menu.gd" id="4_0ucv4"]
+[ext_resource type="Script" uid="uid://c6uwngdx3t28h" path="res://scenes/UI/chat.gd" id="5_0ucv4"]
+[ext_resource type="Script" uid="uid://538wriobukg2" path="res://scenes/game_areas/server_container.gd" id="5_f40on"]
+[ext_resource type="Script" uid="uid://b1caevvijnd0k" path="res://scenes/game_areas/server_browser_handler.gd" id="5_ne82p"]
+[ext_resource type="Script" uid="uid://vhpxwyhc12pb" path="res://scenes/game_areas/player_list.gd" id="6_io48g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xeghv"]
+font_size = 24
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.694118)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ne82p"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ucv4"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_io48g"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8o6c"]
+font_size = 28
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_o5qli")
+build_version = "v0.7 Pre-Alpha"
+
+[node name="CameraGimbal" parent="." instance=ExtResource("2_ifxk0")]
+unique_name_in_owner = true
+
+[node name="ConsoleContainer" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_skvmv")
+
+[node name="DevConsoleTip" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 169.0
+offset_bottom = 51.0
+text = "Press ` for dev console"
+label_settings = SubResource("LabelSettings_xeghv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("uid://cjb05x1lpdjf0", "uid://ckxcwr0xg1oc6")
+spawn_path = NodePath("..")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MultiplayerUI" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MultiplayerUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -33.0
+offset_right = 22.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/MultiplayerUI/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to Nebula"
+horizontal_alignment = 1
+
+[node name="Username" type="LineEdit" parent="UI/MultiplayerUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Enter username..."
+
+[node name="Host" type="Button" parent="UI/MultiplayerUI/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="CopyOID" type="Button" parent="UI/MultiplayerUI/VBoxContainer"]
+layout_mode = 2
+text = "Copy OID"
+
+[node name="HSeparator" type="HSeparator" parent="UI/MultiplayerUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="OIDInput" type="LineEdit" parent="UI/MultiplayerUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Host OID"
+
+[node name="Join" type="Button" parent="UI/MultiplayerUI/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="OID" type="Label" parent="UI/MultiplayerUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="ServerBrowser" type="Control" parent="UI/MultiplayerUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/MultiplayerUI/ServerBrowser"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -421.0
+offset_top = -273.0
+offset_right = 421.0
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 1)
+
+[node name="Title" type="Label" parent="UI/MultiplayerUI/ServerBrowser/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.5
+offset_top = 9.0
+offset_right = 59.5
+offset_bottom = 32.0
+grow_horizontal = 2
+text = "Server Browser"
+label_settings = SubResource("LabelSettings_ne82p")
+
+[node name="ColorRect" type="ColorRect" parent="UI/MultiplayerUI/ServerBrowser/ColorRect/Title"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -281.0
+offset_top = -9.0
+offset_right = 561.0
+offset_bottom = 66.0
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="ServerContainer" type="VBoxContainer" parent="UI/MultiplayerUI/ServerBrowser/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 75.0
+offset_right = 842.0
+offset_bottom = 450.0
+script = ExtResource("5_f40on")
+
+[node name="Username" type="LineEdit" parent="UI/MultiplayerUI/ServerBrowser/ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -82.0
+offset_right = 289.0
+offset_bottom = -19.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter username..."
+
+[node name="Host" type="Button" parent="UI/MultiplayerUI/ServerBrowser/ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -189.0
+offset_top = -82.0
+offset_right = -23.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "HOST"
+
+[node name="ServerListUpdateInterval" type="Timer" parent="UI/MultiplayerUI/ServerBrowser/ColorRect"]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
+
+[node name="ServerBrowserHandler" type="HTTPRequest" parent="UI/MultiplayerUI/ServerBrowser"]
+unique_name_in_owner = true
+script = ExtResource("5_ne82p")
+
+[node name="FactionMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_0ucv4")
+
+[node name="FactionMenu" type="ColorRect" parent="UI/FactionMenu"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 0.552941)
+
+[node name="ColorRect2" type="ColorRect" parent="UI/FactionMenu/FactionMenu"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -324.0
+offset_right = 305.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 0.905882)
+
+[node name="CreateFaction" type="Control" parent="UI/FactionMenu/FactionMenu/ColorRect2"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 610.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -563.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="Label" type="Label" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -305.0
+offset_right = 305.0
+offset_bottom = 85.0
+grow_horizontal = 2
+text = "Please enter your faction's name and color."
+label_settings = SubResource("LabelSettings_0ucv4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -64.0
+offset_right = 110.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Please enter faction name..."
+
+[node name="FactionName" type="Label" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -104.0
+offset_right = 98.5
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faction Name:"
+label_settings = SubResource("LabelSettings_0ucv4")
+
+[node name="FactionColor" type="Label" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -4.0
+offset_right = 93.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faction Color:"
+label_settings = SubResource("LabelSettings_0ucv4")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = 36.0
+offset_right = 68.5
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Create" type="Button" parent="UI/FactionMenu/FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -70.0
+offset_right = 60.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Create"
+
+[node name="FactionList" type="Control" parent="UI/FactionMenu/FactionMenu/ColorRect2"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Welcome" type="Label" parent="UI/FactionMenu/FactionMenu/ColorRect2/FactionList"]
+unique_name_in_owner = true
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 590.0
+offset_bottom = 83.0
+grow_horizontal = 2
+text = "Create or Join a Faction"
+label_settings = SubResource("LabelSettings_io48g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateFaction" type="Button" parent="UI/FactionMenu/FactionMenu/ColorRect2/FactionList"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 223.5
+offset_top = 567.0
+offset_right = 343.5
+offset_bottom = 598.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Create Faction"
+
+[node name="ColorRect" type="ColorRect" parent="UI/FactionMenu/FactionMenu/ColorRect2/FactionList"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 570.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="Chat" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 682.0
+offset_top = 85.0
+offset_right = 1152.0
+offset_bottom = 544.0
+script = ExtResource("5_0ucv4")
+
+[node name="ChatLineEdit" type="LineEdit" parent="UI/Chat"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -470.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+placeholder_text = "Enter message..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Chat"]
+layout_mode = 0
+offset_right = 470.0
+offset_bottom = 428.0
+
+[node name="ChatBox" type="VBoxContainer" parent="UI/Chat/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerList" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_io48g")
+
+[node name="ColorRect" type="ColorRect" parent="UI/PlayerList"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -227.0
+offset_right = 199.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 1)
+
+[node name="ColorRect" type="ColorRect" parent="UI/PlayerList/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 62.0
+grow_horizontal = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="PlayerList" type="Label" parent="UI/PlayerList/ColorRect/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -19.5
+offset_right = 70.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player List"
+label_settings = SubResource("LabelSettings_x8o6c")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/PlayerList/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerListContainer" type="VBoxContainer" parent="UI/PlayerList/ColorRect/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 36
+
+[connection signal="pressed" from="UI/MultiplayerUI/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="UI/MultiplayerUI/VBoxContainer/CopyOID" to="." method="_on_copy_oid_pressed"]
+[connection signal="pressed" from="UI/MultiplayerUI/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="UI/MultiplayerUI/ServerBrowser/ColorRect/Host" to="." method="_on_host_pressed"]

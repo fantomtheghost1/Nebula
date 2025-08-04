@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cobcn00385rbl"]
+
+[ext_resource type="Script" uid="uid://cf1sjimwtwymw" path="res://scenes/components/shield_generator.gd" id="1_847ug"]
+[ext_resource type="PackedScene" uid="uid://cy3lpn4w6872q" path="res://scenes/components/shield_bubble.tscn" id="2_iwmtw"]
+
+[node name="ShieldGenerator" type="Node3D"]
+script = ExtResource("1_847ug")
+
+[node name="ShieldBubble" parent="." instance=ExtResource("2_iwmtw")]
+unique_name_in_owner = true

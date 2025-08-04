@@ -1,0 +1,467 @@
+[gd_scene load_steps=4 format=3 uid="uid://djovyolgnpurp"]
+
+[ext_resource type="Theme" uid="uid://cyr8w7bxof0cp" path="res://Themes/default.tres" id="1_hy00i"]
+[ext_resource type="Script" uid="uid://dcqeruy458n4" path="res://turret_ui.gd" id="1_kfgkm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hy00i"]
+
+[node name="TurretUI" type="Control" node_paths=PackedStringArray("turrets")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kfgkm")
+turrets = [NodePath("MarginContainer/TurretContainer/Turret1"), NodePath("MarginContainer/TurretContainer/Turret2"), NodePath("MarginContainer/TurretContainer/Turret3"), NodePath("MarginContainer/TurretContainer/Turret4"), NodePath("MarginContainer/TurretContainer/Turret5"), NodePath("MarginContainer/TurretContainer/Turret6"), NodePath("MarginContainer/TurretContainer/Turret7"), NodePath("MarginContainer/TurretContainer/Turret8"), NodePath("MarginContainer/TurretContainer/Turret9")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+
+[node name="TurretContainer" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomHBoxes"
+
+[node name="Turret1" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret1/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret1/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 1"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret2" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret2/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret2/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 2"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret3" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret3/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret3/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 3"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret4" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret4/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret4/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 4"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret5" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret5/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret5/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 5"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret6" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret6/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret6/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 6"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret7" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret7/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret7/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 7"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret8" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret8/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret8/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 8"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turret9" type="ColorRect" parent="MarginContainer/TurretContainer"]
+visible = false
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TurretContainer/Turret9"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"CustomMarginContainers"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TurretContainer/Turret9/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hy00i")
+color = Color(0.341176, 0.341176, 0.341176, 0.67451)
+
+[node name="Label" type="Label" parent="MarginContainer/TurretContainer/Turret9/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hy00i")
+theme_type_variation = &"HeaderSmall"
+text = "Turret 9"
+label_settings = SubResource("LabelSettings_hy00i")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,217 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0ahmpi2kj4et"]
+
+[ext_resource type="Script" uid="uid://dixj621a7u83s" path="res://scenes/UI/faction_menu.gd" id="1_mkhlj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ucv4"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_io48g"]
+font_size = 32
+
+[node name="FactionMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mkhlj")
+
+[node name="FactionMenu" type="ColorRect" parent="."]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 0.552941)
+
+[node name="ColorRect2" type="ColorRect" parent="FactionMenu"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -324.0
+offset_right = 305.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.179628, 0.257545, 0.298563, 1)
+
+[node name="CreateFaction" type="Control" parent="FactionMenu/ColorRect2"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 610.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="FactionMenu/ColorRect2/CreateFaction"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -563.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="Label" type="Label" parent="FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -305.0
+offset_right = 305.0
+offset_bottom = 85.0
+grow_horizontal = 2
+text = "Please enter your faction's name and color."
+label_settings = SubResource("LabelSettings_0ucv4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="FactionMenu/ColorRect2/CreateFaction"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -64.0
+offset_right = 110.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Please enter faction name..."
+
+[node name="FactionName" type="Label" parent="FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -104.0
+offset_right = 98.5
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faction Name:"
+label_settings = SubResource("LabelSettings_0ucv4")
+
+[node name="FactionColor" type="Label" parent="FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -4.0
+offset_right = 93.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faction Color:"
+label_settings = SubResource("LabelSettings_0ucv4")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="FactionMenu/ColorRect2/CreateFaction"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = 36.0
+offset_right = 68.5
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Create" type="Button" parent="FactionMenu/ColorRect2/CreateFaction"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -70.0
+offset_right = 60.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Create"
+
+[node name="FactionList" type="Control" parent="FactionMenu/ColorRect2"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Welcome" type="Label" parent="FactionMenu/ColorRect2/FactionList"]
+unique_name_in_owner = true
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 590.0
+offset_bottom = 83.0
+grow_horizontal = 2
+text = "Create or Join a Faction"
+label_settings = SubResource("LabelSettings_io48g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateFaction" type="Button" parent="FactionMenu/ColorRect2/FactionList"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 223.5
+offset_top = 567.0
+offset_right = 343.5
+offset_bottom = 598.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Create Faction"
+
+[node name="ColorRect" type="ColorRect" parent="FactionMenu/ColorRect2/FactionList"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 570.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.077316, 0.122229, 0.145841, 1)
+
+[node name="FactionContainer" type="VBoxContainer" parent="FactionMenu/ColorRect2/FactionList"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 84.0
+offset_right = 610.0
+offset_bottom = 594.0
+theme_override_constants/separation = 2
+
+[connection signal="pressed" from="FactionMenu/ColorRect2/CreateFaction/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="FactionMenu/ColorRect2/FactionList/CreateFaction" to="." method="_on_create_faction_pressed"]

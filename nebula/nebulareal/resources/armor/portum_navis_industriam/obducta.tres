@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ArmorType" load_steps=2 format=3 uid="uid://b0s1jkwlbbcuw"]
+
+[ext_resource type="Script" uid="uid://8c0sbnxjqc14" path="res://resources/armor/armor_type.gd" id="1_3w4w3"]
+
+[resource]
+script = ExtResource("1_3w4w3")
+max_ap = 100
+name = "Obducta"
+metadata/_custom_type_script = "uid://8c0sbnxjqc14"

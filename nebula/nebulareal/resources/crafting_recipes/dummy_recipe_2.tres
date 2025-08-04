@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CraftingRecipeType" load_steps=4 format=3 uid="uid://5jl4gf2i2un2"]
+
+[ext_resource type="Resource" uid="uid://dxap2g6nhmsco" path="res://resources/items/exotic_matter.tres" id="1_1vqlt"]
+[ext_resource type="Resource" uid="uid://q5q7a3xfbu1r" path="res://resources/items/test_result2.tres" id="1_6yvme"]
+[ext_resource type="Script" uid="uid://sth61ag8hraq" path="res://resources/crafting_recipes/crafting_recipe_type.gd" id="1_adybn"]
+
+[resource]
+script = ExtResource("1_adybn")
+recipe = Array[Dictionary]([{
+"ITEM": ExtResource("1_1vqlt"),
+"QUANTITY": 15
+}])
+minimum_starbase_level = 3
+crafting_time = 4.0
+result = ExtResource("1_6yvme")
+metadata/_custom_type_script = "uid://sth61ag8hraq"

@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjb05x1lpdjf0"]
+
+[ext_resource type="Script" path="res://Scenes/Ship/ship.gd" id="1_cr1ik"]
+[ext_resource type="PackedScene" uid="uid://cobcn00385rbl" path="res://Scenes/Components/shield_generator.tscn" id="1_h5wr8"]
+[ext_resource type="PackedScene" uid="uid://bg14jodmtvk0x" path="res://Scenes/Components/cargo_component.tscn" id="2_5i5ly"]
+[ext_resource type="PackedScene" uid="uid://bujjc8sy450fd" path="res://Scenes/Components/engine_component.tscn" id="2_kdr6u"]
+[ext_resource type="PackedScene" uid="uid://nm768wtj15ct" path="res://Scenes/Components/armor_component.tscn" id="3_g8txf"]
+[ext_resource type="Script" path="res://Scenes/Components/armor_component.gd" id="4_rg7a8"]
+[ext_resource type="PackedScene" uid="uid://bv8xfh8lgm5hi" path="res://Scenes/Components/generator_component.tscn" id="4_v0p7y"]
+[ext_resource type="PackedScene" uid="uid://bcnhe0pqjp7bx" path="res://Scenes/Components/identity_component.tscn" id="5_45nfj"]
+[ext_resource type="PackedScene" uid="uid://bvxdxpa6o0x3n" path="res://Scenes/Components/chassis_component.tscn" id="7_wffsi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evbkf"]
+
+[node name="Ship" type="Node3D"]
+script = ExtResource("1_cr1ik")
+
+[node name="ShipModel" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipModel"]
+shape = SubResource("BoxShape3D_evbkf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShipModel"]
+
+[node name="ShipAIComponent" type="Node3D" parent="."]
+
+[node name="EngineComponent" parent="." instance=ExtResource("2_kdr6u")]
+
+[node name="ScannerComponent" type="Node3D" parent="."]
+
+[node name="Auxiliaries" type="Node3D" parent="."]
+
+[node name="SpecialComponent" type="Node3D" parent="Auxiliaries"]
+
+[node name="TurretContainer" type="Node3D" parent="."]
+
+[node name="MiningContainer" type="Node3D" parent="TurretContainer"]
+
+[node name="DummyTurret" type="Node3D" parent="TurretContainer/MiningContainer"]
+
+[node name="CombatContainer" type="Node3D" parent="TurretContainer"]
+
+[node name="DummyTurret" type="Node3D" parent="TurretContainer/CombatContainer"]
+
+[node name="ShieldGenerator" parent="." instance=ExtResource("1_h5wr8")]
+unique_name_in_owner = true
+
+[node name="ArmorComponent" parent="." instance=ExtResource("3_g8txf")]
+unique_name_in_owner = true
+script = ExtResource("4_rg7a8")
+
+[node name="WarpComponent" type="Node3D" parent="."]
+
+[node name="GeneratorComponent" parent="." instance=ExtResource("4_v0p7y")]
+unique_name_in_owner = true
+
+[node name="CargoComponent" parent="." instance=ExtResource("2_5i5ly")]
+unique_name_in_owner = true
+
+[node name="IdentityComponent" parent="." instance=ExtResource("5_45nfj")]
+unique_name_in_owner = true
+
+[node name="ChassisComponent" parent="." instance=ExtResource("7_wffsi")]
+unique_name_in_owner = true
+
+[connection signal="ChassisDestroyed" from="ChassisComponent" to="." method="_on_chassis_component_chassis_destroyed"]

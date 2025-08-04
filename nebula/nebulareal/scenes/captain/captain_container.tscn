@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://v3xcbi1vqouh"]
+
+[ext_resource type="Script" uid="uid://48tpko1dwkvb" path="res://scenes/captain/captain_container.gd" id="1_gwxed"]
+
+[node name="CaptainContainer" type="Node3D"]
+script = ExtResource("1_gwxed")

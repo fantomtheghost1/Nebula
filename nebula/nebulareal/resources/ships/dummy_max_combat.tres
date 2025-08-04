@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ShipType" load_steps=10 format=3 uid="uid://cld1423og8f51"]
+
+[ext_resource type="Resource" uid="uid://s1crplqekxhn" path="res://resources/armor/dummy_max.tres" id="1_kn588"]
+[ext_resource type="Resource" uid="uid://doddgbbtg8slb" path="res://resources/cargo/dummy_max.tres" id="2_utppp"]
+[ext_resource type="Resource" uid="uid://ex1v2a7s60lj" path="res://resources/chassis/dreadnought.tres" id="3_h5e4l"]
+[ext_resource type="Resource" uid="uid://cumv3rgout7kv" path="res://resources/turrets/combat/dummy_max.tres" id="4_kn588"]
+[ext_resource type="Resource" uid="uid://c1l57eyuboq6t" path="res://resources/engines/dummy_max.tres" id="5_kliwl"]
+[ext_resource type="Resource" uid="uid://bse3wk4wbn0rq" path="res://resources/generators/dummy_zero.tres" id="6_id51d"]
+[ext_resource type="Resource" uid="uid://cjcet3tl4ytfp" path="res://resources/scanners/dummy_max.tres" id="7_mjyhf"]
+[ext_resource type="Script" uid="uid://1jjgbv63flmu" path="res://resources/ships/ship_type.gd" id="8_0dajj"]
+[ext_resource type="Resource" uid="uid://xuemgb4cgsrn" path="res://resources/shield_generators/dummy_zero.tres" id="9_0f2eo"]
+
+[resource]
+script = ExtResource("8_0dajj")
+name = "Dummy Max"
+materials = Array[StandardMaterial3D]([])
+engine = ExtResource("5_kliwl")
+shield_generator = ExtResource("9_0f2eo")
+armor = ExtResource("1_kn588")
+generator = ExtResource("6_id51d")
+cargo_bay = ExtResource("2_utppp")
+scanner = ExtResource("7_mjyhf")
+chassis = ExtResource("3_h5e4l")
+combat_turret = ExtResource("4_kn588")
+turret_slots = 10

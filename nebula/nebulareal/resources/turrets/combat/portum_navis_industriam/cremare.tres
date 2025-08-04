@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatTurretType" load_steps=2 format=3 uid="uid://dndtlwh3xbass"]
+
+[ext_resource type="Script" uid="uid://uhbi0jgpm8tb" path="res://resources/turrets/combat/combat_turret_type.gd" id="1_3ehej"]
+
+[resource]
+script = ExtResource("1_3ehej")
+max_hp = 10
+fire_rate = 4.0
+damage = 15
+accuracy = 0.8
+metadata/_custom_type_script = "uid://uhbi0jgpm8tb"

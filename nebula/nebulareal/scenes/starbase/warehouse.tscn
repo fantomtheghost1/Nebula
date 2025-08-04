@@ -1,0 +1,774 @@
+[gd_scene load_steps=4 format=3 uid="uid://5bjbeas71oxw"]
+
+[ext_resource type="Script" uid="uid://lh8hgvwx15ap" path="res://scenes/starbase/warehouse.gd" id="1_nlcif"]
+[ext_resource type="Script" uid="uid://5buwm48nmdh3" path="res://scenes/components/inventory_ui.gd" id="2_fpih6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ofwqy"]
+font_size = 32
+
+[node name="Warehouse" type="Node3D"]
+script = ExtResource("1_nlcif")
+
+[node name="InventoryUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1142.0
+offset_bottom = 648.0
+script = ExtResource("2_fpih6")
+
+[node name="ColorRect" type="ColorRect" parent="InventoryUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -304.0
+offset_right = 425.0
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.243137, 0.282353, 1)
+
+[node name="PageOne" type="Control" parent="InventoryUI/ColorRect"]
+anchors_preset = 0
+offset_right = 850.0
+offset_bottom = 608.0
+
+[node name="0" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 70.0
+offset_right = 70.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="1" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 70.0
+offset_right = 140.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="2" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 70.0
+offset_right = 210.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="3" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 70.0
+offset_right = 280.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="4" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 70.0
+offset_right = 350.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="5" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 70.0
+offset_right = 420.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="6" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 70.0
+offset_right = 490.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="7" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 70.0
+offset_right = 560.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="8" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 70.0
+offset_right = 630.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="9" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 70.0
+offset_right = 700.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="10" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 70.0
+offset_right = 770.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="11" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 70.0
+offset_right = 840.0
+offset_bottom = 130.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="12" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 140.0
+offset_right = 70.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="13" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 140.0
+offset_right = 140.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="14" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 140.0
+offset_right = 210.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="15" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 140.0
+offset_right = 280.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="16" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 140.0
+offset_right = 350.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="17" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 140.0
+offset_right = 420.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="18" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 140.0
+offset_right = 490.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="19" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 140.0
+offset_right = 560.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="20" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 140.0
+offset_right = 630.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="21" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 140.0
+offset_right = 700.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="22" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 140.0
+offset_right = 770.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="23" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 140.0
+offset_right = 840.0
+offset_bottom = 200.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="24" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 210.0
+offset_right = 70.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="25" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 210.0
+offset_right = 140.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="26" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 210.0
+offset_right = 210.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="27" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 210.0
+offset_right = 280.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="28" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 210.0
+offset_right = 350.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="29" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 210.0
+offset_right = 420.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="30" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 210.0
+offset_right = 490.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="31" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 210.0
+offset_right = 560.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="32" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 210.0
+offset_right = 630.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="33" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 210.0
+offset_right = 700.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="34" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 210.0
+offset_right = 770.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="35" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 210.0
+offset_right = 840.0
+offset_bottom = 270.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="36" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 280.0
+offset_right = 70.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="37" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 280.0
+offset_right = 140.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="38" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 280.0
+offset_right = 210.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="39" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 280.0
+offset_right = 280.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="40" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 280.0
+offset_right = 350.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="41" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 280.0
+offset_right = 420.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="42" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 280.0
+offset_right = 490.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="43" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 280.0
+offset_right = 560.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="44" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 280.0
+offset_right = 630.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="45" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 280.0
+offset_right = 700.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="46" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 280.0
+offset_right = 770.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="47" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 280.0
+offset_right = 840.0
+offset_bottom = 340.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="48" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 350.0
+offset_right = 70.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="49" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 350.0
+offset_right = 140.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="50" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 350.0
+offset_right = 210.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="51" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 350.0
+offset_right = 280.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="52" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 350.0
+offset_right = 350.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="53" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 350.0
+offset_right = 420.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="54" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 350.0
+offset_right = 490.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="55" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 350.0
+offset_right = 560.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="56" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 350.0
+offset_right = 630.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="57" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 350.0
+offset_right = 700.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="58" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 350.0
+offset_right = 770.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="59" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 350.0
+offset_right = 840.0
+offset_bottom = 410.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="60" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 420.0
+offset_right = 70.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="61" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 420.0
+offset_right = 140.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="62" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 420.0
+offset_right = 210.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="63" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 420.0
+offset_right = 280.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="64" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 420.0
+offset_right = 350.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="65" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 420.0
+offset_right = 420.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="66" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 420.0
+offset_right = 490.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="67" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 420.0
+offset_right = 560.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="68" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 420.0
+offset_right = 630.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="69" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 420.0
+offset_right = 700.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="70" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 420.0
+offset_right = 770.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="71" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 420.0
+offset_right = 840.0
+offset_bottom = 480.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="72" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 490.0
+offset_right = 70.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="73" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 490.0
+offset_right = 140.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="74" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 490.0
+offset_right = 210.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="75" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 490.0
+offset_right = 280.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="76" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 490.0
+offset_right = 350.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="77" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 490.0
+offset_right = 420.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="78" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 490.0
+offset_right = 490.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="79" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 490.0
+offset_right = 560.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="80" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 490.0
+offset_right = 630.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="81" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 490.0
+offset_right = 700.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="82" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 490.0
+offset_right = 770.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="83" type="ColorRect" parent="InventoryUI/ColorRect/PageOne"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 490.0
+offset_right = 840.0
+offset_bottom = 550.0
+color = Color(0.877616, 0.877616, 0.877616, 1)
+
+[node name="CargoHeading" type="Label" parent="InventoryUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 10.0
+offset_right = 85.5
+offset_bottom = 55.0
+grow_horizontal = 2
+text = "Cargo Hold"
+label_settings = SubResource("LabelSettings_ofwqy")
+
+[node name="PrevPage" type="Button" parent="InventoryUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.5
+offset_top = -41.0
+offset_right = -33.5
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Prev"
+
+[node name="NextPage" type="Button" parent="InventoryUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -41.0
+offset_right = 97.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Next"
+
+[node name="PageNumber" type="Label" parent="InventoryUI/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -38.0
+offset_right = 20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="InventoryUI/ColorRect/PrevPage" to="InventoryUI" method="_on_prev_page_pressed"]
+[connection signal="pressed" from="InventoryUI/ColorRect/NextPage" to="InventoryUI" method="_on_next_page_pressed"]

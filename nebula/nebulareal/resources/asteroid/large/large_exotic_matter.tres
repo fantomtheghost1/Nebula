@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=6 format=3 uid="uid://dnipomlkpathe"]
+
+[ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_t2top"]
+[ext_resource type="Material" uid="uid://dkyfirgjy8c4d" path="res://models/asteroids/exotic_matter/material_0.tres" id="2_l8sj1"]
+[ext_resource type="Resource" uid="uid://dxap2g6nhmsco" path="res://resources/items/exotic_matter.tres" id="2_n6udn"]
+[ext_resource type="Material" uid="uid://dw0taau7irju6" path="res://models/asteroids/exotic_matter/material_1.tres" id="3_rvtib"]
+[ext_resource type="PackedScene" uid="uid://b521raurg3oix" path="res://models/asteroids/exotic_matter/AsteroidExoticMatter.gltf" id="4_fmep8"]
+
+[resource]
+script = ExtResource("1_t2top")
+model = ExtResource("4_fmep8")
+materials = Array[StandardMaterial3D]([ExtResource("2_l8sj1"), ExtResource("3_rvtib")])
+composition = ExtResource("2_n6udn")
+ore = 100
+scale = 3.0
+asteroid_mining_tier = 2

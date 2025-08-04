@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0mlwocnjxwj0"]
+
+[ext_resource type="Script" uid="uid://bs3laxr838ye1" path="res://scenes/UI/server_browser_instance.gd" id="1_vpsgj"]
+[ext_resource type="Texture2D" uid="uid://c176dje3o8lir" path="res://UI/padlock.png" id="2_lx5wo"]
+[ext_resource type="Theme" uid="uid://cyr8w7bxof0cp" path="res://Themes/default.tres" id="2_qnfde"]
+
+[node name="ServerBrowserInstance" type="Control"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.0617284
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("1_vpsgj")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.223499, 0.314503, 0.362455, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_qnfde")
+theme_type_variation = &"ServerInstance"
+
+[node name="ServerName" type="Label" parent="PanelContainer/ColorRect/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Server Name"
+vertical_alignment = 1
+
+[node name="PlayerCount" type="Label" parent="PanelContainer/ColorRect/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Player Count"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_qnfde")
+theme_type_variation = &"ServerInstance"
+
+[node name="PasswordProtected" type="TextureRect" parent="PanelContainer/ColorRect/HBoxContainer/MarginContainer3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("2_lx5wo")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_qnfde")
+theme_type_variation = &"ServerInstance"
+
+[node name="Join" type="Button" parent="PanelContainer/ColorRect/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "JOIN"
+
+[connection signal="pressed" from="PanelContainer/ColorRect/HBoxContainer/MarginContainer2/Join" to="." method="_on_join_pressed"]

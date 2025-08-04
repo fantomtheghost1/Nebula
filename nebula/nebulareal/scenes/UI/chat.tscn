@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd7v4oeitpic"]
+
+[ext_resource type="Script" uid="uid://c6uwngdx3t28h" path="res://scenes/UI/chat.gd" id="1_y8rq1"]
+
+[node name="Chat" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 682.0
+offset_top = 85.0
+offset_right = 1152.0
+offset_bottom = 544.0
+script = ExtResource("1_y8rq1")
+
+[node name="ChatLineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Enter message..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 470.0
+offset_bottom = 428.0
+
+[node name="ChatBox" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2

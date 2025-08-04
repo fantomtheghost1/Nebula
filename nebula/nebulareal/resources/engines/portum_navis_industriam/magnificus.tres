@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EngineType" load_steps=2 format=3 uid="uid://m12ryvojlhh"]
+
+[ext_resource type="Script" uid="uid://cf7deouyemiks" path="res://resources/engines/engine_type.gd" id="1_hn23k"]
+
+[resource]
+script = ExtResource("1_hn23k")
+name = "Magnificus"
+max_hp = 25
+max_speed = 15.0
+initial_speed = 3.0
+acceleration = 0.3
+metadata/_custom_type_script = "uid://cf7deouyemiks"

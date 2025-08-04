@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AsteroidType" load_steps=6 format=3 uid="uid://jj6suebrhr4k"]
+
+[ext_resource type="Script" uid="uid://cnndsxbktpyvp" path="res://resources/asteroid/asteroid_type.gd" id="1_00r85"]
+[ext_resource type="Material" uid="uid://bylbaqgsqe6wl" path="res://models/asteroids/magnesium_alloy/material_0.tres" id="2_v11p3"]
+[ext_resource type="Resource" uid="uid://d1yl0ivimffnn" path="res://resources/items/magnesium_alloy.tres" id="2_xmr4d"]
+[ext_resource type="Material" uid="uid://5dxx3u23n60x" path="res://models/asteroids/magnesium_alloy/material_1.tres" id="3_pcfkf"]
+[ext_resource type="PackedScene" uid="uid://dr7g5t6uyevb2" path="res://models/asteroids/magnesium_alloy/AsteroidMagnesiumAlloy.gltf" id="4_v3ai7"]
+
+[resource]
+script = ExtResource("1_00r85")
+model = ExtResource("4_v3ai7")
+materials = Array[StandardMaterial3D]([ExtResource("2_v11p3"), ExtResource("3_pcfkf")])
+composition = ExtResource("2_xmr4d")
+ore = 100
+scale = 3.0
+asteroid_mining_tier = 2

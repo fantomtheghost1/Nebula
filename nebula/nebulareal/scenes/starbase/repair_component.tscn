@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnwylmy5ikc47"]
+
+[ext_resource type="Script" uid="uid://3kdtny3cukkn" path="res://scenes/starbase/repair_component.gd" id="1_uql1f"]
+
+[node name="RepairComponent" type="Node3D"]
+script = ExtResource("1_uql1f")
+
+[node name="RepairTick" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="RepairTick" to="." method="_on_repair_tick_timeout"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1y7rr2smjpi"]
+
+[ext_resource type="Script" uid="uid://c74oe3cjrx2s2" path="res://scenes/vfx_testing/explosion_shockwave.gd" id="1_lopid"]
+
+[sub_resource type="Curve" id="Curve_i5g1e"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 14.0, 0, 0, Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lopid"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_x8l54"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 14.0, 0, 0, Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ywele"]
+curve_x = SubResource("Curve_i5g1e")
+curve_y = SubResource("Curve_lopid")
+curve_z = SubResource("Curve_x8l54")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5g1e"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_ywele")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5g1e"]
+albedo_color = Color(0.703837, 0.910619, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.733333, 0.933333, 1)
+emission_energy_multiplier = 7.78
+rim_enabled = true
+rim = 0.31
+rim_tint = 0.47
+
+[sub_resource type="TorusMesh" id="TorusMesh_lopid"]
+material = SubResource("StandardMaterial3D_i5g1e")
+outer_radius = 0.6
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lopid"]
+emission_shape_scale = Vector3(1, 0.25, 1)
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 15.39
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lopid"]
+albedo_color = Color(0.800108, 0.938869, 1, 1)
+emission_enabled = true
+emission = Color(5.19812e-06, 0.733043, 0.934444, 1)
+emission_energy_multiplier = 8.71
+
+[sub_resource type="BoxMesh" id="BoxMesh_x8l54"]
+material = SubResource("StandardMaterial3D_lopid")
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="ObjectExplosion" type="Node3D"]
+script = ExtResource("1_lopid")
+
+[node name="ExplosionShockwave" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.999113, 0, 0, 0, 0.999113, 0, 0, 0, 0.999113, 0, 0, 0)
+emitting = false
+amount = 1
+lifetime = 3.0
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_i5g1e")
+draw_pass_1 = SubResource("TorusMesh_lopid")
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 250
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_lopid")
+draw_pass_1 = SubResource("BoxMesh_x8l54")
