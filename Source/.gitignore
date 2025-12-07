@@ -1,0 +1,24 @@
+﻿# Ignore intermediate, build, and saved files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Ignore Visual Studio, Rider, and Xcode project files
+.vscode/
+.vs/
+*.suo
+*.user
+*.userprefs
+*.opensdf
+*.sdf
+*.xcodeproj
+*.xcworkspace
+
+# Ignore log files
+*.log
+
+# Ignore packaged builds
+*.pak
+*.app
+*.exe
