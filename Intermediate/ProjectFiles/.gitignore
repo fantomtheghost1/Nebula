@@ -1,0 +1,44 @@
+﻿# Generated folders
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# IDE user files
+.vscode/
+.vs/
+.idea/
+
+*.user
+*.userprefs
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.sln
+*.json
+
+# Logs and autosaves
+*.log
+*_Backup*
+*.tmp
+
+# Packaged builds
+*.pak
+*.zip
+*.exe
+*.dll
+*.app
+*.dmg
+*.so
+
+# PDBs, Build Artifacts, Cooked Content
+*.pdb
+*.obj
+*.pch
+*.ucas
+*.utoc
+
+Plugins/*/Intermediate/
+Plugins/*/Binaries/
