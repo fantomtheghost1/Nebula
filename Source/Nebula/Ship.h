@@ -25,11 +25,19 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
-	/* GETTERS AND SETTERS */
-	void SetFlySpeed(float NewSpeed);
+	void ClearWaypoints();
 	
+	/* SETTERS */
+	void SetFlySpeed(float NewSpeed);
+		
+	void SetNextWaypoint(FVector NewWaypoint);
+	
+	/* GETTERS */
 	void GetFlySpeed(float& OutSpeed);
-
+	
+	FVector GetNextWaypoint();
+	
+	TArray<FVector> GetWaypoints();
 
 protected:
 	// Called when the game starts or when spawned
@@ -39,4 +47,7 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	float FlySpeed = 0.0f;
+	
+	UPROPERTY(VisibleAnywhere)
+	TArray<FVector> Waypoints;
 };

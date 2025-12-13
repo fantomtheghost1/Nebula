@@ -24,16 +24,46 @@ void AShip::BeginPlay()
 void AShip::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	
+	if (Waypoints.Num() > 0)
+	{
+		FVector NewPos = FMath::VInterpTo(GetActorLocation(), Waypoints[0], DeltaTime, FlySpeed);
+		SetActorLocation(NewPos);
+		if (GetActorLocation() == Waypoints[0])
+		{
+			Waypoints.RemoveAt(0);
+		}
+	}
 }
 
 // Called to bind functionality to input
 void AShip::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
+/* WAYPOINT FUNCTIONS */
+void AShip::ClearWaypoints()
+{
+	Waypoints.Empty();
+}
+
+FVector AShip::GetNextWaypoint()
+{
+	return Waypoints[0];
+}
+
+TArray<FVector> AShip::GetWaypoints()
+{
+	return Waypoints;
+}
+
+void AShip::SetNextWaypoint(FVector NewWaypoint)
+{
+	Waypoints.Add(NewWaypoint);
+}
+
+/* FLY FUNCTIONS */
 void AShip::SetFlySpeed(float NewSpeed)
 {
 	FlySpeed = NewSpeed;

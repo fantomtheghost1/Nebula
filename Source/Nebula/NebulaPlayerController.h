@@ -21,8 +21,6 @@ class NEBULA_API ANebulaPlayerController : public APlayerController
 	
 protected:
 	
-	ANebulaPlayerController;
-	
 	virtual void BeginPlay() override;
 	
 	UPROPERTY(EditAnywhere, Category = "Input")

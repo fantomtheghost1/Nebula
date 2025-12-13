@@ -74,4 +74,13 @@ void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized
 
 void ANebulaPlayerController::Interact()
 {
+	FHitResult HitResult;
+	GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+	
+	if (HitResult.IsValidBlockingHit())
+	{
+		FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
+		Ship->SetNextWaypoint(NewLocation);
+	}
 }
+	
