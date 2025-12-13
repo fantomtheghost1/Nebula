@@ -23,7 +23,8 @@ void ANebulaPlayerController::BeginPlay()
 	{
 		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Quit);
 		EI->BindAction(ZoomAction, ETriggerEvent::Started, this, &ANebulaPlayerController::UpdateZoom);
-		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Quit);
+		EI->BindAction(InteractAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Interact);
+		EI->BindAction(AltAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::Interact);
 	}
 	
 	bShowMouseCursor = true;

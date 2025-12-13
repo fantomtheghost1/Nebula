@@ -35,6 +35,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* InteractAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+    UInputAction* AltAction;
+	
 public:
 	void Quit();
 	

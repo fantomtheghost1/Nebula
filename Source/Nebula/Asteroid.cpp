@@ -33,7 +33,5 @@ void AAsteroid::BeginPlay()
 void AAsteroid::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	float Test = 1.0f;
 }
 
