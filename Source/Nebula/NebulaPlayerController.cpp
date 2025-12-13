@@ -12,6 +12,10 @@ void ANebulaPlayerController::BeginPlay()
 	Super::BeginPlay();
 	
 	Ship = Cast<AShip>(GetPawn());
+	Camera = Ship->FindComponentByClass<UCameraComponent>();
+	SpringArm = Ship->FindComponentByClass<USpringArmComponent>();
+	
+	UpdateCameraRotation();
 	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
@@ -32,6 +36,15 @@ void ANebulaPlayerController::BeginPlay()
 	bEnableMouseOverEvents = true;
 }
 
+void ANebulaPlayerController::UpdateCameraRotation()
+{
+	FVector ToTarget = Ship->GetActorLocation() - Camera->GetComponentLocation();
+	FRotator CameraRot = Camera->GetComponentRotation();
+	
+	CameraRot.Pitch = ToTarget.Rotation().Pitch;
+	Camera->SetWorldRotation(CameraRot);
+}
+
 void ANebulaPlayerController::Quit()
 {
 	UKismetSystemLibrary::QuitGame(
@@ -44,7 +57,19 @@ void ANebulaPlayerController::Quit()
 
 void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized)
 {
-	Ship->SetZoom(ZoomNormalized);
+	float ZoomValue = ZoomNormalized.Get<float>() * ZoomSpeed;
+
+	if (SpringArm && ZoomMax > 0.0f && ZoomMin > 0.0f)
+	{
+		SpringArm->TargetArmLength = FMath::Clamp(
+			SpringArm->TargetArmLength + ZoomValue,
+			ZoomMin,
+			ZoomMax
+		);
+		UE_LOG(LogTemp, Warning, TEXT("Zoom Value: %f"), SpringArm->TargetArmLength);
+		
+	}
+	UpdateCameraRotation();
 }
 
 void ANebulaPlayerController::Interact()

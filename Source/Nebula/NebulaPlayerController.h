@@ -21,6 +21,8 @@ class NEBULA_API ANebulaPlayerController : public APlayerController
 	
 protected:
 	
+	ANebulaPlayerController;
+	
 	virtual void BeginPlay() override;
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -45,7 +47,23 @@ public:
 	
 	void Interact();
 	
+	void UpdateCameraRotation();
+	
 private:
+	
+	/* CAMERA VARIABLES */
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	float ZoomSpeed = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	float ZoomMax = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	float ZoomMin = 0.0f;
+	
+	UCameraComponent* Camera;
+	
+	USpringArmComponent* SpringArm;
 	
 	AShip* Ship;
 };

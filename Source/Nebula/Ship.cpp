@@ -18,20 +18,6 @@ AShip::AShip()
 void AShip::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	SpringArm = FindComponentByClass<USpringArmComponent>();
-	Camera = FindComponentByClass<UCameraComponent>();
-	
-	UpdateCameraRotation();
-}
-
-void AShip::UpdateCameraRotation()
-{
-	FVector ToTarget = GetActorLocation() - Camera->GetComponentLocation();
-	FRotator CameraRot = Camera->GetComponentRotation();
-	
-	CameraRot.Pitch = ToTarget.Rotation().Pitch;
-	Camera->SetWorldRotation(CameraRot);
 }
 
 // Called every frame
@@ -56,28 +42,6 @@ void AShip::SetFlySpeed(float NewSpeed)
 void AShip::GetFlySpeed(float& OutSpeed)
 {
 	OutSpeed = FlySpeed;
-}
-
-void AShip::SetZoom(const FInputActionValue& ZoomNormalized)
-{
-	float ZoomValue = ZoomNormalized.Get<float>() * ZoomSpeed;
-
-	if (SpringArm && ZoomMax > 0.0f && ZoomMin > 0.0f)
-	{
-		SpringArm->TargetArmLength = FMath::Clamp(
-			SpringArm->TargetArmLength + ZoomValue,
-			ZoomMin,
-			ZoomMax
-		);
-		UE_LOG(LogTemp, Warning, TEXT("Zoom Value: %f"), SpringArm->TargetArmLength);
-		
-	}
-	UpdateCameraRotation();
-}
-
-float AShip::GetZoom()
-{
-	return SpringArm->TargetArmLength / ZoomMax;
 }
 
 

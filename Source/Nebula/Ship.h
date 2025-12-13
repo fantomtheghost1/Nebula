@@ -29,11 +29,6 @@ public:
 	void SetFlySpeed(float NewSpeed);
 	
 	void GetFlySpeed(float& OutSpeed);
-	
-	void SetZoom(const FInputActionValue& ZoomNormalized);
-	
-	UFUNCTION(BlueprintCallable, Category = "Zoom")
-	float GetZoom();
 
 
 protected:
@@ -42,23 +37,6 @@ protected:
 
 private:	
 	
-	void UpdateCameraRotation();
-	
 	UPROPERTY(EditAnywhere)
 	float FlySpeed = 0.0f;
-	
-	
-	/* ZOOM VARIABLES */
-	UPROPERTY(EditAnywhere, Category = "Zoom")
-	float ZoomSpeed = 0.0f;
-	
-	UPROPERTY(EditAnywhere, Category = "Zoom")
-	float ZoomMax = 0.0f;
-	
-	UPROPERTY(EditAnywhere, Category = "Zoom")
-	float ZoomMin = 0.0f;
-	
-	USpringArmComponent* SpringArm;
-	
-	UCameraComponent* Camera;
 };
