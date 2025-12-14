@@ -28,7 +28,8 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Quit);
 		EI->BindAction(ZoomAction, ETriggerEvent::Started, this, &ANebulaPlayerController::UpdateZoom);
 		EI->BindAction(InteractAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Interact);
-		EI->BindAction(AltAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::Interact);
+		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::SetOrbitFlag);
+		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitFlag);
 	}
 	
 	bShowMouseCursor = true;
@@ -43,6 +44,18 @@ void ANebulaPlayerController::UpdateCameraRotation()
 	
 	CameraRot.Pitch = ToTarget.Rotation().Pitch;
 	Camera->SetWorldRotation(CameraRot);
+}
+
+void ANebulaPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	
+	if (Orbit)
+	{
+		FRotator NewRotation = Camera->GetComponentRotation();
+		NewRotation.Yaw += OrbitRate * DeltaTime;
+		Camera->SetWorldRotation(NewRotation);
+	}
 }
 
 void ANebulaPlayerController::Quit()
@@ -80,7 +93,13 @@ void ANebulaPlayerController::Interact()
 	if (HitResult.IsValidBlockingHit())
 	{
 		FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
+		//Ship->ClearWaypoints();
 		Ship->SetNextWaypoint(NewLocation);
 	}
+}
+
+void ANebulaPlayerController::SetOrbitFlag()
+{
+	Orbit = !Orbit;
 }
 	

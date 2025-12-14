@@ -38,14 +38,24 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
     UInputAction* AltAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* OrbitAction;
+	
 public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+	
 	void Quit();
 	
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
 	void Interact();
 	
+	void SetOrbitFlag();
+	
 	void UpdateCameraRotation();
+	
+	
 	
 private:
 	
@@ -59,9 +69,16 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	float ZoomMin = 0.0f;
 	
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	float OrbitRate = 0.0f;
+	
 	UCameraComponent* Camera;
 	
 	USpringArmComponent* SpringArm;
 	
 	AShip* Ship;
+	
+	FVector2D MouseDelta;
+	
+	bool Orbit = false;
 };

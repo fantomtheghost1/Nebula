@@ -27,9 +27,11 @@ void AShip::Tick(float DeltaTime)
 	
 	if (Waypoints.Num() > 0)
 	{
-		FVector NewPos = FMath::VInterpTo(GetActorLocation(), Waypoints[0], DeltaTime, FlySpeed);
+		//FVector NewPos = FMath::VInterpTo(GetActorLocation(), Waypoints[0], DeltaTime, FlySpeed);
+		FVector Direction = (Waypoints[0] - GetActorLocation()).GetSafeNormal();
+		FVector NewPos = GetActorLocation() + Direction * FlySpeed * DeltaTime;
 		SetActorLocation(NewPos);
-		if (GetActorLocation() == Waypoints[0])
+		if (FVector::Dist(GetActorLocation(), Waypoints[0]) <= FlySpeed * DeltaTime)
 		{
 			Waypoints.RemoveAt(0);
 		}
