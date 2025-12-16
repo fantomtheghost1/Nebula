@@ -50,4 +50,7 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
+	
+	UPROPERTY(EditAnywhere)
+	bool Owned = false;
 };

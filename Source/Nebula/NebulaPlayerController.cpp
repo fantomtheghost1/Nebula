@@ -15,8 +15,6 @@ void ANebulaPlayerController::BeginPlay()
 	Camera = Ship->FindComponentByClass<UCameraComponent>();
 	SpringArm = Ship->FindComponentByClass<USpringArmComponent>();
 	
-	UpdateCameraRotation();
-	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
@@ -28,8 +26,9 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Quit);
 		EI->BindAction(ZoomAction, ETriggerEvent::Started, this, &ANebulaPlayerController::UpdateZoom);
 		EI->BindAction(InteractAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Interact);
-		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::SetOrbitFlag);
-		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitFlag);
+		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::StartOrbit);
+		EI->BindAction(AltAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
+		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
 	}
 	
 	bShowMouseCursor = true;
@@ -37,25 +36,9 @@ void ANebulaPlayerController::BeginPlay()
 	bEnableMouseOverEvents = true;
 }
 
-void ANebulaPlayerController::UpdateCameraRotation()
-{
-	FVector ToTarget = Ship->GetActorLocation() - Camera->GetComponentLocation();
-	FRotator CameraRot = Camera->GetComponentRotation();
-	
-	CameraRot.Pitch = ToTarget.Rotation().Pitch;
-	Camera->SetWorldRotation(CameraRot);
-}
-
 void ANebulaPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
-	if (Orbit)
-	{
-		FRotator NewRotation = Camera->GetComponentRotation();
-		NewRotation.Yaw += OrbitRate * DeltaTime;
-		Camera->SetWorldRotation(NewRotation);
-	}
 }
 
 void ANebulaPlayerController::Quit()
@@ -79,10 +62,7 @@ void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized
 			ZoomMin,
 			ZoomMax
 		);
-		UE_LOG(LogTemp, Warning, TEXT("Zoom Value: %f"), SpringArm->TargetArmLength);
-		
 	}
-	UpdateCameraRotation();
 }
 
 void ANebulaPlayerController::Interact()
@@ -93,13 +73,30 @@ void ANebulaPlayerController::Interact()
 	if (HitResult.IsValidBlockingHit())
 	{
 		FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
-		//Ship->ClearWaypoints();
+		Ship->ClearWaypoints();
 		Ship->SetNextWaypoint(NewLocation);
 	}
 }
 
-void ANebulaPlayerController::SetOrbitFlag()
+void ANebulaPlayerController::StartOrbit()
 {
-	Orbit = !Orbit;
+	Orbit = true;
+}
+
+void ANebulaPlayerController::EndOrbit()
+{
+	Orbit = false;
+}
+
+void ANebulaPlayerController::SetOrbitAmount(const FInputActionValue& MouseXY)
+{
+	if (!Orbit || !SpringArm || !Camera) return;
+	
+	FRotator OrbitRotation = SpringArm->GetRelativeRotation();
+	OrbitRotation.Yaw += MouseXY.Get<FVector2D>().X * OrbitRate;
+	OrbitRotation.Pitch += MouseXY.Get<FVector2D>().Y * OrbitRate;
+	OrbitRotation.Pitch = FMath::Clamp(OrbitRotation.Pitch, -90.f, 90.f);
+
+	SpringArm->SetRelativeRotation(OrbitRotation);
 }
 	

@@ -51,12 +51,12 @@ public:
 	
 	void Interact();
 	
-	void SetOrbitFlag();
+	void StartOrbit();
+	 
+	void EndOrbit();
 	
-	void UpdateCameraRotation();
-	
-	
-	
+	void SetOrbitAmount(const FInputActionValue& MouseXY);
+
 private:
 	
 	/* CAMERA VARIABLES */
@@ -78,7 +78,7 @@ private:
 	
 	AShip* Ship;
 	
-	FVector2D MouseDelta;
+	float OrbitAmount;
 	
 	bool Orbit = false;
 };
