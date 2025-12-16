@@ -72,6 +72,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	float OrbitRate = 0.0f;
 	
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	AActor* CameraTarget;
+	
 	UCameraComponent* Camera;
 	
 	USpringArmComponent* SpringArm;

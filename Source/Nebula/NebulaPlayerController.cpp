@@ -15,6 +15,8 @@ void ANebulaPlayerController::BeginPlay()
 	Camera = Ship->FindComponentByClass<UCameraComponent>();
 	SpringArm = Ship->FindComponentByClass<USpringArmComponent>();
 	
+	CameraTarget = Ship;
+	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
@@ -39,6 +41,12 @@ void ANebulaPlayerController::BeginPlay()
 void ANebulaPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	if (CameraTarget && SpringArm)
+	{
+		const FVector TargetLocation = CameraTarget->GetActorLocation();
+		SpringArm->SetWorldLocation(TargetLocation);
+	}
 }
 
 void ANebulaPlayerController::Quit()
