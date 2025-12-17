@@ -16,6 +16,8 @@ AAsteroid::AAsteroid()
 	MeshComponent->SetupAttachment(RootComponent);
 
 	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement Component"));
+	
+	Tags.Add(FName(TEXT("Targetable")));
 }
 
 // Called when the game starts or when spawned

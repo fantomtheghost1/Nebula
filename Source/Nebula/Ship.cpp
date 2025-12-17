@@ -3,15 +3,12 @@
 
 #include "Ship.h"
 
-#include "Blueprint/UserWidget.h"
-#include "Misc/OutputDeviceNull.h"
-
-
 // Sets default values
 AShip::AShip()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	Tags.Add(FName(TEXT("Targetable")));
 }
 
 // Called when the game starts or when spawned
@@ -48,6 +45,18 @@ void AShip::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AShip::ClearWaypoints()
 {
 	Waypoints.Empty();
+}
+
+void AShip::DetermineInteract(FHitResult HitResult)
+{
+	if (HitResult.IsValidBlockingHit() && HitResult.GetActor()->ActorHasTag("Targetable"))
+	{
+		Target = HitResult.GetActor();
+	} else {
+		FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
+		ClearWaypoints();
+		SetNextWaypoint(NewLocation);
+	}
 }
 
 FVector AShip::GetNextWaypoint()

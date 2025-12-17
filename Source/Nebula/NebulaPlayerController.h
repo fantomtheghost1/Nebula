@@ -41,6 +41,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* OrbitAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* LockAction;
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -50,6 +53,14 @@ public:
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
 	void Interact();
+	
+	void UnlockCamera();
+	
+	void LockCamera();
+	
+	void UpdateLock();
+	
+	/* ORBIT FUNCTIONS */
 	
 	void StartOrbit();
 	 
@@ -73,11 +84,16 @@ private:
 	float OrbitRate = 0.0f;
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
+	bool Locked = true;
+	
+	UPROPERTY(EditAnywhere, Category = "Camera")
 	AActor* CameraTarget;
 	
 	UCameraComponent* Camera;
 	
 	USpringArmComponent* SpringArm;
+	
+	TArray<AShip*> Fleet;
 	
 	AShip* Ship;
 	

@@ -27,6 +27,8 @@ public:
 	
 	void ClearWaypoints();
 	
+	void DetermineInteract(FHitResult HitResult);
+	
 	/* SETTERS */
 	void SetFlySpeed(float NewSpeed);
 		
@@ -47,6 +49,33 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	float FlySpeed = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category = "Health")
+	float MaxHullPoints;
+	
+	UPROPERTY(VisibleAnywhere, Category = "Health")
+	float HullPoints;
+	
+	UPROPERTY(EditAnywhere, Category = "Health")
+	float MaxShieldPoints;
+	
+	UPROPERTY(VisibleAnywhere, Category = "Health")
+	float ShieldPoints;
+	
+	UPROPERTY(EditAnywhere)
+	float TurretDamage;
+	
+	UPROPERTY(EditAnywhere)
+	float TurretFireRate;
+	
+	UPROPERTY(EditAnywhere)
+	int NumOfTurrets;
+	
+	UPROPERTY(EditAnywhere)
+	bool IsMiner;
+	
+	UPROPERTY(VisibleAnywhere)
+	AActor* Target;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
