@@ -72,6 +72,9 @@ private:
 	int NumOfTurrets;
 	
 	UPROPERTY(EditAnywhere)
+	float TurretFireDelay;
+	
+	UPROPERTY(EditAnywhere)
 	bool IsMiner;
 	
 	UPROPERTY(VisibleAnywhere)

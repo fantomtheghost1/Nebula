@@ -20,6 +20,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
+	int Mine(int amount);
+	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* MeshComponent;
 	
@@ -27,10 +29,10 @@ public:
 	URotatingMovementComponent* RotatingMovementComponent;
 	
 	UPROPERTY(EditAnywhere)
-	float OreMax;
+	int OreMax;
 	
 	UPROPERTY(VisibleAnywhere)
-	float Ore;
+	int Ore;
 
 protected:
 	// Called when the game starts or when spawned

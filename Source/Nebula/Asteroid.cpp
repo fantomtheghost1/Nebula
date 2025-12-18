@@ -18,6 +18,7 @@ AAsteroid::AAsteroid()
 	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement Component"));
 	
 	Tags.Add(FName(TEXT("Targetable")));
+	Tags.Add(FName(TEXT("MiningTarget")));
 }
 
 // Called when the game starts or when spawned
@@ -37,3 +38,16 @@ void AAsteroid::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+int AAsteroid::Mine(int amount)
+{
+	if (Ore > amount)
+	{
+		Ore -= amount;
+	}
+	else
+	{
+		amount = Ore;
+		Destroy();
+	}
+	return amount;
+}

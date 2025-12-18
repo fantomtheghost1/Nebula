@@ -67,5 +67,11 @@
     <ClInclude Include="..\..\Source\Nebula\Ship.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\StarSystem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\StarSystem.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ AShip::AShip()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	Tags.Add(FName(TEXT("CombatTarget")));
 	Tags.Add(FName(TEXT("Targetable")));
 }
 
@@ -33,6 +34,12 @@ void AShip::Tick(float DeltaTime)
 			Waypoints.RemoveAt(0);
 		}
 	}
+	
+	/*if (Target->ActorHasTag("MiningTarget") && IsMiner)
+	{
+		
+		Target->Mine();
+	}*/
 }
 
 // Called to bind functionality to input
@@ -49,13 +56,18 @@ void AShip::ClearWaypoints()
 
 void AShip::DetermineInteract(FHitResult HitResult)
 {
-	if (HitResult.IsValidBlockingHit() && HitResult.GetActor()->ActorHasTag("Targetable"))
+	if (HitResult.IsValidBlockingHit())
 	{
-		Target = HitResult.GetActor();
-	} else {
-		FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
-		ClearWaypoints();
-		SetNextWaypoint(NewLocation);
+		if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
+		{
+			Target = HitResult.GetActor();
+		} 
+		else {
+			// If is click floor, move ship
+			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
+			ClearWaypoints();
+			SetNextWaypoint(NewLocation);
+		}
 	}
 }
 
