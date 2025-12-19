@@ -32,7 +32,6 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::StartOrbit);
 		EI->BindAction(AltAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
 		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
-		EI->BindAction(LockAction, ETriggerEvent::Started, this, &ANebulaPlayerController::UpdateLock);
 	}
 	
 	bShowMouseCursor = true;
@@ -44,7 +43,7 @@ void ANebulaPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-	if (CameraTarget && SpringArm && Locked)
+	if (CameraTarget && SpringArm)
 	{
 		const FVector TargetLocation = CameraTarget->GetActorLocation();
 		SpringArm->SetWorldLocation(TargetLocation);
@@ -63,6 +62,7 @@ void ANebulaPlayerController::Quit()
 
 void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized)
 {
+	if (DisableInput) return;
 	float ZoomValue = ZoomNormalized.Get<float>() * ZoomSpeed;
 
 	if (SpringArm && ZoomMax > 0.0f && ZoomMin > 0.0f)
@@ -77,61 +77,39 @@ void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized
 
 void ANebulaPlayerController::Interact()
 {
+	if (DisableInput) return;
+	
 	FHitResult HitResult;
 	GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 	
 	Ship->DetermineInteract(HitResult);
 }
 
-void ANebulaPlayerController::UnlockCamera()
+void ANebulaPlayerController::SetInputDisabled(bool InputDisabled)
 {
-	if (!SpringArm) return;
-
-	// Convert SpringArm's relative location (to parent) into world location
-	FVector WorldLocation = SpringArm->GetComponentLocation();
-	FRotator WorldRotation = SpringArm->GetComponentRotation();
-
-	// Detach from parent (the target)
-	SpringArm->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
-
-	// Maintain current world position and rotation
-	SpringArm->SetWorldLocation(WorldLocation);
-	SpringArm->SetWorldRotation(WorldRotation);
-	
-	Locked = false;
+	DisableInput = InputDisabled;
 }
 
-void ANebulaPlayerController::LockCamera()
+AShip* ANebulaPlayerController::GetShip()
 {
-	if (!CameraTarget || !SpringArm) return;
-
-	// Attach SpringArm to new target
-	SpringArm->AttachToComponent(CameraTarget->GetRootComponent(), FAttachmentTransformRules::KeepWorldTransform);
-
-	// Optionally reset local rotation
-	SpringArm->SetRelativeRotation(FRotator::ZeroRotator);
-
-	Locked = true;
-}
-
-void ANebulaPlayerController::UpdateLock()
-{
-	if (Locked) UnlockCamera();
-	else LockCamera();
+	return Ship;
 }
 
 void ANebulaPlayerController::StartOrbit()
 {
+	if (DisableInput) return;
 	Orbit = true;
 }
 
 void ANebulaPlayerController::EndOrbit()
 {
+	if (DisableInput) return;
 	Orbit = false;
 }
 
 void ANebulaPlayerController::SetOrbitAmount(const FInputActionValue& MouseXY)
 {
+	if (DisableInput) return;
 	if (!Orbit || !SpringArm || !Camera) return;
 	
 	FRotator OrbitRotation = SpringArm->GetRelativeRotation();

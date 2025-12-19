@@ -20,7 +20,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
-	int Mine(int amount);
+	void Interact();
 	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* MeshComponent;
@@ -38,4 +38,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> DockingUI;
+	
+	UUserWidget* DockingUIWidget;
 };

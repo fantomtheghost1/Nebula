@@ -54,12 +54,12 @@ public:
 	
 	void Interact();
 	
-	void UnlockCamera();
+	UFUNCTION(BlueprintCallable)
+	void SetInputDisabled(bool InputDisabled);
 	
-	void LockCamera();
-	
-	void UpdateLock();
-	
+	UFUNCTION(BlueprintCallable)
+	AShip* GetShip();
+
 	/* ORBIT FUNCTIONS */
 	
 	void StartOrbit();
@@ -84,7 +84,7 @@ private:
 	float OrbitRate = 0.0f;
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
-	bool Locked = true;
+	bool Idle = false;
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	AActor* CameraTarget;
@@ -100,4 +100,6 @@ private:
 	float OrbitAmount;
 	
 	bool Orbit = false;
+	
+	bool DisableInput = false;
 };

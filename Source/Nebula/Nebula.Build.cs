@@ -15,6 +15,7 @@ public class Nebula : ModuleRules
 			"Engine", 
 			"InputCore", 
 			"EnhancedInput",
+			"UMG",
 			"OnlineSubsystem",
 			"OnlineSubsystemUtils"
 		});

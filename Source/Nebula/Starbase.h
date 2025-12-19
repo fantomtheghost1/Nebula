@@ -4,31 +4,38 @@
 
 #include "CoreMinimal.h"
 #include "Ship.h"
-#include "Asteroid.h"
-#include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
-#include "StarSystem.generated.h"
+#include "Starbase.generated.h"
 
 UCLASS()
-class NEBULA_API AStarSystem : public AActor
+class NEBULA_API AStarbase : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AStarSystem();
-	
+	AStarbase();
+
 	virtual void Tick(float DeltaTime) override;
 	
-	void AddShipToSystem(AShip* Ship);
+	void Interact();
 	
-	void GetShipsInSystem(TArray<AShip*>& OutShips);
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 private:
-	UPROPERTY(VisibleAnywhere, Category="Ship")
-	TArray<AShip*> ShipsInSystem;
+	
+	UPROPERTY(EditAnywhere)
+	FString Type;
+	
+	USceneComponent* RootComp;
+	
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* MeshComp;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> DockingUI;
+	
+	UUserWidget* DockingUIWidget;
 };

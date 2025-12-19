@@ -4,6 +4,7 @@
 #include "Ship.h"
 
 #include "Relay.h"
+#include "Starbase.h"
 
 // Sets default values
 AShip::AShip()
@@ -60,18 +61,7 @@ void AShip::DetermineInteract(FHitResult HitResult)
 {
 	if (HitResult.IsValidBlockingHit())
 	{
-		if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
-		{
-			if (Relay)
-			{
-				Relay->Interact(this);
-			}
-		}
-		//else if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
-		//{
-			
-		//}
-		else if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
+		if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
 		{
 			Target = HitResult.GetActor();
 		} 
@@ -80,6 +70,28 @@ void AShip::DetermineInteract(FHitResult HitResult)
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			ClearWaypoints();
 			SetNextWaypoint(NewLocation);
+			
+			if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
+			{
+				if (Relay)
+				{
+					Relay->Interact(this);
+				}
+			}
+			else if (AStarbase* Starbase = Cast<AStarbase>(HitResult.GetActor()))
+			{
+				if (Starbase)
+				{
+					Starbase->Interact();
+				}
+			}
+			else if (AAsteroid* Asteroid = Cast<AAsteroid>(HitResult.GetActor()))
+			{
+				if (Asteroid)
+				{
+					Asteroid->Interact();
+				}
+			}
 		}
 	}
 }

@@ -34,6 +34,8 @@ public:
 		
 	void SetNextWaypoint(FVector NewWaypoint);
 	
+	void SetDocked(bool NewDocked);
+	
 	/* GETTERS */
 	void GetFlySpeed(float& OutSpeed);
 	
@@ -82,7 +84,4 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
-	
-	UPROPERTY(EditAnywhere)
-	bool Owned = false;
 };

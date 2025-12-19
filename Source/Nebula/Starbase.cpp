@@ -1,50 +1,46 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Asteroid.h"
+#include "Starbase.h"
 
 #include "NebulaPlayerController.h"
+#include "Ship.h"
 #include "Blueprint/UserWidget.h"
-#include "GameFramework/RotatingMovementComponent.h"
 
 // Sets default values
-AAsteroid::AAsteroid()
+AStarbase::AStarbase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
-	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	MeshComponent->SetupAttachment(RootComponent);
-
-	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement Component"));
 	
+	RootComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	RootComponent = RootComp;
+
+	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	MeshComp->SetupAttachment(RootComp);
+	
+	MeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	MeshComp->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
 }
 
 // Called when the game starts or when spawned
-void AAsteroid::BeginPlay()
+void AStarbase::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	float NewRotation = FMath::FRandRange(-17.0f, 17.0f);
-	FRotator NewRotationRate = FRotator(NewRotation, NewRotation, NewRotation);
-	RotatingMovementComponent->RotationRate = NewRotationRate;
-
 }
 
 // Called every frame
-void AAsteroid::Tick(float DeltaTime)
+void AStarbase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
-void AAsteroid::Interact()
+void AStarbase::Interact()
 {
 	ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
 	PC->SetInputDisabled(true);
 	PC->GetShip()->FindComponentByClass<UStaticMeshComponent>()->SetVisibility(false);
-
+	
 	if (DockingUI)
 	{
 		DockingUIWidget = CreateWidget<UUserWidget>(GetWorld(), DockingUI);
