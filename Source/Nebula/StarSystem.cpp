@@ -26,6 +26,7 @@ void AStarSystem::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Asteroid Spawning Logic
 	FVector Extent = SpawnBox->GetScaledBoxExtent();
 	FVector Origin = SpawnBox->GetComponentLocation();
 	
@@ -38,6 +39,7 @@ void AStarSystem::BeginPlay()
 		if (!Ast)
 			UE_LOG(LogTemp, Warning, TEXT("Failed to spawn asteroid at %s"), *RandomPoint.ToString());
 	}
+	
 }
 
 // Called every frame
