@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "StarSystem.h"
+#include "Ship.h"
 #include "GameFramework/Actor.h"
 #include "Relay.generated.h"
 
@@ -14,13 +16,23 @@ class NEBULA_API ARelay : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ARelay();
+	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+	
+	void Interact(AShip* TravelingShip);
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+	
+private:
+	
+	UPROPERTY(EditAnywhere)
+	AStarSystem* Connection;
+	
+	USceneComponent* RootComp;
+	
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* MeshComp;
 };

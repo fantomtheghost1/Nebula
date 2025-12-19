@@ -40,6 +40,12 @@
     <ClInclude Include="..\..\Source\Nebula\Asteroid.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Interactable.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Interactable.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
     </None>

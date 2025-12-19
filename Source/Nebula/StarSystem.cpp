@@ -34,7 +34,7 @@ void AStarSystem::BeginPlay()
 	{
 		FVector RandomPoint = UKismetMathLibrary::RandomPointInBoundingBox(Origin, Extent);
 		RandomPoint.Z = 10.0f;
-
+		
 		AAsteroid* Ast = GetWorld()->SpawnActor<AAsteroid>(AsteroidClass, RandomPoint, FRotator::ZeroRotator);
 		if (!Ast)
 			UE_LOG(LogTemp, Warning, TEXT("Failed to spawn asteroid at %s"), *RandomPoint.ToString());

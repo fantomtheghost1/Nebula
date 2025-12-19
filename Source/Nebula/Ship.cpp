@@ -3,6 +3,8 @@
 
 #include "Ship.h"
 
+#include "Relay.h"
+
 // Sets default values
 AShip::AShip()
 {
@@ -58,7 +60,18 @@ void AShip::DetermineInteract(FHitResult HitResult)
 {
 	if (HitResult.IsValidBlockingHit())
 	{
-		if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
+		if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
+		{
+			if (Relay)
+			{
+				Relay->Interact(this);
+			}
+		}
+		//else if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
+		//{
+			
+		//}
+		else if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
 		{
 			Target = HitResult.GetActor();
 		} 

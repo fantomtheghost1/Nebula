@@ -43,6 +43,7 @@ private:
 	UPROPERTY(EditAnywhere, Category="Asteroid")
 	float SpawnAreaY;
 	
+	// make into an array later
 	UPROPERTY(EditAnywhere, Category="Asteroid")
 	TSubclassOf<AAsteroid> AsteroidClass;
 	
