@@ -5,11 +5,16 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Ship.h"
+#include "GameFramework/GameUserSettings.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 void ANebulaPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	UGameUserSettings* Settings = GEngine->GetGameUserSettings();
+	Settings->SetOverallScalabilityLevel(0);
+	Settings->ApplySettings(true);
 	
 	Ship = Cast<AShip>(GetPawn());
 	Camera = Ship->FindComponentByClass<UCameraComponent>();
