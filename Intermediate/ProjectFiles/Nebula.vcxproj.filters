@@ -73,6 +73,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\ResourceNodeComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\SalvageComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\SalvageComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\TurretComponent.cpp">
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
@@ -103,6 +109,12 @@
     <ClInclude Include="..\..\Source\Nebula\Fleet.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\InteractionComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\InteractionComponent.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
     </None>
@@ -122,6 +134,12 @@
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Relay.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Salvage.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Salvage.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Ship.cpp">

@@ -9,19 +9,17 @@ ASalvage::ASalvage()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-}
-
-// Called when the game starts or when spawned
-void ASalvage::BeginPlay()
-{
-	Super::BeginPlay();
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	MeshComponent->SetupAttachment(RootComponent);
+	
+	MeshComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	MeshComponent->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
+	
+	Resources = CreateDefaultSubobject<UCargoComponent>(TEXT("Resources"));
+	
+	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
+	
+	SalvageComponent = CreateDefaultSubobject<USalvageComponent>(TEXT("Salvage"));
 }
-
-// Called every frame
-void ASalvage::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

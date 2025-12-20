@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DockingComponent.h"
 #include "Components/ActorComponent.h"
+#include "Nebula/Fleet.h"
 #include "Nebula/DataAssets/CargoItemAsset.h"
 #include "ResourceNodeComponent.generated.h"
 
@@ -18,16 +18,10 @@ public:
 	// Sets default values for this component's properties
 	UResourceNodeComponent();
 	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
 	UFUNCTION(BlueprintCallable)
 	void StartGather();
 	
 	void GatherResource();
-	
-	UPROPERTY(VisibleAnywhere)
-	UDockingComponent* DockingComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	AFleet* DockedFleet;

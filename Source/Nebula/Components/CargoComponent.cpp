@@ -3,13 +3,6 @@
 
 #include "CargoComponent.h"
 
-// Sets default values for this component's properties
-UCargoComponent::UCargoComponent()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-}
-
-
 // Called when the game starts
 void UCargoComponent::BeginPlay()
 {
@@ -18,14 +11,7 @@ void UCargoComponent::BeginPlay()
 	if (MaxCargoSlots <= 0) FMessageLog("PIE").Error(FText::FromString("MaxCargoSlots must be greater than zero."));
 }
 
-
-// Called every frame
-void UCargoComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-}
-
-void UCargoComponent::AddCargo(UCargoItemAsset* NewCargo, int Quantity)
+void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, int Quantity)
 {
 	if (Cargo.Num() >= MaxCargoSlots) return;
 	
@@ -41,6 +27,17 @@ void UCargoComponent::AddCargo(UCargoItemAsset* NewCargo, int Quantity)
 	} else
 	{
 		Cargo.Add(NewCargoData);
+	}
+	CargoChanged.Broadcast();
+}
+
+void UCargoComponent::AddCargo(UCargoComponent* OtherCargo)
+{
+	if (Cargo.Num() >= MaxCargoSlots) return;
+	
+	for (FCargoItemData CargoData : OtherCargo->Cargo)
+	{
+		AddCargoItem(CargoData.ItemAsset, CargoData.Quantity);
 	}
 	CargoChanged.Broadcast();
 }

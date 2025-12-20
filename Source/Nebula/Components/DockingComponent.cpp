@@ -7,31 +7,6 @@
 #include "ResourceNodeComponent.h"
 #include "Blueprint/UserWidget.h"
 
-// Sets default values for this component's properties
-UDockingComponent::UDockingComponent()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-}
-
-
-// Called when the game starts
-void UDockingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	if (GetOwner()->FindComponentByClass<UResourceNodeComponent>())
-	{
-		DockLimit = 1;
-		IsResourceNode = true;
-	}
-}
-
-
-// Called every frame
-void UDockingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-}
-
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
 	if (DockedFleets.Num() < DockLimit)
@@ -52,8 +27,17 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		DockedFleets.Add(DockedFleet);
 		DockedFleet->DockedTo = GetOwner();
 		
-		GetOwner()->FindComponentByClass<UResourceNodeComponent>()->DockingComponent = this;
-		GetOwner()->FindComponentByClass<UResourceNodeComponent>()->DockedFleet = DockedFleet;
+		if (UResourceNodeComponent* ResourceNodeComponent = GetOwner()->FindComponentByClass<UResourceNodeComponent>())
+		{
+			ResourceNodeComponent->DockedFleet = DockedFleet;
+		} else if (USalvageComponent* SalvageComponent = GetOwner()->FindComponentByClass<USalvageComponent>())
+		{
+			SalvageComponent->DockedFleet = DockedFleet;
+		}
 	}
 }
 
+void UDockingComponent::Interact(AFleet* InteractingFleet)
+{
+	Dock(true, InteractingFleet);
+}

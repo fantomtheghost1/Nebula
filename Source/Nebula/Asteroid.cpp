@@ -46,11 +46,3 @@ void AAsteroid::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-
-void AAsteroid::Interact(AFleet* InteractingFleet)
-{
-	if (DockingComponent)
-	{
-		DockingComponent->Dock(true, InteractingFleet);
-	}
-}

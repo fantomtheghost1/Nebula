@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/CargoComponent.h"
+#include "Components/DockingComponent.h"
 #include "Salvage.generated.h"
 
 UCLASS()
@@ -15,12 +17,17 @@ public:
 	// Sets default values for this actor's properties
 	ASalvage();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+private:	
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* MeshComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UDockingComponent* DockingComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UCargoComponent* Resources;
+	
+	UPROPERTY(EditAnywhere)
+	USalvageComponent* SalvageComponent;
 };

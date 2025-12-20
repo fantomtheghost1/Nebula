@@ -60,26 +60,14 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			FindComponentByClass<UMoverComponent>()->ClearWaypoints();
 			FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewLocation);
 			
-			if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
+			UE_LOG(LogTemp, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
+			if (UDockingComponent* DockingComponent = HitResult.GetActor()->FindComponentByClass<UDockingComponent>())
 			{
-				if (Relay)
-				{
-					Relay->Interact(this);
-				}
+				DockingComponent->Interact(this);
 			}
-			else if (AStarbase* Starbase = Cast<AStarbase>(HitResult.GetActor()))
+			else if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
 			{
-				if (Starbase)
-				{
-					Starbase->Interact(this);
-				}
-			}
-			else if (AAsteroid* Asteroid = Cast<AAsteroid>(HitResult.GetActor()))
-			{
-				if (Asteroid)
-				{
-					Asteroid->Interact(this);
-				}
+				Relay->Interact(this);
 			}
 		}
 	}

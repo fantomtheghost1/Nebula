@@ -22,16 +22,9 @@ void UResourceNodeComponent::BeginPlay()
 	ResourceAmount = ResourceMax;
 }
 
-// Called every frame
-void UResourceNodeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-}
-
 void UResourceNodeComponent::StartGather()
 {
 	if (!DockedFleet) return;
-	if (!DockingComponent) return;
 	
 	GetWorld()->GetTimerManager().SetTimer(
 		ProgressTimer,
@@ -45,7 +38,7 @@ void UResourceNodeComponent::StartGather()
 void UResourceNodeComponent::GatherResource()
 {
 	ResourceAmount -= GatherRate;
-	DockedFleet->FindComponentByClass<UCargoComponent>()->AddCargo(ResourceItem, GatherRate);
+	DockedFleet->FindComponentByClass<UCargoComponent>()->AddCargoItem(ResourceItem, GatherRate);
 	
 	if (DockedFleet->DockedTo == nullptr)
 	{

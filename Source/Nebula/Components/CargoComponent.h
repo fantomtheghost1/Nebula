@@ -16,16 +16,13 @@ class NEBULA_API UCargoComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	UCargoComponent();
-	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
+
 	UPROPERTY(BlueprintAssignable, Category="Events")
 	FCargoChanged CargoChanged;
 	
-	void AddCargo(UCargoItemAsset* NewCargo, int Quantity);
+	void AddCargoItem(UCargoItemAsset* NewCargo, int Quantity);
+	
+	void AddCargo(UCargoComponent* OtherCargo);
 	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
 	TArray<FCargoItemData> GetCargo();

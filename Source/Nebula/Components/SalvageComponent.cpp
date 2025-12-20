@@ -3,32 +3,26 @@
 
 #include "SalvageComponent.h"
 
-// Sets default values for this component's properties
-USalvageComponent::USalvageComponent()
+void USalvageComponent::StartSalvage()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
-}
-
-
-// Called when the game starts
-void USalvageComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
+	if (!DockedFleet) return;
 	
+	GetWorld()->GetTimerManager().SetTimer(
+		SalvageTimer,
+		this,
+		&USalvageComponent::SalvageComplete,
+		SalvageDuration, 
+		true
+	);
 }
 
-
-// Called every frame
-void USalvageComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void USalvageComponent::SalvageComplete()
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
+	if (UCargoComponent* Resources = GetOwner()->FindComponentByClass<UCargoComponent>())
+	{
+		DockedFleet->FindComponentByClass<UCargoComponent>()->AddCargo(Resources);
+		GetOwner()->Destroy();
+	}
 }
+
 

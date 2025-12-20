@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Nebula/Fleet.h"
 #include "SalvageComponent.generated.h"
 
 
@@ -13,16 +14,19 @@ class NEBULA_API USalvageComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	USalvageComponent();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintCallable)
+	void StartSalvage();
+	
+	void SalvageComplete();
+	
+	UPROPERTY(VisibleAnywhere)
+	AFleet* DockedFleet;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
+private:
+	
+	UPROPERTY(EditAnywhere)
+	float SalvageDuration;
+	
+	FTimerHandle SalvageTimer;
 };
