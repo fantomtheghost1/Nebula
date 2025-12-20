@@ -6,11 +6,7 @@
 // Sets default values for this component's properties
 UCargoComponent::UCargoComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -18,6 +14,8 @@ UCargoComponent::UCargoComponent()
 void UCargoComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	if (MaxCargoSlots <= 0) FMessageLog("PIE").Error(FText::FromString("MaxCargoSlots must be greater than zero."));
 }
 
 
@@ -25,7 +23,23 @@ void UCargoComponent::BeginPlay()
 void UCargoComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
 
-	// ...
+void UCargoComponent::AddCargo(UCargoItemAsset* NewCargo, int Quantity)
+{
+	FCargoItemData NewCargoData;
+	
+	NewCargoData.ItemID = NewCargo->ItemID;
+	NewCargoData.StackMax = NewCargo->StackMax;
+	NewCargoData.Quantity = Quantity;
+	NewCargoData.ItemAsset = NewCargo;
+	
+	Cargo.Add(NewCargoData);
+	CargoChanged.Broadcast();
+}
+
+TArray<FCargoItemData> UCargoComponent::GetCargo()
+{
+	return Cargo;
 }
 

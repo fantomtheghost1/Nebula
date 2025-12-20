@@ -4,8 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "../DataStructs/CargoItemData.h"
+#include "Nebula/DataAssets/CargoItemAsset.h"
 #include "CargoComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCargoChanged);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEBULA_API UCargoComponent : public UActorComponent
@@ -15,14 +18,26 @@ class NEBULA_API UCargoComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UCargoComponent();
+	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
+	UPROPERTY(BlueprintAssignable, Category="Events")
+	FCargoChanged CargoChanged;
+	
+	void AddCargo(UCargoItemAsset* NewCargo, int Quantity);
+	
+	TArray<FCargoItemData> GetCargo();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
+private:	
+	
+	UPROPERTY(EditAnywhere)
+	int MaxCargoSlots;
+	
+	UPROPERTY(VisibleAnywhere)
+	TArray<FCargoItemData> Cargo;
 };

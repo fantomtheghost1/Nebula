@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "DockingComponent.h"
 #include "Components/ActorComponent.h"
+#include "Nebula/DataAssets/CargoItemAsset.h"
 #include "ResourceNodeComponent.generated.h"
 
 
@@ -38,7 +39,7 @@ protected:
 private:	
 	
 	UPROPERTY(EditAnywhere)
-	FName ResourceID;
+	UCargoItemAsset* ResourceItem;
 	
 	UPROPERTY(EditAnywhere)
 	int ResourceMax;

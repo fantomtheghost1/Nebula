@@ -40,34 +40,67 @@
     <ClInclude Include="..\..\Source\Nebula\Asteroid.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\CargoComponent.cpp">
-      <Filter>Source\Nebula</Filter>
+    <Filter Include="Source\Nebula\Components">
+      <UniqueIdentifier>{E98A4B53-95EF-3EB4-B4CF-0B3DA4DBD9D1}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Nebula\Components\CargoComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\CargoComponent.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Components\CargoComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\DockingComponent.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Components\DockingComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\DockingComponent.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Components\DockingComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\HealthComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\HealthComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\MoverComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\MoverComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\ResourceNodeComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\ResourceNodeComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\TurretComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\DataAssets">
+      <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Nebula\DataAssets\CargoItemAsset.cpp">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DataAssets\CargoItemAsset.h">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\DataStructs">
+      <UniqueIdentifier>{D65BE82E-AE7E-317C-9908-BA78D16A03CE}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Nebula\DataStructs\CargoItemData.h">
+      <Filter>Source\Nebula\DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
+      <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Fleet.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Fleet.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\HealthComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\HealthComponent.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\MoverComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\MoverComponent.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
@@ -91,19 +124,10 @@
     <ClInclude Include="..\..\Source\Nebula\Relay.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\ResourceNodeComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\ResourceNodeComponent.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Ship.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Ship.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Nebula\ShipData.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Starbase.cpp">
@@ -116,12 +140,6 @@
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\StarSystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\TurretComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\TurretComponent.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
   </ItemGroup>

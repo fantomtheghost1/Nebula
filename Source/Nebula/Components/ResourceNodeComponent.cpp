@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "ResourceNodeComponent.h"
 
+#include "Logging/MessageLog.h"
+
 // Sets default values for this component's properties
 UResourceNodeComponent::UResourceNodeComponent()
 {
@@ -11,6 +13,12 @@ UResourceNodeComponent::UResourceNodeComponent()
 void UResourceNodeComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	if (ResourceMax <= 0) FMessageLog("PIE").Error(FText::FromString("ResourceMax must be greater than zero."));
+	if (GatherRate <= 0) FMessageLog("PIE").Error(FText::FromString("GatherRate must be greater than zero."));
+	if (UpdateInterval <= 0) FMessageLog("PIE").Error(FText::FromString("UpdateInterval must be greater than zero."));
+	if (!ResourceItem) FMessageLog("PIE").Error(FText::FromString("ResourceItem must exist."));
+	
 	ResourceAmount = ResourceMax;
 }
 

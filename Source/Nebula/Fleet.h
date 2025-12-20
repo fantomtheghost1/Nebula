@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/MoverComponent.h"
 #include "GameFramework/Pawn.h"
-#include "ShipData.h"
+#include "DataStructs/ShipData.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Fleet.generated.h"
