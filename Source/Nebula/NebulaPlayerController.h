@@ -44,6 +44,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* LockAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* InventoryAction;
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -53,6 +56,8 @@ public:
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
 	void Interact();
+	
+	void ToggleInventory();
 	
 	UFUNCTION(BlueprintCallable)
 	void SetInputDisabled(bool InputDisabled);
@@ -89,6 +94,11 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	AActor* CameraTarget;
 	
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> InventoryWidgetClass;
+	
+	UUserWidget* InventoryWidget;
+	
 	UCameraComponent* Camera;
 	
 	USpringArmComponent* SpringArm;
@@ -98,6 +108,8 @@ private:
 	AShip* Ship;
 	
 	float OrbitAmount;
+	
+	bool Inventory = false;
 	
 	bool Orbit = false;
 	

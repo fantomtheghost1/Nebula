@@ -2,9 +2,13 @@
 
 
 #include "NebulaPlayerController.h"
+
+#include "AITestsCommon.h"
+#include "AITestsCommon.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Ship.h"
+#include "Blueprint/UserWidget.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -37,6 +41,7 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::StartOrbit);
 		EI->BindAction(AltAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
 		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
+		EI->BindAction(InventoryAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleInventory);
 	}
 	
 	bShowMouseCursor = true;
@@ -110,6 +115,24 @@ void ANebulaPlayerController::EndOrbit()
 {
 	if (DisableInput) return;
 	Orbit = false;
+}
+
+void ANebulaPlayerController::ToggleInventory()
+{
+	if (!InventoryWidget)
+	{
+		InventoryWidget = CreateWidget<UUserWidget>(GetWorld(), InventoryWidgetClass);	
+	}
+	
+	if (InventoryWidget && !Inventory)
+	{
+		InventoryWidget->AddToViewport();
+		Inventory = true;
+	} else if (InventoryWidget && Inventory) {
+		UE_LOG(LogTemp, Warning, TEXT("Hiding inventory"));
+		InventoryWidget->RemoveFromParent();
+		Inventory = false;
+	}
 }
 
 void ANebulaPlayerController::SetOrbitAmount(const FInputActionValue& MouseXY)
