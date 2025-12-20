@@ -45,6 +45,7 @@ void UResourceNodeComponent::StartGather()
 void UResourceNodeComponent::GatherResource()
 {
 	ResourceAmount -= GatherRate;
+	DockedFleet->FindComponentByClass<UCargoComponent>()->AddCargo(ResourceItem, GatherRate);
 	
 	if (DockedFleet->DockedTo == nullptr)
 	{

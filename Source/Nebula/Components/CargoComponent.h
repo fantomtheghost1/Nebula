@@ -27,7 +27,11 @@ public:
 	
 	void AddCargo(UCargoItemAsset* NewCargo, int Quantity);
 	
+	UFUNCTION(BlueprintCallable, Category="Cargo")
 	TArray<FCargoItemData> GetCargo();
+	
+	UFUNCTION(BlueprintCallable, Category="Cargo")
+	int GetMaxSlots();
 
 protected:
 	// Called when the game starts

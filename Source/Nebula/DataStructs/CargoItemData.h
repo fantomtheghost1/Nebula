@@ -19,4 +19,9 @@ struct FCargoItemData
 	int StackMax = 0;
 	
 	UCargoItemAsset* ItemAsset;
+	
+	bool operator==(const FCargoItemData& Other) const
+	{
+		return ItemID == Other.ItemID;
+	}
 };

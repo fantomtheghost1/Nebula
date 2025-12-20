@@ -27,6 +27,8 @@ void UCargoComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void UCargoComponent::AddCargo(UCargoItemAsset* NewCargo, int Quantity)
 {
+	if (Cargo.Num() >= MaxCargoSlots) return;
+	
 	FCargoItemData NewCargoData;
 	
 	NewCargoData.ItemID = NewCargo->ItemID;
@@ -34,12 +36,22 @@ void UCargoComponent::AddCargo(UCargoItemAsset* NewCargo, int Quantity)
 	NewCargoData.Quantity = Quantity;
 	NewCargoData.ItemAsset = NewCargo;
 	
-	Cargo.Add(NewCargoData);
+	if (Cargo.Contains(NewCargoData)) {
+		Cargo[Cargo.IndexOfByKey(NewCargoData)].Quantity += Quantity;
+	} else
+	{
+		Cargo.Add(NewCargoData);
+	}
 	CargoChanged.Broadcast();
 }
 
 TArray<FCargoItemData> UCargoComponent::GetCargo()
 {
 	return Cargo;
+}
+
+int UCargoComponent::GetMaxSlots()
+{
+	return MaxCargoSlots;
 }
 

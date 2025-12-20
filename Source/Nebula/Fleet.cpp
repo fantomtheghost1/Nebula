@@ -24,6 +24,8 @@ AFleet::AFleet()
 	MeshComponent->SetupAttachment(RootComponent);
 	
 	Mover = CreateDefaultSubobject<UMoverComponent>(TEXT("Mover"));
+	
+	Cargo = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));
 }
 
 // Called when the game starts or when spawned

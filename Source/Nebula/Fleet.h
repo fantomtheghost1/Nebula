@@ -7,6 +7,7 @@
 #include "GameFramework/Pawn.h"
 #include "DataStructs/ShipData.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CargoComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Fleet.generated.h"
 
@@ -53,4 +54,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	UMoverComponent* Mover;
 
+	UPROPERTY(EditAnywhere)
+	UCargoComponent* Cargo;
 };
