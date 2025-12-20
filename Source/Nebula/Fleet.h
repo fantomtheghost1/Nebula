@@ -3,7 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/MoverComponent.h"
 #include "GameFramework/Pawn.h"
+#include "ShipData.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Fleet.generated.h"
 
 UCLASS()
@@ -14,16 +18,39 @@ class NEBULA_API AFleet : public APawn
 public:
 	// Sets default values for this pawn's properties
 	AFleet();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	void DetermineInteract(FHitResult HitResult);
+	
+	UFUNCTION(BlueprintCallable)
+	TArray<FShipData> GetFleetData();
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AActor* DockedTo;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	
+private:
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* MeshComponent;
+	
+	UPROPERTY(EditAnywhere)
+	USpringArmComponent* SpringArmComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UCameraComponent* CameraComponent;
+	
+	UPROPERTY(EditAnywhere)
+	TArray<FShipData> Fleet;
+	
+	UPROPERTY(EditAnywhere)
+	UMoverComponent* Mover;
 
 };

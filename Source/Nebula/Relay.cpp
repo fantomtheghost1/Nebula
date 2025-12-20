@@ -4,6 +4,8 @@
 
 #include "Relay.h"
 
+#include "Fleet.h"
+
 // Sets default values
 ARelay::ARelay()
 {
@@ -32,11 +34,11 @@ void ARelay::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ARelay::Interact(AShip* TravelingShip)
+void ARelay::Interact(AFleet* TravelingFleet)
 {
 	if (Connection)
 	{
-		TravelingShip->SetActorLocation(Connection->GetActorLocation());
+		TravelingFleet->SetActorLocation(Connection->GetActorLocation());
 	}
 }
 

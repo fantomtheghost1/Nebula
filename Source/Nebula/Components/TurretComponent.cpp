@@ -2,6 +2,8 @@
 
 
 #include "TurretComponent.h"
+#include "TimerManager.h"
+
 
 // Sets default values for this component's properties
 UTurretComponent::UTurretComponent()
@@ -18,9 +20,17 @@ UTurretComponent::UTurretComponent()
 void UTurretComponent::BeginPlay()
 {
 	Super::BeginPlay();
+}
 
-	// ...
+void UTurretComponent::Fire()
+{
+	if (!Target || !TargetHealthComp) {
+		GetWorld()->GetTimerManager().ClearTimer(FireTimerHandle);
+		return;
+	}
 	
+	UE_LOG(LogTemp, Warning, TEXT("Firing"));
+	TargetHealthComp->TakeDamage(TurretDamage);
 }
 
 
@@ -28,7 +38,15 @@ void UTurretComponent::BeginPlay()
 void UTurretComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
 
-	// ...
+void UTurretComponent::SetTarget(AActor* NewTarget)
+{
+	Target = NewTarget;
+	TargetHealthComp = Target->FindComponentByClass<UHealthComponent>();
+	
+	GetWorld()->GetTimerManager().SetTimer(
+		FireTimerHandle, this, &UTurretComponent::Fire, TurretFireRate / NumOfTurrets, true
+	);
 }
 

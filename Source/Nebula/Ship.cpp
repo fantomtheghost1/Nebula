@@ -3,8 +3,8 @@
 
 #include "Ship.h"
 
-#include "Relay.h"
-#include "Starbase.h"
+#include "Components/MoverComponent.h"
+#include "Components/TurretComponent.h"
 
 // Sets default values
 AShip::AShip()
@@ -13,6 +13,23 @@ AShip::AShip()
 	PrimaryActorTick.bCanEverTick = true;
 	Tags.Add(FName(TEXT("CombatTarget")));
 	Tags.Add(FName(TEXT("Targetable")));
+	
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	MeshComponent->SetupAttachment(RootComponent);
+	
+	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArmComponent->SetupAttachment(RootComponent);
+	
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	CameraComponent->SetupAttachment(SpringArmComponent);
+	
+	Mover = CreateDefaultSubobject<UMoverComponent>(TEXT("Mover"));
+	
+	Health = CreateDefaultSubobject<UHealthComponent>(TEXT("Health"));
+	
+	Turret = CreateDefaultSubobject<UTurretComponent>(TEXT("Turret"));
 }
 
 // Called when the game starts or when spawned
@@ -25,24 +42,6 @@ void AShip::BeginPlay()
 void AShip::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
-	if (Waypoints.Num() > 0)
-	{
-		//FVector NewPos = FMath::VInterpTo(GetActorLocation(), Waypoints[0], DeltaTime, FlySpeed);
-		FVector Direction = (Waypoints[0] - GetActorLocation()).GetSafeNormal();
-		FVector NewPos = GetActorLocation() + Direction * FlySpeed * DeltaTime;
-		SetActorLocation(NewPos);
-		if (FVector::Dist(GetActorLocation(), Waypoints[0]) <= FlySpeed * DeltaTime)
-		{
-			Waypoints.RemoveAt(0);
-		}
-	}
-	
-	/*if (Target->ActorHasTag("MiningTarget") && IsMiner)
-	{
-		
-		Target->Mine();
-	}*/
 }
 
 // Called to bind functionality to input
@@ -51,75 +50,19 @@ void AShip::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
-/* WAYPOINT FUNCTIONS */
-void AShip::ClearWaypoints()
-{
-	Waypoints.Empty();
-}
-
 void AShip::DetermineInteract(FHitResult HitResult)
 {
 	if (HitResult.IsValidBlockingHit())
 	{
 		if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
 		{
-			Target = HitResult.GetActor();
+			FindComponentByClass<UTurretComponent>()->SetTarget(HitResult.GetActor());
 		} 
 		else {
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
-			ClearWaypoints();
-			SetNextWaypoint(NewLocation);
-			
-			if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
-			{
-				if (Relay)
-				{
-					Relay->Interact(this);
-				}
-			}
-			else if (AStarbase* Starbase = Cast<AStarbase>(HitResult.GetActor()))
-			{
-				if (Starbase)
-				{
-					Starbase->Interact();
-				}
-			}
-			else if (AAsteroid* Asteroid = Cast<AAsteroid>(HitResult.GetActor()))
-			{
-				if (Asteroid)
-				{
-					Asteroid->Interact();
-				}
-			}
+			FindComponentByClass<UMoverComponent>()->ClearWaypoints();
+			FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewLocation);
 		}
 	}
 }
-
-FVector AShip::GetNextWaypoint()
-{
-	return Waypoints[0];
-}
-
-TArray<FVector> AShip::GetWaypoints()
-{
-	return Waypoints;
-}
-
-void AShip::SetNextWaypoint(FVector NewWaypoint)
-{
-	Waypoints.Add(NewWaypoint);
-}
-
-/* FLY FUNCTIONS */
-void AShip::SetFlySpeed(float NewSpeed)
-{
-	FlySpeed = NewSpeed;
-}
-
-void AShip::GetFlySpeed(float& OutSpeed)
-{
-	OutSpeed = FlySpeed;
-}
-
-

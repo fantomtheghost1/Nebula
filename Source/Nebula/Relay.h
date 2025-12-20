@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Fleet.h"
 #include "StarSystem.h"
 #include "Ship.h"
 #include "GameFramework/Actor.h"
@@ -20,7 +21,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
-	void Interact(AShip* TravelingShip);
+	void Interact(AFleet* TravelingFleet);
 
 protected:
 	// Called when the game starts or when spawned

@@ -16,13 +16,30 @@ public:
 	// Sets default values for this component's properties
 	UMoverComponent();
 
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void SetFlySpeed(float NewSpeed);
+		
+	void SetNextWaypoint(FVector NewWaypoint);
+	
+	void ClearWaypoints();
+	
+	void GetFlySpeed(float& OutSpeed);
+	
+	FVector GetNextWaypoint();
+	
+	TArray<FVector> GetWaypoints();
+	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+private:	
 	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 		
+	UPROPERTY(EditAnywhere)
+	float FlySpeed = 0.0f;
+	
+	UPROPERTY(VisibleAnywhere)
+	TArray<FVector> Waypoints;
 };

@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/DockingComponent.h"
+#include "Components/ResourceNodeComponent.h"
 #include "GameFramework/Actor.h"
 #include "Asteroid.generated.h"
 
@@ -20,26 +22,22 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
-	void Interact();
+	void Interact(AFleet* InteractingFleet);
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 	
+private:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* MeshComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	URotatingMovementComponent* RotatingMovementComponent;
 	
-	UPROPERTY(EditAnywhere)
-	int OreMax;
+	UPROPERTY(VisibleAnywhere)
+	UDockingComponent* DockingComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-	int Ore;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<class UUserWidget> DockingUI;
-	
-	UUserWidget* DockingUIWidget;
+	UResourceNodeComponent* ResourceNodeComponent;
 };

@@ -3,10 +3,6 @@
 
 #include "Starbase.h"
 
-#include "NebulaPlayerController.h"
-#include "Ship.h"
-#include "Blueprint/UserWidget.h"
-
 // Sets default values
 AStarbase::AStarbase()
 {
@@ -21,6 +17,8 @@ AStarbase::AStarbase()
 	
 	MeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	MeshComp->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
+	
+	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 }
 
 // Called when the game starts or when spawned
@@ -35,15 +33,10 @@ void AStarbase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AStarbase::Interact()
+void AStarbase::Interact(AFleet* InteractingFleet)
 {
-	ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
-	PC->SetInputDisabled(true);
-	PC->GetShip()->FindComponentByClass<UStaticMeshComponent>()->SetVisibility(false);
-	
-	if (DockingUI)
+	if (DockingComponent)
 	{
-		DockingUIWidget = CreateWidget<UUserWidget>(GetWorld(), DockingUI);
-		DockingUIWidget->AddToViewport();
+		DockingComponent->Dock(true, InteractingFleet);
 	}
 }

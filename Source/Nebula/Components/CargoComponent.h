@@ -4,17 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "ResourceNodeComponent.generated.h"
+#include "CargoComponent.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class NEBULA_API UResourceNodeComponent : public UActorComponent
+class NEBULA_API UCargoComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UResourceNodeComponent();
+	UCargoComponent();
 
 protected:
 	// Called when the game starts

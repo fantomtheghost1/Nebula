@@ -3,11 +3,8 @@
 
 #include "NebulaPlayerController.h"
 
-#include "AITestsCommon.h"
-#include "AITestsCommon.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
-#include "Ship.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -20,12 +17,12 @@ void ANebulaPlayerController::BeginPlay()
 	Settings->SetOverallScalabilityLevel(0);
 	Settings->ApplySettings(true);
 	
-	Ship = Cast<AShip>(GetPawn());
-	Camera = Ship->FindComponentByClass<UCameraComponent>();
-	SpringArm = Ship->FindComponentByClass<USpringArmComponent>();
-	Fleet.Add(Ship);
+	Fleet = Cast<AFleet>(GetPawn());
+	Camera = Fleet->FindComponentByClass<UCameraComponent>();
+	SpringArm = Fleet->FindComponentByClass<USpringArmComponent>();
+	SpringArm->TargetArmLength = ZoomMin;
 	
-	CameraTarget = Ship;
+	CameraTarget = Fleet;
 	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
@@ -42,6 +39,7 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(AltAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
 		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
 		EI->BindAction(InventoryAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleInventory);
+		EI->BindAction(TabAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleFleetComp);
 	}
 	
 	bShowMouseCursor = true;
@@ -92,7 +90,7 @@ void ANebulaPlayerController::Interact()
 	FHitResult HitResult;
 	GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 	
-	Ship->DetermineInteract(HitResult);
+	Fleet->DetermineInteract(HitResult);
 }
 
 void ANebulaPlayerController::SetInputDisabled(bool InputDisabled)
@@ -100,9 +98,9 @@ void ANebulaPlayerController::SetInputDisabled(bool InputDisabled)
 	DisableInput = InputDisabled;
 }
 
-AShip* ANebulaPlayerController::GetShip()
+AFleet* ANebulaPlayerController::GetFleet()
 {
-	return Ship;
+	return Fleet;
 }
 
 void ANebulaPlayerController::StartOrbit()
@@ -132,6 +130,24 @@ void ANebulaPlayerController::ToggleInventory()
 		UE_LOG(LogTemp, Warning, TEXT("Hiding inventory"));
 		InventoryWidget->RemoveFromParent();
 		Inventory = false;
+	}
+}
+
+void ANebulaPlayerController::ToggleFleetComp()
+{
+	if (!GameWidget)
+	{
+		GameWidget = CreateWidget<UUserWidget>(GetWorld(), GameWidgetClass);	
+	}
+	
+	if (GameWidget && !FleetComp)
+	{
+		GameWidget->AddToViewport();
+		FleetComp = true;
+	} else if (GameWidget && FleetComp) {
+		GameWidget->RemoveFromParent();
+		GameWidget = nullptr;
+		FleetComp = false;
 	}
 }
 

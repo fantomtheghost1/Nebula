@@ -40,6 +40,36 @@
     <ClInclude Include="..\..\Source\Nebula\Asteroid.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\CargoComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\CargoComponent.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DockingComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DockingComponent.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Fleet.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Fleet.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\HealthComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\HealthComponent.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\MoverComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\MoverComponent.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
     </None>
@@ -61,10 +91,19 @@
     <ClInclude Include="..\..\Source\Nebula\Relay.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\ResourceNodeComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\ResourceNodeComponent.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Ship.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Ship.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\ShipData.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Starbase.cpp">
@@ -77,6 +116,12 @@
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\StarSystem.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\TurretComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\TurretComponent.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
   </ItemGroup>

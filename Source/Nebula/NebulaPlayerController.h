@@ -3,9 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Fleet.h"
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
 #include "Ship.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "NebulaPlayerController.generated.h"
 
 /**
@@ -47,6 +50,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* InventoryAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* TabAction;
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -59,11 +65,13 @@ public:
 	
 	void ToggleInventory();
 	
+	void ToggleFleetComp();
+	
 	UFUNCTION(BlueprintCallable)
 	void SetInputDisabled(bool InputDisabled);
 	
 	UFUNCTION(BlueprintCallable)
-	AShip* GetShip();
+	AFleet* GetFleet();
 
 	/* ORBIT FUNCTIONS */
 	
@@ -99,17 +107,24 @@ private:
 	
 	UUserWidget* InventoryWidget;
 	
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> GameWidgetClass;
+	
+	UUserWidget* GameWidget;
+	
 	UCameraComponent* Camera;
 	
 	USpringArmComponent* SpringArm;
 	
-	TArray<AShip*> Fleet;
+	AFleet* Fleet;
 	
-	AShip* Ship;
+	//AShip* Ship;
 	
 	float OrbitAmount;
 	
 	bool Inventory = false;
+	
+	bool FleetComp = false;
 	
 	bool Orbit = false;
 	

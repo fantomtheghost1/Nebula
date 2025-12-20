@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../Fleet.h"
 #include "Components/ActorComponent.h"
 #include "DockingComponent.generated.h"
 
@@ -15,14 +16,28 @@ class NEBULA_API UDockingComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UDockingComponent();
+	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void Dock(bool IsPlayer, AFleet* DockedFleet);
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
+	
+private:
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> DockingUI;
+	
+	UPROPERTY(EditAnywhere)
+	int DockLimit;
+	
+	UPROPERTY(VisibleAnywhere)
+	TArray<AFleet*> DockedFleets;
+	
+	bool IsResourceNode = false;
+	
+	UUserWidget* DockingUIWidget;
 };

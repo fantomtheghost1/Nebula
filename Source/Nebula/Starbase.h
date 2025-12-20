@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Ship.h"
+#include "Components/DockingComponent.h"
 #include "GameFramework/Actor.h"
 #include "Starbase.generated.h"
 
@@ -18,7 +18,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 	
-	void Interact();
+	void Interact(AFleet* InteractingFleet);
 	
 protected:
 	// Called when the game starts or when spawned
@@ -33,6 +33,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* MeshComp;
+	
+	UPROPERTY(VisibleAnywhere)
+	UDockingComponent* DockingComponent;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UUserWidget> DockingUI;

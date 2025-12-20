@@ -3,8 +3,6 @@
 
 #include "Asteroid.h"
 
-#include "NebulaPlayerController.h"
-#include "Blueprint/UserWidget.h"
 #include "GameFramework/RotatingMovementComponent.h"
 
 // Sets default values
@@ -18,7 +16,11 @@ AAsteroid::AAsteroid()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	MeshComponent->SetupAttachment(RootComponent);
 
-	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement Component"));
+	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement"));
+	
+	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
+	
+	ResourceNodeComponent = CreateDefaultSubobject<UResourceNodeComponent>(TEXT("Resource Node"));
 	
 }
 
@@ -29,8 +31,11 @@ void AAsteroid::BeginPlay()
 	
 	float NewRotation = FMath::FRandRange(-17.0f, 17.0f);
 	FRotator NewRotationRate = FRotator(NewRotation, NewRotation, NewRotation);
-	RotatingMovementComponent->RotationRate = NewRotationRate;
-
+	
+	if (RotatingMovementComponent)
+	{
+		RotatingMovementComponent->RotationRate = NewRotationRate;
+	}
 }
 
 // Called every frame
@@ -39,15 +44,10 @@ void AAsteroid::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AAsteroid::Interact()
+void AAsteroid::Interact(AFleet* InteractingFleet)
 {
-	ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
-	PC->SetInputDisabled(true);
-	PC->GetShip()->FindComponentByClass<UStaticMeshComponent>()->SetVisibility(false);
-
-	if (DockingUI)
+	if (DockingComponent)
 	{
-		DockingUIWidget = CreateWidget<UUserWidget>(GetWorld(), DockingUI);
-		DockingUIWidget->AddToViewport();
+		DockingComponent->Dock(true, InteractingFleet);
 	}
 }
