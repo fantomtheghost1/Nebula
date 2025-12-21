@@ -80,6 +80,9 @@ public:
 	void EndOrbit();
 	
 	void SetOrbitAmount(const FInputActionValue& MouseXY);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Credits;
 
 private:
 	
