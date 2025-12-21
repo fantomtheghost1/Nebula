@@ -2,9 +2,11 @@
 
 #include "Fleet.h"
 
+#include "NebulaGameInstance.h"
+#include "NebulaGameMode.h"
 #include "Relay.h"
 #include "Starbase.h"
-#include "Components/TurretComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -50,9 +52,14 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 {
 	if (HitResult.IsValidBlockingHit())
 	{
-		if (HitResult.GetActor()->ActorHasTag("Targetable") && HitResult.GetActor() != this)
+		if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
 		{
-			FindComponentByClass<UTurretComponent>()->SetTarget(HitResult.GetActor());
+			UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
+			if (GI)
+			{
+				AFleet* EnemyFleet = Cast<AFleet>(HitResult.GetActor());
+				GI->StartBattle(this, EnemyFleet);
+			}
 		} 
 		else {
 			// If is click floor, move ship

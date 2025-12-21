@@ -28,4 +28,7 @@ struct FShipData
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ship")
 	bool Flagship = false;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ship")
+	bool InPlayerFleet = false;
 };

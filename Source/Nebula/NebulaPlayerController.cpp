@@ -18,11 +18,25 @@ void ANebulaPlayerController::BeginPlay()
 	Settings->ApplySettings(true);
 	
 	Fleet = Cast<AFleet>(GetPawn());
-	Camera = Fleet->FindComponentByClass<UCameraComponent>();
-	SpringArm = Fleet->FindComponentByClass<USpringArmComponent>();
-	SpringArm->TargetArmLength = ZoomMin;
+	Ship = Cast<AShip>(GetPawn());
 	
-	CameraTarget = Fleet;
+	if (Fleet)
+	{
+		Camera = Fleet->FindComponentByClass<UCameraComponent>();
+		SpringArm = Fleet->FindComponentByClass<USpringArmComponent>();
+		SpringArm->TargetArmLength = ZoomMin;
+		
+		CameraTarget = Fleet;
+	}
+	
+	if (Ship)
+	{
+		Camera = Ship->FindComponentByClass<UCameraComponent>();
+		SpringArm = Ship->FindComponentByClass<USpringArmComponent>();
+		SpringArm->TargetArmLength = ZoomMin;
+		
+		CameraTarget = Ship;
+	}
 	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
@@ -90,7 +104,13 @@ void ANebulaPlayerController::Interact()
 	FHitResult HitResult;
 	GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 	
-	Fleet->DetermineInteract(HitResult);
+	if (Fleet)
+	{
+		Fleet->DetermineInteract(HitResult);
+	} else if (Ship)
+	{
+		Ship->DetermineInteract(HitResult);
+	}
 }
 
 void ANebulaPlayerController::SetInputDisabled(bool InputDisabled)

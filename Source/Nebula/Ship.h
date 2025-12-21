@@ -27,6 +27,9 @@ public:
 	
 	void DetermineInteract(FHitResult HitResult);
 	
+	UPROPERTY(EditAnywhere)
+	bool IsPlayerShip;
+	
 	/* SETTERS */
 	void SetDocked(bool NewDocked);
 

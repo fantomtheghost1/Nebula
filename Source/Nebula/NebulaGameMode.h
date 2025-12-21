@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Fleet.h"
+#include "Ship.h"
 #include "GameFramework/GameModeBase.h"
 #include "NebulaGameMode.generated.h"
 
@@ -14,4 +16,17 @@ class NEBULA_API ANebulaGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	
+	void InitializeBattle(int NewPlayerFleetCount, int NewAIFleetCount);
+	
+	void SubtractAIShip();
+	
+	void SubtractPlayerShip();
+	
+private:
+	
+	int PlayerShipCount = 0;
+	
+	int AIShipCount = 0;
 };

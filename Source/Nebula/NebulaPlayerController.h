@@ -118,7 +118,7 @@ private:
 	
 	AFleet* Fleet;
 	
-	//AShip* Ship;
+	AShip* Ship;
 	
 	float OrbitAmount;
 	

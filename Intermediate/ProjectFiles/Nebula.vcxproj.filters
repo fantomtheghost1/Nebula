@@ -109,12 +109,6 @@
     <ClInclude Include="..\..\Source\Nebula\Fleet.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\InteractionComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\InteractionComponent.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
     </None>
@@ -122,6 +116,18 @@
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Nebula.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\NebulaGameInstance.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\NebulaGameInstance.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\NebulaGameMode.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\NebulaGameMode.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\NebulaPlayerController.cpp">

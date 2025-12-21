@@ -3,6 +3,10 @@
 
 #include "HealthComponent.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "Nebula/NebulaGameMode.h"
+#include "Nebula/Ship.h"
+
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
 {
@@ -39,6 +43,18 @@ void UHealthComponent::TakeDamage(float DamageAmount)
 	{
 		Hull = 0.0f;
 		Dead = true;
+		
+		if (GetOwner()->IsA(AShip::StaticClass()))
+		{
+			ANebulaGameMode* GM = Cast<ANebulaGameMode>(UGameplayStatics::GetGameMode(this));
+			if (Cast<AShip>(GetOwner())->IsPlayerShip)
+			{
+				GM->SubtractPlayerShip();
+			} else
+			{
+				GM->SubtractAIShip();
+			}
+		}
 		GetOwner()->Destroy();
 	}
 }
