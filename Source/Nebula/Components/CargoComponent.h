@@ -24,8 +24,12 @@ public:
 	
 	void AddCargo(UCargoComponent* OtherCargo);
 	
+	void SubtractCargoItem(UCargoItemAsset* NewCargo, int Quantity);
+	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
 	TArray<FCargoItemData> GetCargo();
+	
+	UCargoItemAsset* GetCargoItemByID(FName ItemID);
 	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
 	int GetMaxSlots();
@@ -41,4 +45,6 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FCargoItemData> Cargo;
+	
+	TArray<UCargoItemAsset*> CargoItemAssets;
 };

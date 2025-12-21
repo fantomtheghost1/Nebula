@@ -3,3 +3,7 @@
 
 #include "CargoItemAsset.h"
 
+FPrimaryAssetId UCargoItemAsset::GetPrimaryAssetId() const
+{
+	return FPrimaryAssetId(TEXT("CargoItem"), GetFName());
+}

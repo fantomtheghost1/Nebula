@@ -3,6 +3,7 @@
 
 #include "DockingComponent.h"
 
+#include "CraftingComponent.h"
 #include "../NebulaPlayerController.h"
 #include "ResourceNodeComponent.h"
 #include "Blueprint/UserWidget.h"
@@ -33,6 +34,9 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		} else if (USalvageComponent* SalvageComponent = GetOwner()->FindComponentByClass<USalvageComponent>())
 		{
 			SalvageComponent->DockedFleet = DockedFleet;
+		} else if (UCraftingComponent* CraftingComponent = GetOwner()->FindComponentByClass<UCraftingComponent>())
+		{
+			CraftingComponent->DockedFleet = DockedFleet;
 		}
 	}
 }

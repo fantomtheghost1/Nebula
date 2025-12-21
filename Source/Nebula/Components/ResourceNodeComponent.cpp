@@ -59,7 +59,6 @@ void UResourceNodeComponent::GatherResource()
 		GetOwner()->Destroy();
 	}
 	
-	GetOwner()->FindComponentByClass<UDockingComponent>()->DockingUIWidget->UpdateProgressBar();
 	// Send to player cargo bay
 }
 

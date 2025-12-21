@@ -10,11 +10,12 @@
  * 
  */
 UCLASS()
-class NEBULA_API UCargoItemAsset : public UDataAsset
+class NEBULA_API UCargoItemAsset : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 	
 public: 
+	virtual FPrimaryAssetId GetPrimaryAssetId() const override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Cargo")
 	FName ItemID = "";

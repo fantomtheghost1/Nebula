@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Nebula/Fleet.h"
+#include "Nebula/DataAssets/CraftingRecipeAsset.h"
 #include "CraftingComponent.generated.h"
 
 
@@ -13,16 +15,30 @@ class NEBULA_API UCraftingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	UCraftingComponent();
+	
+	UFUNCTION(BlueprintCallable)
+	TArray<UCraftingRecipeAsset*> GetRecipes() const;
+	
+	UFUNCTION(BlueprintCallable)
+	UCraftingRecipeAsset* GetRecipe(FName RecipeName);
+	
+	UFUNCTION(BlueprintCallable)
+	void StartCraft(UCraftingRecipeAsset* Recipe);
+	
+	UFUNCTION(BlueprintCallable)
+	void Craft();
+	
+	AFleet* DockedFleet;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
+private:
+	
+	TArray<UCraftingRecipeAsset*> Recipes;
+	
+	UCraftingRecipeAsset* RecipeCrafting;
+	
+	FTimerHandle ProgressTimer;
 };

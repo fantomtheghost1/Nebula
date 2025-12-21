@@ -3,3 +3,7 @@
 
 #include "CraftingRecipeAsset.h"
 
+FPrimaryAssetId UCraftingRecipeAsset::GetPrimaryAssetId() const
+{
+	return FPrimaryAssetId(TEXT("CraftingRecipe"), GetFName());
+}
