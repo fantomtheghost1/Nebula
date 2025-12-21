@@ -8,23 +8,32 @@
 #include "Nebula/DataAssets/CargoItemAsset.h"
 #include "ResourceNodeComponent.generated.h"
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEBULA_API UResourceNodeComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
+	
 	// Sets default values for this component's properties
 	UResourceNodeComponent();
 	
 	UFUNCTION(BlueprintCallable)
 	void StartGather();
 	
+	UFUNCTION(BlueprintCallable)
+	void StopGather();
+	
 	void GatherResource();
 	
 	UPROPERTY(VisibleAnywhere)
 	AFleet* DockedFleet;
+	
+	UFUNCTION(BlueprintCallable)
+	int GetResourceMax();
+	
+	UFUNCTION(BlueprintCallable)
+	int GetResourceAmount();
 
 protected:
 	// Called when the game starts
@@ -39,7 +48,7 @@ private:
 	int ResourceMax;
 	
 	UPROPERTY(VisibleAnywhere)
-	int ResourceAmount;
+	int ResourceAmount; // amount / amountmax == percentage
 	
 	UPROPERTY(EditAnywhere)
 	float GatherRate;

@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "ResourceNodeComponent.h"
 
+#include "DockingComponent.h"
 #include "Logging/MessageLog.h"
 
 // Sets default values for this component's properties
@@ -35,6 +36,13 @@ void UResourceNodeComponent::StartGather()
 	);
 }
 
+void UResourceNodeComponent::StopGather()
+{
+	if (!DockedFleet) return;
+	
+	GetWorld()->GetTimerManager().PauseTimer(ProgressTimer);
+}
+
 void UResourceNodeComponent::GatherResource()
 {
 	ResourceAmount -= GatherRate;
@@ -50,6 +58,18 @@ void UResourceNodeComponent::GatherResource()
 	{
 		GetOwner()->Destroy();
 	}
+	
+	GetOwner()->FindComponentByClass<UDockingComponent>()->DockingUIWidget->UpdateProgressBar();
 	// Send to player cargo bay
+}
+
+int UResourceNodeComponent::GetResourceMax()
+{
+	return ResourceMax;
+}
+
+int UResourceNodeComponent::GetResourceAmount()
+{
+	return ResourceAmount;
 }
 

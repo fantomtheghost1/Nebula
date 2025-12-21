@@ -5,43 +5,32 @@
 #include "CoreMinimal.h"
 #include "Components/DockingComponent.h"
 #include "GameFramework/Actor.h"
-#include "Starbase.generated.h"
+#include "GameFramework/RotatingMovementComponent.h"
+#include "Planet.generated.h"
 
 UCLASS()
-class NEBULA_API AStarbase : public AActor
+class NEBULA_API APlanet : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AStarbase();
-
+	APlanet();
+	
+	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
-	void Interact(AFleet* InteractingFleet);
-	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 private:
-	
-	UPROPERTY(EditAnywhere)
-	FString Type;
-	
-	USceneComponent* RootComp;
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* MeshComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* MeshComp;
+	URotatingMovementComponent* RotatingMovementComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	UDockingComponent* DockingComponent;
-	
-	UPROPERTY(VisibleAnywhere)
-	UCargoComponent* CargoComponent;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<class UUserWidget> DockingUI;
-	
-	UUserWidget* DockingUIWidget;
 };

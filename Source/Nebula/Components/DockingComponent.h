@@ -20,6 +20,8 @@ public:
 	
 	void Interact(AFleet* InteractingFleet);
 	
+	UUserWidget* DockingUIWidget;
+	
 private:
 	
 	UPROPERTY(EditAnywhere)
@@ -32,6 +34,4 @@ private:
 	TArray<AFleet*> DockedFleets;
 	
 	bool IsResourceNode = false;
-	
-	UUserWidget* DockingUIWidget;
 };

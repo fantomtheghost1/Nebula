@@ -136,6 +136,12 @@
     <ClInclude Include="..\..\Source\Nebula\NebulaPlayerController.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Planet.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Planet.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Relay.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>

@@ -19,6 +19,8 @@ AStarbase::AStarbase()
 	MeshComp->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
+	
+	CargoComponent = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));
 }
 
 // Called when the game starts or when spawned
