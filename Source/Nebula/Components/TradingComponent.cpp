@@ -3,32 +3,29 @@
 
 #include "TradingComponent.h"
 
-// Sets default values for this component's properties
-UTradingComponent::UTradingComponent()
+#include "Nebula/NebulaPlayerController.h"
+
+void UTradingComponent::Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer)
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
+	if (IsPlayer)
+	{
+		APlayerController* PC = GetWorld()->GetFirstPlayerController();
+		ANebulaPlayerController* NPC = Cast<ANebulaPlayerController>(PC);
+		
+		if (DockedFleet)
+		{
+			if (DockedFleet->FindComponentByClass<UCargoComponent>())
+			{
+				DockedFleet->FindComponentByClass<UCargoComponent>()->SubtractCargoItem(ItemToTrade, 1);
+				NPC->Credits += ItemToTrade->SalePrice;
+				UE_LOG(LogTemp, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
+			} else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Docked fleet does not have a cargo component."));
+			}
+		} else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Docked fleet is null."));
+		}
+	}
 }
-
-
-// Called when the game starts
-void UTradingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UTradingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
-

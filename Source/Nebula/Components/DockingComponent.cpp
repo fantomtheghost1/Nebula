@@ -6,6 +6,7 @@
 #include "CraftingComponent.h"
 #include "../NebulaPlayerController.h"
 #include "ResourceNodeComponent.h"
+#include "TradingComponent.h"
 #include "Blueprint/UserWidget.h"
 
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
@@ -31,12 +32,18 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		if (UResourceNodeComponent* ResourceNodeComponent = GetOwner()->FindComponentByClass<UResourceNodeComponent>())
 		{
 			ResourceNodeComponent->DockedFleet = DockedFleet;
-		} else if (USalvageComponent* SalvageComponent = GetOwner()->FindComponentByClass<USalvageComponent>())
+		}
+		if (USalvageComponent* SalvageComponent = GetOwner()->FindComponentByClass<USalvageComponent>())
 		{
 			SalvageComponent->DockedFleet = DockedFleet;
-		} else if (UCraftingComponent* CraftingComponent = GetOwner()->FindComponentByClass<UCraftingComponent>())
+		} 
+		if (UCraftingComponent* CraftingComponent = GetOwner()->FindComponentByClass<UCraftingComponent>())
 		{
 			CraftingComponent->DockedFleet = DockedFleet;
+		} 
+		if (UTradingComponent* TradingComponent = GetOwner()->FindComponentByClass<UTradingComponent>())
+		{
+			TradingComponent->DockedFleet = DockedFleet;
 		}
 	}
 }

@@ -40,6 +40,7 @@ void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, int Quantity)
 	NewCargoData.StackMax = NewCargo->StackMax;
 	NewCargoData.Quantity = Quantity;
 	NewCargoData.ItemAsset = NewCargo;
+	NewCargoData.SalePrice = NewCargo->SalePrice;
 	
 	int32 Index = Cargo.IndexOfByKey(NewCargoData);
 	if (Index != INDEX_NONE)
