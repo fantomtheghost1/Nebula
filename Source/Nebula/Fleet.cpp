@@ -64,8 +64,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 		else {
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
-			FindComponentByClass<UMoverComponent>()->ClearWaypoints();
-			FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewLocation);
+			SetNewWaypoint(NewLocation);
 			
 			UE_LOG(LogTemp, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
 			if (UDockingComponent* DockingComponent = HitResult.GetActor()->FindComponentByClass<UDockingComponent>())
@@ -78,6 +77,12 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			}
 		}
 	}
+}
+
+void AFleet::SetNewWaypoint(FVector NewPosition)
+{
+	FindComponentByClass<UMoverComponent>()->ClearWaypoints();
+	FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewPosition);
 }
 
 TArray<FShipData> AFleet::GetFleetData()

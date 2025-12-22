@@ -28,6 +28,7 @@ public:
 	
 	FVector GetNextWaypoint();
 	
+	UFUNCTION(BlueprintCallable)
 	TArray<FVector> GetWaypoints();
 	
 protected:

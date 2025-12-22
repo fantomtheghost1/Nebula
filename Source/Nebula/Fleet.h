@@ -29,6 +29,9 @@ public:
 	void DetermineInteract(FHitResult HitResult);
 	
 	UFUNCTION(BlueprintCallable)
+	void SetNewWaypoint(FVector NewPosition);
+	
+	UFUNCTION(BlueprintCallable)
 	TArray<FShipData> GetFleetData();
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

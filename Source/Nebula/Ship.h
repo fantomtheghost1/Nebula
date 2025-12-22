@@ -30,6 +30,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool IsPlayerShip;
 	
+	UFUNCTION(BlueprintCallable)
+	void SetNewWaypoint(FVector NewPosition);
+	
 	/* SETTERS */
 	void SetDocked(bool NewDocked);
 

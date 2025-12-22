@@ -64,8 +64,13 @@ void AShip::DetermineInteract(FHitResult HitResult)
 		else {
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
-			FindComponentByClass<UMoverComponent>()->ClearWaypoints();
-			FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewLocation);
+			SetNewWaypoint(NewLocation);
 		}
 	}
+}
+
+void AShip::SetNewWaypoint(FVector NewPosition)
+{
+	FindComponentByClass<UMoverComponent>()->ClearWaypoints();
+	FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewPosition);
 }
