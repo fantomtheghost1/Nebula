@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/DockingComponent.h"
+#include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/RotatingMovementComponent.h"
 #include "Planet.generated.h"
@@ -30,6 +31,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	URotatingMovementComponent* RotatingMovementComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* SphereCollision;
 	
 	UPROPERTY(VisibleAnywhere)
 	UDockingComponent* DockingComponent;

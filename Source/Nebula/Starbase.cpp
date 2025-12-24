@@ -20,6 +20,9 @@ AStarbase::AStarbase()
 	MeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	MeshComp->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
 	
+	SphereCollision = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Collision"));
+	SphereCollision->SetupAttachment(RootComponent);
+	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 	
 	CargoComponent = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));

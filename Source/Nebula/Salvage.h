@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/CargoComponent.h"
 #include "Components/DockingComponent.h"
+#include "Components/SphereComponent.h"
 #include "Salvage.generated.h"
 
 UCLASS()
@@ -30,4 +31,7 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	USalvageComponent* SalvageComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* SphereCollision;
 };

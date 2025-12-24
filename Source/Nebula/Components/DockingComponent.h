@@ -7,6 +7,7 @@
 #include "SalvageComponent.h"
 #include "../Fleet.h"
 #include "Components/ActorComponent.h"
+#include "Components/SphereComponent.h"
 #include "DockingComponent.generated.h"
 
 
@@ -22,7 +23,22 @@ public:
 	
 	UUserWidget* DockingUIWidget;
 	
+	UFUNCTION(BlueprintCallable)
+	void ClearDockedFleets();
+	
+protected:
+	
+	virtual void BeginPlay() override;
+	
 private:
+	UFUNCTION()
+	void OnOverlapBegin(
+		UPrimitiveComponent* OverlappedComp, 
+		AActor* OtherActor, 
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> DockingUI;
@@ -32,6 +48,8 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<AFleet*> DockedFleets;
+	
+	USphereComponent* SphereComp;
 	
 	bool IsResourceNode = false;
 };

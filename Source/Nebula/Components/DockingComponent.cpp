@@ -8,6 +8,7 @@
 #include "ResourceNodeComponent.h"
 #include "TradingComponent.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/SphereComponent.h"
 
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
@@ -45,10 +46,54 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		{
 			TradingComponent->DockedFleet = DockedFleet;
 		}
+		UE_LOG(LogTemp, Warning, TEXT("Docked %s"), *DockedFleet->GetName());
 	}
 }
 
 void UDockingComponent::Interact(AFleet* InteractingFleet)
 {
-	Dock(true, InteractingFleet);
+	return;
+}
+
+void UDockingComponent::ClearDockedFleets()
+{
+	DockedFleets.Empty();
+}
+
+void UDockingComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	SphereComp = GetOwner()->FindComponentByClass<USphereComponent>();
+	if (SphereComp)
+	{
+		SphereComp->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+		SphereComp->OnComponentBeginOverlap.AddDynamic(
+			this,
+			&UDockingComponent::OnOverlapBegin);
+	} else
+	{
+		FMessageLog("PIE").Error(FText::FromString("Object Owner must have Sphere Collision."));
+	}
+	
+	
+}
+
+void UDockingComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap"));
+	if (AFleet* DockingFleet = Cast<AFleet>(OtherActor))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap with %s"), *DockingFleet->GetName());
+		if (DockingFleet->IsPlayerFleet)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap with Player"));
+			Dock(true, DockingFleet);
+		} else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap with AI"));
+			Dock(false, DockingFleet);
+		}
+	}
 }

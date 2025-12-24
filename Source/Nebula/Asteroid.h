@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/DockingComponent.h"
 #include "Components/ResourceNodeComponent.h"
+#include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "Asteroid.generated.h"
 
@@ -35,6 +36,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UDockingComponent* DockingComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* SphereCollision;
 	
 	UPROPERTY(VisibleAnywhere)
 	UResourceNodeComponent* ResourceNodeComponent;

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/DockingComponent.h"
+#include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "Starbase.generated.h"
 
@@ -39,6 +40,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UCargoComponent* CargoComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* SphereCollision;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UUserWidget> DockingUI;
