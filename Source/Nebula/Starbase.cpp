@@ -3,6 +3,8 @@
 
 #include "Starbase.h"
 
+#include "NebulaGameInstance.h"
+
 // Sets default values
 AStarbase::AStarbase()
 {
@@ -33,6 +35,11 @@ void AStarbase::BeginPlay()
 void AStarbase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(1))
+	{
+		Affiliation = *Found;
+	}
 }
 
 void AStarbase::Interact(AFleet* InteractingFleet)

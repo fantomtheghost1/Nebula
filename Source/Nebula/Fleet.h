@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Faction.h"
 #include "Components/MoverComponent.h"
 #include "GameFramework/Pawn.h"
 #include "DataStructs/ShipData.h"
@@ -34,6 +35,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<FShipData> GetFleetData();
 	
+	UPROPERTY(EditAnywhere)
+	bool IsPlayerFleet;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AActor* DockedTo;
 
@@ -59,4 +63,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;
+	
+	UPROPERTY(VisibleAnywhere)
+	UFaction* Affiliation;
 };

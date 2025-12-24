@@ -97,12 +97,6 @@
     <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\CraftingRecipeAsset.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\CraftingRecipeAsset.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\DataAssets">
       <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
     </Filter>
@@ -110,6 +104,12 @@
       <Filter>Source\Nebula\DataAssets</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\DataAssets\CargoItemAsset.h">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DataAssets\CraftingRecipeAsset.cpp">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DataAssets\CraftingRecipeAsset.h">
       <Filter>Source\Nebula\DataAssets</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\DataStructs">
@@ -121,10 +121,22 @@
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Faction.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Faction.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Fleet.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Fleet.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\MapManager.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\MapManager.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
@@ -189,6 +201,24 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\StarSystem.h">
       <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\StateStructs">
+      <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Nebula\StateStructs\AsteroidState.h">
+      <Filter>Source\Nebula\StateStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\StateStructs\FleetState.h">
+      <Filter>Source\Nebula\StateStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\StateStructs\PlanetState.h">
+      <Filter>Source\Nebula\StateStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\StateStructs\StarbaseState.h">
+      <Filter>Source\Nebula\StateStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\StateStructs\SystemState.h">
+      <Filter>Source\Nebula\StateStructs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

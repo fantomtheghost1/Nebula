@@ -4,10 +4,10 @@
 
 #include "NebulaGameInstance.h"
 
-void ANebulaGameMode::InitializeBattle(int NewPlayerFleetCount, int NewAIFleetCount)
+void ANebulaGameMode::InitializeBattle(int NewPlayerShipCount, int NewAIShipCount)
 {
-	AIShipCount = NewAIFleetCount;
-	PlayerShipCount = NewPlayerFleetCount;
+	AIShipCount = NewAIShipCount;
+	PlayerShipCount = NewPlayerShipCount;
 }
 
 void ANebulaGameMode::SubtractAIShip()
@@ -17,7 +17,7 @@ void ANebulaGameMode::SubtractAIShip()
 	if (AIShipCount <= 0)
 	{
 		AIShipCount = 0;
-		Cast<UNebulaGameInstance>(GetGameInstance())->EndBattle();
+		Cast<UNebulaGameInstance>(GetGameInstance())->EndBattle(false);
 	}
 }
 
@@ -28,6 +28,6 @@ void ANebulaGameMode::SubtractPlayerShip()
 	if (PlayerShipCount <= 0)
 	{
 		PlayerShipCount = 0;
-		Cast<UNebulaGameInstance>(GetGameInstance())->EndBattle();
+		Cast<UNebulaGameInstance>(GetGameInstance())->EndBattle(true);
 	}
 }

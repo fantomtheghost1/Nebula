@@ -2,8 +2,27 @@
 
 #include "Faction.h"
 
-void UFaction::CreateFaction(FString Name, FColor Color)
+UFaction::UFaction()
 {
-	this->Name = Name;
-	this->Color = Color;
+}
+
+void UFaction::SetName(FString NewName)
+{
+	Name = NewName;
+	Rename(*Name);
+}
+
+void UFaction::SetColor(FColor NewColor)
+{
+	Color = NewColor;
+}
+
+FString UFaction::GetName()
+{
+	return Name;
+}
+
+FColor UFaction::GetColor()
+{
+	return Color;
 }

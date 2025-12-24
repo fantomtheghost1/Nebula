@@ -31,4 +31,7 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere, Category="Ship")
 	TArray<AShip*> ShipsInSystem;
+	
+	UPROPERTY(VisibleAnywhere)
+	UFaction* Affiliation;
 };

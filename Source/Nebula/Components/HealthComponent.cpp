@@ -93,3 +93,11 @@ float UHealthComponent::GetMaxShield()
 	return MaxShield;
 }
 
+void UHealthComponent::InitHealth(float NewMaxHull, float NewMaxShield)
+{
+	MaxHull = NewMaxHull;
+	MaxShield = NewMaxShield;
+	Hull = NewMaxHull;
+	Shield = NewMaxShield;
+}
+

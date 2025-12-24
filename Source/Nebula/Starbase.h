@@ -43,5 +43,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UUserWidget> DockingUI;
 	
+	UPROPERTY(VisibleAnywhere)
+	UFaction* Affiliation;
+	
 	UUserWidget* DockingUIWidget;
 };

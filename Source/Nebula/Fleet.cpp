@@ -25,6 +25,15 @@ AFleet::AFleet()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	MeshComponent->SetupAttachment(RootComponent);
 	
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(
+		TEXT("/Engine/BasicShapes/Cube.Cube")
+	);
+
+	if (CubeMesh.Succeeded())
+	{
+		MeshComponent->SetStaticMesh(CubeMesh.Object);
+	}
+	
 	Mover = CreateDefaultSubobject<UMoverComponent>(TEXT("Mover"));
 	
 	Cargo = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));
@@ -34,6 +43,20 @@ AFleet::AFleet()
 void AFleet::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	if (IsPlayerFleet)
+	{
+		if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(1))
+		{
+			Affiliation = *Found;
+		}
+	} else
+	{
+		if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(2))
+		{
+			Affiliation = *Found;
+		}
+	}
 }
 
 // Called every frame

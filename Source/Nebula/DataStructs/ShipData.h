@@ -31,4 +31,18 @@ struct FShipData
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ship")
 	bool InPlayerFleet = false;
+	
+	bool operator==(const FShipData& Other) const
+	{
+		if (!(ShipID == Other.ShipID)) return false;
+		if (!(ShipName == Other.ShipName)) return false;
+		if (!(Health == Other.Health)) return false;
+		if (!(Components == Other.Components)) return false;
+		if (!(ShipStrength == Other.ShipStrength)) return false;
+		if (!(CargoCapacity == Other.CargoCapacity)) return false;
+		if (!(Flagship == Other.Flagship)) return false;
+		if (!(InPlayerFleet == Other.InPlayerFleet)) return false;
+		
+		return true;
+	}
 };

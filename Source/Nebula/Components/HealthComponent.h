@@ -32,6 +32,9 @@ public:
 	
 	float GetMaxShield();
 	
+	UFUNCTION(BlueprintCallable)
+	void InitHealth(float NewMaxHull, float NewMaxShield);
+	
 protected:
 	virtual void BeginPlay() override;
 

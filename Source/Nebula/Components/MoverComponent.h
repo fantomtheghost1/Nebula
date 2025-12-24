@@ -18,6 +18,7 @@ public:
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION(BlueprintCallable)
 	void SetFlySpeed(float NewSpeed);
 		
 	void SetNextWaypoint(FVector NewWaypoint);

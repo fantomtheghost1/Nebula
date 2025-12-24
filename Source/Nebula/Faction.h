@@ -16,7 +16,15 @@ class NEBULA_API UFaction : public UObject
 	
 public:
 	
-	void CreateFaction(FString Name, FColor Color);
+	UFaction();
+	
+	void SetName(FString NewName);
+	
+	void SetColor(FColor NewColor);
+	
+	FString GetName();
+	
+	FColor GetColor();
 	
 private:
 	

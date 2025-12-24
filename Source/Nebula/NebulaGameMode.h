@@ -18,7 +18,7 @@ class NEBULA_API ANebulaGameMode : public AGameModeBase
 	
 public:
 	
-	void InitializeBattle(int NewPlayerFleetCount, int NewAIFleetCount);
+	void InitializeBattle(int NewPlayerShipCount, int NewAIShipCount);
 	
 	void SubtractAIShip();
 	

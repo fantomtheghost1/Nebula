@@ -2,7 +2,8 @@
 
 
 #include "StarSystem.h"
-#include "Kismet/KismetMathLibrary.h"
+
+#include "NebulaGameInstance.h"
 
 // Sets default values
 AStarSystem::AStarSystem()
@@ -15,6 +16,11 @@ AStarSystem::AStarSystem()
 void AStarSystem::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(1))
+	{
+		Affiliation = *Found;
+	}
 }
 
 // Called every frame
