@@ -6,8 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDamageTaken, int32, DamageAmount);
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent, BlueprintReadWrite) )
 class NEBULA_API UHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -15,6 +16,9 @@ class NEBULA_API UHealthComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UHealthComponent();
+	
+	UPROPERTY(BlueprintAssignable, Category="Events")
+	FDamageTaken DamageTaken;
 	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -24,8 +28,10 @@ public:
 	
 	bool IsDead();
 	
+	UFUNCTION(BlueprintCallable)
 	float GetHullPercent();
 	
+	UFUNCTION(BlueprintCallable)
 	float GetShieldPercent();
 	
 	float GetMaxHull();
@@ -54,4 +60,10 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, Category = "Health")
 	bool Dead = false;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> DamageNumberWidget;
+	
+	UPROPERTY(EditAnywhere, Category = "Health")
+	TSubclassOf<AActor> DamageNumberActor;
 };

@@ -33,6 +33,9 @@ void UTurretComponent::Fire()
 	TargetHealthComp->TakeDamage(TurretDamage);
 }
 
+int UTurretComponent::GetDamage() {
+	return TurretDamage;
+}
 
 // Called every frame
 void UTurretComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -45,8 +48,13 @@ void UTurretComponent::SetTarget(AActor* NewTarget)
 	Target = NewTarget;
 	TargetHealthComp = Target->FindComponentByClass<UHealthComponent>();
 	
-	GetWorld()->GetTimerManager().SetTimer(
-		FireTimerHandle, this, &UTurretComponent::Fire, TurretFireRate / NumOfTurrets, true
-	);
+	for (int i = 0; i < NumOfTurrets; i++)
+	{
+		float Offset = (i / (float)NumOfTurrets) * TurretFireRate;
+		UE_LOG(LogTemp, Warning, TEXT("Offset: %f"), Offset);
+		GetWorld()->GetTimerManager().SetTimer(
+			FireTimerHandle, this, &UTurretComponent::Fire, TurretFireRate + Offset, true
+		);
+	}
 }
 

@@ -6,6 +6,7 @@
 #include "Components/MoverComponent.h"
 #include "Components/TurretComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Components/WidgetComponent.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Ship.generated.h"
@@ -35,6 +36,9 @@ public:
 	
 	/* SETTERS */
 	void SetDocked(bool NewDocked);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UHealthComponent* Health;
 
 protected:
 	// Called when the game starts or when spawned
@@ -43,12 +47,12 @@ protected:
 private:	
 	UPROPERTY(EditAnywhere)
 	UMoverComponent* Mover;
-
-	UPROPERTY(EditAnywhere)
-	UHealthComponent* Health;
 	
 	UPROPERTY(EditAnywhere)
 	UTurretComponent* Turret;
+	
+	UPROPERTY(EditAnywhere)
+	UWidgetComponent* Widget;
 	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshComponent;

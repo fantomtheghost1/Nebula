@@ -28,6 +28,9 @@ AShip::AShip()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(SpringArmComponent);
 	
+	Widget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
+	Widget->SetupAttachment(RootComponent);
+	
 	Mover = CreateDefaultSubobject<UMoverComponent>(TEXT("Mover"));
 	
 	Health = CreateDefaultSubobject<UHealthComponent>(TEXT("Health"));

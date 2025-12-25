@@ -97,6 +97,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DamageNumberManager.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DamageNumberManager.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <Filter Include="Source\Nebula\DataAssets">
       <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
     </Filter>

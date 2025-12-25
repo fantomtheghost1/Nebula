@@ -20,6 +20,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
 	void SetTarget(AActor* NewTarget);
+	
+	UFUNCTION(BlueprintCallable)
+	int GetDamage();
 
 protected:
 	// Called when the game starts
@@ -37,9 +40,6 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	int NumOfTurrets;
-	
-	UPROPERTY(EditAnywhere)
-	float TurretFireDelay;
 	
 	FTimerHandle FireTimerHandle;
 	

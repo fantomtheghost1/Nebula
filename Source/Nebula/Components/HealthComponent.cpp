@@ -29,6 +29,8 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UHealthComponent::TakeDamage(float DamageAmount)
 {
+	
+	DamageTaken.Broadcast(DamageAmount);
 	Shield -= DamageAmount;
 	DamageAmount += -Shield;
 	if (Shield <= 0.0f)
