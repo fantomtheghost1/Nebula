@@ -40,6 +40,9 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AActor* DockedTo;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UFaction* Affiliation;
 
 protected:
 	// Called when the game starts or when spawned
@@ -63,7 +66,4 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;
-	
-	UPROPERTY(VisibleAnywhere)
-	UFaction* Affiliation;
 };

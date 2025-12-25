@@ -60,6 +60,26 @@ int UNebulaGameInstance::GetFleetID(AFleet* Fleet)
 	return -1;
 }
 
+UFaction* UNebulaGameInstance::AddFaction(FString Name, FColor Color)
+{
+	UFaction* NewFaction = NewObject<UFaction>(this);
+	NewFaction->SetName(Name);
+	NewFaction->SetColor(Color);
+	
+	Factions.Add(Factions.Num() + 1, NewFaction);
+	
+	return NewFaction;
+}
+
+UFaction* UNebulaGameInstance::GetFactionByName(FString Name)
+{
+	for (const TPair<int, UFaction*>& Elem : Factions)
+	{
+		if (Elem.Value->GetName() == Name) return Elem.Value;
+	}
+	return nullptr;
+}
+
 void UNebulaGameInstance::Init()
 {
 	Super::Init();

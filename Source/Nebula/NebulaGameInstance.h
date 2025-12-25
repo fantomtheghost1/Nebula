@@ -45,6 +45,12 @@ public:
 	TMap<int, FStarbaseState> Starbases;
 	TMap<int, UFaction*> Factions;
 	
+	UFUNCTION(BlueprintCallable)
+	UFaction* AddFaction(FString Name, FColor Color);
+	
+	UFUNCTION(BlueprintCallable)
+	UFaction* GetFactionByName(FString Name);
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool DoFirstSpawns = true;
 	
