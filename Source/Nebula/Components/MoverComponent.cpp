@@ -28,7 +28,7 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		
 		FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
 		FVector NewPos = OwnerLocation + Direction * FlySpeed * DeltaTime;
-		Owner->SetActorLocation(NewPos);
+		Owner->SetActorLocation(NewPos, true);
 		if (FVector::Dist(OwnerLocation, Waypoints[0]) <= FlySpeed * DeltaTime)
 		{
 			Waypoints.RemoveAt(0);
