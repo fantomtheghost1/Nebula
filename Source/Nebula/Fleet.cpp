@@ -37,6 +37,13 @@ AFleet::AFleet()
 	Mover = CreateDefaultSubobject<UMoverComponent>(TEXT("Mover"));
 	
 	Cargo = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));
+	
+	ScannerComponent = CreateDefaultSubobject<UScanner>(TEXT("Scanner"));
+	
+	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("ScannerCollision"));
+	SphereComponent->SetupAttachment(RootComponent);
+	SphereComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 }
 
 // Called when the game starts or when spawned
@@ -77,6 +84,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 	{
 		if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Fighting with %s"), *HitResult.GetActor()->GetName());
 			UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
 			if (GI)
 			{
@@ -85,11 +93,11 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			}
 		} 
 		else {
+			UE_LOG(LogTemp, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);
 			
-			UE_LOG(LogTemp, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
 			if (UDockingComponent* DockingComponent = HitResult.GetActor()->FindComponentByClass<UDockingComponent>())
 			{
 				DockingComponent->Interact(this);

@@ -4,6 +4,14 @@
 
 #include "NebulaGameInstance.h"
 
+
+void ANebulaGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	GameInstance = Cast<UNebulaGameInstance>(GetGameInstance());
+}
+
 void ANebulaGameMode::InitializeBattle(int NewPlayerShipCount, int NewAIShipCount)
 {
 	AIShipCount = NewAIShipCount;
@@ -17,7 +25,7 @@ void ANebulaGameMode::SubtractAIShip()
 	if (AIShipCount <= 0)
 	{
 		AIShipCount = 0;
-		Cast<UNebulaGameInstance>(GetGameInstance())->EndBattle(false);
+		GameInstance->EndBattle(false);
 	}
 }
 
@@ -28,6 +36,32 @@ void ANebulaGameMode::SubtractPlayerShip()
 	if (PlayerShipCount <= 0)
 	{
 		PlayerShipCount = 0;
-		Cast<UNebulaGameInstance>(GetGameInstance())->EndBattle(true);
+		GameInstance->EndBattle(true);
 	}
+}
+
+void ANebulaGameMode::CheckVictoryCondition()
+{
+	if (GameInstance->Factions.Num() <= 1)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Victory Condition Met!"));
+		StartGame();
+	}
+}
+
+void ANebulaGameMode::StartGame()
+{
+	GameInstance->Factions.Empty();
+	GameInstance->StartGame();
+	
+	GameInstance->Systems.Empty();
+	GameInstance->Fleets.Empty();
+	GameInstance->Asteroids.Empty();
+	GameInstance->Planets.Empty();
+	GameInstance->Starbases.Empty();
+}
+
+void ANebulaGameMode::EndGame()
+{
+	GameInstance->StartGame();
 }

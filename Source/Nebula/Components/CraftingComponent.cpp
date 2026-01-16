@@ -2,46 +2,6 @@
 
 
 #include "CraftingComponent.h"
-#include "Engine/AssetManager.h"
-
-// Called when the game starts
-void UCraftingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	TArray<FAssetData> TempRecipes;
-	UAssetManager& AM = UAssetManager::Get();
-	AM.GetPrimaryAssetDataList(
-		FPrimaryAssetType("CraftingRecipe"),
-		TempRecipes
-		);
-	
-	for (const FAssetData& Recipe : TempRecipes)
-	{
-		UCraftingRecipeAsset* RecipeAsset = Cast<UCraftingRecipeAsset>(Recipe.GetAsset());
-		if (RecipeAsset)
-		{
-			Recipes.Add(RecipeAsset);
-		}
-	}
-	
-	UE_LOG(LogTemp, Warning, TEXT("Crafting Recipes Loaded: %d"), Recipes.Num());
-}
-
-TArray<UCraftingRecipeAsset*> UCraftingComponent::GetRecipes() const
-{
-	return Recipes;
-}
-
-UCraftingRecipeAsset* UCraftingComponent::GetRecipe(FName RecipeName)
-{
-	for (int i = 0; i < Recipes.Num(); i++)
-	{
-		if (Recipes[i]->Result == RecipeName) return Recipes[i];
-	}
-	
-	return nullptr;
-}
 
 void UCraftingComponent::StartCraft(UCraftingRecipeAsset* Recipe)
 {

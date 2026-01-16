@@ -32,6 +32,8 @@ private:
 	// Called every frame
 	void Fire();
 	
+	void DisappearLaser();
+	
 	UPROPERTY(EditAnywhere)
 	float TurretDamage;
 	
@@ -41,11 +43,18 @@ private:
 	UPROPERTY(EditAnywhere)
 	int NumOfTurrets;
 	
+	UPROPERTY(EditAnywhere)
+	float LaserDuration;
+	
 	FTimerHandle FireTimerHandle;
+	
+	FTimerHandle LaserDisappearHandle;
 	
 	UPROPERTY(VisibleAnywhere)
 	AActor* Target;
 	
 	UPROPERTY(VisibleAnywhere)
 	UHealthComponent* TargetHealthComp;
+	
+	UStaticMeshComponent* LaserMeshComponent;
 };

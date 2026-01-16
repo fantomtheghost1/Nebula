@@ -60,6 +60,22 @@ int UNebulaGameInstance::GetFleetID(AFleet* Fleet)
 	return -1;
 }
 
+void UNebulaGameInstance::StartGame()
+{
+	UGameplayStatics::OpenLevel(this, FName("Main"));
+	UFaction* PlayerFaction = NewObject<UFaction>(this);
+	PlayerFaction->SetName("Player");
+	PlayerFaction->SetColor(FColor::Blue);
+	
+	Factions.Add(1, PlayerFaction);
+	
+	UFaction* AIFaction = NewObject<UFaction>(this);
+	AIFaction->SetName("AI");
+	AIFaction->SetColor(FColor::Red);
+	
+	Factions.Add(2, AIFaction);
+}
+
 UFaction* UNebulaGameInstance::AddFaction(FString Name, FColor Color)
 {
 	UFaction* NewFaction = NewObject<UFaction>(this);
@@ -69,6 +85,17 @@ UFaction* UNebulaGameInstance::AddFaction(FString Name, FColor Color)
 	Factions.Add(Factions.Num() + 1, NewFaction);
 	
 	return NewFaction;
+}
+
+void UNebulaGameInstance::RemoveFaction(FString Name)
+{
+	for (const TPair<int, UFaction*>& Elem : Factions)
+	{
+		if (Elem.Value->GetName() == Name)
+		{
+			Factions.Remove(Elem.Key);
+		}
+	}
 }
 
 UFaction* UNebulaGameInstance::GetFactionByName(FString Name)
@@ -84,15 +111,5 @@ void UNebulaGameInstance::Init()
 {
 	Super::Init();
 	
-	UFaction* PlayerFaction = NewObject<UFaction>(this);
-	PlayerFaction->SetName("Player");
-	PlayerFaction->SetColor(FColor::Blue);
-	
-	Factions.Add(1, PlayerFaction);
-	
-	UFaction* AIFaction = NewObject<UFaction>(this);
-	AIFaction->SetName("AI");
-    AIFaction->SetColor(FColor::Red);
-	
-	Factions.Add(2, AIFaction);
+	StartGame();
 }

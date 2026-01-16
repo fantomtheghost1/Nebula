@@ -14,13 +14,7 @@ class NEBULA_API UCraftingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	
-	UFUNCTION(BlueprintCallable)
-	TArray<UCraftingRecipeAsset*> GetRecipes() const;
-	
-	UFUNCTION(BlueprintCallable)
-	UCraftingRecipeAsset* GetRecipe(FName RecipeName);
+public:
 	
 	UFUNCTION(BlueprintCallable)
 	void StartCraft(UCraftingRecipeAsset* Recipe);
@@ -30,13 +24,7 @@ public:
 	
 	AFleet* DockedFleet;
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
 private:
-	
-	TArray<UCraftingRecipeAsset*> Recipes;
 	
 	UCraftingRecipeAsset* RecipeCrafting;
 	

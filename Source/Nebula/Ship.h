@@ -39,6 +39,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UHealthComponent* Health;
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* LaserMeshComponent;
 
 protected:
 	// Called when the game starts or when spawned

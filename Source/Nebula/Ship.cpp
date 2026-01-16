@@ -19,6 +19,10 @@ AShip::AShip()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	MeshComponent->SetupAttachment(RootComponent);
 	
+	LaserMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Laser Mesh"));
+	LaserMeshComponent->SetupAttachment(RootComponent);
+	LaserMeshComponent->SetVisibility(false);
+	
 	MeshComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	MeshComponent->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
 	

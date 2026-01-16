@@ -3,7 +3,7 @@
 
 #include "CraftingRecipeSubsystem.h"
 
-#include "DataAssets/CraftingRecipeAsset.h"
+#include "../DataAssets/CraftingRecipeAsset.h"
 #include "Engine/AssetManager.h"
 
 void UCraftingRecipeSubsystem::Initialize(FSubsystemCollectionBase& Collection)

@@ -85,6 +85,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\SalvageComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\Scanner.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\Scanner.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\TradingComponent.cpp">
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
@@ -96,6 +102,12 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
       <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\CraftingRecipeSubsystem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\CraftingRecipeSubsystem.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\DataAssets">
       <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
@@ -182,12 +194,6 @@
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Salvage.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Scanner.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Scanner.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Ship.cpp">

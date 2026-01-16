@@ -9,6 +9,8 @@
 #include "DataStructs/ShipData.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CargoComponent.h"
+#include "Components/Scanner.h"
+#include "Components/SphereComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Fleet.generated.h"
 
@@ -43,6 +45,9 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UFaction* Affiliation;
+	
+	UPROPERTY(EditAnywhere)
+	USphereComponent* SphereComponent;
 
 protected:
 	// Called when the game starts or when spawned
@@ -60,6 +65,9 @@ private:
 	UCameraComponent* CameraComponent;
 	
 	UPROPERTY(EditAnywhere)
+	UScanner* ScannerComponent;
+	
+	UPROPERTY(EditAnywhere)
 	TArray<FShipData> Fleet;
 	
 	UPROPERTY(EditAnywhere)
@@ -67,4 +75,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;
+	
+	UPROPERTY(EditAnywhere)
+	UFaction* Faction;
 };

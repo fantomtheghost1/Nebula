@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Fleet.h"
+#include "NebulaGameInstance.h"
 #include "Ship.h"
 #include "GameFramework/GameModeBase.h"
 #include "NebulaGameMode.generated.h"
@@ -18,13 +19,23 @@ class NEBULA_API ANebulaGameMode : public AGameModeBase
 	
 public:
 	
+	virtual void BeginPlay() override;
+	
 	void InitializeBattle(int NewPlayerShipCount, int NewAIShipCount);
 	
 	void SubtractAIShip();
 	
 	void SubtractPlayerShip();
 	
+	void CheckVictoryCondition();
+	
 private:
+	
+	void StartGame();
+	
+	void EndGame();
+	
+	UNebulaGameInstance* GameInstance;
 	
 	int PlayerShipCount = 0;
 	

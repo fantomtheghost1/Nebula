@@ -5,20 +5,6 @@
 
 #include "Nebula/Asteroid.h"
 
-// Sets default values for this component's properties
-UScanner::UScanner()
-{
-	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Scanner Collision"));
-	if (GetOwner())
-	{
-		SphereComponent->RegisterComponent();
-		SphereComponent->SetupAttachment(GetOwner()->GetRootComponent());
-		//SphereComponent->SetCollisionObjectType(ECC_WorldStatic);
-		SphereComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
-		SphereComponent->SetCollisionEnabled( ECollisionEnabled::QueryAndPhysics);
-	}
-}
-
 void UScanner::Scan()
 {
  	TArray<AActor*> Actors;
@@ -47,6 +33,12 @@ void UScanner::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	SphereComponent = GetOwner()->FindComponentByClass<USphereComponent>();
+	
+	UE_LOG(LogTemp, Warning, TEXT("SphereComp: %s (Parent: %s)"),
+		*GetNameSafe(SphereComponent),
+		*GetNameSafe(SphereComponent->GetAttachParent()));
+
 	SphereComponent->SetSphereRadius(ScanRange, true);
 }
 

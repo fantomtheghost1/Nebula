@@ -14,31 +14,26 @@ class NEBULA_API UScanner : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	UScanner();
 	
 	UFUNCTION(BlueprintCallable)
 	void Scan();
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AActor*> FriendlyObjects;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TArray<AActor*> NeutralObjects;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<AActor*> EnemyObjects;
+	
+	UPROPERTY(EditAnywhere)
+	float ScanRange;
 	
 protected:
 	virtual void BeginPlay() override;
 	
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	USphereComponent* SphereComponent;
-	
-	UPROPERTY(EditAnywhere)
-	float ScanRange;
-	
-	UPROPERTY(VisibleAnywhere)
-	TArray<AActor*> FriendlyObjects;
-	
-	UPROPERTY(VisibleAnywhere)
-	TArray<AActor*> NeutralObjects;
-	
-	
-		
 };

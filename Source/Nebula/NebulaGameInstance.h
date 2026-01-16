@@ -45,8 +45,13 @@ public:
 	TMap<int, FStarbaseState> Starbases;
 	TMap<int, UFaction*> Factions;
 	
+	void StartGame();
+	
 	UFUNCTION(BlueprintCallable)
 	UFaction* AddFaction(FString Name, FColor Color);
+	
+	UFUNCTION(BlueprintCallable)
+	void RemoveFaction(FString Name);
 	
 	UFUNCTION(BlueprintCallable)
 	UFaction* GetFactionByName(FString Name);

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DataAssets/CraftingRecipeAsset.h"
+#include "../DataAssets/CraftingRecipeAsset.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "CraftingRecipeSubsystem.generated.h"
 

@@ -3,6 +3,7 @@
 
 #include "TurretComponent.h"
 #include "TimerManager.h"
+#include "Nebula/Ship.h"
 
 
 // Sets default values for this component's properties
@@ -20,6 +21,8 @@ UTurretComponent::UTurretComponent()
 void UTurretComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	LaserMeshComponent = Cast<AShip>(GetOwner())->LaserMeshComponent;
 }
 
 void UTurretComponent::Fire()
@@ -29,8 +32,25 @@ void UTurretComponent::Fire()
 		return;
 	}
 	
-	UE_LOG(LogTemp, Warning, TEXT("Firing"));
+	FVector Direction = (Target->GetActorLocation() - GetOwner()->GetActorLocation()).GetSafeNormal();
+	float Length = FVector::Dist(GetOwner()->GetActorLocation(), Target->GetActorLocation());
+	FRotator Rotation = FRotationMatrix::MakeFromX(Direction).Rotator();
+	FVector NewScale = FVector(Length, 1.0f, 1.0f);
+	
+	LaserMeshComponent->SetWorldRotation(Rotation);
+	LaserMeshComponent->SetWorldScale3D(NewScale);
+	LaserMeshComponent->SetVisibility(true);
+	
 	TargetHealthComp->TakeDamage(TurretDamage);
+	
+	GetWorld()->GetTimerManager().SetTimer(
+		LaserDisappearHandle, this, &UTurretComponent::DisappearLaser, LaserDuration, false
+		);
+}
+
+void UTurretComponent::DisappearLaser()
+{
+	LaserMeshComponent->SetVisibility(false);
 }
 
 int UTurretComponent::GetDamage() {
