@@ -4,6 +4,7 @@
 #include "TradingComponent.h"
 
 #include "Nebula/NebulaPlayerController.h"
+#include "Nebula/Utils/NebulaLogging.h"
 
 void UTradingComponent::Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer)
 {
@@ -18,14 +19,14 @@ void UTradingComponent::Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer)
 			{
 				DockedFleet->FindComponentByClass<UCargoComponent>()->SubtractCargoItem(ItemToTrade, 1);
 				NPC->Credits += ItemToTrade->SalePrice;
-				UE_LOG(LogTemp, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
+				UE_LOG(LogGameplay, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
 			} else
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Docked fleet does not have a cargo component."));
+				UE_LOG(LogGameplay, Warning, TEXT("Docked fleet does not have a cargo component."));
 			}
 		} else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Docked fleet is null."));
+			UE_LOG(LogGameplay, Warning, TEXT("Docked fleet is null."));
 		}
 	}
 }

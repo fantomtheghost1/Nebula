@@ -9,6 +9,7 @@
 #include "TradingComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/SphereComponent.h"
+#include "Nebula/Utils/NebulaLogging.h"
 
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
@@ -46,7 +47,7 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		{
 			TradingComponent->DockedFleet = DockedFleet;
 		}
-		UE_LOG(LogTemp, Warning, TEXT("Docked %s"), *DockedFleet->GetName());
+		UE_LOG(LogGameplay, Warning, TEXT("Docked %s"), *DockedFleet->GetName());
 	}
 }
 
@@ -82,17 +83,17 @@ void UDockingComponent::BeginPlay()
 void UDockingComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap"));
+	UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap"));
 	if (AFleet* DockingFleet = Cast<AFleet>(OtherActor))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap with %s"), *DockingFleet->GetName());
+		UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with %s"), *DockingFleet->GetName());
 		if (DockingFleet->IsPlayerFleet)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap with Player"));
+			UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with Player"));
 			Dock(true, DockingFleet);
 		} else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Docking Begin Overlap with AI"));
+			UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with AI"));
 			Dock(false, DockingFleet);
 		}
 	}

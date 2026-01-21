@@ -3,6 +3,7 @@
 #include "NebulaGameMode.h"
 
 #include "NebulaGameInstance.h"
+#include "Utils/NebulaLogging.h"
 
 
 void ANebulaGameMode::BeginPlay()
@@ -44,7 +45,7 @@ void ANebulaGameMode::CheckVictoryCondition()
 {
 	if (GameInstance->Factions.Num() <= 1)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Victory Condition Met!"));
+		UE_LOG(LogGameplay, Warning, TEXT("Victory Condition Met!"));
 		StartGame();
 	}
 }

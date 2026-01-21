@@ -5,6 +5,7 @@
 
 #include "../DataAssets/CraftingRecipeAsset.h"
 #include "Engine/AssetManager.h"
+#include "Nebula/Utils/NebulaLogging.h"
 
 void UCraftingRecipeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -24,7 +25,7 @@ void UCraftingRecipeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		}
 	}
 	
-	UE_LOG(LogTemp, Warning, TEXT("Crafting Recipes Loaded: %d"), Recipes.Num());
+	UE_LOG(LogDataAsset, Warning, TEXT("Crafting Recipes Loaded: %d"), Recipes.Num());
 }
 
 TArray<UCraftingRecipeAsset*> UCraftingRecipeSubsystem::GetRecipes() const

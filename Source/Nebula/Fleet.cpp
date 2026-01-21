@@ -7,6 +7,7 @@
 #include "Relay.h"
 #include "Starbase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Utils/NebulaLogging.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -84,7 +85,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 	{
 		if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Fighting with %s"), *HitResult.GetActor()->GetName());
+			UE_LOG(LogGameplay, Warning, TEXT("Fighting with %s"), *HitResult.GetActor()->GetName());
 			UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
 			if (GI)
 			{
@@ -93,7 +94,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			}
 		} 
 		else {
-			UE_LOG(LogTemp, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
+			UE_LOG(LogGameplay, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);

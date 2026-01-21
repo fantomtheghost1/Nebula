@@ -8,6 +8,7 @@
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Utils/NebulaLogging.h"
 
 void ANebulaPlayerController::BeginPlay()
 {
@@ -147,7 +148,7 @@ void ANebulaPlayerController::ToggleInventory()
 		InventoryWidget->AddToViewport();
 		Inventory = true;
 	} else if (InventoryWidget && Inventory) {
-		UE_LOG(LogTemp, Warning, TEXT("Hiding inventory"));
+		UE_LOG(LogBackend, Warning, TEXT("Hiding inventory"));
 		InventoryWidget->RemoveFromParent();
 		Inventory = false;
 	}

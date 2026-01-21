@@ -4,6 +4,7 @@
 #include "CargoComponent.h"
 #include "Engine/AssetManager.h"
 #include "Nebula/DataAssets/CraftingRecipeAsset.h"
+#include "Nebula/Utils/NebulaLogging.h"
 
 // Called when the game starts
 void UCargoComponent::BeginPlay()
@@ -27,7 +28,7 @@ void UCargoComponent::BeginPlay()
 			CargoItemAssets.Add(ItemAsset);
 		}
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Cargo Items Loaded: %d"), CargoItemAssets.Num());
+	UE_LOG(LogDataAsset, Warning, TEXT("Cargo Items Loaded: %d"), CargoItemAssets.Num());
 }
 
 void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, int Quantity)
@@ -81,7 +82,7 @@ void UCargoComponent::SubtractCargoItem(UCargoItemAsset* NewCargo, int Quantity)
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Attempted to subtract cargo that doesn't exist! %s"), *NewCargo->ItemID.ToString());
+		UE_LOG(LogBackend, Error, TEXT("Attempted to subtract cargo that doesn't exist! %s"), *NewCargo->ItemID.ToString());
 	}
 }
 

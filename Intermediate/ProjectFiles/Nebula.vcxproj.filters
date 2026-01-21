@@ -103,12 +103,6 @@
     <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\CraftingRecipeSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\CraftingRecipeSubsystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\DataAssets">
       <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
     </Filter>
@@ -143,6 +137,12 @@
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Fleet.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\FleetData.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\FleetData.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\MapManager.cpp">
@@ -231,6 +231,21 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\StateStructs\SystemState.h">
       <Filter>Source\Nebula\StateStructs</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\Subsystems">
+      <UniqueIdentifier>{406F7FF0-50B4-360D-9153-264447EBB57D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\CraftingRecipeSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\CraftingRecipeSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\EntitySpawner.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\EntitySpawner.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

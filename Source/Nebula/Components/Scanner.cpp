@@ -4,6 +4,7 @@
 #include "Scanner.h"
 
 #include "Nebula/Asteroid.h"
+#include "Nebula/Utils/NebulaLogging.h"
 
 void UScanner::Scan()
 {
@@ -16,7 +17,7 @@ void UScanner::Scan()
 	
 	for (int i = 0; i < Actors.Num(); i++)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Actors Length: %d"), Actors.Num());
+		UE_LOG(LogGameplay, Warning, TEXT("Actors Length: %d"), Actors.Num());
 		if (Actors[i] == GetOwner()) continue;
 		
 		if (Actors[i]->IsA(AAsteroid::StaticClass()))
@@ -35,7 +36,7 @@ void UScanner::BeginPlay()
 	
 	SphereComponent = GetOwner()->FindComponentByClass<USphereComponent>();
 	
-	UE_LOG(LogTemp, Warning, TEXT("SphereComp: %s (Parent: %s)"),
+	UE_LOG(LogGameplay, Warning, TEXT("SphereComp: %s (Parent: %s)"),
 		*GetNameSafe(SphereComponent),
 		*GetNameSafe(SphereComponent->GetAttachParent()));
 

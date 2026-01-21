@@ -4,6 +4,7 @@
 #include "TurretComponent.h"
 #include "TimerManager.h"
 #include "Nebula/Ship.h"
+#include "Nebula/Utils/NebulaLogging.h"
 
 
 // Sets default values for this component's properties
@@ -71,7 +72,7 @@ void UTurretComponent::SetTarget(AActor* NewTarget)
 	for (int i = 0; i < NumOfTurrets; i++)
 	{
 		float Offset = (i / (float)NumOfTurrets) * TurretFireRate;
-		UE_LOG(LogTemp, Warning, TEXT("Offset: %f"), Offset);
+		UE_LOG(LogGameplay, Warning, TEXT("Offset: %f"), Offset);
 		GetWorld()->GetTimerManager().SetTimer(
 			FireTimerHandle, this, &UTurretComponent::Fire, TurretFireRate + Offset, true
 		);

@@ -3,9 +3,11 @@
 
 #include "CraftingComponent.h"
 
+#include "Nebula/Utils/NebulaLogging.h"
+
 void UCraftingComponent::StartCraft(UCraftingRecipeAsset* Recipe)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Started crafting %s"), *Recipe->Result.ToString());
+	UE_LOG(LogGameplay, Warning, TEXT("Started crafting %s"), *Recipe->Result.ToString());
 	GetWorld()->GetTimerManager().SetTimer(
 		ProgressTimer,
 		this,
@@ -38,7 +40,7 @@ void UCraftingComponent::Craft()
 	
 	CargoComp->AddCargoItem(CargoComp->GetCargoItemByID(RecipeCrafting->Result), 1);
 	
-	UE_LOG(LogTemp, Warning, TEXT("Crafted"));
+	UE_LOG(LogGameplay, Warning, TEXT("Crafted"));
 	
 	RecipeCrafting = nullptr;
 }
