@@ -10,7 +10,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType)
 class NEBULA_API UCraftingRecipeSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "NebulaGameInstance.h"
 #include "GameFramework/GameModeBase.h"
+#include "Subsystems/FactionSubsystem.h"
 #include "NebulaGameMode.generated.h"
 
 /**
@@ -34,6 +35,8 @@ private:
 	void EndGame();
 	
 	UNebulaGameInstance* GameInstance;
+	
+	UFactionSubsystem* FactionSubsystem;
 	
 	int PlayerShipCount = 0;
 	

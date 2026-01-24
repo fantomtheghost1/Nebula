@@ -38,11 +38,6 @@ void AStarbase::BeginPlay()
 void AStarbase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
-	if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(1))
-	{
-		Affiliation = *Found;
-	}
 }
 
 void AStarbase::Interact(AFleet* InteractingFleet)

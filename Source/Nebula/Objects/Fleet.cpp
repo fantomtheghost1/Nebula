@@ -5,6 +5,7 @@
 #include "../NebulaGameInstance.h"
 #include "Relay.h"
 #include "../Utils/NebulaLogging.h"
+#include "Nebula/Subsystems/FactionSubsystem.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -50,22 +51,9 @@ void AFleet::BeginPlay()
 	Super::BeginPlay();
 	
 	UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
+	UFactionSubsystem* FactionSubsystem = GI->GetSubsystem<UFactionSubsystem>();
 	
-	if (IsPlayerFleet)
-	{
-		if (UFaction** Found = GI->Factions.Find(1))
-		{
-			Affiliation = *Found;
-		}
-	} else
-	{
-		if (UFaction** Found = GI->Factions.Find(2))
-		{
-			Affiliation = *Found;
-		}
-	}
-	
-	Faction = GI->GetFactionByName(FactionName);
+	Faction = FactionSubsystem->GetFactionByName(FactionName);
 	
 	if (Faction == nullptr)
 	{

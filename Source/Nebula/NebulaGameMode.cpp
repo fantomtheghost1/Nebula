@@ -11,6 +11,7 @@ void ANebulaGameMode::BeginPlay()
 	Super::BeginPlay();
 	
 	GameInstance = Cast<UNebulaGameInstance>(GetGameInstance());
+	FactionSubsystem = GameInstance->GetSubsystem<UFactionSubsystem>();
 }
 
 void ANebulaGameMode::InitializeBattle(int NewPlayerShipCount, int NewAIShipCount)
@@ -43,7 +44,7 @@ void ANebulaGameMode::SubtractPlayerShip()
 
 void ANebulaGameMode::CheckVictoryCondition()
 {
-	if (GameInstance->Factions.Num() <= 1)
+	if (FactionSubsystem->GetNumberOfFactions() <= 1)
 	{
 		UE_LOG(LogGameplay, Warning, TEXT("Victory Condition Met!"));
 		StartGame();
@@ -52,7 +53,7 @@ void ANebulaGameMode::CheckVictoryCondition()
 
 void ANebulaGameMode::StartGame()
 {
-	GameInstance->Factions.Empty();
+	FactionSubsystem->ClearFactions();
 	GameInstance->StartGame();
 	
 	GameInstance->Systems.Empty();

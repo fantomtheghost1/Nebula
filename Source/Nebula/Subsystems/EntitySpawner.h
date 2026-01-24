@@ -12,7 +12,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType)
 class NEBULA_API UEntitySpawner : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
