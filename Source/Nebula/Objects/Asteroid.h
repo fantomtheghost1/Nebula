@@ -3,52 +3,43 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/DockingComponent.h"
+#include "../Components/DockingComponent.h"
+#include "../Components/ResourceNodeComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
-#include "Starbase.generated.h"
+#include "Asteroid.generated.h"
+
+class URotatingMovementComponent;
 
 UCLASS()
-class NEBULA_API AStarbase : public AActor
+class NEBULA_API AAsteroid : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AStarbase();
-
+	AAsteroid();
+	
+	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
-	void Interact(AFleet* InteractingFleet);
-	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 private:
-	
-	UPROPERTY(EditAnywhere)
-	FString Type;
-	
-	USceneComponent* RootComp;
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* MeshComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* MeshComp;
+	URotatingMovementComponent* RotatingMovementComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	UDockingComponent* DockingComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-	UCargoComponent* CargoComponent;
-	
-	UPROPERTY(VisibleAnywhere)
 	USphereComponent* SphereCollision;
 	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<class UUserWidget> DockingUI;
-	
 	UPROPERTY(VisibleAnywhere)
-	UFaction* Affiliation;
-	
-	UUserWidget* DockingUIWidget;
+	UResourceNodeComponent* ResourceNodeComponent;
 };

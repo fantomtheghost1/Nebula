@@ -6,6 +6,7 @@
 #include "CraftingComponent.h"
 #include "../NebulaPlayerController.h"
 #include "ResourceNodeComponent.h"
+#include "SalvageComponent.h"
 #include "TradingComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/SphereComponent.h"

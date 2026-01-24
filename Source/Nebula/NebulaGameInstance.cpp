@@ -4,7 +4,7 @@
 #include "NebulaGameInstance.h"
 
 #include "EngineUtils.h"
-#include "Faction.h"
+#include "Objects/Faction.h"
 #include "NebulaGameMode.h"
 #include "Kismet/GameplayStatics.h"
 

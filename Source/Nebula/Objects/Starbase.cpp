@@ -3,7 +3,7 @@
 
 #include "Starbase.h"
 
-#include "NebulaGameInstance.h"
+#include "../NebulaGameInstance.h"
 
 // Sets default values
 AStarbase::AStarbase()

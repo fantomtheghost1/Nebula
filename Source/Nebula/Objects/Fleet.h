@@ -4,12 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Faction.h"
-#include "Components/MoverComponent.h"
+#include "../Components/MoverComponent.h"
 #include "GameFramework/Pawn.h"
-#include "DataStructs/ShipData.h"
+#include "../DataStructs/ShipData.h"
 #include "Camera/CameraComponent.h"
-#include "Components/CargoComponent.h"
-#include "Components/Scanner.h"
+#include "../Components/CargoComponent.h"
+#include "../Components/Scanner.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Fleet.generated.h"
@@ -77,5 +77,8 @@ private:
 	UCargoComponent* Cargo;
 	
 	UPROPERTY(EditAnywhere)
+	FString FactionName;
+	
+	UPROPERTY(VisibleAnywhere)
 	UFaction* Faction;
 };

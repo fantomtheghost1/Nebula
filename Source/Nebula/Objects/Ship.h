@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/MoverComponent.h"
-#include "Components/TurretComponent.h"
+#include "../Components/MoverComponent.h"
+#include "../Components/TurretComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Pawn.h"

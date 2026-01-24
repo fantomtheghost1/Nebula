@@ -3,8 +3,8 @@
 
 #include "Ship.h"
 
-#include "Components/MoverComponent.h"
-#include "Components/TurretComponent.h"
+#include "../Components/MoverComponent.h"
+#include "../Components/TurretComponent.h"
 
 // Sets default values
 AShip::AShip()

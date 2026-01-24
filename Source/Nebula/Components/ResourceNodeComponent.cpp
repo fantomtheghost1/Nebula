@@ -21,6 +21,8 @@ void UResourceNodeComponent::BeginPlay()
 	if (!ResourceItem) FMessageLog("PIE").Error(FText::FromString("ResourceItem must exist."));
 	
 	ResourceAmount = ResourceMax;
+	
+	
 }
 
 void UResourceNodeComponent::StartGather()

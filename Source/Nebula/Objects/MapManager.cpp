@@ -3,7 +3,7 @@
 
 #include "MapManager.h"
 
-#include "NebulaGameInstance.h"
+#include "../NebulaGameInstance.h"
 
 // Sets default values
 AMapManager::AMapManager()

@@ -5,5 +5,5 @@
 
 FPrimaryAssetId UFleetData::GetPrimaryAssetId() const
 {
-	return FPrimaryAssetId(TEXT("Fleet"), GetFName());
+	return FPrimaryAssetId(TEXT("FleetAsset"), GetFName());
 }

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Nebula/Fleet.h"
+#include "../Objects/Fleet.h"
 #include "SalvageComponent.generated.h"
 
 

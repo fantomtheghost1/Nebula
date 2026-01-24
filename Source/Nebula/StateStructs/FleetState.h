@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "Nebula/Faction.h"
+#include "../Objects/Faction.h"
 #include "FleetState.generated.h"
 
 USTRUCT(BlueprintType)

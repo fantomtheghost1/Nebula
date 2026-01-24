@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Fleet.h"
-#include "MapManager.h"
-#include "Ship.h"
+#include "Objects/Fleet.h"
+#include "Objects/MapManager.h"
+#include "Objects/Ship.h"
 #include "Engine/GameInstance.h"
 #include "StateStructs/AsteroidState.h"
 #include "StateStructs/FleetState.h"

@@ -3,7 +3,7 @@
 
 #include "TurretComponent.h"
 #include "TimerManager.h"
-#include "Nebula/Ship.h"
+#include "../Objects/Ship.h"
 #include "Nebula/Utils/NebulaLogging.h"
 
 

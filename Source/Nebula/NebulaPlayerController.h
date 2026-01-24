@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Fleet.h"
+#include "Objects/Fleet.h"
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
-#include "Ship.h"
+#include "Objects/Ship.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "NebulaPlayerController.generated.h"

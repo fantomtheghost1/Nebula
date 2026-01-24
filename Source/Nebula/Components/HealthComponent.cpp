@@ -5,7 +5,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "Nebula/NebulaGameMode.h"
-#include "Nebula/Ship.h"
+#include "../Objects/Ship.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()

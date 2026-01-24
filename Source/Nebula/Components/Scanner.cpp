@@ -3,7 +3,7 @@
 
 #include "Scanner.h"
 
-#include "Nebula/Asteroid.h"
+#include "../Objects/Asteroid.h"
 #include "Nebula/Utils/NebulaLogging.h"
 
 void UScanner::Scan()

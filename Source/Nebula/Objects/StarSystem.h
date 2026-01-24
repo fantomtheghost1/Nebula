@@ -3,9 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Faction.h"
 #include "Ship.h"
-#include "Asteroid.h"
-#include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "StarSystem.generated.h"
 

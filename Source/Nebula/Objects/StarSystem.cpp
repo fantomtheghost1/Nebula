@@ -3,7 +3,7 @@
 
 #include "StarSystem.h"
 
-#include "NebulaGameInstance.h"
+#include "../NebulaGameInstance.h"
 
 // Sets default values
 AStarSystem::AStarSystem()

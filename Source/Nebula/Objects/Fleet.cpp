@@ -2,12 +2,9 @@
 
 #include "Fleet.h"
 
-#include "NebulaGameInstance.h"
-#include "NebulaGameMode.h"
+#include "../NebulaGameInstance.h"
 #include "Relay.h"
-#include "Starbase.h"
-#include "Kismet/GameplayStatics.h"
-#include "Utils/NebulaLogging.h"
+#include "../Utils/NebulaLogging.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -52,18 +49,27 @@ void AFleet::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
+	
 	if (IsPlayerFleet)
 	{
-		if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(1))
+		if (UFaction** Found = GI->Factions.Find(1))
 		{
 			Affiliation = *Found;
 		}
 	} else
 	{
-		if (UFaction** Found = Cast<UNebulaGameInstance>(GetGameInstance())->Factions.Find(2))
+		if (UFaction** Found = GI->Factions.Find(2))
 		{
 			Affiliation = *Found;
 		}
+	}
+	
+	Faction = GI->GetFactionByName(FactionName);
+	
+	if (Faction == nullptr)
+	{
+		UE_LOG(LogGameplay, Warning, TEXT("No Faction Found"));
 	}
 }
 

@@ -4,9 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/CargoComponent.h"
-#include "Components/DockingComponent.h"
+#include "../Components/CargoComponent.h"
+#include "../Components/DockingComponent.h"
 #include "Components/SphereComponent.h"
+#include "Nebula/Components/SalvageComponent.h"
 #include "Salvage.generated.h"
 
 UCLASS()

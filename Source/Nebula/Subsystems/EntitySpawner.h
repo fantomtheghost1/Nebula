@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Nebula/Fleet.h"
-#include "Nebula/Ship.h"
+#include "../Objects/Fleet.h"
+#include "../Objects/Ship.h"
 #include "Nebula/DataAssets/FleetData.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "EntitySpawner.generated.h"

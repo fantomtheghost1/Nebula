@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Asteroid.h"
 #include "Fleet.h"
 #include "Planet.h"
 #include "Starbase.h"

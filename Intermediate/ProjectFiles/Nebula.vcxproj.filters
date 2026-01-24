@@ -118,6 +118,18 @@
     <ClInclude Include="..\..\Source\Nebula\DataAssets\CraftingRecipeAsset.h">
       <Filter>Source\Nebula\DataAssets</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DataAssets\FactionDataAsset.cpp">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DataAssets\FactionDataAsset.h">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DataAssets\FleetData.cpp">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DataAssets\FleetData.h">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClInclude>
     <Filter Include="Source\Nebula\DataStructs">
       <UniqueIdentifier>{D65BE82E-AE7E-317C-9908-BA78D16A03CE}</UniqueIdentifier>
     </Filter>
@@ -133,16 +145,16 @@
     <ClInclude Include="..\..\Source\Nebula\Faction.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\FactionSubsystem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\FactionSubsystem.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Fleet.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Fleet.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\FleetData.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\FleetData.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\MapManager.cpp">
@@ -246,6 +258,15 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\EntitySpawner.h">
       <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\Utils">
+      <UniqueIdentifier>{E35EF734-63E5-3144-AA5F-1D6BD886479C}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Nebula\Utils\NebulaLogging.cpp">
+      <Filter>Source\Nebula\Utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Utils\NebulaLogging.h">
+      <Filter>Source\Nebula\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
