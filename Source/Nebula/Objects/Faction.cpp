@@ -6,10 +6,19 @@ UFaction::UFaction()
 {
 }
 
-void UFaction::SetName(FString NewName)
+void UFaction::RegisterMember(AActor* NewMember)
+{
+	Members.Add(NewMember);
+}
+
+void UFaction::DeregisterMember(AActor* NewMember)
+{
+	Members.Remove(NewMember);
+}
+
+void UFaction::SetName(FName NewName)
 {
 	Name = NewName;
-	Rename(*Name);
 }
 
 void UFaction::SetColor(FColor NewColor)
@@ -17,7 +26,12 @@ void UFaction::SetColor(FColor NewColor)
 	Color = NewColor;
 }
 
-FString UFaction::GetName()
+TArray<AActor*> UFaction::GetMembers()
+{
+	return Members;
+}
+
+FName UFaction::GetName()
 {
 	return Name;
 }

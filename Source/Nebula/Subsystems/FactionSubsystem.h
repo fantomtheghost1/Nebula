@@ -18,13 +18,16 @@ class NEBULA_API UFactionSubsystem : public UGameInstanceSubsystem
 public: 
 		
 	UFUNCTION(BlueprintCallable)
-	UFaction* AddFaction(FString Name, FColor Color);
+	UFaction* AddFaction(FName Name, FColor Color);
 		
 	UFUNCTION(BlueprintCallable)
-	void RemoveFaction(FString Name);
+	void RemoveFaction(FName Name);
 		
 	UFUNCTION(BlueprintCallable)
-	UFaction* GetFactionByName(FString Name);
+	UFaction* GetFactionByName(FName Name);
+	
+	UFUNCTION(BlueprintCallable)
+	void RegisterMemberByName(FName Name, AActor* Member);
 	
 	UFUNCTION(BlueprintCallable)
 	int GetNumberOfFactions();

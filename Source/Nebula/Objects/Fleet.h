@@ -48,10 +48,6 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	USphereComponent* SphereComponent;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	
 private:
 	
@@ -75,10 +71,5 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;
-	
-	UPROPERTY(EditAnywhere)
-	FString FactionName;
-	
-	UPROPERTY(VisibleAnywhere)
-	UFaction* Faction;
+
 };

@@ -34,12 +34,6 @@
     <Filter Include="Source\Nebula">
       <UniqueIdentifier>{0B4E00D5-9280-318C-AE10-A66ECCFF9DF7}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Nebula\Asteroid.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Asteroid.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\Components">
       <UniqueIdentifier>{E98A4B53-95EF-3EB4-B4CF-0B3DA4DBD9D1}</UniqueIdentifier>
     </Filter>
@@ -139,28 +133,10 @@
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Faction.cpp">
+    <ClCompile Include="..\..\Source\Nebula\FactionComponent.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Faction.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\FactionSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\FactionSubsystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Fleet.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Fleet.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\MapManager.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\MapManager.h">
+    <ClInclude Include="..\..\Source\Nebula\FactionComponent.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
@@ -190,41 +166,68 @@
     <ClInclude Include="..\..\Source\Nebula\NebulaPlayerController.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Planet.cpp">
-      <Filter>Source\Nebula</Filter>
+    <Filter Include="Source\Nebula\Objects">
+      <UniqueIdentifier>{B8E324C2-23AC-36FE-9362-3420098C9FD7}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Asteroid.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Planet.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Asteroid.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Relay.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Faction.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Relay.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Faction.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Salvage.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Fleet.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Salvage.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Fleet.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Ship.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\MapManager.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Ship.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\MapManager.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Starbase.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Planet.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Starbase.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Planet.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\StarSystem.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Relay.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\StarSystem.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Relay.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Salvage.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Salvage.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Ship.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Ship.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Starbase.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Starbase.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\StarSystem.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\StateStructs">
       <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>
@@ -257,6 +260,12 @@
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\EntitySpawner.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\FactionSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\FactionSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Utils">

@@ -51,6 +51,7 @@ void UTurretComponent::Fire()
 
 void UTurretComponent::DisappearLaser()
 {
+	UE_LOG(LogGameplay, Warning, TEXT("Disappearing laser"));
 	LaserMeshComponent->SetVisibility(false);
 }
 

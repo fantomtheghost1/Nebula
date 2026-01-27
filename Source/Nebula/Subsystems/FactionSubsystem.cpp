@@ -5,7 +5,7 @@
 
 #include "Nebula/NebulaGameInstance.h"
 
-UFaction* UFactionSubsystem::AddFaction(FString Name, FColor Color)
+UFaction* UFactionSubsystem::AddFaction(FName Name, FColor Color)
 {
 	UFaction* NewFaction = NewObject<UFaction>(this);
 	NewFaction->SetName(Name);
@@ -16,7 +16,7 @@ UFaction* UFactionSubsystem::AddFaction(FString Name, FColor Color)
 	return NewFaction;
 }
 
-void UFactionSubsystem::RemoveFaction(FString Name)
+void UFactionSubsystem::RemoveFaction(FName Name)
 {
 	for (const TPair<int, UFaction*>& Elem : Factions)
 	{
@@ -27,13 +27,26 @@ void UFactionSubsystem::RemoveFaction(FString Name)
 	}
 }
 
-UFaction* UFactionSubsystem::GetFactionByName(FString Name)
+UFaction* UFactionSubsystem::GetFactionByName(FName Name)
 {
 	for (const TPair<int, UFaction*>& Elem : Factions)
 	{
 		if (Elem.Value->GetName() == Name) return Elem.Value;
 	}
 	return nullptr;
+}
+
+void UFactionSubsystem::RegisterMemberByName(FName Name, AActor* Member)
+{
+	UFaction* Faction = GetFactionByName(Name);
+	if (Faction)
+	{
+		Faction->RegisterMember(Member);
+	} else
+	{
+		AddFaction(Name, FColor::White);
+	}
+
 }
 
 int UFactionSubsystem::GetNumberOfFactions()

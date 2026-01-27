@@ -17,8 +17,6 @@ public:
 	
 	void Dock(bool IsPlayer, AFleet* DockedFleet);
 	
-	void Interact(AFleet* InteractingFleet);
-	
 	UUserWidget* DockingUIWidget;
 	
 	UFUNCTION(BlueprintCallable)

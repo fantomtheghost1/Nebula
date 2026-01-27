@@ -52,11 +52,6 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 	}
 }
 
-void UDockingComponent::Interact(AFleet* InteractingFleet)
-{
-	return;
-}
-
 void UDockingComponent::ClearDockedFleets()
 {
 	DockedFleets.Empty();

@@ -45,22 +45,6 @@ AFleet::AFleet()
 	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 }
 
-// Called when the game starts or when spawned
-void AFleet::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
-	UFactionSubsystem* FactionSubsystem = GI->GetSubsystem<UFactionSubsystem>();
-	
-	Faction = FactionSubsystem->GetFactionByName(FactionName);
-	
-	if (Faction == nullptr)
-	{
-		UE_LOG(LogGameplay, Warning, TEXT("No Faction Found"));
-	}
-}
-
 // Called every frame
 void AFleet::Tick(float DeltaTime)
 {
@@ -93,11 +77,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);
 			
-			if (UDockingComponent* DockingComponent = HitResult.GetActor()->FindComponentByClass<UDockingComponent>())
-			{
-				DockingComponent->Interact(this);
-			}
-			else if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
+			if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
 			{
 				Relay->Interact(this);
 			}

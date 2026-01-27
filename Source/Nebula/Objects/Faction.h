@@ -18,20 +18,29 @@ public:
 	
 	UFaction();
 	
-	void SetName(FString NewName);
+	void RegisterMember(AActor* NewMember);
+	
+	void DeregisterMember(AActor* NewMember);
+	
+	void SetName(FName NewName);
 	
 	void SetColor(FColor NewColor);
 	
-	FString GetName();
+	TArray<AActor*> GetMembers();
+	
+	FName GetName();
 	
 	FColor GetColor();
 	
 private:
 	
 	UPROPERTY(EditAnywhere, Category="Faction")
-	FString Name;
+	FName Name;
 	
 	UPROPERTY(EditAnywhere, Category="Faction")
 	FColor Color;
+	
+	UPROPERTY(VisibleAnywhere, Category="Faction")
+	TArray<AActor*> Members;
 	
 };
