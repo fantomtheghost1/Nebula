@@ -55,6 +55,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\DockingComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\FactionComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\FactionComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\HealthComponent.cpp">
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
@@ -132,12 +138,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\FactionComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\FactionComponent.h">
-      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
