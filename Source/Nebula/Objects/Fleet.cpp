@@ -43,6 +43,7 @@ AFleet::AFleet()
 	SphereComponent->SetupAttachment(RootComponent);
 	SphereComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	SphereComponent->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 }
 
 // Called every frame
@@ -61,6 +62,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 {
 	if (HitResult.IsValidBlockingHit())
 	{
+		UE_LOG(LogGameplay, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
 		if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
 		{
 			UE_LOG(LogGameplay, Warning, TEXT("Fighting with %s"), *HitResult.GetActor()->GetName());
