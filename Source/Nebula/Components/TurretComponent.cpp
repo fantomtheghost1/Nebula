@@ -33,13 +33,15 @@ void UTurretComponent::Fire()
 		return;
 	}
 	
+	const float CentimeterOffset = 100.0f;
 	FVector Direction = (Target->GetActorLocation() - GetOwner()->GetActorLocation()).GetSafeNormal();
-	float Length = FVector::Dist(GetOwner()->GetActorLocation(), Target->GetActorLocation());
+	float Length = (FVector::Dist(GetOwner()->GetActorLocation(), Target->GetActorLocation()) / CentimeterOffset);
 	FRotator Rotation = FRotationMatrix::MakeFromX(Direction).Rotator();
 	FVector NewScale = FVector(Length, 1.0f, 1.0f);
 	
 	LaserMeshComponent->SetWorldRotation(Rotation);
 	LaserMeshComponent->SetWorldScale3D(NewScale);
+	LaserMeshComponent->SetWorldLocation((GetOwner()->GetActorLocation() + Target->GetActorLocation()) * 0.5f);
 	LaserMeshComponent->SetVisibility(true);
 	
 	TargetHealthComp->TakeDamage(TurretDamage);
