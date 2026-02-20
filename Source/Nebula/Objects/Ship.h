@@ -68,4 +68,10 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	AActor* Target;
+	
+	UPROPERTY(EditAnywhere, Category="Ship")
+	float Experience = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category="Ship")
+	float Exhaustion = 0.0f;
 };
