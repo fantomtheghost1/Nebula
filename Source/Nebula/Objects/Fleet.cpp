@@ -6,6 +6,7 @@
 #include "Relay.h"
 #include "../Utils/NebulaLogging.h"
 #include "Nebula/Subsystems/FactionSubsystem.h"
+#include "Nebula/Subsystems/LeaderSubsystem.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -50,6 +51,22 @@ AFleet::AFleet()
 void AFleet::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
+	if (GI)
+	{
+		if (IsPlayerFleet)
+		{
+			Leader = GI->PlayerLeader;
+		} else
+		{
+			ULeaderSubsystem* LeaderSubsystem = GI->GetSubsystem<ULeaderSubsystem>();
+			if (LeaderSubsystem)
+			{
+				Leader = LeaderSubsystem->GenerateLeader();
+			}
+		}
+	}
 }
 
 // Called to bind functionality to input

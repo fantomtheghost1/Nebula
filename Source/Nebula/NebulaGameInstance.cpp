@@ -4,7 +4,7 @@
 #include "NebulaGameInstance.h"
 
 #include "EngineUtils.h"
-#include "Objects/Faction.h"
+#include "DataStructs/Leader.h"
 #include "NebulaGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Subsystems/FactionSubsystem.h"
@@ -68,6 +68,9 @@ void UNebulaGameInstance::StartGame()
 	UFactionSubsystem* FactionSubsystem = GetSubsystem<UFactionSubsystem>();
 	FactionSubsystem->AddFaction("Player", FColor::Blue);
 	FactionSubsystem->AddFaction("AI", FColor::Red);
+	
+	PlayerLeader.LeaderName = "Player";
+	PlayerLeader.LeaderFaction = FactionSubsystem->GetFactionByName("Player");
 }
 
 void UNebulaGameInstance::Init()

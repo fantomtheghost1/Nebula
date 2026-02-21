@@ -14,5 +14,8 @@ void UFactionComponent::BeginPlay()
 	UFactionSubsystem* FactionSubsystem = GameInstance->GetSubsystem<UFactionSubsystem>();
 	
 	FactionSubsystem->RegisterMemberByName(FactionData->FactionName, GetOwner());
+	
+	AFleet* Fleet = Cast<AFleet>(GetOwner());
+	Fleet->Leader.LeaderFaction = FactionSubsystem->GetFactionByName(FactionData->FactionName);
 }
 

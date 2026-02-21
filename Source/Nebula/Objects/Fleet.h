@@ -12,6 +12,7 @@
 #include "../Components/Scanner.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Nebula/DataStructs/Leader.h"
 #include "Fleet.generated.h"
 
 UCLASS()
@@ -48,6 +49,9 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	USphereComponent* SphereComponent;
+	
+	UPROPERTY(EditAnywhere)
+	FLeader Leader;
 	
 private:
 	

@@ -34,12 +34,6 @@
     <Filter Include="Source\Nebula">
       <UniqueIdentifier>{0B4E00D5-9280-318C-AE10-A66ECCFF9DF7}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Nebula\AsteroidGenerator.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\AsteroidGenerator.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\Components">
       <UniqueIdentifier>{E98A4B53-95EF-3EB4-B4CF-0B3DA4DBD9D1}</UniqueIdentifier>
     </Filter>
@@ -142,8 +136,17 @@
     <ClInclude Include="..\..\Source\Nebula\DataStructs\CargoItemData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\DataStructs\Leader.h">
+      <Filter>Source\Nebula\DataStructs</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\LeaderSubsystem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\LeaderSubsystem.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
@@ -179,6 +182,12 @@
       <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Objects\Asteroid.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\AsteroidGenerator.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\AsteroidGenerator.h">
       <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Objects\Faction.cpp">

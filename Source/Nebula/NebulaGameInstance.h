@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DataStructs/Leader.h"
 #include "Objects/Fleet.h"
 #include "Objects/MapManager.h"
 #include "Objects/Ship.h"
@@ -48,6 +49,8 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool DoFirstSpawns = true;
+	
+	FLeader PlayerLeader;
 	
 protected:
 	virtual void Init() override;
