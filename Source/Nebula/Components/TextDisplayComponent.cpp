@@ -40,6 +40,7 @@ void UTextDisplayComponent::InitializeTextRender()
 			TextRender->SetTextRenderColor(FColor::Orange);
 			TextRender->SetWorldScale3D(FVector(4.0f));
 			TextRender->SetRelativeLocation(FVector(0.0f, 0.0f, VerticalOffset));
+			
 		}
 	}
 }
@@ -109,7 +110,10 @@ void UTextDisplayComponent::SetStarbaseText()
 	AStarbase* OwningStarbase = Cast<AStarbase>(GetOwner());
 	if (OwningStarbase)
 	{
-		TextRender->SetText(FText::FromString(OwningStarbase->GetAffiliation()->GetName().ToString()));
+		if (OwningStarbase->GetAffiliation())
+		{
+			TextRender->SetText(FText::FromString(OwningStarbase->GetAffiliation()->GetName().ToString()));
+		}
 	}
 }
 

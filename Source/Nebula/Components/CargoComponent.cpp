@@ -102,6 +102,16 @@ UCargoItemAsset* UCargoComponent::GetCargoItemByID(FName ItemID)
 	return nullptr;
 }
 
+int UCargoComponent::GetCargoQuantity(FName ItemID)
+{
+	for (int i = 0; i < Cargo.Num(); i++)
+	{
+		if (Cargo[i].ItemID == ItemID) return Cargo[i].Quantity;
+	}
+	
+	return 0;
+}
+
 int UCargoComponent::GetMaxSlots()
 {
 	return MaxCargoSlots;

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Nebula/Components/SpawnRingsComponent.h"
 #include "AsteroidGenerator.generated.h"
 
 UCLASS()
@@ -11,8 +12,19 @@ class NEBULA_API AAsteroidGenerator : public AActor
 {
 	GENERATED_BODY()
 	
+public:
+	AAsteroidGenerator();
+	
+	virtual void OnConstruction(const FTransform& Transform) override;
+	
+#if WITH_EDITOR
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
+	
 protected:
 	virtual void BeginPlay() override;
+		
+	TObjectPtr<USpawnRingsComponent> SpawnRings = nullptr;
 	
 private:
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator")

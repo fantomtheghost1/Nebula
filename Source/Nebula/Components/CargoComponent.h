@@ -31,8 +31,13 @@ public:
 	
 	UCargoItemAsset* GetCargoItemByID(FName ItemID);
 	
+	int GetCargoQuantity(FName ItemID);
+	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
 	int GetMaxSlots();
+	
+	UPROPERTY(EditAnywhere)
+	TArray<FCargoItemData> Cargo;
 
 protected:
 	// Called when the game starts
@@ -42,9 +47,6 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	int MaxCargoSlots;
-	
-	UPROPERTY(VisibleAnywhere)
-	TArray<FCargoItemData> Cargo;
 	
 	TArray<UCargoItemAsset*> CargoItemAssets;
 };

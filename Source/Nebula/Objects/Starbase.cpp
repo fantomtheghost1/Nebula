@@ -24,6 +24,7 @@ AStarbase::AStarbase()
 	
 	SphereCollision = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollision"));
 	SphereCollision->SetupAttachment(RootComponent);
+	SphereCollision->SetSphereRadius(100.0f);
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 	

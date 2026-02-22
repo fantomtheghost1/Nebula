@@ -8,6 +8,39 @@
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Actor.h"
 
+AAsteroidGenerator::AAsteroidGenerator()
+{
+	PrimaryActorTick.bCanEverTick = false;
+
+	SpawnRings = CreateDefaultSubobject<USpawnRingsComponent>(TEXT("SpawnRings"));
+	SpawnRings->SetupAttachment(GetRootComponent());
+}
+
+void AAsteroidGenerator::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+	
+	if (SpawnRings)
+	{
+		SpawnRings->RadiusMin = RadiusMin;
+		SpawnRings->RadiusMax = RadiusMax;
+
+		// If you want these tweakable on the generator instead, keep them here too:
+		// SpawnRings->Segments = 64;
+		// SpawnRings->Thickness = 2.0f;
+
+		SpawnRings->MarkRenderStateDirty(); // push changes to the scene proxy
+	}
+}
+
+#if WITH_EDITOR
+void AAsteroidGenerator::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+	RerunConstructionScripts();
+}
+#endif
+
 void AAsteroidGenerator::BeginPlay()
 {
 	Super::BeginPlay();

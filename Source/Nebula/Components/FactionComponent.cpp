@@ -15,6 +15,7 @@ void UFactionComponent::BeginPlay()
 	
 	UFactionSubsystem* FactionSubsystem = GameInstance->GetSubsystem<UFactionSubsystem>();
 	if (!FactionSubsystem) return;
+	if (!FactionData) return;
 	
 	FactionSubsystem->RegisterMemberByName(FactionData->FactionName, GetOwner());
 	

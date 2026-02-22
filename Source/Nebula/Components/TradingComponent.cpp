@@ -17,9 +17,13 @@ void UTradingComponent::Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer)
 		{
 			if (DockedFleet->FindComponentByClass<UCargoComponent>())
 			{
-				DockedFleet->FindComponentByClass<UCargoComponent>()->SubtractCargoItem(ItemToTrade, 1);
-				NPC->Credits += ItemToTrade->SalePrice;
-				UE_LOG(LogGameplay, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
+				int CargoQuantity = DockedFleet->FindComponentByClass<UCargoComponent>()->GetCargoQuantity(*ItemToTrade->GetName());
+				if (CargoQuantity > 0)
+				{
+					DockedFleet->FindComponentByClass<UCargoComponent>()->SubtractCargoItem(ItemToTrade, CargoQuantity);
+					NPC->Credits += (ItemToTrade->SalePrice * CargoQuantity);
+					UE_LOG(LogGameplay, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
+				}
 			} else
 			{
 				UE_LOG(LogGameplay, Warning, TEXT("Docked fleet does not have a cargo component."));
