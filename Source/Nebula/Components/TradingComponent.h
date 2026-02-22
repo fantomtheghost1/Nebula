@@ -17,5 +17,5 @@ public:
 	AFleet* DockedFleet;
 	
 	UFUNCTION(BlueprintCallable)
-	void Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer);
+	void Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer, bool IsBuying);
 };

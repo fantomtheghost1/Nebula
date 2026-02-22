@@ -91,6 +91,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\Scanner.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\SpawnRingsComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\SpawnRingsComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\TextDisplayComponent.cpp">
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
@@ -147,6 +153,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\GasPocket.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\GasPocket.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
@@ -243,12 +255,6 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
       <Filter>Source\Nebula\Objects</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\SpawnRingsComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\SpawnRingsComponent.h">
-      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\StateStructs">
       <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>

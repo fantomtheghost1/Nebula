@@ -106,6 +106,8 @@ int UCargoComponent::GetCargoQuantity(FName ItemID)
 {
 	for (int i = 0; i < Cargo.Num(); i++)
 	{
+		UE_LOG(LogCargo, Warning, TEXT("Does %s == %s"), *Cargo[i].ItemID.ToString(), *ItemID.ToString());
+		UE_LOG(LogCargo, Warning, TEXT("Cargo Item Quantity: %i"), Cargo[i].Quantity);
 		if (Cargo[i].ItemID == ItemID) return Cargo[i].Quantity;
 	}
 	

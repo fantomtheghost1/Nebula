@@ -6,31 +6,35 @@
 #include "Nebula/NebulaPlayerController.h"
 #include "Nebula/Utils/NebulaLogging.h"
 
-void UTradingComponent::Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer)
+void UTradingComponent::Trade(UCargoItemAsset* ItemToTrade, bool IsPlayer, bool IsBuying)
 {
+	if (!ItemToTrade) return;
+	
 	if (IsPlayer)
 	{
 		APlayerController* PC = GetWorld()->GetFirstPlayerController();
 		ANebulaPlayerController* NPC = Cast<ANebulaPlayerController>(PC);
+		if (!DockedFleet) return;
+		if (!DockedFleet->FindComponentByClass<UCargoComponent>()) return;
 		
-		if (DockedFleet)
-		{
-			if (DockedFleet->FindComponentByClass<UCargoComponent>())
+		if (!IsBuying) {
+			int CargoQuantity = DockedFleet->FindComponentByClass<UCargoComponent>()->GetCargoQuantity(*ItemToTrade->GetName());
+			UE_LOG(LogGameplay, Warning, TEXT("Cargo Quantity is %i"), CargoQuantity);
+			if (CargoQuantity > 0)
 			{
-				int CargoQuantity = DockedFleet->FindComponentByClass<UCargoComponent>()->GetCargoQuantity(*ItemToTrade->GetName());
-				if (CargoQuantity > 0)
-				{
-					DockedFleet->FindComponentByClass<UCargoComponent>()->SubtractCargoItem(ItemToTrade, CargoQuantity);
-					NPC->Credits += (ItemToTrade->SalePrice * CargoQuantity);
-					UE_LOG(LogGameplay, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
-				}
-			} else
-			{
-				UE_LOG(LogGameplay, Warning, TEXT("Docked fleet does not have a cargo component."));
+				DockedFleet->FindComponentByClass<UCargoComponent>()->SubtractCargoItem(ItemToTrade, CargoQuantity);
+				NPC->Credits += (ItemToTrade->SalePrice * CargoQuantity);
+				UE_LOG(LogGameplay, Warning, TEXT("Traded %s for %d credits."), *ItemToTrade->GetName(), ItemToTrade->SalePrice);
 			}
 		} else
 		{
-			UE_LOG(LogGameplay, Warning, TEXT("Docked fleet is null."));
+			int ItemQuantity = NPC->Credits / ItemToTrade->SalePrice;
+			if (ItemQuantity > 0)
+			{
+				DockedFleet->FindComponentByClass<UCargoComponent>()->AddCargoItem(ItemToTrade, ItemQuantity);
+				NPC->Credits -= (ItemToTrade->SalePrice * ItemQuantity);
+			}
 		}
+
 	}
 }

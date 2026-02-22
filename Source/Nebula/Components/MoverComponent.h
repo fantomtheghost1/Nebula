@@ -25,6 +25,7 @@ public:
 	
 	void ClearWaypoints();
 	
+	UFUNCTION(BlueprintCallable)
 	void GetFlySpeed(float& OutSpeed);
 	
 	FVector GetNextWaypoint();
