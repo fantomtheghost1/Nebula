@@ -30,6 +30,8 @@ AAsteroid::AAsteroid()
 	
 	ResourceNodeComponent = CreateDefaultSubobject<UResourceNodeComponent>(TEXT("Resource Node"));
 	
+	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
+	
 }
 
 // Called when the game starts or when spawned
@@ -38,7 +40,7 @@ void AAsteroid::BeginPlay()
 	Super::BeginPlay();
 	
 	float NewRotation = FMath::FRandRange(-17.0f, 17.0f);
-	FRotator NewRotationRate = FRotator(NewRotation, NewRotation, NewRotation);
+	FRotator NewRotationRate = FRotator(0.0f, NewRotation, 0.0f);
 	
 	if (RotatingMovementComponent)
 	{

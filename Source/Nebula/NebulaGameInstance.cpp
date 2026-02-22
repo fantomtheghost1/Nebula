@@ -8,6 +8,7 @@
 #include "NebulaGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Subsystems/FactionSubsystem.h"
+#include "Utils/NebulaLogging.h"
 
 void UNebulaGameInstance::StartBattle(AFleet* PlayerFleet, AFleet* AIFleet)
 {

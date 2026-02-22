@@ -74,3 +74,8 @@ int UResourceNodeComponent::GetResourceAmount()
 	return ResourceAmount;
 }
 
+FName UResourceNodeComponent::GetResourceName()
+{
+	return ResourceItem->ItemID;
+}
+

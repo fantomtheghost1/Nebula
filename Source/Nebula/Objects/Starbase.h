@@ -21,6 +21,8 @@ public:
 	
 	void Interact(AFleet* InteractingFleet);
 	
+	UFaction* GetAffiliation();
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -51,4 +53,7 @@ private:
 	UFaction* Affiliation;
 	
 	UUserWidget* DockingUIWidget;
+	
+	UPROPERTY(EditAnywhere)
+	UTextDisplayComponent* TextDisplay;
 };

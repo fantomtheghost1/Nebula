@@ -11,11 +11,16 @@ void UFactionComponent::BeginPlay()
 	Super::BeginPlay();
 	
 	UNebulaGameInstance* GameInstance = Cast<UNebulaGameInstance>(GetWorld()->GetGameInstance());
+	if (!GameInstance) return;
+	
 	UFactionSubsystem* FactionSubsystem = GameInstance->GetSubsystem<UFactionSubsystem>();
+	if (!FactionSubsystem) return;
 	
 	FactionSubsystem->RegisterMemberByName(FactionData->FactionName, GetOwner());
 	
 	AFleet* Fleet = Cast<AFleet>(GetOwner());
+	if (!Fleet) return;
+	//if (!Fleet->Leader) return;
 	Fleet->Leader.LeaderFaction = FactionSubsystem->GetFactionByName(FactionData->FactionName);
 }
 

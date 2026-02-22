@@ -32,4 +32,7 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
 	TArray<TSubclassOf<AActor>> AsteroidBlueprints;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
+    AActor* OrbitPoint;
 };

@@ -12,6 +12,7 @@
 #include "../Components/Scanner.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Nebula/Components/TextDisplayComponent.h"
 #include "Nebula/DataStructs/Leader.h"
 #include "Fleet.generated.h"
 
@@ -23,9 +24,6 @@ class NEBULA_API AFleet : public APawn
 public:
 	// Sets default values for this pawn's properties
 	AFleet();
-	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -53,6 +51,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	FLeader Leader;
 	
+protected:
+	
+	virtual void BeginPlay() override;
+	
 private:
 	
 	UPROPERTY(EditAnywhere)
@@ -75,5 +77,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;
+	
+	UPROPERTY(EditAnywhere)
+	UTextDisplayComponent* TextDisplay;
 
 };

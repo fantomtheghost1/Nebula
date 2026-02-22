@@ -34,6 +34,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	int GetResourceAmount();
+	
+	FName GetResourceName();
 
 protected:
 	// Called when the game starts

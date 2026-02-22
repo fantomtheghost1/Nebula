@@ -10,6 +10,8 @@ APlanet::APlanet()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
+	Tags.Add(FName(TEXT("Planet")));
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
@@ -25,6 +27,8 @@ APlanet::APlanet()
 	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement"));
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
+	
+	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
 	
 }
 

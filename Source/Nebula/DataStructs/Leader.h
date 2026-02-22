@@ -9,6 +9,9 @@ struct FLeader
 {
 	GENERATED_BODY()
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Leader")
 	FName LeaderName;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Leader")
 	UFaction* LeaderFaction;
 };

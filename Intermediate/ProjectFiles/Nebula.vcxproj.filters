@@ -142,12 +142,6 @@
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\LeaderSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\LeaderSubsystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
     </None>
@@ -282,6 +276,18 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\FactionSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\LeaderSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\LeaderSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\TextDisplayComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\TextDisplayComponent.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Utils">
       <UniqueIdentifier>{E35EF734-63E5-3144-AA5F-1D6BD886479C}</UniqueIdentifier>

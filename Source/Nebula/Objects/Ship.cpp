@@ -13,6 +13,7 @@ AShip::AShip()
 	PrimaryActorTick.bCanEverTick = true;
 	Tags.Add(FName(TEXT("CombatTarget")));
 	Tags.Add(FName(TEXT("Targetable")));
+	Tags.Add(FName(TEXT("Ship")));
 	
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 

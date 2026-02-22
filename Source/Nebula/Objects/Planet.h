@@ -20,6 +20,9 @@ public:
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
+	UPROPERTY(EditAnywhere)
+	FName PlanetName;
 
 protected:
 	// Called when the game starts or when spawned
@@ -37,4 +40,7 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UDockingComponent* DockingComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UTextDisplayComponent* TextDisplay;
 };

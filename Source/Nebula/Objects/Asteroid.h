@@ -42,4 +42,7 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UResourceNodeComponent* ResourceNodeComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UTextDisplayComponent* TextDisplay;
 };
