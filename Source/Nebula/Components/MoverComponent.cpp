@@ -14,6 +14,8 @@ UMoverComponent::UMoverComponent()
 void UMoverComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	MaxFlySpeed = FlySpeed;
 }
 
 // Called every frame
@@ -66,6 +68,11 @@ void UMoverComponent::SetFlySpeed(float NewSpeed)
 void UMoverComponent::GetFlySpeed(float& OutSpeed)
 {
 	OutSpeed = FlySpeed;
+}
+
+float UMoverComponent::GetMaxFlySpeed()
+{
+	return MaxFlySpeed;
 }
 
 

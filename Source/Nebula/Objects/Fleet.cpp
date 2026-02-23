@@ -5,6 +5,8 @@
 #include "../NebulaGameInstance.h"
 #include "Relay.h"
 #include "../Utils/NebulaLogging.h"
+#include "Kismet/GameplayStatics.h"
+#include "Nebula/NebulaGameMode.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -53,6 +55,12 @@ AFleet::AFleet()
 void AFleet::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	AGameModeBase* GM = UGameplayStatics::GetGameMode(GetWorld());
+	if (!GM) return;
+	
+	ANebulaGameMode* NGM = Cast<ANebulaGameMode>(GM);
+	NGM->RegisterFleet(this);
 }
 
 // Called to bind functionality to input

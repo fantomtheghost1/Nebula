@@ -28,6 +28,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GetFlySpeed(float& OutSpeed);
 	
+	UFUNCTION(BlueprintCallable)
+	float GetMaxFlySpeed();
+	
 	FVector GetNextWaypoint();
 	
 	UFUNCTION(BlueprintCallable)
@@ -42,6 +45,9 @@ private:
 		
 	UPROPERTY(EditAnywhere)
 	float FlySpeed = 0.0f;
+	
+	UPROPERTY(EditAnywhere)
+	float MaxFlySpeed = 0.0f;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;

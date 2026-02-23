@@ -22,6 +22,10 @@ public:
 	
 	void InitializeBattle(int NewPlayerShipCount, int NewAIShipCount);
 	
+	void RegisterFleet(AFleet* NewFleet);
+	
+	TArray<AFleet*> GetFleets();
+	
 	void SubtractAIShip();
 	
 	void SubtractPlayerShip();
@@ -37,6 +41,8 @@ private:
 	UNebulaGameInstance* GameInstance;
 	
 	UFactionSubsystem* FactionSubsystem;
+	
+	TArray<AFleet*> Fleets;
 	
 	int PlayerShipCount = 0;
 	

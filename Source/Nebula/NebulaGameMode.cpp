@@ -20,6 +20,16 @@ void ANebulaGameMode::InitializeBattle(int NewPlayerShipCount, int NewAIShipCoun
 	PlayerShipCount = NewPlayerShipCount;
 }
 
+void ANebulaGameMode::RegisterFleet(AFleet* NewFleet)
+{
+	Fleets.Add(NewFleet);
+}
+
+TArray<AFleet*> ANebulaGameMode::GetFleets()
+{
+	return Fleets;
+}
+
 void ANebulaGameMode::SubtractAIShip()
 {
 	AIShipCount--;

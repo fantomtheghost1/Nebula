@@ -73,6 +73,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\MoverComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Components\OrbitComponent.cpp">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Components\OrbitComponent.h">
+      <Filter>Source\Nebula\Components</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\ResourceNodeComponent.cpp">
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
@@ -256,12 +262,6 @@
     <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
       <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\OrbitComponent.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\OrbitComponent.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\StateStructs">
       <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>
     </Filter>
@@ -306,6 +306,12 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\LeaderSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\SystemEffectHandler.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\SystemEffectHandler.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Utils">
       <UniqueIdentifier>{E35EF734-63E5-3144-AA5F-1D6BD886479C}</UniqueIdentifier>
