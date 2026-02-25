@@ -10,6 +10,7 @@
 #include "TradingComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/SphereComponent.h"
+#include "Nebula/Objects/Relay.h"
 #include "Nebula/Utils/NebulaLogging.h"
 
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
@@ -47,6 +48,12 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		if (UTradingComponent* TradingComponent = GetOwner()->FindComponentByClass<UTradingComponent>())
 		{
 			TradingComponent->DockedFleet = DockedFleet;
+		}
+		if (GetOwner()->ActorHasTag(TEXT("Relay")))
+		{
+			ARelay* Relay = Cast<ARelay>(GetOwner());
+			Relay->DockedFleet = DockedFleet;
+			Relay->Interact();
 		}
 		UE_LOG(LogGameplay, Warning, TEXT("Docked %s"), *DockedFleet->GetName());
 	}

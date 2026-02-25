@@ -21,7 +21,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
-	void Interact(AFleet* TravelingFleet);
+	void Interact();
+	
+	UPROPERTY(EditAnywhere)
+	AFleet* DockedFleet;
 
 protected:
 	// Called when the game starts or when spawned
@@ -29,11 +32,21 @@ protected:
 	
 private:
 	
+	void Warp();
+	
 	UPROPERTY(EditAnywhere)
-	AStarSystem* Connection;
+	FName Connection;
 	
 	USceneComponent* RootComp;
 	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* MeshComp;
+	
+	UPROPERTY(EditAnywhere)
+	USphereComponent* SphereCollision;
+	
+	UPROPERTY(EditAnywhere)
+	float WarpDelay;
+	
+	FTimerHandle WarpTimer;
 };

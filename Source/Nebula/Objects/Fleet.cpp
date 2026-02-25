@@ -89,11 +89,6 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);
-			
-			if (ARelay* Relay = Cast<ARelay>(HitResult.GetActor()))
-			{
-				Relay->Interact(this);
-			}
 		}
 	}
 }

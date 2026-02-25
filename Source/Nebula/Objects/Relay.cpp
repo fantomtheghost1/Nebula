@@ -3,7 +3,7 @@
 
 
 #include "Relay.h"
-
+#include "Kismet/GameplayStatics.h"
 #include "Fleet.h"
 
 // Sets default values
@@ -20,6 +20,9 @@ ARelay::ARelay()
 	
 	MeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	MeshComp->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
+	
+	SphereCollision = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Collision"));
+	SphereCollision->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -34,11 +37,22 @@ void ARelay::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ARelay::Interact(AFleet* TravelingFleet)
+void ARelay::Interact()
 {
-	if (Connection)
-	{
-		TravelingFleet->SetActorLocation(Connection->GetActorLocation());
-	}
+	GetWorld()->GetTimerManager().SetTimer(
+		WarpTimer,
+		this,
+		&ARelay::Warp,
+		WarpDelay,   // update interval
+		true
+	);
+	//
 }
 
+void ARelay::Warp()
+{
+	if (Connection != "")
+	{
+		UGameplayStatics::OpenLevel(this, FName(Connection));
+	}
+}
