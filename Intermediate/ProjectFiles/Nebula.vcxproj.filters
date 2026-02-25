@@ -160,6 +160,27 @@
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DroppedItem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DroppedItem.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\Enums">
+      <UniqueIdentifier>{5529CD4E-BA05-3122-9B7B-BCF8B97FA056}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Nebula\Enums\SystemEffects.h">
+      <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
+    <Filter Include="Source\Nebula\Handlers">
+      <UniqueIdentifier>{143AE41C-83A4-3C24-B8EF-68D6D1FDE07E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Nebula\Handlers\SystemEffectHandler.cpp">
+      <Filter>Source\Nebula\Handlers</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Handlers\SystemEffectHandler.h">
+      <Filter>Source\Nebula\Handlers</Filter>
+    </ClInclude>
     <None Include="..\..\Source\Nebula\Nebula.Build.cs">
       <Filter>Source\Nebula</Filter>
     </None>
@@ -306,12 +327,6 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\LeaderSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\SystemEffectHandler.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\SystemEffectHandler.h">
-      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Utils">
       <UniqueIdentifier>{E35EF734-63E5-3144-AA5F-1D6BD886479C}</UniqueIdentifier>
