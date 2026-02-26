@@ -126,7 +126,7 @@ USpawnRingsComponent::USpawnRingsComponent()
 	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	// Treat as editor visualization aid
-	SetIsVisualizationComponent(true);
+	//SetIsVisualizationComponent(true);
 
 	// Usually you don't want to click this in editor
 	bSelectable = false;

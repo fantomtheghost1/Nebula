@@ -81,7 +81,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			if (GI)
 			{
 				AFleet* EnemyFleet = Cast<AFleet>(HitResult.GetActor());
-				GI->StartBattle(this, EnemyFleet);
+				//GI->StartBattle(this, EnemyFleet);
 			}
 		} 
 		else {

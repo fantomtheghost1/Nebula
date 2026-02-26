@@ -11,6 +11,7 @@ void UCraftingRecipeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	TArray<FAssetData> TempRecipes;
 	UAssetManager& AM = UAssetManager::Get();
+	AM.UpdateManagementDatabase();
 	AM.GetPrimaryAssetDataList(
 		FPrimaryAssetType("CraftingRecipe"),
 		TempRecipes
