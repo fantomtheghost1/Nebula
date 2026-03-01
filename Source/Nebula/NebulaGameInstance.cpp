@@ -7,6 +7,7 @@
 #include "DataStructs/Leader.h"
 #include "NebulaGameMode.h"
 #include "Kismet/GameplayStatics.h"
+#include "Subsystems/ContractSubsystem.h"
 #include "Subsystems/FactionSubsystem.h"
 #include "Utils/NebulaLogging.h"
 
@@ -72,6 +73,12 @@ void UNebulaGameInstance::StartGame()
 	
 	PlayerLeader.LeaderName = "Player";
 	PlayerLeader.LeaderFaction = FactionSubsystem->GetFactionByName("Player");
+	
+	UContractSubsystem* ContractSubsystem = GetSubsystem<UContractSubsystem>();
+	ContractSubsystem->AddContract(FContractData(0, "Test Contract", 100, EContractType::TEST));
+	
+	FContractData* Contract = ContractSubsystem->GetContract(0);
+	UE_LOG(LogTemp, Warning, TEXT("Contract: %s"), *Contract->ContractText);
 }
 
 void UNebulaGameInstance::Init()

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "../Enums/DialogueType.h"
 #include "Dialogue.generated.h"
 
 USTRUCT(BlueprintType)
@@ -13,6 +14,9 @@ struct FDialogueChoice
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int NextNodeID;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	EDialogueType ChoiceType;
 };
 
 USTRUCT(BlueprintType)

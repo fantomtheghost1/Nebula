@@ -127,6 +127,12 @@
     <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\ContractSubsystem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\ContractSubsystem.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <Filter Include="Source\Nebula\DataAssets">
       <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
     </Filter>
@@ -134,6 +140,12 @@
       <Filter>Source\Nebula\DataAssets</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\DataAssets\CargoItemAsset.h">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\DataAssets\ContractAsset.cpp">
+      <Filter>Source\Nebula\DataAssets</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\DataAssets\ContractAsset.h">
       <Filter>Source\Nebula\DataAssets</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\DataAssets\CraftingRecipeAsset.cpp">
@@ -175,15 +187,15 @@
     <ClInclude Include="..\..\Source\Nebula\DataStructs\ShipData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\DialogueSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\DialogueSubsystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\Enums">
       <UniqueIdentifier>{5529CD4E-BA05-3122-9B7B-BCF8B97FA056}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Nebula\Enums\ContractType.h">
+      <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\Enums\DialogueType.h">
+      <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\SystemEffects.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
@@ -329,6 +341,12 @@
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\CraftingRecipeSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\DialogueSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\DialogueSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Subsystems\EntitySpawner.cpp">
