@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Subsystems/ContractSubsystem.h"
 #include "Subsystems/FactionSubsystem.h"
+#include "Subsystems/SkillSubsystem.h"
 #include "Utils/NebulaLogging.h"
 
 void UNebulaGameInstance::StartBattle(AFleet* PlayerFleet, AFleet* AIFleet)
@@ -79,6 +80,9 @@ void UNebulaGameInstance::StartGame()
 	
 	FContractData* Contract = ContractSubsystem->GetContract(0);
 	UE_LOG(LogTemp, Warning, TEXT("Contract: %s"), *Contract->ContractText);
+	
+	USkillSubsystem* SkillSubsystem = GetSubsystem<USkillSubsystem>();
+	SkillSubsystem->AddSkillPoint();
 }
 
 void UNebulaGameInstance::Init()

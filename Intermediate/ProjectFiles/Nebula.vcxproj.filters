@@ -127,12 +127,6 @@
     <ClInclude Include="..\..\Source\Nebula\Components\TurretComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\ContractSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\ContractSubsystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\DataAssets">
       <UniqueIdentifier>{1A9E0571-2C48-349E-9E25-377A49D561F6}</UniqueIdentifier>
     </Filter>
@@ -176,6 +170,9 @@
       <UniqueIdentifier>{D65BE82E-AE7E-317C-9908-BA78D16A03CE}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\Nebula\DataStructs\CargoItemData.h">
+      <Filter>Source\Nebula\DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\DataStructs\ContractData.h">
       <Filter>Source\Nebula\DataStructs</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\DataStructs\Dialogue.h">
@@ -304,6 +301,12 @@
     <ClInclude Include="..\..\Source\Nebula\Objects\Ship.h">
       <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\SpawnZone.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\SpawnZone.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Objects\Starbase.cpp">
       <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
@@ -315,6 +318,12 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
       <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\SkillSubsystem.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\SkillSubsystem.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\StateStructs">
       <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>
@@ -337,6 +346,12 @@
     <Filter Include="Source\Nebula\Subsystems">
       <UniqueIdentifier>{406F7FF0-50B4-360D-9153-264447EBB57D}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\ContractSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\ContractSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Subsystems\CraftingRecipeSubsystem.cpp">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClCompile>
