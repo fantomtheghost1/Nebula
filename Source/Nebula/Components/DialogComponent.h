@@ -18,6 +18,5 @@ public:
 private:
 	UPROPERTY(EditAnywhere)
 	int DialogueID;
-	
-		
+
 };
