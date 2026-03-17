@@ -35,7 +35,7 @@ private:
 	void Warp();
 	
 	UPROPERTY(EditAnywhere)
-	FName Connection;
+	AStarSystem* Connection;
 	
 	USceneComponent* RootComp;
 	

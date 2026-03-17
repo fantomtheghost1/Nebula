@@ -17,12 +17,22 @@ public:
 	
 	virtual void OnConstruction(const FTransform& Transform) override;
 	
+	void ConfigureGenerator(
+		int MaxAttemptsPerAsteroidParam, 
+		int AsteroidCountParam,
+		float RadiusMinParam, 
+		float RadiusMaxParam, 
+		float ClearanceRadiusParam,
+		TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam,
+		AActor* OrbitPointParam);
+	
+	void SpawnAsteroids();
+	
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 	
 protected:
-	virtual void BeginPlay() override;
 		
 	TObjectPtr<USpawnRingsComponent> SpawnRings = nullptr;
 	

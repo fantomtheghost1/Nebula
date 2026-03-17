@@ -34,6 +34,12 @@
     <Filter Include="Source\Nebula">
       <UniqueIdentifier>{0B4E00D5-9280-318C-AE10-A66ECCFF9DF7}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Nebula\ClickFloor.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\ClickFloor.h">
+      <Filter>Source\Nebula</Filter>
+    </ClInclude>
     <Filter Include="Source\Nebula\Components">
       <UniqueIdentifier>{E98A4B53-95EF-3EB4-B4CF-0B3DA4DBD9D1}</UniqueIdentifier>
     </Filter>
@@ -328,12 +334,6 @@
     <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
       <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\PointsOfInterestSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\PointsOfInterestSubsystem.h">
-      <Filter>Source\Nebula</Filter>
-    </ClInclude>
     <Filter Include="Source\Nebula\StateStructs">
       <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>
     </Filter>
@@ -395,6 +395,12 @@
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\LeaderSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\PointsOfInterestSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\PointsOfInterestSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Subsystems\SkillSubsystem.cpp">

@@ -5,6 +5,7 @@
 #include "Relay.h"
 #include "Kismet/GameplayStatics.h"
 #include "Fleet.h"
+#include "Nebula/NebulaPlayerController.h"
 
 // Sets default values
 ARelay::ARelay()
@@ -51,8 +52,13 @@ void ARelay::Interact()
 
 void ARelay::Warp()
 {
-	if (Connection != "")
+	if (Connection)
 	{
-		UGameplayStatics::OpenLevel(this, FName(Connection));
+		ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+		if (PC)
+		{
+			PC->GetFleet()->FindComponentByClass<UMoverComponent>()->ClearWaypoints();
+			PC->GetFleet()->SetActorLocation(Connection->GetActorLocation(), false, nullptr, ETeleportType::TeleportPhysics);
+		}
 	}
 }

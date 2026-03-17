@@ -41,10 +41,20 @@ void AAsteroidGenerator::PostEditChangeProperty(FPropertyChangedEvent& PropertyC
 }
 #endif
 
-void AAsteroidGenerator::BeginPlay()
+void AAsteroidGenerator::ConfigureGenerator(int MaxAttemptsPerAsteroidParam, int AsteroidCountParam, float RadiusMinParam, float RadiusMaxParam,
+float ClearanceRadiusParam, TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam, AActor* OrbitPointParam)
 {
-	Super::BeginPlay();
+	MaxAttemptsPerAsteroid = MaxAttemptsPerAsteroidParam;
+	AsteroidCount = AsteroidCountParam;
+	RadiusMin = RadiusMinParam;
+	RadiusMax = RadiusMaxParam;
+	ClearanceRadius = ClearanceRadiusParam;
+	AsteroidBlueprints = AsteroidBlueprintsParam;
+	OrbitPoint = OrbitPointParam;
+}
 
+void AAsteroidGenerator::SpawnAsteroids()
+{
 	if (AsteroidBlueprints.Num() == 0)
 	{
 		return;
@@ -110,6 +120,8 @@ void AAsteroidGenerator::BeginPlay()
 				bSpawned = true;
 				break;
 			}
+			
+			if (!bSpawned) { UE_LOG(LogTemp, Warning, TEXT("Failed to spawn asteroid %d"), i); }
 		}
 
 		// If you want, you can log when we fail to find a place:

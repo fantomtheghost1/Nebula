@@ -2,26 +2,45 @@
 
 
 #include "StarSystem.h"
-
 #include "../NebulaGameInstance.h"
-
-// Sets default values
-AStarSystem::AStarSystem()
-{
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-}
 
 // Called when the game starts or when spawned
 void AStarSystem::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-// Called every frame
-void AStarSystem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
+	
+	if (ClickFloorSize > 0.0f)
+	{
+		const float ClickFloorWidth = 0.9f; 
+		
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = GetInstigator();
+				
+		FVector Location = FVector(GetActorLocation().X, GetActorLocation().Y, ZOffset);
+		FRotator Rotation = FRotator::ZeroRotator;
+		
+		AClickFloor* Spawned = GetWorld()->SpawnActor<AClickFloor>(ClickFloorClass, Location, Rotation, SpawnParams);
+		Spawned->SetFloorSize(FVector(ClickFloorSize, ClickFloorSize, ClickFloorWidth));
+	}
+	
+	if (AsteroidGeneratorClass)
+	{
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = GetInstigator();
+				
+		FVector Location = GetActorLocation();
+		FRotator Rotation = FRotator::ZeroRotator;
+				
+		AAsteroidGenerator* Spawned = GetWorld()->SpawnActor<AAsteroidGenerator>(AsteroidGeneratorClass, Location, Rotation, SpawnParams);
+			
+		if (Spawned)
+		{
+			Spawned->ConfigureGenerator(MaxAttemptsPerAsteroid, AsteroidCount, RadiusMin, RadiusMax, ClearanceRadius, AsteroidBlueprints, OrbitPoint);
+			Spawned->SpawnAsteroids();
+		}
+	}
 }
 
 void AStarSystem::AddShipToSystem(AShip* Ship)

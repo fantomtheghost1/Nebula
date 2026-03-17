@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AsteroidGenerator.h"
+#include "ClickFloor.h"
 #include "Faction.h"
 #include "Ship.h"
 #include "GameFramework/Actor.h"
@@ -14,10 +16,6 @@ class NEBULA_API AStarSystem : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
-	AStarSystem();
-	
-	virtual void Tick(float DeltaTime) override;
 	
 	void AddShipToSystem(AShip* Ship);
 	
@@ -28,9 +26,46 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	UPROPERTY(VisibleAnywhere, Category="Ship")
+	
+    // ASTEROID GENERATOR
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
+	TSubclassOf<AAsteroidGenerator> AsteroidGeneratorClass;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	int MaxAttemptsPerAsteroid;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	int AsteroidCount;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	float RadiusMin;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	float RadiusMax;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	float ClearanceRadius;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	TArray<TSubclassOf<AActor>> AsteroidBlueprints;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
+	AActor* OrbitPoint;
+	
+	// CLICK FLOOR
+	UPROPERTY(EditAnywhere, Category="Click Floor")
+	TSubclassOf<AClickFloor> ClickFloorClass;
+	
+	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
+	float ClickFloorSize;
+	
+	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
+	float ZOffset;
+	
+	// INFORMATION
+	UPROPERTY(VisibleAnywhere, Category="Information")
 	TArray<AShip*> ShipsInSystem;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category="Information")
 	UFaction* Affiliation;
 };
