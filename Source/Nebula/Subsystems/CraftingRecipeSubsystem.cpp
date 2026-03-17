@@ -9,6 +9,8 @@
 
 void UCraftingRecipeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
+	Super::Initialize(Collection);
+	
 	TArray<FAssetData> TempRecipes;
 	UAssetManager& AM = UAssetManager::Get();
 	AM.UpdateManagementDatabase();

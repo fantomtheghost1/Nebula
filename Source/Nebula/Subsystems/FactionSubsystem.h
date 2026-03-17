@@ -16,6 +16,8 @@ class NEBULA_API UFactionSubsystem : public UGameInstanceSubsystem
 	GENERATED_BODY()
 	
 public: 
+	
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 		
 	UFUNCTION(BlueprintCallable)
 	UFaction* AddFaction(FName Name, FColor Color);

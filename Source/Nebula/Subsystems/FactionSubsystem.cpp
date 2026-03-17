@@ -2,8 +2,25 @@
 
 
 #include "FactionSubsystem.h"
-
+#include "../Enums/Factions.h"
 #include "Nebula/NebulaGameInstance.h"
+
+void UFactionSubsystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+	
+	const UEnum* EnumPtr = StaticEnum<EFactions>();
+	
+	for (int i = 0; i < (EnumPtr->NumEnums() - 1); i++)
+	{
+		EFactions Value = static_cast<EFactions>(EnumPtr->GetValueByIndex(i));
+		FString Name = EnumPtr->GetNameStringByIndex(i);
+		
+		AddFaction(FName(*Name), FColor::White);
+
+		UE_LOG(LogTemp, Warning, TEXT("Faction %s Created!"), *Name);
+	}
+}
 
 UFaction* UFactionSubsystem::AddFaction(FName Name, FColor Color)
 {

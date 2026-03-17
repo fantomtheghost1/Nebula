@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Subsystems/ContractSubsystem.h"
 #include "Subsystems/FactionSubsystem.h"
+#include "Subsystems/ScenarioSubsystem.h"
 #include "Subsystems/SkillSubsystem.h"
 #include "Utils/NebulaLogging.h"
 
@@ -68,12 +69,14 @@ void UNebulaGameInstance::StartGame()
 {
 	UGameplayStatics::OpenLevel(this, FName("Main"));
 	
-	UFactionSubsystem* FactionSubsystem = GetSubsystem<UFactionSubsystem>();
-	FactionSubsystem->AddFaction("Player", FColor::Blue);
-	FactionSubsystem->AddFaction("AI", FColor::Red);
+	UStartingScenarioAsset* Scenario = GetSubsystem<UScenarioSubsystem>()->GetScenarioByID(0);
 	
 	PlayerLeader.LeaderName = "Player";
-	PlayerLeader.LeaderFaction = FactionSubsystem->GetFactionByName("Player");
+	
+	UFactionSubsystem* FactionSubsystem = GetSubsystem<UFactionSubsystem>();
+	FName FactionName = FName(StaticEnum<EFactions>()->GetNameStringByValue(static_cast<int64>(Scenario->StartingFaction)));
+	PlayerLeader.LeaderFaction = FactionSubsystem->GetFactionByName(FactionName);
+	UE_LOG(LogTemp, Warning, TEXT("Player Starting Faction: %s"), *PlayerLeader.LeaderFaction->GetName().ToString());
 	
 	UContractSubsystem* ContractSubsystem = GetSubsystem<UContractSubsystem>();
 	ContractSubsystem->AddContract(FContractData(0, "Test Contract", 100, EContractType::TEST));
