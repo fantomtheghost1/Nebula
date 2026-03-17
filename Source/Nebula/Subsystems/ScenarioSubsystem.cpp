@@ -10,7 +10,6 @@ void UScenarioSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	
 	TArray<FAssetData> TempScenarios;
 	UAssetManager& AM = UAssetManager::Get();
-	AM.UpdateManagementDatabase();
 	AM.GetPrimaryAssetDataList(
 		FPrimaryAssetType("StartingScenario"),
 		TempScenarios

@@ -11,7 +11,6 @@ void UDialogueSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	TArray<FAssetData> TempDialogue;
 	UAssetManager& AM = UAssetManager::Get();
-	AM.UpdateManagementDatabase();
 	AM.GetPrimaryAssetDataList(
 		FPrimaryAssetType("Dialogue"),
 		TempDialogue
