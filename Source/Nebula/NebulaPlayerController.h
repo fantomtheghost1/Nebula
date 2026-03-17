@@ -53,6 +53,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* TabAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+    UInputAction* ConstructionAction;
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -62,6 +65,8 @@ public:
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
 	void Interact();
+	
+	void Construct();
 	
 	void ToggleInventory();
 	
@@ -83,6 +88,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Credits;
+	
+	UPROPERTY(EditAnywhere, Category = "Spawning")
+	TSubclassOf<AActor> ConstructionClass;
 
 private:
 	

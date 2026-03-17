@@ -55,6 +55,7 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
 		EI->BindAction(InventoryAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleInventory);
 		EI->BindAction(TabAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleFleetComp);
+		EI->BindAction(ConstructionAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Construct);
 	}
 	
 	bShowMouseCursor = true;
@@ -111,6 +112,32 @@ void ANebulaPlayerController::Interact()
 	} else if (Ship)
 	{
 		Ship->DetermineInteract(HitResult);
+	}
+}
+
+void ANebulaPlayerController::Construct()
+{
+	if (DisableInput) return;
+	
+	FHitResult HitResult;
+	GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+	
+	if (HitResult.IsValidBlockingHit())
+	{
+		if (HitResult.GetActor()->ActorHasTag("ClickFloor"))
+		{
+			FVector ConstructionSpawnLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 10.0f);
+			if (ConstructionClass)
+			{
+				FActorSpawnParameters SpawnParams;
+				SpawnParams.Owner = this;
+				SpawnParams.Instigator = GetInstigator();
+				
+				FRotator Rotation = FRotator::ZeroRotator;
+				
+				AActor* Spawned = GetWorld()->SpawnActor<AActor>(ConstructionClass, ConstructionSpawnLocation, Rotation, SpawnParams);
+			}
+		}
 	}
 }
 
