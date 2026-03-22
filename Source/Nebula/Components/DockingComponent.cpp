@@ -95,7 +95,7 @@ void UDockingComponent::CreateDockingWidget(bool IsPlayer)
 	{
 		ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
 		PC->SetInputDisabled(true);
-		PC->GetFleet()->FindComponentByClass<UStaticMeshComponent>()->SetVisibility(false);
+		PC->GetFleet()->SetActorHiddenInGame(true);
 
 		if (DockingUI)
 		{
