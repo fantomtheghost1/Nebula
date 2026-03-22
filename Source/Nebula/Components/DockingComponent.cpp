@@ -84,16 +84,8 @@ void UDockingComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 	UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap"));
 	if (AFleet* DockingFleet = Cast<AFleet>(OtherActor))
 	{
-		UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with %s"), *DockingFleet->GetName());
-		if (DockingFleet->IsPlayerFleet)
-		{
-			UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with Player"));
-			Dock(true, DockingFleet);
-		} else
-		{
-			UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with AI"));
-			Dock(false, DockingFleet);
-		}
+		UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with Player"));
+		Dock(DockingFleet->IsPlayerFleet, DockingFleet);
 	}
 }
 
