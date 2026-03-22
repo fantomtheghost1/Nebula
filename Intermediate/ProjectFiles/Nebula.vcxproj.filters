@@ -199,7 +199,13 @@
     <ClInclude Include="..\..\Source\Nebula\Enums\DialogueType.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\Enums\Factions.h">
+      <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\PointOfInterestModifiers.h">
+      <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\Enums\Superweapons.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\SystemEffects.h">
@@ -340,11 +346,11 @@
     <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
       <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\ScenarioSubsystem.cpp">
-      <Filter>Source\Nebula</Filter>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Superweapon.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\ScenarioSubsystem.h">
-      <Filter>Source\Nebula</Filter>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Superweapon.h">
+      <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\StateStructs">
       <UniqueIdentifier>{1DFCE82D-AF38-3651-9C3C-332A86B3D490}</UniqueIdentifier>
@@ -415,11 +421,23 @@
     <ClInclude Include="..\..\Source\Nebula\Subsystems\PointsOfInterestSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\ScenarioSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\ScenarioSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Subsystems\SkillSubsystem.cpp">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\SkillSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\SuperweaponWidget.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\SuperweaponWidget.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Utils">
       <UniqueIdentifier>{E35EF734-63E5-3144-AA5F-1D6BD886479C}</UniqueIdentifier>

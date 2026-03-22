@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Blueprint/UserWidget.h"
 #include "../Objects/Fleet.h"
 #include "Components/ActorComponent.h"
 #include "Components/SphereComponent.h"
@@ -35,6 +36,8 @@ private:
 		int32 OtherBodyIndex,
 		bool bFromSweep,
 		const FHitResult& SweepResult);
+	
+	void CreateDockingWidget(bool IsPlayer);
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> DockingUI;

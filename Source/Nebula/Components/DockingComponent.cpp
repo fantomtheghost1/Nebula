@@ -9,27 +9,17 @@
 #include "ResourceNodeComponent.h"
 #include "SalvageComponent.h"
 #include "TradingComponent.h"
-#include "Blueprint/UserWidget.h"
 #include "Components/SphereComponent.h"
 #include "Nebula/Objects/Relay.h"
+#include "Nebula/Objects/Superweapon.h"
+#include "Nebula/UserWidgets/SuperweaponWidget.h"
 #include "Nebula/Utils/NebulaLogging.h"
 
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
 	if (DockedFleets.Num() < DockLimit)
 	{
-		if (IsPlayer)
-		{
-			ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
-			PC->SetInputDisabled(true);
-			PC->GetFleet()->FindComponentByClass<UStaticMeshComponent>()->SetVisibility(false);
-
-			if (DockingUI)
-			{
-				DockingUIWidget = CreateWidget<UUserWidget>(GetWorld(), DockingUI);
-				DockingUIWidget->AddToViewport();
-			}
-		}
+		CreateDockingWidget(IsPlayer);
 		
 		DockedFleets.Add(DockedFleet);
 		DockedFleet->DockedTo = GetOwner();
@@ -103,6 +93,26 @@ void UDockingComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 		{
 			UE_LOG(LogGameplay, Warning, TEXT("Docking Begin Overlap with AI"));
 			Dock(false, DockingFleet);
+		}
+	}
+}
+
+void UDockingComponent::CreateDockingWidget(bool IsPlayer)
+{
+	if (IsPlayer)
+	{
+		ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
+		PC->SetInputDisabled(true);
+		PC->GetFleet()->FindComponentByClass<UStaticMeshComponent>()->SetVisibility(false);
+
+		if (DockingUI)
+		{
+			DockingUIWidget = CreateWidget<UUserWidget>(GetWorld(), DockingUI);
+			if (USuperweaponWidget* Widget = Cast<USuperweaponWidget>(DockingUIWidget))
+			{
+				Widget->Superweapon = Cast<ASuperweapon>(GetOwner());
+			}
+			DockingUIWidget->AddToViewport();
 		}
 	}
 }
