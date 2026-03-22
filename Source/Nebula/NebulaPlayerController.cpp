@@ -83,11 +83,14 @@ void ANebulaPlayerController::TogglePaused()
 	{
 		return;
 	}
-
-	const bool bIsPaused = UGameplayStatics::IsGamePaused(World);
-	UGameplayStatics::SetGamePaused(World, !bIsPaused);
 	
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Game is %s"), bIsPaused ? TEXT("unpaused") : TEXT("paused")));
+	UGameplayStatics::SetGamePaused(World, true);
+	
+	if (!PauseWidget)
+	{
+		PauseWidget = CreateWidget<UUserWidget>(GetWorld(), PauseWidgetClass);	
+	}
+	PauseWidget->AddToViewport();
 }
 
 void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized)

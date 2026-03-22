@@ -124,6 +124,11 @@ private:
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> GameWidgetClass;
 	
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> PauseWidgetClass;
+	
+	UUserWidget* PauseWidget;
+	
 	UUserWidget* GameWidget;
 	
 	UCameraComponent* Camera;
