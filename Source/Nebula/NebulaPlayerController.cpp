@@ -5,9 +5,11 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "NebulaGameMode.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/GameUserSettings.h"
-#include "Kismet/KismetSystemLibrary.h"
+#include "NebulaGameInstance.h"
+#include "Kismet/GameplayStatics.h"
 #include "Utils/NebulaLogging.h"
 
 void ANebulaPlayerController::BeginPlay()
@@ -47,7 +49,7 @@ void ANebulaPlayerController::BeginPlay()
 	
 	if (UEnhancedInputComponent* EI = Cast<UEnhancedInputComponent>(InputComponent))
 	{
-		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Quit);
+		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::TogglePaused);
 		EI->BindAction(ZoomAction, ETriggerEvent::Started, this, &ANebulaPlayerController::UpdateZoom);
 		EI->BindAction(InteractAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Interact);
 		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::StartOrbit);
@@ -74,14 +76,18 @@ void ANebulaPlayerController::Tick(float DeltaTime)
 	}
 }
 
-void ANebulaPlayerController::Quit()
+void ANebulaPlayerController::TogglePaused()
 {
-	UKismetSystemLibrary::QuitGame(
-		this,                   
-		this,                   
-		EQuitPreference::Quit,  
-		false                   
-	);
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
+	const bool bIsPaused = UGameplayStatics::IsGamePaused(World);
+	UGameplayStatics::SetGamePaused(World, !bIsPaused);
+	
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Game is %s"), bIsPaused ? TEXT("unpaused") : TEXT("paused")));
 }
 
 void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized)
@@ -197,6 +203,11 @@ void ANebulaPlayerController::ToggleFleetComp()
 		GameWidget = nullptr;
 		FleetComp = false;
 	}
+}
+
+bool ANebulaPlayerController::GetInputDisabled()
+{
+	return DisableInput;
 }
 
 void ANebulaPlayerController::SetOrbitAmount(const FInputActionValue& MouseXY)

@@ -6,6 +6,7 @@
 #include "EngineUtils.h"
 #include "DataStructs/Leader.h"
 #include "NebulaGameMode.h"
+#include "NebulaPlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "Subsystems/ContractSubsystem.h"
 #include "Subsystems/FactionSubsystem.h"

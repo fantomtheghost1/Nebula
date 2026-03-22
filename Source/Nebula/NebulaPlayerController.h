@@ -60,7 +60,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
-	void Quit();
+	void TogglePaused();
 	
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
@@ -71,6 +71,9 @@ public:
 	void ToggleInventory();
 	
 	void ToggleFleetComp();
+	
+	UFUNCTION(BlueprintCallable)
+	bool GetInputDisabled();
 	
 	UFUNCTION(BlueprintCallable)
 	void SetInputDisabled(bool InputDisabled);
