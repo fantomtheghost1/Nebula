@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "../Objects/Fleet.h"
 #include "Components/ActorComponent.h"
 #include "Components/SphereComponent.h"
+
+class AFleet;
+
 #include "DockingComponent.generated.h"	
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

@@ -14,6 +14,9 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Nebula/Components/TextDisplayComponent.h"
 #include "Nebula/DataStructs/Leader.h"
+#include "Components/StaticMeshComponent.h"
+
+class UDockingComponent;
 #include "Fleet.generated.h"
 
 UCLASS()
@@ -35,6 +38,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	TArray<FShipData> GetFleetData();
+	
+	UFUNCTION(BlueprintCallable)
+	void SetFleetData(TArray<FShipData> FleetDataParam);
 	
 	UPROPERTY(EditAnywhere)
 	bool IsPlayerFleet;
@@ -68,6 +74,9 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UScanner* ScannerComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UDockingComponent* DockingComponent;
 	
 	UPROPERTY(EditAnywhere)
 	TArray<FShipData> Fleet;

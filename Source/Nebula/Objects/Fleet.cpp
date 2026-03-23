@@ -3,9 +3,9 @@
 #include "Fleet.h"
 
 #include "../NebulaGameInstance.h"
-#include "Relay.h"
 #include "../Utils/NebulaLogging.h"
 #include "Kismet/GameplayStatics.h"
+#include "../Components/DockingComponent.h"
 #include "Nebula/NebulaGameMode.h"
 
 // Sets default values
@@ -42,6 +42,8 @@ AFleet::AFleet()
 	
 	ScannerComponent = CreateDefaultSubobject<UScanner>(TEXT("Scanner"));
 	
+	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
+	
 	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
 	
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("ScannerCollision"));
@@ -67,6 +69,11 @@ void AFleet::BeginPlay()
 void AFleet::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void AFleet::SetFleetData(TArray<FShipData> FleetDataParam)
+{
+	Fleet = FleetDataParam;
 }
 
 void AFleet::DetermineInteract(FHitResult HitResult)

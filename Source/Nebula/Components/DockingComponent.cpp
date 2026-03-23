@@ -11,6 +11,7 @@
 #include "TradingComponent.h"
 #include "Components/SphereComponent.h"
 #include "Nebula/Objects/Relay.h"
+#include "Nebula/Objects/Fleet.h"
 #include "Nebula/Objects/Superweapon.h"
 #include "Nebula/UserWidgets/SuperweaponWidget.h"
 #include "Nebula/Utils/NebulaLogging.h"
@@ -24,6 +25,19 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		DockedFleets.Add(DockedFleet);
 		DockedFleet->DockedTo = GetOwner();
 		
+		if (GetOwner()->IsA<AFleet>())
+		{
+			AFleet* Fleet = Cast<AFleet>(GetOwner());
+			if (Fleet) {
+				TArray<FShipData> NewFleetData = Fleet->GetFleetData();
+				for (int i = 0; i < DockedFleet->GetFleetData().Num(); i++)
+				{
+					NewFleetData.Add(DockedFleet->GetFleetData()[i]);
+				}
+				Fleet->SetFleetData(NewFleetData);
+			}
+			
+		}
 		if (UResourceNodeComponent* ResourceNodeComponent = GetOwner()->FindComponentByClass<UResourceNodeComponent>())
 		{
 			ResourceNodeComponent->DockedFleet = DockedFleet;
