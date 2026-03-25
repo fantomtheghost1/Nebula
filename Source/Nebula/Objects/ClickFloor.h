@@ -16,6 +16,8 @@ public:
 	AClickFloor();
 	
 	void SetFloorSize(FVector Size);
+	
+	void SetVisible(bool Visible);
 
 private:
 	UPROPERTY(VisibleAnywhere)

@@ -62,6 +62,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
 	float ZOffset;
 	
+	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
+	bool IsVisible;
+	
 	// INFORMATION
 	UPROPERTY(VisibleAnywhere, Category="Information")
 	TArray<AShip*> ShipsInSystem;

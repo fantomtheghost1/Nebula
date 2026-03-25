@@ -20,13 +20,10 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
 	if (DockedFleets.Num() < DockLimit)
 	{
-		CreateDockingWidget(IsPlayer);
-		
-		DockedFleets.Add(DockedFleet);
-		DockedFleet->DockedTo = GetOwner();
 		
 		if (GetOwner()->IsA<AFleet>())
 		{
+			if (GetOwner()->Tags.Contains(TEXT("Fightable"))) return;
 			AFleet* Fleet = Cast<AFleet>(GetOwner());
 			if (Fleet) {
 				TArray<FShipData> NewFleetData = Fleet->GetFleetData();
@@ -65,6 +62,11 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 			Relay->Interact();
 		}
 		UE_LOG(LogGameplay, Warning, TEXT("Docked %s"), *DockedFleet->GetName());
+		
+		CreateDockingWidget(IsPlayer);
+		
+		DockedFleets.Add(DockedFleet);
+		DockedFleet->DockedTo = GetOwner();
 	}
 }
 

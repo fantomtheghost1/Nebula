@@ -17,6 +17,7 @@ AFleet::AFleet()
 	Tags.Add(FName(TEXT("Fleet")));
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	RootComponent->SetMobility(EComponentMobility::Type::Movable);
 	
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArmComponent->SetupAttachment(RootComponent);
@@ -83,16 +84,16 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 		UE_LOG(LogGameplay, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
 		if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
 		{
-			UE_LOG(LogGameplay, Warning, TEXT("Fighting with %s"), *HitResult.GetActor()->GetName());
+			UE_LOG(LogGameplay, Warning, TEXT("Fighting with %s"), *HitResult.Component->GetName());
 			UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
 			if (GI)
 			{
 				AFleet* EnemyFleet = Cast<AFleet>(HitResult.GetActor());
-				//GI->StartBattle(this, EnemyFleet);
+				GI->StartBattle(this, EnemyFleet);
 			}
 		} 
 		else {
-			UE_LOG(LogGameplay, Warning, TEXT("Interacting with %s"), *HitResult.GetActor()->GetName());
+			UE_LOG(LogGameplay, Warning, TEXT("Interacting with %s"), *HitResult.Component->GetName());
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);

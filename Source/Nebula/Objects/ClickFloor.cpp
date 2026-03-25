@@ -24,12 +24,15 @@ AClickFloor::AClickFloor()
 	{
 		MeshComponent->SetStaticMesh(CubeMesh.Object);
 	}
-	
-	MeshComponent->SetVisibleFlag(false);
 }
 
 void AClickFloor::SetFloorSize(FVector Size)
 {
 	MeshComponent->SetRelativeScale3D(Size);
+}
+
+void AClickFloor::SetVisible(bool Visible)
+{
+	MeshComponent->SetVisibleFlag(Visible);
 }
 

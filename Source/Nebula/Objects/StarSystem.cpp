@@ -22,6 +22,7 @@ void AStarSystem::BeginPlay()
 		
 		AClickFloor* Spawned = GetWorld()->SpawnActor<AClickFloor>(ClickFloorClass, Location, Rotation, SpawnParams);
 		Spawned->SetFloorSize(FVector(ClickFloorSize, ClickFloorSize, ClickFloorWidth));
+		Spawned->SetVisible(IsVisible);
 	}
 	
 	if (AsteroidGeneratorClass)
