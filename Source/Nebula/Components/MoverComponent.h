@@ -42,12 +42,14 @@ protected:
 
 private:	
 	// Called every frame
-		
-	UPROPERTY(EditAnywhere)
+	
 	float FlySpeed = 0.0f;
 	
 	UPROPERTY(EditAnywhere)
 	float MaxFlySpeed = 0.0f;
+	
+	UPROPERTY(EditAnywhere)
+	float Acceleration = 0.0f;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;

@@ -14,8 +14,6 @@ UMoverComponent::UMoverComponent()
 void UMoverComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	MaxFlySpeed = FlySpeed;
 }
 
 // Called every frame
@@ -25,13 +23,22 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	
 	if (Waypoints.Num() > 0)
 	{
+		if (FlySpeed < MaxFlySpeed)
+		{
+			FlySpeed += Acceleration;
+			UE_LOG(LogTemp, Warning, TEXT("FlySpeed: %f"), FlySpeed);
+		} else
+		{
+			FlySpeed = MaxFlySpeed;
+		}
+		
 		AActor* Owner = GetOwner();
 		FVector OwnerLocation = Owner->GetActorLocation();
 		
 		FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
-		FVector NewPos = OwnerLocation + Direction * FlySpeed * DeltaTime;
+		FVector NewPos = OwnerLocation + Direction * DeltaTime * FlySpeed;
 		Owner->SetActorLocation(NewPos, true);
-		if (FVector::Dist(OwnerLocation, Waypoints[0]) <= FlySpeed * DeltaTime)
+		if (FVector::Dist(OwnerLocation, Waypoints[0]) <= DeltaTime * FlySpeed)
 		{
 			Waypoints.RemoveAt(0);
 		}
@@ -57,12 +64,14 @@ TArray<FVector> UMoverComponent::GetWaypoints()
 void UMoverComponent::SetNextWaypoint(FVector NewWaypoint)
 {
 	Waypoints.Add(NewWaypoint);
+	FlySpeed = 0;
 }
 
 /* FLY FUNCTIONS */
 void UMoverComponent::SetFlySpeed(float NewSpeed)
 {
 	FlySpeed = NewSpeed;
+	MaxFlySpeed = NewSpeed;
 }
 
 void UMoverComponent::GetFlySpeed(float& OutSpeed)

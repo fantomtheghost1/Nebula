@@ -34,10 +34,10 @@
     <Filter Include="Source\Nebula">
       <UniqueIdentifier>{0B4E00D5-9280-318C-AE10-A66ECCFF9DF7}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Nebula\Battlespace.cpp">
+    <ClCompile Include="..\..\Source\Nebula\CameraPawn.cpp">
       <Filter>Source\Nebula</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Battlespace.h">
+    <ClInclude Include="..\..\Source\Nebula\CameraPawn.h">
       <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Components">
