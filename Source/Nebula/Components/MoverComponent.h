@@ -51,12 +51,22 @@ private:
 	UPROPERTY(EditAnywhere)
 	float RotationSpeed = 0.0f;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="Movement")
 	float Acceleration = 0.0f;
+
+	UPROPERTY(EditAnywhere, Category="Movement")
+	float Deceleration = 0.0f;
+
+	UPROPERTY(EditAnywhere, Category="Movement")
+	float ArrivalDistance = 50.0f;
+
+	UPROPERTY(EditAnywhere, Category="Movement")
+	float SlowdownDistance = 300.0f;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
 	
 	void MoveShip(float DeltaTime);
 	void RotateShip(float DeltaTime);
+	void UpdateSpeed(float DeltaTime, float DistanceToTarget);
 };

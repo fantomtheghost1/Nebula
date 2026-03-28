@@ -1,81 +1,139 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "MoverComponent.h"
 
-// Sets default values for this component's properties
 UMoverComponent::UMoverComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
-
-// Called when the game starts
 void UMoverComponent::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void UMoverComponent::MoveShip(float DeltaTime)
+void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	if (Waypoints.Num() == 0) return;
-	
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if (Waypoints.Num() == 0)
+	{
+		FlySpeed = 0.0f;
+		return;
+	}
+
 	AActor* Owner = GetOwner();
-	FVector OwnerLocation = Owner->GetActorLocation();
-		
-	FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
-	FVector NewPos = OwnerLocation + Direction * DeltaTime * FlySpeed;
-	Owner->SetActorLocation(NewPos, true);
-	if (FVector::Dist(OwnerLocation, Waypoints[0]) <= DeltaTime * FlySpeed)
+	if (!Owner)
+	{
+		return;
+	}
+
+	const FVector OwnerLocation = Owner->GetActorLocation();
+	const FVector TargetLocation = Waypoints[0];
+	const float DistanceToTarget = FVector::Dist(OwnerLocation, TargetLocation);
+
+	if (DistanceToTarget <= ArrivalDistance)
 	{
 		Waypoints.RemoveAt(0);
+		FlySpeed = 0.0f;
+		return;
 	}
+
+	UpdateSpeed(DeltaTime, DistanceToTarget);
+	RotateShip(DeltaTime);
+	MoveShip(DeltaTime);
+}
+
+void UMoverComponent::UpdateSpeed(float DeltaTime, float DistanceToTarget)
+{
+	const float DesiredSpeed =
+		(DistanceToTarget > SlowdownDistance)
+		? MaxFlySpeed
+		: MaxFlySpeed * FMath::Clamp((DistanceToTarget - ArrivalDistance) / (SlowdownDistance - ArrivalDistance), 0.0f, 1.0f);
+
+	if (FlySpeed < DesiredSpeed)
+	{
+		FlySpeed = FMath::Min(FlySpeed + Acceleration * DeltaTime, DesiredSpeed);
+	}
+	else if (FlySpeed > DesiredSpeed)
+	{
+		FlySpeed = FMath::Max(FlySpeed - Deceleration * DeltaTime, DesiredSpeed);
+	}
+}
+
+void UMoverComponent::MoveShip(float DeltaTime)
+{
+	if (Waypoints.Num() == 0)
+	{
+		return;
+	}
+
+	AActor* Owner = GetOwner();
+	if (!Owner)
+	{
+		return;
+	}
+
+	const FVector OwnerLocation = Owner->GetActorLocation();
+	const FVector TargetLocation = Waypoints[0];
+	const FVector ToTarget = TargetLocation - OwnerLocation;
+	const float DistanceToTarget = ToTarget.Length();
+
+	if (DistanceToTarget <= KINDA_SMALL_NUMBER)
+	{
+		return;
+	}
+
+	const FVector Direction = ToTarget / DistanceToTarget;
+	const float StepDistance = FlySpeed * DeltaTime;
+
+	FVector NewPos = OwnerLocation + Direction * StepDistance;
+
+	if (StepDistance >= DistanceToTarget)
+	{
+		NewPos = TargetLocation;
+		Waypoints.RemoveAt(0);
+		FlySpeed = 0.0f;
+	}
+
+	Owner->SetActorLocation(NewPos, true);
 }
 
 void UMoverComponent::RotateShip(float DeltaTime)
 {
-	if (Waypoints.Num() == 0) return;
-	
-	FVector OwnerLocation = GetOwner()->GetActorLocation();
-	FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
-	
-	const FRotator CurrentRotation = GetOwner()->GetActorRotation();
-	const FRotator TargetRotation = Direction.Rotation();
-	
-	const FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, RotationSpeed);
-	GetOwner()->SetActorRotation(NewRotation);
-}
-
-// Called every frame
-void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
-	if (Waypoints.Num() > 0)
+	if (Waypoints.Num() == 0)
 	{
-		if (FlySpeed < MaxFlySpeed)
-		{
-			FlySpeed += Acceleration;
-			UE_LOG(LogTemp, Warning, TEXT("FlySpeed: %f"), FlySpeed);
-		} else
-		{
-			FlySpeed = MaxFlySpeed;
-		}
-		
-		MoveShip(DeltaTime);
-		RotateShip(DeltaTime);
+		return;
 	}
+
+	AActor* Owner = GetOwner();
+	if (!Owner)
+	{
+		return;
+	}
+
+	const FVector OwnerLocation = Owner->GetActorLocation();
+	const FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
+
+	if (Direction.IsNearlyZero())
+	{
+		return;
+	}
+
+	const FRotator CurrentRotation = Owner->GetActorRotation();
+	const FRotator TargetRotation = Direction.Rotation();
+	const FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, RotationSpeed);
+
+	Owner->SetActorRotation(NewRotation);
 }
 
-/* WAYPOINT FUNCTIONS */
 void UMoverComponent::ClearWaypoints()
 {
 	Waypoints.Empty();
+	FlySpeed = 0.0f;
 }
 
 FVector UMoverComponent::GetNextWaypoint()
 {
-	return Waypoints[0];
+	return Waypoints.Num() > 0 ? Waypoints[0] : FVector::ZeroVector;
 }
 
 TArray<FVector> UMoverComponent::GetWaypoints()
@@ -86,10 +144,8 @@ TArray<FVector> UMoverComponent::GetWaypoints()
 void UMoverComponent::SetNextWaypoint(FVector NewWaypoint)
 {
 	Waypoints.Add(NewWaypoint);
-	FlySpeed = 0;
 }
 
-/* FLY FUNCTIONS */
 void UMoverComponent::SetFlySpeed(float NewSpeed)
 {
 	FlySpeed = NewSpeed;
@@ -105,5 +161,3 @@ float UMoverComponent::GetMaxFlySpeed()
 {
 	return MaxFlySpeed;
 }
-
-
