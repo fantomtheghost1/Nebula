@@ -16,6 +16,36 @@ void UMoverComponent::BeginPlay()
 	Super::BeginPlay();
 }
 
+void UMoverComponent::MoveShip(float DeltaTime)
+{
+	if (Waypoints.Num() == 0) return;
+	
+	AActor* Owner = GetOwner();
+	FVector OwnerLocation = Owner->GetActorLocation();
+		
+	FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
+	FVector NewPos = OwnerLocation + Direction * DeltaTime * FlySpeed;
+	Owner->SetActorLocation(NewPos, true);
+	if (FVector::Dist(OwnerLocation, Waypoints[0]) <= DeltaTime * FlySpeed)
+	{
+		Waypoints.RemoveAt(0);
+	}
+}
+
+void UMoverComponent::RotateShip(float DeltaTime)
+{
+	if (Waypoints.Num() == 0) return;
+	
+	FVector OwnerLocation = GetOwner()->GetActorLocation();
+	FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
+	
+	const FRotator CurrentRotation = GetOwner()->GetActorRotation();
+	const FRotator TargetRotation = Direction.Rotation();
+	
+	const FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, RotationSpeed);
+	GetOwner()->SetActorRotation(NewRotation);
+}
+
 // Called every frame
 void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -32,16 +62,8 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 			FlySpeed = MaxFlySpeed;
 		}
 		
-		AActor* Owner = GetOwner();
-		FVector OwnerLocation = Owner->GetActorLocation();
-		
-		FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
-		FVector NewPos = OwnerLocation + Direction * DeltaTime * FlySpeed;
-		Owner->SetActorLocation(NewPos, true);
-		if (FVector::Dist(OwnerLocation, Waypoints[0]) <= DeltaTime * FlySpeed)
-		{
-			Waypoints.RemoveAt(0);
-		}
+		MoveShip(DeltaTime);
+		RotateShip(DeltaTime);
 	}
 }
 

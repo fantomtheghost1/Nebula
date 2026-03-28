@@ -49,8 +49,14 @@ private:
 	float MaxFlySpeed = 0.0f;
 	
 	UPROPERTY(EditAnywhere)
+	float RotationSpeed = 0.0f;
+	
+	UPROPERTY(EditAnywhere)
 	float Acceleration = 0.0f;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
+	
+	void MoveShip(float DeltaTime);
+	void RotateShip(float DeltaTime);
 };
