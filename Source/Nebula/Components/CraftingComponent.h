@@ -26,6 +26,9 @@ public:
 
 private:
 	
+	UPROPERTY(EditAnywhere)
+	bool IsRefinery;
+	
 	UCraftingRecipeAsset* RecipeCrafting;
 	
 	FTimerHandle ProgressTimer;

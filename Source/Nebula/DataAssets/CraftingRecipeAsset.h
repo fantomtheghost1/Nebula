@@ -30,4 +30,7 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float CraftingTime;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool IsRefineryRecipe;
 };
