@@ -19,6 +19,8 @@ public:
 	
 	UFaction();
 	
+	void AssignLeader(AActor* NewLeader);
+	
 	void RegisterMember(AActor* NewMember);
 	
 	void DeregisterMember(AActor* NewMember);
@@ -51,6 +53,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, Category="Faction")
 	TArray<AActor*> Members;
+	
+	UPROPERTY(VisibleAnywhere, Category="Faction")
+	AActor* Leader;
 	
 	UPROPERTY(VisibleAnywhere, Category="Faction")
 	TMap<UFaction*, EDiplomacyStates> DiplomacyTable;

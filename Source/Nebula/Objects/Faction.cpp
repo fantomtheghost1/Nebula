@@ -6,6 +6,11 @@ UFaction::UFaction()
 {
 }
 
+void UFaction::AssignLeader(AActor* NewLeader)
+{
+	Leader = NewLeader;
+}
+
 void UFaction::RegisterMember(AActor* NewMember)
 {
 	Members.Add(NewMember);
