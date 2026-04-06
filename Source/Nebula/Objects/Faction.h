@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Nebula/Enums/DiplomacyStates.h"
 #include "UObject/Object.h"
 #include "Faction.generated.h"
 
@@ -32,6 +33,14 @@ public:
 	
 	FColor GetColor();
 	
+	void AddFactionDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState = EDiplomacyStates::NEUTRAL);
+	
+	void RemoveFactionDiplomacy(UFaction* OtherFaction);
+	
+	void SetDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState);
+	
+	EDiplomacyStates GetDiplomacy(UFaction* OtherFaction);
+	
 private:
 	
 	UPROPERTY(EditAnywhere, Category="Faction")
@@ -42,5 +51,8 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, Category="Faction")
 	TArray<AActor*> Members;
+	
+	UPROPERTY(VisibleAnywhere, Category="Faction")
+	TMap<UFaction*, EDiplomacyStates> DiplomacyTable;
 	
 };

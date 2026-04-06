@@ -77,7 +77,13 @@ void UNebulaGameInstance::StartGame()
 	UFactionSubsystem* FactionSubsystem = GetSubsystem<UFactionSubsystem>();
 	FName FactionName = FName(StaticEnum<EFactions>()->GetNameStringByValue(static_cast<int64>(Scenario->StartingFaction)));
 	PlayerLeader.LeaderFaction = FactionSubsystem->GetFactionByName(FactionName);
-	UE_LOG(LogTemp, Warning, TEXT("Player Starting Faction: %s"), *PlayerLeader.LeaderFaction->GetName().ToString());
+	
+	UFaction* Yellow = FactionSubsystem->GetFactionByName("Yellow");
+	if (Yellow)
+	{
+		PlayerLeader.LeaderFaction->SetDiplomacy(Yellow, EDiplomacyStates::ALLY);
+		UE_LOG(LogTemp, Warning, TEXT("Yellow Diplomacy Status: %s"), *StaticEnum<EDiplomacyStates>()->GetNameStringByValue(static_cast<int64>(PlayerLeader.LeaderFaction->GetDiplomacy(Yellow))));
+	}
 	
 	UContractSubsystem* ContractSubsystem = GetSubsystem<UContractSubsystem>();
 	ContractSubsystem->AddContract(FContractData(0, "Test Contract", 100, EContractType::TEST));

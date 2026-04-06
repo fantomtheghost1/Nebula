@@ -40,3 +40,27 @@ FColor UFaction::GetColor()
 {
 	return Color;
 }
+
+void UFaction::AddFactionDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState)
+{
+	if (DiplomacyTable.Contains(OtherFaction)) return;
+	DiplomacyTable.Add(OtherFaction, NewState);
+}
+
+void UFaction::RemoveFactionDiplomacy(UFaction* OtherFaction)
+{
+	if (!DiplomacyTable.Contains(OtherFaction)) return;
+	DiplomacyTable.Remove(OtherFaction);
+}
+
+void UFaction::SetDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState = EDiplomacyStates::NEUTRAL)
+{
+	if (!DiplomacyTable.Contains(OtherFaction)) return;
+	DiplomacyTable[OtherFaction] = NewState;
+}
+
+EDiplomacyStates UFaction::GetDiplomacy(UFaction* OtherFaction)
+{
+	if (!DiplomacyTable.Contains(OtherFaction)) return EDiplomacyStates::UNKNOWN;
+	return DiplomacyTable[OtherFaction];
+}

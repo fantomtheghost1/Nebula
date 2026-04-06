@@ -30,6 +30,15 @@ UFaction* UFactionSubsystem::AddFaction(FName Name, FColor Color)
 	
 	Factions.Add(Factions.Num() + 1, NewFaction);
 	
+	for (const TPair<int32, UFaction*>& Elem : Factions)
+	{
+		if (Elem.Value)
+		{
+			Elem.Value->AddFactionDiplomacy(NewFaction);
+			NewFaction->AddFactionDiplomacy(Elem.Value);
+		}
+	}
+	
 	return NewFaction;
 }
 

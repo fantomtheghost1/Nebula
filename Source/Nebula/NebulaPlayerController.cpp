@@ -6,6 +6,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "NebulaGameMode.h"
+#include "EngineUtils.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/GameUserSettings.h"
 #include "NebulaGameInstance.h"
@@ -22,24 +23,6 @@ void ANebulaPlayerController::BeginPlay()
 	
 	Fleet = Cast<AFleet>(GetPawn());
 	Ship = Cast<AShip>(GetPawn());
-	
-	if (Fleet)
-	{
-		Camera = Fleet->FindComponentByClass<UCameraComponent>();
-		SpringArm = Fleet->FindComponentByClass<USpringArmComponent>();
-		SpringArm->TargetArmLength = ZoomMin;
-		
-		CameraTarget = Fleet;
-	}
-	
-	if (Ship)
-	{
-		Camera = Ship->FindComponentByClass<UCameraComponent>();
-		SpringArm = Ship->FindComponentByClass<USpringArmComponent>();
-		SpringArm->TargetArmLength = ZoomMin;
-		
-		CameraTarget = Ship;
-	}
 	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
@@ -63,17 +46,6 @@ void ANebulaPlayerController::BeginPlay()
 	bShowMouseCursor = true;
 	bEnableClickEvents = true;
 	bEnableMouseOverEvents = true;
-}
-
-void ANebulaPlayerController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	
-	if (CameraTarget && SpringArm)
-	{
-		const FVector TargetLocation = CameraTarget->GetActorLocation();
-		SpringArm->SetWorldLocation(TargetLocation);
-	}
 }
 
 void ANebulaPlayerController::TogglePaused()
@@ -100,6 +72,7 @@ void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized
 
 	if (SpringArm && ZoomMax > 0.0f && ZoomMin > 0.0f)
 	{
+		UE_LOG(LogBackend, Warning, TEXT("Zooming"));
 		SpringArm->TargetArmLength = FMath::Clamp(
 			SpringArm->TargetArmLength + ZoomValue,
 			ZoomMin,
@@ -216,13 +189,23 @@ bool ANebulaPlayerController::GetInputDisabled()
 void ANebulaPlayerController::SetOrbitAmount(const FInputActionValue& MouseXY)
 {
 	if (DisableInput) return;
-	if (!Orbit || !SpringArm || !Camera) return;
+	if (!Orbit || !SpringArm || !CameraRig) return;
 	
+	UE_LOG(LogBackend, Warning, TEXT("Orbiting"));
 	FRotator OrbitRotation = SpringArm->GetRelativeRotation();
 	OrbitRotation.Yaw += MouseXY.Get<FVector2D>().X * OrbitRate;
 	OrbitRotation.Pitch += MouseXY.Get<FVector2D>().Y * OrbitRate;
 	OrbitRotation.Pitch = FMath::Clamp(OrbitRotation.Pitch, -90.f, 90.f);
 
-	SpringArm->SetRelativeRotation(OrbitRotation);
+	CameraRig->SetActorRotation(OrbitRotation);
+}
+
+void ANebulaPlayerController::RegisterCamera(ACameraRig* NewCameraRig)
+{
+	CameraRig = NewCameraRig;
+	SetViewTargetWithBlend(CameraRig, 0.0f);
+	SpringArm = CameraRig->FindComponentByClass<USpringArmComponent>();
+	SpringArm->TargetArmLength = ZoomMin;
+	UE_LOG(LogBackend, Warning, TEXT("SpringArm: %s"), *GetNameSafe(SpringArm));
 }
 	

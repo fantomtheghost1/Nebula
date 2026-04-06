@@ -9,6 +9,7 @@
 #include "Objects/Ship.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Objects/CameraRig.h"
 #include "NebulaPlayerController.generated.h"
 
 /**
@@ -57,8 +58,6 @@ protected:
     UInputAction* ConstructionAction;
 	
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	
 	void TogglePaused();
 	
@@ -89,6 +88,8 @@ public:
 	
 	void SetOrbitAmount(const FInputActionValue& MouseXY);
 	
+	void RegisterCamera(ACameraRig* NewCameraPawn);
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Credits;
 	
@@ -113,9 +114,6 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	bool Idle = false;
 	
-	UPROPERTY(EditAnywhere, Category = "Camera")
-	AActor* CameraTarget;
-	
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InventoryWidgetClass;
 	
@@ -131,7 +129,7 @@ private:
 	
 	UUserWidget* GameWidget;
 	
-	UCameraComponent* Camera;
+	ACameraRig* CameraRig;
 	
 	USpringArmComponent* SpringArm;
 	
