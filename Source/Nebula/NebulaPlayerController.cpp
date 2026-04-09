@@ -191,12 +191,13 @@ void ANebulaPlayerController::SetOrbitAmount(const FInputActionValue& MouseXY)
 	if (DisableInput) return;
 	if (!Orbit || !SpringArm || !CameraRig) return;
 	
-	UE_LOG(LogBackend, Warning, TEXT("Orbiting"));
-	FRotator OrbitRotation = SpringArm->GetRelativeRotation();
+	FRotator OrbitRotation = CameraRig->GetActorRotation();
+	UE_LOG(LogBackend, Warning, TEXT("Orbiting Yaw: %f"), OrbitRotation.Yaw);
+	UE_LOG(LogBackend, Warning, TEXT("Orbiting Pitch: %f"), OrbitRotation.Pitch);
 	OrbitRotation.Yaw += MouseXY.Get<FVector2D>().X * OrbitRate;
 	OrbitRotation.Pitch += MouseXY.Get<FVector2D>().Y * OrbitRate;
 	OrbitRotation.Pitch = FMath::Clamp(OrbitRotation.Pitch, -90.f, 90.f);
-
+	
 	CameraRig->SetActorRotation(OrbitRotation);
 }
 
