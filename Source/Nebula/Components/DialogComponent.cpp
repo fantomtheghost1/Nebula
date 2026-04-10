@@ -22,6 +22,8 @@ void UDialogComponent::StartDialogue()
 	
 	UDialogueAsset* Dialogue = DSS->GetDialogueByID(DialogueID);
 	
+	if (!Dialogue) return;
+	
 	for (int i = 0; i < Dialogue->Dialogue.Num(); i++)
 	{
 		UE_LOG(LogDialogue, Warning, TEXT("%s"), *Dialogue->Dialogue[i].DialogueText.ToString());

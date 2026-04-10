@@ -20,21 +20,24 @@ public:
 	UPROPERTY(BlueprintAssignable, Category="Events")
 	FCargoChanged CargoChanged;
 	
-	void AddCargoItem(UCargoItemAsset* NewCargo, int Quantity);
+	void AddCargoItem(UCargoItemAsset* NewCargo, float Weight);
 	
 	void AddCargo(UCargoComponent* OtherCargo);
 	
 	void SubtractCargoItem(UCargoItemAsset* NewCargo, int Quantity);
 	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
-	TArray<FCargoItemData> GetCargo();
-	
-	UCargoItemAsset* GetCargoItemByID(FName ItemID);
-	
-	int GetCargoQuantity(FName ItemID);
+	void RemoveCargo();
 	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
-	int GetMaxSlots();
+	TArray<FCargoItemData> GetCargo();
+	
+	int GetCargoWeight(FName ItemID);
+	
+	float CheckCargoWeight();
+	
+	UFUNCTION(BlueprintCallable, Category="Cargo")
+	int GetMaxWeight();
 	
 	UPROPERTY(EditAnywhere)
 	TArray<FCargoItemData> Cargo;
@@ -46,7 +49,7 @@ protected:
 private:	
 	
 	UPROPERTY(EditAnywhere)
-	int MaxCargoSlots;
+	float MaxWeight;
 	
-	TArray<UCargoItemAsset*> CargoItemAssets;
+	
 };

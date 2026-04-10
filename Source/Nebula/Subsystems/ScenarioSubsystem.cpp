@@ -29,6 +29,7 @@ void UScenarioSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 UStartingScenarioAsset* UScenarioSubsystem::GetScenarioByID(int ID)
 {
+	if (ID >= Scenarios.Num()) return nullptr;
 	return Scenarios[ID];
 }
 

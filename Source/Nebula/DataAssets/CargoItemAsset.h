@@ -21,8 +21,5 @@ public:
 	FName ItemID = "";
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Cargo")
-	int StackMax = 0;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Cargo")
 	int SalePrice = 0;
 };

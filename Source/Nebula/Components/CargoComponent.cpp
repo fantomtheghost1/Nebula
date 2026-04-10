@@ -11,42 +11,23 @@ void UCargoComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	if (MaxCargoSlots <= 0) FMessageLog("PIE").Error(FText::FromString("MaxCargoSlots must be greater than zero."));
-	
-	TArray<FAssetData> TempCargoItems;
-	UAssetManager& AM = UAssetManager::Get();
-	AM.GetPrimaryAssetDataList(
-		FPrimaryAssetType("CargoItem"),
-		TempCargoItems
-		);
-	
-	for (const FAssetData& Item : TempCargoItems)
-	{
-		UCargoItemAsset* ItemAsset = Cast<UCargoItemAsset>(Item.GetAsset());
-		if (ItemAsset)
-		{
-			CargoItemAssets.Add(ItemAsset);
-		}
-	}
-	UE_LOG(LogDataAsset, Warning, TEXT("Cargo Items Loaded: %d"), CargoItemAssets.Num());
+	if (MaxWeight <= 0) FMessageLog("PIE").Error(FText::FromString("MaxWeight must be greater than zero."));
 }
 
-void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, int Quantity)
+void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, float Weight)
 {
-	if (Cargo.Num() >= MaxCargoSlots) return;
-	
+	if (CheckCargoWeight() >= MaxWeight) return;
 	FCargoItemData NewCargoData;
 	
 	NewCargoData.ItemID = NewCargo->ItemID;
-	NewCargoData.StackMax = NewCargo->StackMax;
-	NewCargoData.Quantity = Quantity;
+	NewCargoData.Weight = Weight;
 	NewCargoData.ItemAsset = NewCargo;
 	NewCargoData.SalePrice = NewCargo->SalePrice;
 	
 	int32 Index = Cargo.IndexOfByKey(NewCargoData);
 	if (Index != INDEX_NONE)
 	{
-		Cargo[Index].Quantity += Quantity;
+		Cargo[Index].Weight += Weight;
 	}
 	else
 	{
@@ -57,11 +38,11 @@ void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, int Quantity)
 
 void UCargoComponent::AddCargo(UCargoComponent* OtherCargo)
 {
-	if (Cargo.Num() >= MaxCargoSlots) return;
+	if (Cargo.Num() >= MaxWeight) return;
 	
 	for (FCargoItemData CargoData : OtherCargo->Cargo)
 	{
-		AddCargoItem(CargoData.ItemAsset, CargoData.Quantity);
+		AddCargoItem(CargoData.ItemAsset, CargoData.Weight);
 	}
 	CargoChanged.Broadcast();
 }
@@ -73,8 +54,8 @@ void UCargoComponent::SubtractCargoItem(UCargoItemAsset* NewCargo, int Quantity)
 	int32 Index = Cargo.IndexOfByKey(FCargoItemData{NewCargo->ItemID});
 	if (Index != INDEX_NONE)
 	{
-		Cargo[Index].Quantity -= Quantity;
-		if (Cargo[Index].Quantity <= 0)
+		Cargo[Index].Weight -= Quantity;
+		if (Cargo[Index].Weight <= 0)
 		{
 			Cargo.RemoveAt(Index);
 		}
@@ -86,36 +67,41 @@ void UCargoComponent::SubtractCargoItem(UCargoItemAsset* NewCargo, int Quantity)
 	}
 }
 
+void UCargoComponent::RemoveCargo()
+{
+	Cargo.Empty();
+}
 
 TArray<FCargoItemData> UCargoComponent::GetCargo()
 {
 	return Cargo;
 }
 
-UCargoItemAsset* UCargoComponent::GetCargoItemByID(FName ItemID)
-{
-	for (int i = 0; i < CargoItemAssets.Num(); i++)
-	{
-		if (CargoItemAssets[i]->ItemID == ItemID) return CargoItemAssets[i];
-	}
-	
-	return nullptr;
-}
-
-int UCargoComponent::GetCargoQuantity(FName ItemID)
+int UCargoComponent::GetCargoWeight(FName ItemID)
 {
 	for (int i = 0; i < Cargo.Num(); i++)
 	{
 		UE_LOG(LogCargo, Warning, TEXT("Does %s == %s"), *Cargo[i].ItemID.ToString(), *ItemID.ToString());
-		UE_LOG(LogCargo, Warning, TEXT("Cargo Item Quantity: %i"), Cargo[i].Quantity);
-		if (Cargo[i].ItemID == ItemID) return Cargo[i].Quantity;
+		UE_LOG(LogCargo, Warning, TEXT("Cargo Item Quantity: %i"), Cargo[i].Weight);
+		if (Cargo[i].ItemID == ItemID) return Cargo[i].Weight;
 	}
 	
 	return 0;
 }
 
-int UCargoComponent::GetMaxSlots()
+float UCargoComponent::CheckCargoWeight()
 {
-	return MaxCargoSlots;
+	float TempWeight = 0.0f;
+	for (FCargoItemData CargoData : Cargo)
+	{
+		TempWeight += CargoData.Weight;
+	}
+	
+	return TempWeight;
+}
+
+int UCargoComponent::GetMaxWeight()
+{
+	return MaxWeight;
 }
 

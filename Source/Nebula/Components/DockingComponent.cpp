@@ -3,12 +3,10 @@
 
 #include "DockingComponent.h"
 
-#include "CraftingComponent.h"
 #include "DialogComponent.h"
 #include "../NebulaPlayerController.h"
 #include "ResourceNodeComponent.h"
 #include "SalvageComponent.h"
-#include "TradingComponent.h"
 #include "Components/SphereComponent.h"
 #include "Nebula/Objects/Relay.h"
 #include "Nebula/Objects/Fleet.h"
@@ -43,14 +41,6 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		{
 			SalvageComponent->DockedFleet = DockedFleet;
 		} 
-		if (UCraftingComponent* CraftingComponent = GetOwner()->FindComponentByClass<UCraftingComponent>())
-		{
-			CraftingComponent->DockedFleet = DockedFleet;
-		} 
-		if (UTradingComponent* TradingComponent = GetOwner()->FindComponentByClass<UTradingComponent>())
-		{
-			TradingComponent->DockedFleet = DockedFleet;
-		}
 		if (UDialogComponent* DialogComponent = GetOwner()->FindComponentByClass<UDialogComponent>())
 		{
 			DialogComponent->StartDialogue();
