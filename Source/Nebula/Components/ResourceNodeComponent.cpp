@@ -54,11 +54,17 @@ void UResourceNodeComponent::GatherResource()
 	{
 		DockedFleet = nullptr;
 		GetWorld()->GetTimerManager().ClearTimer(ProgressTimer);
+		return;
 	}
 	
 	if (ResourceAmount <= 0.0f)
 	{
 		GetOwner()->Destroy();
+	}
+	
+	if (GetOwner()->Tags.Contains(FName("GasPocket")))
+	{
+		DockedFleet->GetComponentByClass<UFuelComponent>()->AddFuel(GatherRate);
 	}
 	
 	// Send to player cargo bay

@@ -17,11 +17,11 @@ class NEBULA_API UContractSubsystem : public UGameInstanceSubsystem
 	
 public:
 	
-	FContractData* GetContract(int ContractID);
+	FContractData* GetContract(int Index);
 	
 	void AddContract(FContractData NewContract);
 	
-	void CompleteContract(int ContractID);
+	void CompleteContract(int Index);
 	
 private:
 	

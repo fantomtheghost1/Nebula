@@ -3,32 +3,37 @@
 
 #include "ContractSubsystem.h"
 
-FContractData* UContractSubsystem::GetContract(int ContractID)
+#include "Nebula/NebulaGameMode.h"
+#include "Nebula/NebulaPlayerController.h"
+
+FContractData* UContractSubsystem::GetContract(int Index)
 {
-	for (int i = 0; i < ActiveContracts.Num(); i++)
-	{
-		if (ActiveContracts[i].ContractID == ContractID)
-		{
-			return &ActiveContracts[i];
-		}
-	}
+	if (!ActiveContracts.IsValidIndex(Index)) return nullptr;
 	
-	return nullptr;
+	return &ActiveContracts[Index];
 }
 
 void UContractSubsystem::AddContract(FContractData NewContract)
 {
 	ActiveContracts.Add(NewContract);
+	
+	if (NewContract.ContractType == EContractType::BOUNTY)
+	{
+		ANebulaGameMode* GM = Cast<ANebulaGameMode>(GetWorld()->GetAuthGameMode());
+		NewContract.ContractTarget = GM->GetFleets()[FMath::RandRange(0, GM->GetFleets().Num() - 1)];
+	}
 }
 
-void UContractSubsystem::CompleteContract(int ContractID)
+void UContractSubsystem::CompleteContract(int Index)
 {
-	for (int i = 0; i < ActiveContracts.Num(); i++)
+	if (!ActiveContracts.IsValidIndex(Index)) return;
+	
+	FContractData* CompletedContract = &ActiveContracts[Index];
+	if (ANebulaPlayerController* NPC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController()))
 	{
-		if (ActiveContracts[i].ContractID == ContractID)
-		{
-			ActiveContracts.RemoveAt(i);
-			return;
-		}
+		NPC->Credits += CompletedContract->CreditReward;
+		UE_LOG(LogTemp, Warning, TEXT("Player has earned %d credits for completing the contract %s!"), CompletedContract->CreditReward, *CompletedContract->ContractText);
 	}
+	
+	ActiveContracts.RemoveAt(Index);
 }

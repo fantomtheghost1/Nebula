@@ -10,9 +10,6 @@ struct FContractData
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere)
-	int ContractID;
-	
-	UPROPERTY(EditAnywhere)
 	FString ContractText;
 	
 	UPROPERTY(EditAnywhere)
@@ -20,4 +17,7 @@ struct FContractData
 	
 	UPROPERTY(EditAnywhere)
 	EContractType ContractType;
+	
+	UPROPERTY(EditAnywhere)
+	AActor* ContractTarget;
 };

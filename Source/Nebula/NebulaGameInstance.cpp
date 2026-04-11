@@ -86,7 +86,7 @@ void UNebulaGameInstance::StartGame()
 	}
 	
 	UContractSubsystem* ContractSubsystem = GetSubsystem<UContractSubsystem>();
-	ContractSubsystem->AddContract(FContractData(0, "Test Contract", 100, EContractType::TEST));
+	ContractSubsystem->AddContract(FContractData("Test Contract", 100, EContractType::BOUNTY));
 	
 	FContractData* Contract = ContractSubsystem->GetContract(0);
 	UE_LOG(LogTemp, Warning, TEXT("Contract: %s"), *Contract->ContractText);

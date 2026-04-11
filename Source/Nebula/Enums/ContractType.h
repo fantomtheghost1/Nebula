@@ -6,5 +6,7 @@
 UENUM(BlueprintType)
 enum class EContractType : uint8
 {
-	TEST UMETA(DisplayName="Test")
+	BOUNTY UMETA(DisplayName="Bounty"),
+	ESCORT UMETA(DisplayName="Escort"),
+	REFUEL UMETA(DisplayName="Refuel")
 };
