@@ -39,7 +39,7 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(AltAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
 		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
 		EI->BindAction(InventoryAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleInventory);
-		EI->BindAction(TabAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleFleetComp);
+		EI->BindAction(TabAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleTabMenu);
 		EI->BindAction(ConstructionAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Construct);
 	}
 	
@@ -169,21 +169,23 @@ void ANebulaPlayerController::ToggleInventory()
 	}
 }
 
-void ANebulaPlayerController::ToggleFleetComp()
+void ANebulaPlayerController::ToggleTabMenu()
 {
-	if (!GameWidget)
+	if (!TabMenuWidget)
 	{
-		GameWidget = CreateWidget<UUserWidget>(GetWorld(), GameWidgetClass);	
+		TabMenuWidget = CreateWidget<UUserWidget>(GetWorld(), TabMenuWidgetClass);	
 	}
 	
-	if (GameWidget && !FleetComp)
+	if (TabMenuWidget && !FleetComp)
 	{
-		GameWidget->AddToViewport();
+		TabMenuWidget->AddToViewport();
 		FleetComp = true;
-	} else if (GameWidget && FleetComp) {
-		GameWidget->RemoveFromParent();
-		GameWidget = nullptr;
+		SetInputDisabled(true);
+	} else if (TabMenuWidget && FleetComp) {
+		TabMenuWidget->RemoveFromParent();
+		TabMenuWidget = nullptr;
 		FleetComp = false;
+		SetInputDisabled(false);
 	}
 }
 

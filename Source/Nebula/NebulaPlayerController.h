@@ -69,7 +69,7 @@ public:
 	
 	void ToggleInventory();
 	
-	void ToggleFleetComp();
+	void ToggleTabMenu();
 	
 	UFUNCTION(BlueprintCallable)
 	bool GetInputDisabled();
@@ -123,14 +123,14 @@ private:
 	UUserWidget* InventoryWidget;
 	
 	UPROPERTY(EditAnywhere, Category = "UI")
-	TSubclassOf<UUserWidget> GameWidgetClass;
+	TSubclassOf<UUserWidget> TabMenuWidgetClass;
 	
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> PauseWidgetClass;
 	
 	UUserWidget* PauseWidget;
 	
-	UUserWidget* GameWidget;
+	UUserWidget* TabMenuWidget;
 	
 	ACameraRig* CameraRig;
 	

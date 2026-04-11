@@ -20,6 +20,8 @@ void UContractSubsystem::AddContract(FContractData NewContract)
 	if (NewContract.ContractType == EContractType::BOUNTY)
 	{
 		ANebulaGameMode* GM = Cast<ANebulaGameMode>(GetWorld()->GetAuthGameMode());
+		if (!GM) return;
+		if (GM->GetFleets().Num() == 0) return;
 		NewContract.ContractTarget = GM->GetFleets()[FMath::RandRange(0, GM->GetFleets().Num() - 1)];
 	}
 }
