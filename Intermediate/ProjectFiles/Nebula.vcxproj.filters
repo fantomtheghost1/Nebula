@@ -43,12 +43,6 @@
     <ClInclude Include="..\..\Source\Nebula\Components\CargoComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Components\CraftingComponent.cpp">
-      <Filter>Source\Nebula\Components</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Components\CraftingComponent.h">
-      <Filter>Source\Nebula\Components</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\DialogComponent.cpp">
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
@@ -113,12 +107,6 @@
       <Filter>Source\Nebula\Components</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Components\TextDisplayComponent.h">
-      <Filter>Source\Nebula\Components</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Components\TradingComponent.cpp">
-      <Filter>Source\Nebula\Components</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Components\TradingComponent.h">
       <Filter>Source\Nebula\Components</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Components\TurretComponent.cpp">
@@ -199,6 +187,9 @@
     <ClInclude Include="..\..\Source\Nebula\Enums\DialogueType.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Nebula\Enums\DiplomacyStates.h">
+      <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\Factions.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
@@ -210,6 +201,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\SystemEffects.h">
       <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\FuelComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\FuelComponent.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Handlers">
       <UniqueIdentifier>{143AE41C-83A4-3C24-B8EF-68D6D1FDE07E}</UniqueIdentifier>
@@ -413,6 +410,12 @@
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\GalaxyManagerSubsystem.h">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Subsystems\ItemSubsystem.cpp">
+      <Filter>Source\Nebula\Subsystems</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Subsystems\ItemSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Subsystems\LeaderSubsystem.cpp">

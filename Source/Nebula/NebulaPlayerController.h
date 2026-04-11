@@ -78,6 +78,9 @@ public:
 	void SetInputDisabled(bool InputDisabled);
 	
 	UFUNCTION(BlueprintCallable)
+	void SetWaypointsDisabled(bool WaypointsDisabled);
+	
+	UFUNCTION(BlueprintCallable)
 	AFleet* GetFleet();
 
 	/* ORBIT FUNCTIONS */
@@ -146,4 +149,6 @@ private:
 	bool Orbit = false;
 	
 	bool DisableInput = false;
+	
+	bool DisableWaypoints = false;
 };

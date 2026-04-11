@@ -28,8 +28,6 @@ AStarbase::AStarbase()
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 	
-	CargoComponent = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));
-	
 	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
 }
 

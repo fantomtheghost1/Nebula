@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Faction.h"
 #include "../Components/DockingComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
+#include "Nebula/Components/TextDisplayComponent.h"
 #include "Starbase.generated.h"
 
 UCLASS()
@@ -39,9 +41,6 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UDockingComponent* DockingComponent;
-	
-	UPROPERTY(VisibleAnywhere)
-	UCargoComponent* CargoComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* SphereCollision;

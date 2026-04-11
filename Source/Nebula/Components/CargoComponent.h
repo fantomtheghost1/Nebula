@@ -32,12 +32,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Cargo")
 	TArray<FCargoItemData> GetCargo();
 	
+	UFUNCTION(BlueprintCallable, Category="Cargo")
 	int GetCargoWeight(FName ItemID);
 	
-	float CheckCargoWeight();
+	UFUNCTION(BlueprintCallable, Category="Cargo")
+	float GetWeight();
 	
 	UFUNCTION(BlueprintCallable, Category="Cargo")
-	int GetMaxWeight();
+	float GetMaxWeight();
 	
 	UPROPERTY(EditAnywhere)
 	TArray<FCargoItemData> Cargo;

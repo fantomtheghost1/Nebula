@@ -63,6 +63,10 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 void UDockingComponent::ClearDockedFleets()
 {
 	DockedFleets.Empty();
+	
+	ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
+	PC->SetInputDisabled(false);
+	PC->GetFleet()->SetActorHiddenInGame(false);
 }
 
 void UDockingComponent::BeginPlay()
@@ -80,8 +84,6 @@ void UDockingComponent::BeginPlay()
 	{
 		FMessageLog("PIE").Error(FText::FromString("Object Owner must have Sphere Collision."));
 	}
-	
-	
 }
 
 void UDockingComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,

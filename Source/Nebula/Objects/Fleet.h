@@ -15,6 +15,7 @@
 #include "Nebula/Components/TextDisplayComponent.h"
 #include "Nebula/DataStructs/Leader.h"
 #include "Components/StaticMeshComponent.h"
+#include "Nebula/Components/FuelComponent.h"
 
 class UDockingComponent;
 #include "Fleet.generated.h"
@@ -79,10 +80,16 @@ private:
 	UDockingComponent* DockingComponent;
 	
 	UPROPERTY(EditAnywhere)
+	UFuelComponent* FuelComponent;
+	
+	UPROPERTY(EditAnywhere)
 	TArray<FShipData> Fleet;
 	
 	UPROPERTY(EditAnywhere)
 	UMoverComponent* Mover;
+	
+	UPROPERTY(EditAnywhere)
+	UFuelComponent* Fuel;
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;

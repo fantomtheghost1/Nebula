@@ -16,7 +16,7 @@ void UCargoComponent::BeginPlay()
 
 void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, float Weight)
 {
-	if (CheckCargoWeight() >= MaxWeight) return;
+	if (GetWeight() >= MaxWeight) return;
 	FCargoItemData NewCargoData;
 	
 	NewCargoData.ItemID = NewCargo->ItemID;
@@ -38,7 +38,7 @@ void UCargoComponent::AddCargoItem(UCargoItemAsset* NewCargo, float Weight)
 
 void UCargoComponent::AddCargo(UCargoComponent* OtherCargo)
 {
-	if (Cargo.Num() >= MaxWeight) return;
+	if (GetWeight() >= MaxWeight) return;
 	
 	for (FCargoItemData CargoData : OtherCargo->Cargo)
 	{
@@ -89,7 +89,7 @@ int UCargoComponent::GetCargoWeight(FName ItemID)
 	return 0;
 }
 
-float UCargoComponent::CheckCargoWeight()
+float UCargoComponent::GetWeight()
 {
 	float TempWeight = 0.0f;
 	for (FCargoItemData CargoData : Cargo)
@@ -100,7 +100,7 @@ float UCargoComponent::CheckCargoWeight()
 	return TempWeight;
 }
 
-int UCargoComponent::GetMaxWeight()
+float UCargoComponent::GetMaxWeight()
 {
 	return MaxWeight;
 }

@@ -35,6 +35,8 @@ AFleet::AFleet()
 	
 	Cargo = CreateDefaultSubobject<UCargoComponent>(TEXT("Cargo"));
 	
+	Fuel = CreateDefaultSubobject<UFuelComponent>(TEXT("Fuel"));
+	
 	ScannerComponent = CreateDefaultSubobject<UScanner>(TEXT("Scanner"));
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));

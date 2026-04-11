@@ -84,6 +84,7 @@ void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized
 void ANebulaPlayerController::Interact()
 {
 	if (DisableInput) return;
+	if (DisableWaypoints) return;
 	
 	FHitResult HitResult;
 	GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
@@ -126,6 +127,11 @@ void ANebulaPlayerController::Construct()
 void ANebulaPlayerController::SetInputDisabled(bool InputDisabled)
 {
 	DisableInput = InputDisabled;
+}
+
+void ANebulaPlayerController::SetWaypointsDisabled(bool WaypointsDisabled)
+{
+	DisableWaypoints = WaypointsDisabled;
 }
 
 AFleet* ANebulaPlayerController::GetFleet()
