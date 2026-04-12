@@ -5,7 +5,7 @@
 #include "NebulaGameInstance.h"
 #include "Utils/NebulaLogging.h"
 
-
+// test
 void ANebulaGameMode::BeginPlay()
 {
 	Super::BeginPlay();
