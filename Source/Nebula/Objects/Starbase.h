@@ -7,6 +7,7 @@
 #include "../Components/DockingComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/RotatingMovementComponent.h"
 #include "Nebula/Components/OrbitComponent.h"
 #include "Starbase.generated.h"
 
@@ -55,4 +56,13 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UOrbitComponent* OrbitComponent;
+	
+	UPROPERTY(EditAnywhere)
+	URotatingMovementComponent* RotatingMovementComponent;
+	
+	UPROPERTY(EditAnywhere, Category = "Starbase")
+	float RotationMin;
+	
+	UPROPERTY(EditAnywhere, Category = "Starbase")
+	float RotationMax;
 };
