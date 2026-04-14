@@ -52,6 +52,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="AsteroidGeneratorClass != nullptr", EditConditionHides))
 	AActor* OrbitPoint;
 	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="OrbitPoint != nullptr", EditConditionHides))
+	float OrbitRate;
+	
 	// CLICK FLOOR
 	UPROPERTY(EditAnywhere, Category="Click Floor")
 	TSubclassOf<AClickFloor> ClickFloorClass;

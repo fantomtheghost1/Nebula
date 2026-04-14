@@ -43,7 +43,7 @@ void AAsteroidGenerator::PostEditChangeProperty(FPropertyChangedEvent& PropertyC
 #endif
 
 void AAsteroidGenerator::ConfigureGenerator(int MaxAttemptsPerAsteroidParam, int AsteroidCountParam, float RadiusMinParam, float RadiusMaxParam,
-float ClearanceRadiusParam, TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam, AActor* OrbitPointParam)
+float ClearanceRadiusParam, TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam, AActor* OrbitPointParam, float OrbitRateParam)
 {
 	MaxAttemptsPerAsteroid = MaxAttemptsPerAsteroidParam;
 	AsteroidCount = AsteroidCountParam;
@@ -52,6 +52,7 @@ float ClearanceRadiusParam, TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam,
 	ClearanceRadius = ClearanceRadiusParam;
 	AsteroidBlueprints = AsteroidBlueprintsParam;
 	OrbitPoint = OrbitPointParam;
+	OrbitRate = OrbitRateParam;
 }
 
 void AAsteroidGenerator::SpawnAsteroids()
@@ -122,7 +123,14 @@ void AAsteroidGenerator::SpawnAsteroids()
 				
 				if (OrbitPoint)
 				{
-					Spawned->GetComponentByClass<UOrbitComponent>()->SetPivotActor(OrbitPoint);
+					UOrbitComponent* OrbitComponent = Spawned->FindComponentByClass<UOrbitComponent>();
+					if (OrbitComponent)
+					{
+						OrbitComponent->SetPivotActor(OrbitPoint);
+						OrbitComponent->SetOrbitRate(OrbitRate);
+					}
+					
+					
 				}
 				break;
 			}

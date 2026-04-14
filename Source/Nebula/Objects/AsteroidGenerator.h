@@ -24,7 +24,8 @@ public:
 		float RadiusMaxParam, 
 		float ClearanceRadiusParam,
 		TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam,
-		AActor* OrbitPointParam);
+		AActor* OrbitPointParam,
+		float OrbitRateParam = 0.f);
 	
 	void SpawnAsteroids();
 	
@@ -57,4 +58,7 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
     AActor* OrbitPoint;
+	
+	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
+    float OrbitRate;
 };

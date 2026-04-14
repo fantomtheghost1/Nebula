@@ -20,6 +20,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetPivotActor(AActor* NewPivotActor);
 	
+	UFUNCTION(BlueprintCallable)
+	void SetOrbitRate(float NewOrbitRate);
+	
 private:
 	
 	void RotateAroundPivot(FVector PivotLocation);

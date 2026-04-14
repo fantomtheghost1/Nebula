@@ -22,6 +22,11 @@ void UOrbitComponent::SetPivotActor(AActor* NewPivotActor)
 	PivotActor = NewPivotActor;
 }
 
+void UOrbitComponent::SetOrbitRate(float NewOrbitRate)
+{
+	RotationRate = NewOrbitRate;
+}
+
 void UOrbitComponent::RotateAroundPivot(FVector PivotLocation)
 {
 	

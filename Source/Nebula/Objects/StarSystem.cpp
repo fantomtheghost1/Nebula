@@ -38,7 +38,7 @@ void AStarSystem::BeginPlay()
 			
 		if (Spawned)
 		{
-			Spawned->ConfigureGenerator(MaxAttemptsPerAsteroid, AsteroidCount, RadiusMin, RadiusMax, ClearanceRadius, AsteroidBlueprints, OrbitPoint);
+			Spawned->ConfigureGenerator(MaxAttemptsPerAsteroid, AsteroidCount, RadiusMin, RadiusMax, ClearanceRadius, AsteroidBlueprints, OrbitPoint, OrbitRate);
 			Spawned->SpawnAsteroids();
 		}
 	}
