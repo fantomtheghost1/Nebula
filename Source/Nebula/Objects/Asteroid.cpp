@@ -30,8 +30,6 @@ AAsteroid::AAsteroid()
 	
 	ResourceNodeComponent = CreateDefaultSubobject<UResourceNodeComponent>(TEXT("Resource Node"));
 	
-	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
-	
 }
 
 // Called when the game starts or when spawned
