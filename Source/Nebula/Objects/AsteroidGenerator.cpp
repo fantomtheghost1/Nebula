@@ -7,6 +7,7 @@
 #include "CollisionShape.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Actor.h"
+#include "Nebula/Components/OrbitComponent.h"
 
 AAsteroidGenerator::AAsteroidGenerator()
 {
@@ -118,6 +119,11 @@ void AAsteroidGenerator::SpawnAsteroids()
 			if (AActor* Spawned = World->SpawnActor<AActor>(ChosenClass, SpawnTransform, SpawnParams))
 			{
 				bSpawned = true;
+				
+				if (OrbitPoint)
+				{
+					Spawned->GetComponentByClass<UOrbitComponent>()->SetPivotActor(OrbitPoint);
+				}
 				break;
 			}
 			

@@ -17,6 +17,11 @@ void UOrbitComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	RotateAroundPivot(PivotActor->GetActorLocation());
 }
 
+void UOrbitComponent::SetPivotActor(AActor* NewPivotActor)
+{
+	PivotActor = NewPivotActor;
+}
+
 void UOrbitComponent::RotateAroundPivot(FVector PivotLocation)
 {
 	
