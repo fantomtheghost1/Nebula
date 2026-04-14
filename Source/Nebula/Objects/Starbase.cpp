@@ -28,7 +28,7 @@ AStarbase::AStarbase()
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 	
-	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
+	OrbitComponent = CreateDefaultSubobject<UOrbitComponent>(TEXT("Orbit"));
 }
 
 // Called when the game starts or when spawned

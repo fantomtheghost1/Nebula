@@ -7,7 +7,7 @@
 #include "../Components/DockingComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
-#include "Nebula/Components/TextDisplayComponent.h"
+#include "Nebula/Components/OrbitComponent.h"
 #include "Starbase.generated.h"
 
 UCLASS()
@@ -54,5 +54,5 @@ private:
 	UUserWidget* DockingUIWidget;
 	
 	UPROPERTY(EditAnywhere)
-	UTextDisplayComponent* TextDisplay;
+	UOrbitComponent* OrbitComponent;
 };
