@@ -9,39 +9,6 @@
 #include "GameFramework/Actor.h"
 #include "Nebula/Components/OrbitComponent.h"
 
-AAsteroidGenerator::AAsteroidGenerator()
-{
-	PrimaryActorTick.bCanEverTick = false;
-
-	SpawnRings = CreateDefaultSubobject<USpawnRingsComponent>(TEXT("SpawnRings"));
-	SpawnRings->SetupAttachment(GetRootComponent());
-}
-
-void AAsteroidGenerator::OnConstruction(const FTransform& Transform)
-{
-	Super::OnConstruction(Transform);
-	
-	if (SpawnRings)
-	{
-		SpawnRings->RadiusMin = RadiusMin;
-		SpawnRings->RadiusMax = RadiusMax;
-
-		// If you want these tweakable on the generator instead, keep them here too:
-		// SpawnRings->Segments = 64;
-		// SpawnRings->Thickness = 2.0f;
-
-		SpawnRings->MarkRenderStateDirty(); // push changes to the scene proxy
-	}
-}
-
-#if WITH_EDITOR
-void AAsteroidGenerator::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
-{
-	Super::PostEditChangeProperty(PropertyChangedEvent);
-	RerunConstructionScripts();
-}
-#endif
-
 void AAsteroidGenerator::ConfigureGenerator(int MaxAttemptsPerAsteroidParam, int AsteroidCountParam, float RadiusMinParam, float RadiusMaxParam,
 float ClearanceRadiusParam, TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam, AActor* OrbitPointParam, float OrbitRateParam)
 {
@@ -53,6 +20,7 @@ float ClearanceRadiusParam, TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam,
 	AsteroidBlueprints = AsteroidBlueprintsParam;
 	OrbitPoint = OrbitPointParam;
 	OrbitRate = OrbitRateParam;
+	UE_LOG(LogTemp, Warning, TEXT("Configured generator with %f orbit rate"), OrbitRate);
 }
 
 void AAsteroidGenerator::SpawnAsteroids()
@@ -128,6 +96,7 @@ void AAsteroidGenerator::SpawnAsteroids()
 					{
 						OrbitComponent->SetPivotActor(OrbitPoint);
 						OrbitComponent->SetOrbitRate(OrbitRate);
+						UE_LOG(LogTemp, Warning, TEXT("Orbiting %s with a rate of %f"), *GetNameSafe(OrbitPoint), OrbitRate);
 					}
 					
 					

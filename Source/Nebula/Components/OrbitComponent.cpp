@@ -25,6 +25,7 @@ void UOrbitComponent::SetPivotActor(AActor* NewPivotActor)
 void UOrbitComponent::SetOrbitRate(float NewOrbitRate)
 {
 	RotationRate = NewOrbitRate;
+	UE_LOG(LogTemp, Warning, TEXT("Orbit Rate: %f"), RotationRate);
 }
 
 void UOrbitComponent::RotateAroundPivot(FVector PivotLocation)

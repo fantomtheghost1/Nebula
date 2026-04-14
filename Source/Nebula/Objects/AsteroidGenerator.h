@@ -13,9 +13,6 @@ class NEBULA_API AAsteroidGenerator : public AActor
 	GENERATED_BODY()
 	
 public:
-	AAsteroidGenerator();
-	
-	virtual void OnConstruction(const FTransform& Transform) override;
 	
 	void ConfigureGenerator(
 		int MaxAttemptsPerAsteroidParam, 
@@ -25,17 +22,9 @@ public:
 		float ClearanceRadiusParam,
 		TArray<TSubclassOf<AActor>> AsteroidBlueprintsParam,
 		AActor* OrbitPointParam,
-		float OrbitRateParam = 0.f);
+		float OrbitRateParam);
 	
 	void SpawnAsteroids();
-	
-#if WITH_EDITOR
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
-#endif
-	
-protected:
-		
-	TObjectPtr<USpawnRingsComponent> SpawnRings = nullptr;
 	
 private:
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
