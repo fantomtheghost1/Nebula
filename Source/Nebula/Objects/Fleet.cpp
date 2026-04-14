@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "../Components/DockingComponent.h"
 #include "Nebula/NebulaGameMode.h"
+#include "Engine/Engine.h"
 
 // Sets default values
 AFleet::AFleet()
@@ -40,8 +41,6 @@ AFleet::AFleet()
 	ScannerComponent = CreateDefaultSubobject<UScanner>(TEXT("Scanner"));
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
-	
-	TextDisplay = CreateDefaultSubobject<UTextDisplayComponent>(TEXT("TextDisplay"));
 	
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("ScannerCollision"));
 	SphereComponent->SetupAttachment(RootComponent);
@@ -89,7 +88,12 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			}
 		} 
 		else {
-			UE_LOG(LogGameplay, Warning, TEXT("Interacting with %s"), *HitResult.Component->GetName());
+			GEngine->AddOnScreenDebugMessage(
+				-1,            // key: -1 means create a new message
+				5.0f,          // display time in seconds
+				FColor::Yellow, // text color
+				FString::Printf(TEXT("Interacting with %s"), *HitResult.Component->GetName())
+			);
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);

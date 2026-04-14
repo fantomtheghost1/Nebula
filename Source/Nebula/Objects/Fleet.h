@@ -93,8 +93,5 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UCargoComponent* Cargo;
-	
-	UPROPERTY(EditAnywhere)
-	UTextDisplayComponent* TextDisplay;
 
 };
