@@ -22,7 +22,7 @@ public class Nebula : ModuleRules
 
 		PrivateDependencyModuleNames.AddRange(new string[]
 		{
-			"OnlineSubsystemSteam", "AITestSuite", "AITestSuite"
+			"OnlineSubsystemSteam", "AITestSuite", "AITestSuite", "Niagara"
 		});
 
 		// Uncomment if you are using Slate UI

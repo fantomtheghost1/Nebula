@@ -63,6 +63,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float SlowdownDistance = 300.0f;
 	
+	UPROPERTY(EditAnywhere, Category="Movement")
+	float ArrivalInaccuracyMargin = 300.0f;
+	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
 	

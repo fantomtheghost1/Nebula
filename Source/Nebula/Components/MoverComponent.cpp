@@ -1,4 +1,5 @@
 #include "MoverComponent.h"
+#include "NiagaraComponent.h"
 
 UMoverComponent::UMoverComponent()
 {
@@ -17,6 +18,11 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	if (Waypoints.Num() == 0)
 	{
 		FlySpeed = 0.0f;
+		
+		if (UNiagaraComponent* NiagaraComp = GetOwner()->GetComponentByClass<UNiagaraComponent>())
+		{
+			NiagaraComp->Deactivate();
+		}
 		return;
 	}
 
@@ -30,10 +36,19 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	const FVector TargetLocation = Waypoints[0];
 	const float DistanceToTarget = FVector::Dist(OwnerLocation, TargetLocation);
 
-	if (DistanceToTarget <= ArrivalDistance)
+	if (DistanceToTarget <= (ArrivalDistance + ArrivalInaccuracyMargin))
 	{
 		Waypoints.RemoveAt(0);
 		FlySpeed = 0.0f;
+		
+		if (Waypoints.Num() == 0)
+		{
+			if (UNiagaraComponent* NiagaraComp = GetOwner()->GetComponentByClass<UNiagaraComponent>())
+			{
+				NiagaraComp->Deactivate();
+			}
+		}
+		
 		return;
 	}
 
@@ -87,14 +102,14 @@ void UMoverComponent::MoveShip(float DeltaTime)
 
 	FVector NewPos = OwnerLocation + Direction * StepDistance;
 
-	if (StepDistance >= DistanceToTarget)
+	if (StepDistance >= (DistanceToTarget + ArrivalInaccuracyMargin))
 	{
 		NewPos = TargetLocation;
 		Waypoints.RemoveAt(0);
 		FlySpeed = 0.0f;
 	}
-
-	Owner->SetActorLocation(NewPos, true);
+	
+	Owner->SetActorLocation(NewPos, false);
 }
 
 void UMoverComponent::RotateShip(float DeltaTime)
@@ -143,6 +158,7 @@ TArray<FVector> UMoverComponent::GetWaypoints()
 
 void UMoverComponent::SetNextWaypoint(FVector NewWaypoint)
 {
+	GetOwner()->GetComponentByClass<UNiagaraComponent>()->Activate(false);
 	Waypoints.Add(NewWaypoint);
 }
 
