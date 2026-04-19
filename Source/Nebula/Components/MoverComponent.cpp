@@ -162,6 +162,11 @@ void UMoverComponent::SetNextWaypoint(FVector NewWaypoint)
 	Waypoints.Add(NewWaypoint);
 }
 
+void UMoverComponent::SetTarget(AActor* NewTarget)
+{
+	Target = NewTarget;
+}
+
 void UMoverComponent::SetFlySpeed(float NewSpeed)
 {
 	FlySpeed = NewSpeed;

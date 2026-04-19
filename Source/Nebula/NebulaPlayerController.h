@@ -57,9 +57,15 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Input")
     UInputAction* ConstructionAction;
 	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* SpaceAction;
+	
 public:
+	virtual void Tick(float DeltaTime) override;
 	
 	void TogglePaused();
+	
+	void ToggleTimePaused();
 	
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
@@ -112,6 +118,9 @@ private:
 	float ZoomMin = 0.0f;
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
+	float ZoomInterpSpeed = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category = "Camera")
 	float OrbitRate = 0.0f;
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
@@ -140,6 +149,8 @@ private:
 	
 	AShip* Ship;
 	
+	float DesiredZoom;
+	
 	float OrbitAmount;
 	
 	bool Inventory = false;
@@ -151,4 +162,6 @@ private:
 	bool DisableInput = false;
 	
 	bool DisableWaypoints = false;
+	
+	bool TimePaused = false;
 };

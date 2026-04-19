@@ -35,17 +35,27 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(QuitAction, ETriggerEvent::Started, this, &ANebulaPlayerController::TogglePaused);
 		EI->BindAction(ZoomAction, ETriggerEvent::Started, this, &ANebulaPlayerController::UpdateZoom);
 		EI->BindAction(InteractAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Interact);
-		EI->BindAction(AltAction, ETriggerEvent::Started, this, &ANebulaPlayerController::StartOrbit);
-		EI->BindAction(AltAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
+		EI->BindAction(InteractAction, ETriggerEvent::Started, this, &ANebulaPlayerController::StartOrbit);
+		EI->BindAction(InteractAction, ETriggerEvent::Completed, this, &ANebulaPlayerController::EndOrbit);
 		EI->BindAction(OrbitAction, ETriggerEvent::Triggered, this, &ANebulaPlayerController::SetOrbitAmount);
 		EI->BindAction(InventoryAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleInventory);
 		EI->BindAction(TabAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleTabMenu);
 		EI->BindAction(ConstructionAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Construct);
+		EI->BindAction(SpaceAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleTimePaused);
 	}
 	
 	bShowMouseCursor = true;
 	bEnableClickEvents = true;
 	bEnableMouseOverEvents = true;
+}
+
+void ANebulaPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (SpringArm && ZoomMax > 0.0f && ZoomMin > 0.0f)
+	{
+		SpringArm->TargetArmLength = FMath::FInterpTo(SpringArm->TargetArmLength, DesiredZoom, DeltaTime, ZoomInterpSpeed);
+	}
 }
 
 void ANebulaPlayerController::TogglePaused()
@@ -68,16 +78,10 @@ void ANebulaPlayerController::TogglePaused()
 void ANebulaPlayerController::UpdateZoom(const FInputActionValue& ZoomNormalized)
 {
 	if (DisableInput) return;
-	float ZoomValue = ZoomNormalized.Get<float>() * ZoomSpeed;
-
 	if (SpringArm && ZoomMax > 0.0f && ZoomMin > 0.0f)
 	{
-		UE_LOG(LogBackend, Warning, TEXT("Zooming"));
-		SpringArm->TargetArmLength = FMath::Clamp(
-			SpringArm->TargetArmLength + ZoomValue,
-			ZoomMin,
-			ZoomMax
-		);
+		DesiredZoom = FMath::Clamp(SpringArm->TargetArmLength + ZoomNormalized.Get<float>() * ZoomSpeed, ZoomMin, ZoomMax);
+		UE_LOG(LogBackend, Warning, TEXT("Zoom: %f"), DesiredZoom);
 	}
 }
 
@@ -218,3 +222,16 @@ void ANebulaPlayerController::RegisterCamera(ACameraRig* NewCameraRig)
 	UE_LOG(LogBackend, Warning, TEXT("SpringArm: %s"), *GetNameSafe(SpringArm));
 }
 	
+void ANebulaPlayerController::ToggleTimePaused()
+{
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		UE_LOG(LogGameplay, Warning, TEXT("No world"));
+		return;
+	}
+	
+	TimePaused = !TimePaused;
+	UE_LOG(LogGameplay, Warning, TEXT("Game Paused: %d"), TimePaused);
+	UGameplayStatics::SetGamePaused(World, TimePaused);
+}

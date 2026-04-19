@@ -7,7 +7,6 @@
 #include "../Components/DockingComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
-#include "GameFramework/RotatingMovementComponent.h"
 #include "Nebula/Components/OrbitComponent.h"
 #include "Starbase.generated.h"
 
@@ -25,10 +24,6 @@ public:
 	void Interact(AFleet* InteractingFleet);
 	
 	UFaction* GetAffiliation();
-	
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	
 private:
 	
@@ -56,9 +51,6 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UOrbitComponent* OrbitComponent;
-	
-	UPROPERTY(EditAnywhere)
-	URotatingMovementComponent* RotatingMovementComponent;
 	
 	UPROPERTY(EditAnywhere, Category = "Starbase")
 	float RotationMin;

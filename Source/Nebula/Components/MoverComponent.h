@@ -23,6 +23,8 @@ public:
 		
 	void SetNextWaypoint(FVector NewWaypoint);
 	
+	void SetTarget(AActor* NewTarget);
+	
 	void ClearWaypoints();
 	
 	UFUNCTION(BlueprintCallable)
@@ -68,6 +70,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FVector> Waypoints;
+	
+	UPROPERTY(VisibleAnywhere)
+	AActor* Target;
 	
 	void MoveShip(float DeltaTime);
 	void RotateShip(float DeltaTime);

@@ -27,6 +27,10 @@ protected:
 	
 private:
 	
+	// SYSTEM INFORMATION
+	UPROPERTY(EditAnywhere, Category="System Information")
+	FString SystemName;
+	
     // ASTEROID GENERATOR
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator")
 	TSubclassOf<AAsteroidGenerator> AsteroidGeneratorClass;

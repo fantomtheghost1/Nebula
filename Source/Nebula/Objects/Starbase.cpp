@@ -29,22 +29,6 @@ AStarbase::AStarbase()
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 	
 	OrbitComponent = CreateDefaultSubobject<UOrbitComponent>(TEXT("Orbit"));
-	
-	RotatingMovementComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement"));
-}
-
-// Called when the game starts or when spawned
-void AStarbase::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	float NewRotation = FMath::FRandRange(RotationMin, RotationMax);
-	FRotator NewRotationRate = FRotator(0.0f, NewRotation, 0.0f);
-	
-	if (RotatingMovementComponent)
-	{
-		RotatingMovementComponent->RotationRate = NewRotationRate;
-	}
 }
 
 // Called every frame

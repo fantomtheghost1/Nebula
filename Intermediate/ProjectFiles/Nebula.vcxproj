@@ -347,7 +347,6 @@
     <ClInclude Include="..\..\Source\Nebula\Enums\ContractType.h"/>
     <ClInclude Include="..\..\Source\Nebula\Enums\DialogueType.h"/>
     <ClInclude Include="..\..\Source\Nebula\Enums\DiplomacyStates.h"/>
-    <ClInclude Include="..\..\Source\Nebula\Enums\Factions.h"/>
     <ClInclude Include="..\..\Source\Nebula\Enums\PointOfInterestModifiers.h"/>
     <ClInclude Include="..\..\Source\Nebula\Enums\Superweapons.h"/>
     <ClInclude Include="..\..\Source\Nebula\Enums\SystemEffects.h"/>

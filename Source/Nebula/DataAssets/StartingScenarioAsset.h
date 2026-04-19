@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "../Enums/Factions.h"
 #include "StartingScenarioAsset.generated.h"
 
 /**
@@ -18,6 +17,6 @@ class NEBULA_API UStartingScenarioAsset : public UPrimaryDataAsset
 public: 
 	virtual FPrimaryAssetId GetPrimaryAssetId() const override;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EFactions StartingFaction;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//EFactions StartingFaction;
 };
