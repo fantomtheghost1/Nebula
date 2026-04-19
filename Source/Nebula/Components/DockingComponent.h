@@ -17,6 +17,9 @@ class NEBULA_API UDockingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
+	UDockingComponent();
+	
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
 	void Dock(bool IsPlayer, AFleet* DockedFleet);
 	
@@ -53,4 +56,6 @@ private:
 	USphereComponent* SphereComp;
 	
 	bool IsResourceNode = false;
+	
+	bool IsPlayerDocked = false;
 };

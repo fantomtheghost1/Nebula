@@ -18,12 +18,16 @@
 class UInputMappingContext;
 class UInputAction;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUserActivity);
+
 UCLASS()
 class NEBULA_API ANebulaPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
 protected:
+	
+	virtual bool InputKey(const FInputKeyEventArgs& EventArgs) override;
 	
 	virtual void BeginPlay() override;
 	
@@ -61,6 +65,9 @@ protected:
 	UInputAction* SpaceAction;
 	
 public:
+	UPROPERTY(BlueprintAssignable, Category = "Input")
+	FOnUserActivity OnUserActivity;
+	
 	virtual void Tick(float DeltaTime) override;
 	
 	void TogglePaused();
@@ -95,9 +102,13 @@ public:
 	 
 	void EndOrbit();
 	
+	void SetDockedCamera();
+	
 	void SetOrbitAmount(const FInputActionValue& MouseXY);
 	
 	void RegisterCamera(ACameraRig* NewCameraPawn);
+	
+	ACameraRig* GetCameraRig();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Credits;
@@ -122,6 +133,12 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	float OrbitRate = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	float DockedOrbitRate = 0.0f;
+	
+	UPROPERTY(EditAnywhere, Category = "Camera")
+	float DockedZoomValue = 0.0f;
 	
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	bool Idle = false;

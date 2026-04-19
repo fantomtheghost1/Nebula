@@ -13,6 +13,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "Utils/NebulaLogging.h"
 
+bool ANebulaPlayerController::InputKey(const FInputKeyEventArgs& EventArgs)
+{
+	OnUserActivity.Broadcast();
+	return Super::InputKey(EventArgs);
+}
+
 void ANebulaPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -155,6 +161,17 @@ void ANebulaPlayerController::EndOrbit()
 	Orbit = false;
 }
 
+void ANebulaPlayerController::SetDockedCamera()
+{
+	SpringArm->TargetArmLength = DockedZoomValue;
+	
+	FRotator OrbitRotation = CameraRig->GetActorRotation();
+	OrbitRotation.Yaw += DockedOrbitRate;
+	OrbitRotation.Pitch = -30.f;
+	
+	CameraRig->SetActorRotation(OrbitRotation);
+}
+
 void ANebulaPlayerController::ToggleInventory()
 {
 	if (!InventoryWidget)
@@ -221,7 +238,12 @@ void ANebulaPlayerController::RegisterCamera(ACameraRig* NewCameraRig)
 	SpringArm->TargetArmLength = ZoomMin;
 	UE_LOG(LogBackend, Warning, TEXT("SpringArm: %s"), *GetNameSafe(SpringArm));
 }
-	
+
+ACameraRig* ANebulaPlayerController::GetCameraRig()
+{
+	return CameraRig;
+}
+
 void ANebulaPlayerController::ToggleTimePaused()
 {
 	UWorld* World = GetWorld();

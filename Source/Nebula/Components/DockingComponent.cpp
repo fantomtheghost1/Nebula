@@ -14,6 +14,25 @@
 #include "Nebula/UserWidgets/SuperweaponWidget.h"
 #include "Nebula/Utils/NebulaLogging.h"
 
+UDockingComponent::UDockingComponent()
+{
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+void UDockingComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+                                      FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	
+	if (IsPlayerDocked)
+	{
+		ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
+		PC->GetFleet()->SetActorLocation(GetOwner()->GetActorLocation());
+		PC->GetCameraRig()->SetActorLocation(GetOwner()->GetActorLocation());
+		PC->SetDockedCamera();
+	}
+}
+
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
 	if (DockedFleets.Num() < DockLimit)
@@ -54,6 +73,10 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		UE_LOG(LogGameplay, Warning, TEXT("Docked %s"), *DockedFleet->GetName());
 		
 		CreateDockingWidget(IsPlayer);
+		if (IsPlayer)
+		{
+			IsPlayerDocked = true;
+		}
 		
 		DockedFleets.Add(DockedFleet);
 		DockedFleet->DockedTo = GetOwner();
@@ -67,6 +90,7 @@ void UDockingComponent::ClearDockedFleets()
 	ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
 	PC->SetInputDisabled(false);
 	PC->GetFleet()->SetActorHiddenInGame(false);
+	IsPlayerDocked = false;
 }
 
 void UDockingComponent::BeginPlay()
