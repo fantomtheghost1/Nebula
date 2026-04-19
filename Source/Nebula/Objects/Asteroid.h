@@ -7,6 +7,7 @@
 #include "../Components/ResourceNodeComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
+#include "Nebula/Components/FogOfWarComponent.h"
 #include "Asteroid.generated.h"
 
 class URotatingMovementComponent;
@@ -42,4 +43,7 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UResourceNodeComponent* ResourceNodeComponent;
+	
+	UPROPERTY(VisibleAnywhere)
+	UFogOfWarComponent* FogOfWarComponent;
 };

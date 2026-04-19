@@ -30,6 +30,7 @@ AAsteroid::AAsteroid()
 	
 	ResourceNodeComponent = CreateDefaultSubobject<UResourceNodeComponent>(TEXT("Resource Node"));
 	
+	FogOfWarComponent = CreateDefaultSubobject<UFogOfWarComponent>(TEXT("Fog Of War"));
 }
 
 // Called when the game starts or when spawned
