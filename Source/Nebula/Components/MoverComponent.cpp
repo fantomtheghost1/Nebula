@@ -15,40 +15,47 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (Waypoints.Num() == 0)
-	{
-		FlySpeed = 0.0f;
-		
-		if (UNiagaraComponent* NiagaraComp = GetOwner()->GetComponentByClass<UNiagaraComponent>())
-		{
-			NiagaraComp->Deactivate();
-		}
-		return;
-	}
-
 	AActor* Owner = GetOwner();
 	if (!Owner)
 	{
 		return;
 	}
 
+	const bool bHasTarget = (Target != nullptr);
+	const bool bHasWaypoints = (Waypoints.Num() > 0);
+
+	if (!bHasTarget && !bHasWaypoints)
+	{
+		FlySpeed = 0.0f;
+
+		if (UNiagaraComponent* NiagaraComp = Owner->GetComponentByClass<UNiagaraComponent>())
+		{
+			NiagaraComp->Deactivate();
+		}
+		return;
+	}
+
 	const FVector OwnerLocation = Owner->GetActorLocation();
-	const FVector TargetLocation = Waypoints[0];
-	const float DistanceToTarget = FVector::Dist(OwnerLocation, TargetLocation);
+	const FVector Destination = bHasTarget ? Target->GetActorLocation() : Waypoints[0];
+	const float DistanceToTarget = FVector::Dist(OwnerLocation, Destination);
 
 	if (DistanceToTarget <= (ArrivalDistance + ArrivalInaccuracyMargin))
 	{
-		Waypoints.RemoveAt(0);
 		FlySpeed = 0.0f;
-		
-		if (Waypoints.Num() == 0)
+
+		if (!bHasTarget && Waypoints.Num() > 0)
 		{
-			if (UNiagaraComponent* NiagaraComp = GetOwner()->GetComponentByClass<UNiagaraComponent>())
+			Waypoints.RemoveAt(0);
+		}
+
+		if (!Target && Waypoints.Num() == 0)
+		{
+			if (UNiagaraComponent* NiagaraComp = Owner->GetComponentByClass<UNiagaraComponent>())
 			{
 				NiagaraComp->Deactivate();
 			}
 		}
-		
+
 		return;
 	}
 
@@ -76,20 +83,23 @@ void UMoverComponent::UpdateSpeed(float DeltaTime, float DistanceToTarget)
 
 void UMoverComponent::MoveShip(float DeltaTime)
 {
-	if (Waypoints.Num() == 0)
-	{
-		return;
-	}
-
 	AActor* Owner = GetOwner();
 	if (!Owner)
 	{
 		return;
 	}
 
+	const bool bHasTarget = (Target != nullptr);
+	const bool bHasWaypoints = (Waypoints.Num() > 0);
+
+	if (!bHasTarget && !bHasWaypoints)
+	{
+		return;
+	}
+
 	const FVector OwnerLocation = Owner->GetActorLocation();
-	const FVector TargetLocation = Waypoints[0];
-	const FVector ToTarget = TargetLocation - OwnerLocation;
+	const FVector Destination = bHasTarget ? Target->GetActorLocation() : Waypoints[0];
+	const FVector ToTarget = Destination - OwnerLocation;
 	const float DistanceToTarget = ToTarget.Length();
 
 	if (DistanceToTarget <= KINDA_SMALL_NUMBER)
@@ -102,31 +112,35 @@ void UMoverComponent::MoveShip(float DeltaTime)
 
 	FVector NewPos = OwnerLocation + Direction * StepDistance;
 
-	if (StepDistance >= (DistanceToTarget + ArrivalInaccuracyMargin))
+	if (!bHasTarget && StepDistance >= (DistanceToTarget + ArrivalInaccuracyMargin))
 	{
-		NewPos = TargetLocation;
+		NewPos = Destination;
 		Waypoints.RemoveAt(0);
 		FlySpeed = 0.0f;
 	}
-	
+
 	Owner->SetActorLocation(NewPos, false);
 }
 
 void UMoverComponent::RotateShip(float DeltaTime)
 {
-	if (Waypoints.Num() == 0)
-	{
-		return;
-	}
-
 	AActor* Owner = GetOwner();
 	if (!Owner)
 	{
 		return;
 	}
 
+	const bool bHasTarget = (Target != nullptr);
+	const bool bHasWaypoints = (Waypoints.Num() > 0);
+
+	if (!bHasTarget && !bHasWaypoints)
+	{
+		return;
+	}
+
 	const FVector OwnerLocation = Owner->GetActorLocation();
-	const FVector Direction = (Waypoints[0] - OwnerLocation).GetSafeNormal();
+	const FVector Destination = bHasTarget ? Target->GetActorLocation() : Waypoints[0];
+	const FVector Direction = (Destination - OwnerLocation).GetSafeNormal();
 
 	if (Direction.IsNearlyZero())
 	{
@@ -158,7 +172,12 @@ TArray<FVector> UMoverComponent::GetWaypoints()
 
 void UMoverComponent::SetNextWaypoint(FVector NewWaypoint)
 {
-	GetOwner()->GetComponentByClass<UNiagaraComponent>()->Activate(false);
+	if (UNiagaraComponent* NiagaraComp = GetOwner() ? GetOwner()->GetComponentByClass<UNiagaraComponent>() : nullptr)
+	{
+		NiagaraComp->Activate(false);
+	}
+
+	Target = nullptr;
 	Waypoints.Add(NewWaypoint);
 }
 

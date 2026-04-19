@@ -87,7 +87,7 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 				GI->StartBattle(this, EnemyFleet);
 			}
 		} 
-		else {
+		else if (HitResult.GetActor()->ActorHasTag("ClickFloor")) {
 			GEngine->AddOnScreenDebugMessage(
 				-1,            // key: -1 means create a new message
 				5.0f,          // display time in seconds
@@ -97,6 +97,9 @@ void AFleet::DetermineInteract(FHitResult HitResult)
 			// If is click floor, move ship
 			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
 			SetNewWaypoint(NewLocation);
+		} else
+		{
+			FindComponentByClass<UMoverComponent>()->SetTarget(HitResult.GetActor());
 		}
 	}
 }
