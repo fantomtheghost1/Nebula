@@ -44,14 +44,3 @@ void AStarSystem::BeginPlay()
 		}
 	}
 }
-
-void AStarSystem::AddShipToSystem(AShip* Ship)
-{
-	ShipsInSystem.Add(Ship);
-}
-
-void AStarSystem::GetShipsInSystem(TArray<AShip*>& OutShips)
-{
-	OutShips = ShipsInSystem;
-}
-

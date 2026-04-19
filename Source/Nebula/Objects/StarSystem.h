@@ -14,12 +14,6 @@ UCLASS()
 class NEBULA_API AStarSystem : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	
-	void AddShipToSystem(AShip* Ship);
-	
-	void GetShipsInSystem(TArray<AShip*>& OutShips);
 
 protected:
 	// Called when the game starts or when spawned
@@ -72,10 +66,9 @@ private:
 	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
 	bool IsVisible;
 	
-	// INFORMATION
-	UPROPERTY(VisibleAnywhere, Category="Information")
-	TArray<AShip*> ShipsInSystem;
+	UPROPERTY(EditAnywhere, Category="Information")
+	UFaction* OwnerFaction;
 	
-	UPROPERTY(VisibleAnywhere, Category="Information")
-	UFaction* Affiliation;
+	UPROPERTY(EditAnywhere, Category="Information")
+	UFaction* PirateFaction;
 };

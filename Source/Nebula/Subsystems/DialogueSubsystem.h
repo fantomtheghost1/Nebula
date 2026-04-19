@@ -19,6 +19,7 @@ public:
 	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	
+	UFUNCTION(BlueprintCallable)
 	UDialogueAsset* GetDialogueByID(int ID);
 	
 private:

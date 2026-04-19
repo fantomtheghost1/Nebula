@@ -190,9 +190,6 @@
     <ClInclude Include="..\..\Source\Nebula\Enums\DiplomacyStates.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Nebula\Enums\Factions.h">
-      <Filter>Source\Nebula\Enums</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\PointOfInterestModifiers.h">
       <Filter>Source\Nebula\Enums</Filter>
     </ClInclude>
@@ -201,6 +198,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Nebula\Enums\SystemEffects.h">
       <Filter>Source\Nebula\Enums</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\FogOfWarComponent.cpp">
+      <Filter>Source\Nebula</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\FogOfWarComponent.h">
+      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\Handlers">
       <UniqueIdentifier>{143AE41C-83A4-3C24-B8EF-68D6D1FDE07E}</UniqueIdentifier>
@@ -343,6 +346,12 @@
     <ClInclude Include="..\..\Source\Nebula\Objects\StarSystem.h">
       <Filter>Source\Nebula\Objects</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Nebula\Objects\Sun.cpp">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Nebula\Objects\Sun.h">
+      <Filter>Source\Nebula\Objects</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Nebula\Objects\Superweapon.cpp">
       <Filter>Source\Nebula\Objects</Filter>
     </ClCompile>
@@ -435,12 +444,6 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Nebula\Subsystems\SkillSubsystem.h">
       <Filter>Source\Nebula\Subsystems</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Nebula\Sun.cpp">
-      <Filter>Source\Nebula</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Nebula\Sun.h">
-      <Filter>Source\Nebula</Filter>
     </ClInclude>
     <Filter Include="Source\Nebula\UserWidgets">
       <UniqueIdentifier>{8D18AB26-8F08-3F5C-BB28-CB43F12CE4D0}</UniqueIdentifier>
