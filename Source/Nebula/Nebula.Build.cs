@@ -17,7 +17,10 @@ public class Nebula : ModuleRules
 			"EnhancedInput",
 			"UMG",
 			"OnlineSubsystem",
-			"OnlineSubsystemUtils"
+			"OnlineSubsystemUtils",
+			"AIModule",
+			"NavigationSystem"
+			// Tool frameworks (Editor-only; added below when building the Editor)
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
@@ -32,5 +35,16 @@ public class Nebula : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+
+		// Add editor-only modules only when building the Editor target
+		if (Target.bBuildEditor)
+		{
+			PublicDependencyModuleNames.AddRange(new string[]
+			{
+				"InteractiveToolsFramework",
+				"ScriptableToolsFramework",
+				"EditorScriptableToolsFramework",
+			});
+		}
 	}
 }

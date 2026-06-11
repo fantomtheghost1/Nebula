@@ -1,8 +1,9 @@
-﻿# Ignore intermediate, build, and saved files
+# Ignore intermediate, build, and saved files
 Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
+Builds/
 
 # Ignore Visual Studio, Rider, and Xcode project files
 .vscode/

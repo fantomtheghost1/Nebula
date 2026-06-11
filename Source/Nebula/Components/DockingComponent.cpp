@@ -35,7 +35,7 @@ void UDockingComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
 void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 {
-	if (DockedFleets.Num() < DockLimit)
+	if (DockedFleets.Num() < DockLimit || DockLimit == -1)
 	{
 		
 		if (GetOwner()->IsA<AFleet>())
@@ -80,6 +80,14 @@ void UDockingComponent::Dock(bool IsPlayer, AFleet* DockedFleet)
 		
 		DockedFleets.Add(DockedFleet);
 		DockedFleet->DockedTo = GetOwner();
+	}
+}
+
+void UDockingComponent::UndockFleet(AFleet* FleetRef)
+{
+	if (DockedFleets.Contains(FleetRef))
+	{
+		DockedFleets.Remove(FleetRef);
 	}
 }
 

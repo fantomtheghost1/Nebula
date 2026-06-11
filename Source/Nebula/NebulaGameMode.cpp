@@ -12,6 +12,16 @@ void ANebulaGameMode::BeginPlay()
 	
 	GameInstance = Cast<UNebulaGameInstance>(GetGameInstance());
 	FactionSubsystem = GameInstance->GetSubsystem<UFactionSubsystem>();
+	
+	if (!TraderBlueprint) return;
+	GetWorld()->GetTimerManager().SetTimer(
+		TraderSpawnTimer,
+		this,
+		&ANebulaGameMode::SpawnTradeFleet,
+		TraderSpawnInterval,
+		true,
+		0.0f
+	);
 }
 
 void ANebulaGameMode::InitializeBattle(int NewPlayerShipCount, int NewAIShipCount)
@@ -23,6 +33,22 @@ void ANebulaGameMode::InitializeBattle(int NewPlayerShipCount, int NewAIShipCoun
 void ANebulaGameMode::RegisterFleet(AFleet* NewFleet)
 {
 	Fleets.Add(NewFleet);
+}
+
+void ANebulaGameMode::RegisterStarbase(AStarbase* NewStarbase)
+{
+	Starbases.Add(NewStarbase);
+}
+
+AStarbase* ANebulaGameMode::GetRandomStarbase()
+{
+	if (Starbases.Num() > 0)
+	{
+		int32 RandomIndex = FMath::RandRange(0, Starbases.Num() - 1);
+		AStarbase* Starbase = Starbases[RandomIndex];
+		return Starbase;
+	}
+	return nullptr;
 }
 
 TArray<AFleet*> ANebulaGameMode::GetFleets()
@@ -59,6 +85,31 @@ void ANebulaGameMode::CheckVictoryCondition()
 		UE_LOG(LogGameplay, Warning, TEXT("Victory Condition Met!"));
 		StartGame();
 	}
+}
+
+void ANebulaGameMode::SpawnTradeFleet()
+{
+	AStarbase* Starbase = GetRandomStarbase();
+	if (!Starbase) return;
+	
+	if (GetWorld() && SpawnTraders)
+	{
+		AFleet* NewTrader = GetWorld()->SpawnActor<AFleet>(TraderBlueprint, Starbase->GetActorLocation(), Starbase->GetActorRotation());
+		NewTrader->Home = Starbase;
+		Starbase->GetComponentByClass<UDockingComponent>()->Dock(false, NewTrader);
+	}
+}
+
+AFleet* ANebulaGameMode::GetPlayerFleet()
+{
+	for (int i = 0; i < Fleets.Num(); i++)
+	{
+		if (Fleets[i]->IsPlayerFleet)
+		{
+			return Fleets[i];
+		}
+	}
+	return nullptr;
 }
 
 void ANebulaGameMode::StartGame()

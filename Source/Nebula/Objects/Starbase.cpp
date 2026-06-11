@@ -4,6 +4,7 @@
 #include "Starbase.h"
 
 #include "../NebulaGameInstance.h"
+#include "Nebula/NebulaGameMode.h"
 
 // Sets default values
 AStarbase::AStarbase()
@@ -48,4 +49,15 @@ void AStarbase::Interact(AFleet* InteractingFleet)
 UFaction* AStarbase::GetAffiliation()
 {
 	return Affiliation;
+}
+
+void AStarbase::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	ANebulaGameMode* NGM = Cast<ANebulaGameMode>(GetWorld()->GetAuthGameMode());
+	if (NGM)
+	{
+		NGM->RegisterStarbase(this);
+	}
 }

@@ -9,23 +9,6 @@ void AStarSystem::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	if (ClickFloorSize > 0.0f)
-	{
-		const float ClickFloorWidth = 0.9f; 
-		
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		SpawnParams.Instigator = GetInstigator();
-				
-		FVector Location = FVector(GetActorLocation().X, GetActorLocation().Y, ZOffset);
-		FRotator Rotation = FRotator::ZeroRotator;
-		
-		AClickFloor* Spawned = GetWorld()->SpawnActor<AClickFloor>(ClickFloorClass, Location, Rotation, SpawnParams);
-		Spawned->SetFloorSize(FVector(ClickFloorSize, ClickFloorSize, ClickFloorWidth));
-		Spawned->SetVisible(IsVisible);
-		Spawned->Tags.Add(FName("ClickFloor"));
-	}
-	
 	if (AsteroidGeneratorClass)
 	{
 		FActorSpawnParameters SpawnParams;

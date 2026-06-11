@@ -46,11 +46,14 @@ public:
 	TMap<int, FStarbaseState> Starbases;
 	
 	void StartGame();
-	
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	bool DoFirstSpawns = true;
+	bool LoadGame = false;
 	
 	FLeader PlayerLeader;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Credits;
 	
 protected:
 	virtual void Init() override;

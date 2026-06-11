@@ -57,7 +57,7 @@ void ARelay::Warp()
 		ANebulaPlayerController* PC = Cast<ANebulaPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
 		if (PC)
 		{
-			PC->GetFleet()->FindComponentByClass<UMoverComponent>()->ClearWaypoints();
+			//PC->GetFleet()->FindComponentByClass<UMoverComponent>()->ClearWaypoints();
 			PC->GetFleet()->SetActorLocation(Connection->GetActorLocation(), false, nullptr, ETeleportType::TeleportPhysics);
 		}
 	}

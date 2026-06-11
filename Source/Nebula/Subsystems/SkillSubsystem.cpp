@@ -12,10 +12,7 @@ void USkillSubsystem::AddSpeedFactor(float NewSpeedFactor)
 	ANebulaPlayerController* PlayerController = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController());
 	UMoverComponent* MoverComponent = PlayerController->GetFleet()->FindComponentByClass<UMoverComponent>();
 	
-	float FlySpeed;
-	MoverComponent->GetFlySpeed(FlySpeed);
-	
-	float NewFlySpeed = FlySpeed * SpeedFactor;
+	float NewFlySpeed = MoverComponent->GetFlySpeed() * SpeedFactor;
 	MoverComponent->SetFlySpeed(NewFlySpeed);
 	
 	UE_LOG(LogTemp, Warning, TEXT("Speed Factor: %f"), SpeedFactor);

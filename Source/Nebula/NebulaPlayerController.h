@@ -108,10 +108,8 @@ public:
 	
 	void RegisterCamera(ACameraRig* NewCameraPawn);
 	
+	UFUNCTION(BlueprintCallable)
 	ACameraRig* GetCameraRig();
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Credits;
 	
 	UPROPERTY(EditAnywhere, Category = "Spawning")
 	TSubclassOf<AActor> ConstructionClass;

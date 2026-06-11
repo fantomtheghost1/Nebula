@@ -31,9 +31,9 @@ void UContractSubsystem::CompleteContract(int Index)
 	if (!ActiveContracts.IsValidIndex(Index)) return;
 	
 	FContractData* CompletedContract = &ActiveContracts[Index];
-	if (ANebulaPlayerController* NPC = Cast<ANebulaPlayerController>(GetWorld()->GetFirstPlayerController()))
+	if (UNebulaGameInstance* NGI = Cast<UNebulaGameInstance>(GetWorld()->GetGameInstance()))
 	{
-		NPC->Credits += CompletedContract->CreditReward;
+		NGI->Credits += CompletedContract->CreditReward;
 		UE_LOG(LogTemp, Warning, TEXT("Player has earned %d credits for completing the contract %s!"), CompletedContract->CreditReward, *CompletedContract->ContractText);
 	}
 	
