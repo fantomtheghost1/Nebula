@@ -21,9 +21,13 @@ public:
 	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
+	UFUNCTION(BlueprintCallable)
 	void Dock(bool IsPlayer, AFleet* DockedFleet);
 	
 	UUserWidget* DockingUIWidget;
+	
+	UFUNCTION(BlueprintCallable)
+	void UndockFleet(AFleet* FleetRef);
 	
 	UFUNCTION(BlueprintCallable)
 	void ClearDockedFleets();
@@ -48,7 +52,7 @@ private:
 	TSubclassOf<UUserWidget> DockingUI;
 	
 	UPROPERTY(EditAnywhere)
-	int DockLimit;
+	int DockLimit = -1;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<AFleet*> DockedFleets;

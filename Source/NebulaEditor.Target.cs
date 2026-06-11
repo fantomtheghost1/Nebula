@@ -11,5 +11,6 @@ public class NebulaEditorTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V6;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_7;
 		ExtraModuleNames.Add("Nebula");
+		ExtraModuleNames.Add("NebulaEditor");
 	}
 }

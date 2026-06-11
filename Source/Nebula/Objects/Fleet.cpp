@@ -1,7 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "Fleet.h"
-
+#include "AIController.h"
+#include "NavigationSystem.h"
 #include "../NebulaGameInstance.h"
 #include "../Utils/NebulaLogging.h"
 #include "Kismet/GameplayStatics.h"
@@ -42,11 +41,16 @@ AFleet::AFleet()
 	
 	DockingComponent = CreateDefaultSubobject<UDockingComponent>(TEXT("Docking"));
 	
+	MovementComponent = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"));
+	
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("ScannerCollision"));
 	SphereComponent->SetupAttachment(RootComponent);
 	SphereComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	SphereComponent->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+	AIControllerClass = AAIController::StaticClass();
 }
 
 // Called every frame
@@ -58,7 +62,10 @@ void AFleet::BeginPlay()
 	if (!GM) return;
 	
 	ANebulaGameMode* NGM = Cast<ANebulaGameMode>(GM);
-	NGM->RegisterFleet(this);
+	if (NGM)
+	{
+		NGM->RegisterFleet(this);
+	}
 }
 
 // Called to bind functionality to input
@@ -74,40 +81,53 @@ void AFleet::SetFleetData(TArray<FShipData> FleetDataParam)
 
 void AFleet::DetermineInteract(FHitResult HitResult)
 {
-	if (HitResult.IsValidBlockingHit())
+	if (!HitResult.IsValidBlockingHit() || !HitResult.GetActor())
 	{
-		UE_LOG(LogGameplay, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
-		if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
+		return;
+	}
+
+	UE_LOG(LogGameplay, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
+
+	if (HitResult.GetActor()->ActorHasTag("Fightable") && HitResult.GetActor() != this)
+	{
+		UE_LOG(LogGameplay, Warning, TEXT("Fighting with %s"), *HitResult.Component->GetName());
+		UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
+		if (GI)
 		{
-			UE_LOG(LogGameplay, Warning, TEXT("Fighting with %s"), *HitResult.Component->GetName());
-			UNebulaGameInstance* GI = Cast<UNebulaGameInstance>(GetGameInstance());
-			if (GI)
-			{
-				AFleet* EnemyFleet = Cast<AFleet>(HitResult.GetActor());
-				GI->StartBattle(this, EnemyFleet);
-			}
-		} 
-		else if (HitResult.GetActor()->ActorHasTag("ClickFloor")) {
-			GEngine->AddOnScreenDebugMessage(
-				-1,            // key: -1 means create a new message
-				5.0f,          // display time in seconds
-				FColor::Yellow, // text color
-				FString::Printf(TEXT("Interacting with %s"), *HitResult.Component->GetName())
-			);
-			// If is click floor, move ship
-			FVector NewLocation = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, 0.0f);
-			SetNewWaypoint(NewLocation);
-		} else
-		{
-			FindComponentByClass<UMoverComponent>()->SetTarget(HitResult.GetActor());
+			AFleet* EnemyFleet = Cast<AFleet>(HitResult.GetActor());
+			GI->StartBattle(this, EnemyFleet);
 		}
 	}
-}
+	else if (HitResult.GetActor()->ActorHasTag("ClickFloor"))
+	{
+		const FVector DesiredLocation = HitResult.ImpactPoint;
 
-void AFleet::SetNewWaypoint(FVector NewPosition)
-{
-	FindComponentByClass<UMoverComponent>()->ClearWaypoints();
-	FindComponentByClass<UMoverComponent>()->SetNextWaypoint(NewPosition);
+		UNavigationSystemV1* NavSys = UNavigationSystemV1::GetCurrent(GetWorld());
+		if (!NavSys)
+		{
+			return;
+		}
+
+		FNavLocation ProjectedLocation;
+		if (NavSys->ProjectPointToNavigation(DesiredLocation, ProjectedLocation))
+		{
+			if (AAIController* FleetController = Cast<AAIController>(GetController()))
+			{
+				GEngine->AddOnScreenDebugMessage(
+					-1,
+					5.0f,
+					FColor::Yellow,
+					FString::Printf(TEXT("Moving Fleet to %s"), *ProjectedLocation.Location.ToString())
+				);
+				
+				Mover->MoveToLocation(ProjectedLocation.Location, FleetController);
+			}
+		}
+	}
+	else
+	{
+		FindComponentByClass<UMoverComponent>()->SetTarget(HitResult.GetActor());
+	}
 }
 
 TArray<FShipData> AFleet::GetFleetData()

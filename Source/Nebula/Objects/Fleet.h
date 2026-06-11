@@ -15,6 +15,7 @@
 #include "Nebula/Components/TextDisplayComponent.h"
 #include "Nebula/DataStructs/Leader.h"
 #include "Components/StaticMeshComponent.h"
+#include "GameFramework/FloatingPawnMovement.h"
 #include "Nebula/Components/FuelComponent.h"
 
 class UDockingComponent;
@@ -26,16 +27,11 @@ class NEBULA_API AFleet : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	AFleet();
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	void DetermineInteract(FHitResult HitResult);
-	
-	UFUNCTION(BlueprintCallable)
-	void SetNewWaypoint(FVector NewPosition);
 	
 	UFUNCTION(BlueprintCallable)
 	TArray<FShipData> GetFleetData();
@@ -58,12 +54,16 @@ public:
 	UPROPERTY(EditAnywhere)
 	FLeader Leader;
 	
-protected:
+	UPROPERTY(BlueprintReadWrite)
+	AActor* Home;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool Docking = false;
 	
+protected:
 	virtual void BeginPlay() override;
 	
 private:
-	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshComponent;
 	
@@ -78,6 +78,9 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UDockingComponent* DockingComponent;
+	
+	UPROPERTY(EditAnywhere)
+	UFloatingPawnMovement* MovementComponent;
 	
 	UPROPERTY(EditAnywhere)
 	UFuelComponent* FuelComponent;
@@ -95,3 +98,4 @@ private:
 	UCargoComponent* Cargo;
 
 };
+

@@ -3,6 +3,7 @@
 
 #include "FogOfWarComponent.h"
 
+#include "Nebula/NebulaGameMode.h"
 #include "Nebula/NebulaPlayerController.h"
 
 // Sets default values for this component's properties
@@ -38,9 +39,10 @@ void UFogOfWarComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (ANebulaPlayerController* NPC = GetWorld()->GetFirstPlayerController()->GetPawn()->GetController<ANebulaPlayerController>())
+	if (ANebulaGameMode* NGM = Cast<ANebulaGameMode>(GetWorld()->GetAuthGameMode()))
 	{
-		FVector PlayerLocation = NPC->GetFleet()->GetActorLocation();
+		if (!NGM->GetPlayerFleet()) return;
+		FVector PlayerLocation = NGM->GetPlayerFleet()->GetActorLocation();
 		FVector OwnerLocation = GetOwner()->GetActorLocation();
 		MaterialInstance->SetVectorParameterValue("Direction", (OwnerLocation - PlayerLocation).GetSafeNormal());
 		

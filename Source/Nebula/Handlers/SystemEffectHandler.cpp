@@ -37,11 +37,10 @@ void ASystemEffectHandler::ActivateEffect()
 			AFleet* CurrentFleet = GameMode->GetFleets()[i];
 			
 			// Convert float to percentage
-			float SlowdownAmount;
-			CurrentFleet->FindComponentByClass<UMoverComponent>()->GetFlySpeed(SlowdownAmount);
+			float SlowdownAmount = CurrentFleet->FindComponentByClass<UMoverComponent>()->GetFlySpeed();
 			SlowdownAmount *= (SlowdownPercent / 100.0f);
 			
-			CurrentFleet->FindComponentByClass<UMoverComponent>()->SetFlySpeed(SlowdownPercent);
+			CurrentFleet->FindComponentByClass<UMoverComponent>()->SetFlySpeed(SlowdownAmount);
 			
 			GetWorld()->GetTimerManager().SetTimer(
 				EffectIntervalTimer,
@@ -60,7 +59,7 @@ void ASystemEffectHandler::StartEffectTimer() {
 	{
 		AFleet* CurrentFleet = GameMode->GetFleets()[i];
 			
-		float FlySpeed = CurrentFleet->FindComponentByClass<UMoverComponent>()->GetMaxFlySpeed();
+		float FlySpeed = CurrentFleet->FindComponentByClass<UMoverComponent>()->GetFlySpeed();
 		CurrentFleet->FindComponentByClass<UMoverComponent>()->SetFlySpeed(FlySpeed);
 	}
 	

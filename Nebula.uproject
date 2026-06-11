@@ -13,7 +13,12 @@
 				"CoreUObject",
 				"UMG"
 			]
-		}
+		},
+		{
+			"Name": "NebulaEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
 	],
 	"Plugins": [
 		{
@@ -30,6 +35,20 @@
 		{
 			"Name": "HDRIBackdrop",
 			"Enabled": true
+		},
+		{
+			"Name": "ScriptableToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "ScriptableToolsFramework",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
 		}
 	]
 }

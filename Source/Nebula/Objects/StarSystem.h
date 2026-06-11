@@ -53,19 +53,6 @@ private:
 	UPROPERTY(EditAnywhere, Category="Asteroid Generator", meta=(EditCondition="OrbitPoint != nullptr", EditConditionHides))
 	float OrbitRate;
 	
-	// CLICK FLOOR
-	UPROPERTY(EditAnywhere, Category="Click Floor")
-	TSubclassOf<AClickFloor> ClickFloorClass;
-	
-	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
-	float ClickFloorSize;
-	
-	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
-	float ZOffset;
-	
-	UPROPERTY(EditAnywhere, Category="Click Floor", meta=(EditCondition="ClickFloorClass != nullptr", EditConditionHides))
-	bool IsVisible;
-	
 	UPROPERTY(EditAnywhere, Category="Information")
 	UFaction* OwnerFaction;
 	

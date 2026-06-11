@@ -27,8 +27,9 @@ void ANebulaPlayerController::BeginPlay()
 	Settings->SetOverallScalabilityLevel(0);
 	Settings->ApplySettings(true);
 	
-	Fleet = Cast<AFleet>(GetPawn());
-	Ship = Cast<AShip>(GetPawn());
+	ANebulaGameMode* NGM = Cast<ANebulaGameMode>(GetWorld()->GetAuthGameMode());
+	Fleet = NGM->GetPlayerFleet();
+	//Ship = Cast<AShip>(GetPawn());
 	
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
