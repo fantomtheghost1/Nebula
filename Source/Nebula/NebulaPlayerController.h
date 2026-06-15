@@ -63,6 +63,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* SpaceAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* WinAction;
 	
 public:
 	UPROPERTY(BlueprintAssignable, Category = "Input")
@@ -73,6 +76,8 @@ public:
 	void TogglePaused();
 	
 	void ToggleTimePaused();
+
+	void Win();
 	
 	void UpdateZoom(const FInputActionValue& ZoomNormalized);
 	
@@ -151,10 +156,15 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> PauseWidgetClass;
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> WinWidgetClass;
 	
 	UUserWidget* PauseWidget;
 	
 	UUserWidget* TabMenuWidget;
+
+	UUserWidget* WinWidget;
 	
 	ACameraRig* CameraRig;
 	

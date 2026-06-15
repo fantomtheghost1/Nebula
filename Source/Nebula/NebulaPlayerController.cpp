@@ -49,6 +49,7 @@ void ANebulaPlayerController::BeginPlay()
 		EI->BindAction(TabAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleTabMenu);
 		EI->BindAction(ConstructionAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Construct);
 		EI->BindAction(SpaceAction, ETriggerEvent::Started, this, &ANebulaPlayerController::ToggleTimePaused);
+		EI->BindAction(WinAction, ETriggerEvent::Started, this, &ANebulaPlayerController::Win);
 	}
 	
 	bShowMouseCursor = true;
@@ -257,4 +258,10 @@ void ANebulaPlayerController::ToggleTimePaused()
 	TimePaused = !TimePaused;
 	UE_LOG(LogGameplay, Warning, TEXT("Game Paused: %d"), TimePaused);
 	UGameplayStatics::SetGamePaused(World, TimePaused);
+}
+
+void ANebulaPlayerController::Win()
+{
+	WinWidget = CreateWidget<UUserWidget>(GetWorld(), WinWidgetClass);	
+	WinWidget->AddToViewport();
 }

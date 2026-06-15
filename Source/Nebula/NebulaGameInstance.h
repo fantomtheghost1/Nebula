@@ -34,6 +34,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FShipData> AIFleetData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool DidWin = true;
 	
 	void UpdateState();
 	
