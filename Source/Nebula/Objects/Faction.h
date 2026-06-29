@@ -28,12 +28,22 @@ public:
 	void SetName(FName NewName);
 	
 	void SetColor(FColor NewColor);
+
+	void SetFactionDead();
+
+	void SetIsPlayerFaction();
 	
+	UFUNCTION(BlueprintCallable)
 	TArray<AActor*> GetMembers();
 	
+	UFUNCTION(BlueprintCallable)
 	FName GetName();
 	
+	UFUNCTION(BlueprintCallable)
 	FColor GetColor();
+
+	UFUNCTION(BlueprintCallable)
+	bool GetIsPlayerFaction();
 	
 	void AddFactionDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState = EDiplomacyStates::NEUTRAL);
 	
@@ -41,7 +51,9 @@ public:
 	
 	void SetDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState);
 	
+	UFUNCTION(BlueprintCallable)
 	EDiplomacyStates GetDiplomacy(UFaction* OtherFaction);
+
 	
 private:
 	
@@ -59,5 +71,11 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, Category="Faction")
 	TMap<UFaction*, EDiplomacyStates> DiplomacyTable;
+
+	UPROPERTY(VisibleAnywhere, Category="Faction")
+	bool IsPlayerFaction;
+
+	UPROPERTY(VisibleAnywhere, Category="Faction")
+	bool FactionIsDead;
 	
 };

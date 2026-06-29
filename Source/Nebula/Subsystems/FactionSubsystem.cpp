@@ -8,16 +8,32 @@ void UFactionSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 	
-	AddFaction(FName("The Fivefold Mandate"), FColor::Yellow);
-	AddFaction(FName("The Remnant"), FColor::Black);
-	AddFaction(FName("The Helix Group"), FColor::Green);
+	UFaction* PlayerFaction = AddFaction(FName("Player Faction"), FColor::Blue, true);
+	UFaction* Fivefold = AddFaction(FName("The Fivefold Mandate"), FColor::Yellow);
+	UFaction* Remnant = AddFaction(FName("The Remnant"), FColor::Red);
+	UFaction* Helix = AddFaction(FName("The Helix Group"), FColor::Green);
+
+	PlayerFaction->SetDiplomacy(Fivefold, EDiplomacyStates::ALLY);
+	PlayerFaction->SetDiplomacy(Helix, EDiplomacyStates::ENEMY);
 }
 
-UFaction* UFactionSubsystem::AddFaction(FName Name, FColor Color)
+UFaction* UFactionSubsystem::GetPlayerFaction() {
+	for (const TPair<int32, UFaction*>& Elem : Factions)
+	{
+		if (Elem.Value)
+		{
+			if (Elem.Value->GetIsPlayerFaction()) return Elem.Value;
+		}
+	}
+	return nullptr;
+}
+
+UFaction* UFactionSubsystem::AddFaction(FName Name, FColor Color, bool IsPlayerFaction)
 {
 	UFaction* NewFaction = NewObject<UFaction>(this);
 	NewFaction->SetName(Name);
 	NewFaction->SetColor(Color);
+	NewFaction->SetIsPlayerFaction();
 	
 	Factions.Add(Factions.Num() + 1, NewFaction);
 	
@@ -31,6 +47,10 @@ UFaction* UFactionSubsystem::AddFaction(FName Name, FColor Color)
 	}
 	
 	return NewFaction;
+}
+
+TMap<int, UFaction*> UFactionSubsystem::GetFactions() {
+	return Factions;
 }
 
 void UFactionSubsystem::RemoveFaction(FName Name)

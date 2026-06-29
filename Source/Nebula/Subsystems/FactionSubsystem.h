@@ -20,7 +20,10 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 		
 	UFUNCTION(BlueprintCallable)
-	UFaction* AddFaction(FName Name, FColor Color);
+	UFaction* AddFaction(FName Name, FColor Color, bool IsPlayerFaction = false);
+
+	UFUNCTION(BlueprintCallable)
+	UFaction* GetPlayerFaction();
 		
 	UFUNCTION(BlueprintCallable)
 	void RemoveFaction(FName Name);
@@ -36,6 +39,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void ClearFactions();
+
+	UFUNCTION(BlueprintCallable)
+	TMap<int, UFaction*> GetFactions();
 	
 private:
 	

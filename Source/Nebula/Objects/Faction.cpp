@@ -31,6 +31,11 @@ void UFaction::SetColor(FColor NewColor)
 	Color = NewColor;
 }
 
+void UFaction::SetFactionDead()
+{
+	FactionIsDead = true;
+}
+
 TArray<AActor*> UFaction::GetMembers()
 {
 	return Members;
@@ -56,6 +61,16 @@ void UFaction::RemoveFactionDiplomacy(UFaction* OtherFaction)
 {
 	if (!DiplomacyTable.Contains(OtherFaction)) return;
 	DiplomacyTable.Remove(OtherFaction);
+}
+
+void UFaction::SetIsPlayerFaction()
+{
+	IsPlayerFaction = true;
+}
+
+bool UFaction::GetIsPlayerFaction()
+{
+	return IsPlayerFaction;
 }
 
 void UFaction::SetDiplomacy(UFaction* OtherFaction, EDiplomacyStates NewState = EDiplomacyStates::NEUTRAL)
